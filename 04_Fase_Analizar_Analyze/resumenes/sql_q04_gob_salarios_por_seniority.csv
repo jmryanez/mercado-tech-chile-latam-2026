@@ -1,0 +1,6 @@
+seniority_nivel,total_ofertas_publicadas,n_salarios_validos,media_mensual_usd,min_mensual_usd,max_mensual_usd,estado_regla_n30
+Senior,311,113,3367.04,1300.0,7500.0,Válido N >= 30 (Inferencia)
+Semi-Senior,298,97,2273.45,700.0,4750.0,Válido N >= 30 (Inferencia)
+Junior,47,17,1552.94,950.0,3050.0,Exploratorio N < 30 (Limitación muestral)
+Lead,18,7,7035.71,3500.0,14400.0,Excluido de inferencia (N < 15)
+Trainee,5,1,650.0,650.0,650.0,Excluido de inferencia (N < 15)

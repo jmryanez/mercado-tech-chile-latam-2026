@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.tmp
+~$*
+# Privacidad (Curso 3 / Curso 8): excluir CV personal con datos de contacto antes de publicar repositorio
+cv/

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Laboral y Salarios en Tecnología (Chile y LatAm 2024–2026) | Portafolio Google Data Analytics</title>
+  <meta name="description" content="Estudio de caso profesional de análisis de datos desarrollado bajo el marco de los 9 cursos del Certificado Profesional de Google Data Analytics. Análisis reproducible con SQL, Python y Tableau.">
+  <meta name="author" content="Manuel Yáñez Orellana">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0B0F19;
+      --bg-surface: #111827;
+      --bg-card: #1F2937;
+      --bg-card-hover: #263345;
+      --border-color: #374151;
+      --border-focus: #1A73E8;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      --google-blue: #1A73E8;
+      --google-blue-hover: #1557B0;
+      --navy-deep: #1B365D;
+      --accent-azure: #0072B2;
+      --accent-orange: #D55E00;
+      --accent-teal: #009E73;
+      --accent-gold: #F59E0B;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* TOP HEADER & NAVBAR */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 15, 25, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #1A73E8, #0072B2);
+      color: #FFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--google-blue);
+    }
+
+    .nav-cta {
+      background: var(--google-blue);
+      color: #FFF !important;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--google-blue-hover) !important;
+      transform: translateY(-1px);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      padding: 5rem 1.5rem 4rem;
+      background: radial-gradient(circle at 50% 20%, rgba(26, 115, 232, 0.12) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(26, 115, 232, 0.15);
+      border: 1px solid rgba(26, 115, 232, 0.35);
+      color: #60A5FA;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF 40%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-surface);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-meta-item strong {
+      color: var(--text-primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--google-blue);
+      color: #FFF;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--google-blue-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: var(--text-secondary);
+      transform: translateY(-2px);
+    }
+
+    /* STATS COUNTER STRIP */
+    .stats-strip {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.25rem 1.5rem;
+    }
+
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--google-blue);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #60A5FA;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .stat-badge {
+      margin-top: 0.5rem;
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(0, 158, 115, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(0, 158, 115, 0.3);
+    }
+
+    /* MAIN CONTENT SECTIONS */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-tag {
+      color: var(--google-blue);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* PHASES TIMELINE GRID */
+    .phases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--google-blue);
+    }
+
+    .phase-card:hover {
+      transform: translateY(-4px);
+      border-color: #4B5563;
+      box-shadow: var(--shadow-md);
+    }
+
+    .phase-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .phase-1 { background: rgba(26, 115, 232, 0.15); color: #60A5FA; }
+    .phase-2 { background: rgba(0, 114, 178, 0.15); color: #38BDF8; }
+    .phase-3 { background: rgba(0, 158, 115, 0.15); color: #34D399; }
+    .phase-4 { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+    .phase-5 { background: rgba(213, 94, 0, 0.15); color: #FB923C; }
+    .phase-6 { background: rgba(139, 92, 246, 0.15); color: #A78BFA; }
+
+    .phase-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text-primary);
+    }
+
+    .phase-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+
+    .phase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: auto;
+    }
+
+    .phase-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+    }
+
+    /* PATTERNS & VISUALIZATIONS GALLERY */
+    .vis-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease;
+    }
+
+    .vis-card:hover {
+      border-color: #4B5563;
+    }
+
+    .vis-media {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-right: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+
+    .vis-media img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      transition: transform 0.3s ease;
+    }
+
+    .vis-media:hover img {
+      transform: scale(1.02);
+    }
+
+    .vis-content {
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .vis-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .vis-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .vis-desc {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .vis-takeaway {
+      background: var(--bg-card);
+      border-left: 3px solid var(--google-blue);
+      padding: 0.85rem 1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .vis-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .vis-metric-box {
+      background: rgba(255,255,255,0.03);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .vis-metric-box strong {
+      color: #60A5FA;
+      font-family: var(--font-mono);
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    /* ACTION RECOMMENDATIONS TABLE */
+    .table-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      margin-bottom: 3rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .td-highlight {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(26, 115, 232, 0.15);
+      color: #60A5FA;
+      border: 1px solid rgba(26, 115, 232, 0.3);
+    }
+
+    /* PITCH & ABOUT BOX */
+    .pitch-box {
+      background: linear-gradient(135deg, rgba(27, 54, 93, 0.4), rgba(17, 24, 39, 0.9));
+      border: 1px solid rgba(26, 115, 232, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .pitch-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pitch-quote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .pitch-author {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* DOWNLOAD HUB */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .hub-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--google-blue);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hub-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #60A5FA;
+    }
+
+    .hub-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .hub-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .hub-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--google-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #070A10;
+      border-top: 1px solid var(--border-color);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.75rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--google-blue);
+    }
+
+    /* MODAL FOR IMAGE ZOOM */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 92%;
+      max-height: 85vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #F1F1F1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--accent-orange);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 900px) {
+      .vis-card {
+        grid-template-columns: 1fr;
+      }
+      .vis-media {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="brand-badge">Google Data Analytics</span>
+        <span>Manuel Yáñez Orellana</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#metodologia">Metodología (6 Fases)</a></li>
+        <li><a href="#patrones">Patrones Descubiertos</a></li>
+        <li><a href="#recomendaciones">Plan de Acción</a></li>
+        <li><a href="#descargas">Descargas & Código</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-tag">
+        <span>★ Certificado Profesional Google Data Analytics • Caso Práctico 3 (Pista B)</span>
+      </div>
+      <h1 class="hero-title">Mercado Laboral y Salarios en Tecnología</h1>
+      <p class="hero-subtitle">
+        Estudio integral de brechas de habilidades, primas salariales de computación en la nube y dinámica de contratación en Chile y Latinoamérica. Análisis reproducible sobre 4 poblaciones independientes con SQL relacional, Python y Tableau Public.
+      </p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span>📅 Año del Estudio:</span>
+          <strong>2026</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>⏱ Periodo Analizado:</span>
+          <strong>2024–2026 (Get on Board 2026 • SO 2024 • DSS 2020–2024)</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>📍 Cobertura:</span>
+          <strong>Chile y 19 Países de Latinoamérica</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>🎯 Marco Metodológico:</span>
+          <strong>Regla Muestral N >= 30 (95% Confianza)</strong>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#patrones" class="btn btn-primary">Explorar Patrones y Gráficos</a>
+        <a href="https://github.com/jmryanez/mercado-tech-chile-latam-2026" target="_blank" class="btn btn-outline">Ver Repositorio en GitHub</a>
+        <a href="05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf" target="_blank" class="btn btn-outline">Descargar PDF Ejecutivo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="stats-strip">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">72.797</div>
+        <div class="stat-label">Registros Crudos Auditados</div>
+        <span class="stat-badge">4 Fuentes Independientes</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">N ≥ 30</div>
+        <div class="stat-label">Umbral Muestral Teorema Límite Central</div>
+        <span class="stat-badge">95% Nivel de Confianza</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">+42,2%</div>
+        <div class="stat-label">Salto Salarial Semi-Sr a Senior (Chile)</div>
+        <span class="stat-badge">$2.250 a $3.200 USD Mediana</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0% PII</div>
+        <div class="stat-label">Protección de Datos & Integridad 1:N</div>
+        <span class="stat-badge">Sin Duplicación de Filas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA: LAS 6 FASES DE GOOGLE -->
+  <section class="section" id="metodologia">
+    <div class="section-header">
+      <span class="section-tag">Marco de Análisis de Datos de Google</span>
+      <h2 class="section-title">El Proceso de Análisis en 6 Fases</h2>
+      <p class="section-desc">
+        Cumplimiento estricto de las directrices y herramientas enseñadas en los 9 cursos del Certificado Profesional.
+      </p>
+    </div>
+
+    <div class="phases-grid">
+      <!-- FASE 1 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-1">Fase 1 • Cursos 1 y 2</span>
+          <h3 class="phase-title">Preguntar (Ask)</h3>
+          <p class="phase-text">
+            Definición de la tarea empresarial para el patrocinador (Consultora RRHH & Academia Digital). Aplicación de la técnica de los 5 Porqués para identificar la causa raíz, formalización del Alcance del Trabajo (SOW de 7 secciones obligatorias) y validación de 4 preguntas de investigación bajo criterios S.M.A.R.T. e imparcialidad (Fairness).
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">5 Porqués</span>
+          <span class="phase-pill">SOW</span>
+          <span class="phase-pill">S.M.A.R.T.</span>
+          <span class="phase-pill">Métricas vs Dimensiones</span>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-2">Fase 2 • Cursos 3 y 4</span>
+          <h3 class="phase-title">Preparar (Prepare)</h3>
+          <p class="phase-text">
+            Recopilación inmutable de 72.797 registros crudos de 4 fuentes: Get on Board 2026 (API v0), Stack Overflow 2024 LatAm/Chile, Data Science Salaries 2020–2024 e INE ESI 2025. Evaluación formal de calidad de datos bajo el marco ROCCC, catalogación de metadatos (descriptivos, estructurales y administrativos) y separación de tablas anchas y largas.
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">Marco ROCCC</span>
+          <span class="phase-pill">Wide vs Long</span>
+          <span class="phase-pill">Regla N >= 30</span>
+          <span class="phase-pill">0% PII</span>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-3">Fase 3 • Cursos 4, 5 y 7</span>
+          <h3 class="phase-title">Procesar (Process)</h3>
+          <p class="phase-text">
+            Construcción de pipeline reproducible en Python (pandas, numpy, regex) para limpieza determinista. Ejecución de los 6 tipos formales de validación de datos (tipo, rango, restricción, coherencia, estructura y código), lista de verificación de 12 puntos y registro cronológico de cambios en el Changelog oficial de 7 campos.
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">Python (pandas)</span>
+          <span class="phase-pill">6 Validaciones</span>
+          <span class="phase-pill">Checklist 12 Ptos</span>
+          <span class="phase-pill">Changelog 7 Campos</span>
+        </div>
+      </div>
+
+      <!-- FASE 4 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-4">Fase 4 • Cursos 5 y 7</span>
+          <h3 class="phase-title">Analizar (Analyze)</h3>
+          <p class="phase-text">
+            14 consultas analíticas en SQLite con tablas temporales (CREATE TEMP TABLE), LEFT JOINs y COUNT(DISTINCT) protegiendo contra duplicaciones en uniones 1:N. Cálculo de medianas y bandas intercuartiles p25–p75 en Python. Evaluación rigurosa de Correlación ≠ Causalidad en la modalidad 'Remoto Local' frente a composición de cargos Senior/Lead.
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">SQLite Relacional</span>
+          <span class="phase-pill">Sin Duplicación 1:N</span>
+          <span class="phase-pill">Cuartiles p25–p75</span>
+          <span class="phase-pill">HAVING >= 20%</span>
+        </div>
+      </div>
+
+      <!-- FASE 5 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-5">Fase 5 • Cursos 6 y 8</span>
+          <h3 class="phase-title">Compartir (Share)</h3>
+          <p class="phase-text">
+            Presentación ejecutiva de 12 diapositivas (formato panorámico 16:9) estructurada para una sesión de 30 minutos (4+5+10+3+3+5 min). Generación de 7 visualizaciones con honestidad escalar (ejes que inician en $0 USD y 0%) y paleta apta para daltonismo (azul/naranja). Libro consolidado multi-hoja para Tableau Public con mapa de LatAm y tabla complementaria.
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">Paleta Azul/Naranja</span>
+          <span class="phase-pill">Ejes en 0 (Sin Corte)</span>
+          <span class="phase-pill">Deck 30 Minutos</span>
+          <span class="phase-pill">Tableau Public</span>
+        </div>
+      </div>
+
+      <!-- FASE 6 -->
+      <div class="phase-card">
+        <div>
+          <span class="phase-badge phase-6">Fase 6 • Cursos 8 y 9</span>
+          <h3 class="phase-title">Actuar (Act)</h3>
+          <p class="phase-text">
+            Formulación de 4 conclusiones de alto nivel y 3 recomendaciones prioritarias sustentadas en N >= 30. Evaluación de alternativas con Pros y Contras, hoja de ruta de implementación accionable Qué / Quién / Cuándo (plazos 30, 60 y 90 días con KPIs), 4 líneas de exploración futura (N < 30), viñetas X-Y-Z para currículum, historia STAR y elevator pitch de 20 segundos.
+          </p>
+        </div>
+        <div class="phase-tags">
+          <span class="phase-pill">3 Recomendaciones</span>
+          <span class="phase-pill">Pros y Contras</span>
+          <span class="phase-pill">Qué/Quién/Cuándo</span>
+          <span class="phase-pill">Fórmula X-Y-Z & STAR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATRONES Y VISUALIZACIONES -->
+  <section class="section" id="patrones">
+    <div class="section-header">
+      <span class="section-tag">Evidencia Empírica & Hallazgos</span>
+      <h2 class="section-title">Patrones Descubiertos en el Mercado Tech</h2>
+      <p class="section-desc">
+        Visualizaciones construidas con alta proporción datos-tinta, accesibilidad cromática para daltonismo y ejes honestos que parten desde cero.
+      </p>
+    </div>
+
+    <!-- VISUAL 1 -->
+    <div class="vis-card">
+      <div class="vis-media" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png')">
+        <img src="05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png" alt="Demanda vs Adopción Top 5 Tecnologías">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 1 • Demanda vs Adopción</span>
+        <h3 class="vis-title">Solo 5 Tecnologías Superan el Umbral Crítico del ≥ 20%</h3>
+        <p class="vis-desc">
+          Al analizar 679 vacantes vigentes en Get on Board (2026) y 31.759 menciones de habilidades, únicamente SQL (32,84%), AWS (30,04%), Python (28,42%), JavaScript (27,39%) y Microsoft Azure (20,77%) superan la meta del 20%. Destaca la brecha positiva de Azure (20,77% demanda vs. 15,04% adopción en Stack Overflow Chile), reflejando una oportunidad inmediata de formación.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Rediseñar la malla formativa obligatoria en torno a SQL + una nube pública (AWS o Azure) para maximizar la empleabilidad en menos de 90 días.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>32,84%</strong>
+            SQL (Líder en volumen, N=223)
+          </div>
+          <div class="vis-metric-box">
+            <strong>+5,73%</strong>
+            Brecha de demanda en Azure
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 2 -->
+    <div class="vis-card">
+      <div class="vis-media" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png')">
+        <img src="05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png" alt="Matriz Volumen vs Salario Cloud">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Análisis Cruzado Q11 • Compensación vs Oportunidad</span>
+        <h3 class="vis-title">Primas Salariales Cloud: AWS, Azure y Google Cloud</h3>
+        <p class="vis-desc">
+          SQL ofrece el mayor volumen de entrada pero marca el piso salarial ($2.250 USD mediana GOB / $2.051 USD SO LatAm). En contraste, las tecnologías Cloud impulsan una prima salarial de +23,3% a +31,5%: AWS alcanza $2.850 USD en GOB ($2.697 USD en SO), Google Cloud $2.825 USD ($2.614 USD en SO) y Azure $2.775 USD ($2.684 USD en SO).
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Posicionar certificaciones Cloud como el multiplicador de compensación obligatorio para egresados y profesionales en transición.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>+$600 USD</strong>
+            Prima mensual AWS vs. SQL
+          </div>
+          <div class="vis-metric-box">
+            <strong>+31,5%</strong>
+            Incremento en mediana Cloud
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 4 -->
+    <div class="vis-card">
+      <div class="vis-media" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png')">
+        <img src="05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png" alt="Bandas Salariales por Seniority">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 2 • Experiencia y Compensación</span>
+        <h3 class="vis-title">Salto de +42,2% al Nivel Senior y Bandas Cuartílicas p25–p75</h3>
+        <p class="vis-desc">
+          En Get on Board, el paso de Semi-Senior ($2.250 USD, N=97) a Senior ($3.200 USD, N=113) representa un aumento del +42,2% en la mediana salarial. Ambos segmentos cumplen rigurosamente N >= 30, permitiendo fijar bandas salariales confiables: Semi-Sr $1.850–$2.600 USD y Senior $2.300–$4.000 USD. En Stack Overflow LatAm, la progresión entre los 4 tramos con N >= 89 crece de forma continua y ascendente (+566,6% acumulado).
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Publicar bandas cuartílicas automáticas exclusivamente para Semi-Senior y Senior, tratando Junior (N=17) y Lead (N=7) como tramos cualitativos sujetos a exploración futura.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>$3.200 USD</strong>
+            Mediana Senior (p75 = $4.000)
+          </div>
+          <div class="vis-metric-box">
+            <strong>$2.250 USD</strong>
+            Mediana Semi-Senior (p25 = $1.850)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 5 -->
+    <div class="vis-card">
+      <div class="vis-media" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png')">
+        <img src="05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png" alt="Modalidades vs INE y Causalidad">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 3 • Correlación ≠ Causalidad (Q12)</span>
+        <h3 class="vis-title">La Paradoja del Remoto Local: Sesgo de Composición</h3>
+        <p class="vis-desc">
+          Las vacantes etiquetadas como 'Remoto Local' en Get on Board pagan $3.750 USD/mes (5,35x la mediana nacional INE ESI 2025 de $701,18 USD y +66,7% sobre Presencial $2.250 USD). Sin embargo, el análisis relacional Q12 prueba que no es la modalidad lo que genera el sueldo, sino la composición del cargo: el 100% de estas ofertas corresponde a alcance Remoto Global/LatAm y el 68,9% exige perfiles Senior o Lead.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Principio Ético del Curso 6:</strong> Evitar recomendar el teletrabajo como garantía mágica de mayor sueldo; el salario está anclado a la contratación internacional de alto seniority.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>5,35x</strong>
+            Remoto Local vs. Mediana INE ESI
+          </div>
+          <div class="vis-metric-box">
+            <strong>68,9%</strong>
+            Perfiles Senior/Lead en Remoto
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 6 -->
+    <div class="vis-card">
+      <div class="vis-media" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png')">
+        <img src="05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png" alt="Posicionamiento Regional y Tamaño de Empresa">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 4 • Posicionamiento Regional</span>
+        <h3 class="vis-title">Chile es 2° Regional en Salarios Tech y Prima de Grandes Empresas</h3>
+        <p class="vis-desc">
+          Entre los 7 países de Latinoamérica que cumplen N >= 30 en Stack Overflow 2024, Chile ocupa el segundo puesto regional ($3.063,54 USD/mes, N=46) solo por detrás de Uruguay ($6.416,42 USD, N=36, impulsado por exportación de software a EE.UU.). Además, en LatAm las empresas grandes (1.000+ colaboradores, $2.784,92 USD) pagan +54,8% más que las pequeñas (1–99 colaboradores, $1.799,16 USD), con un pico salarial en el tramo de 500–999 empleados ($3.532,67 USD).
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Honestidad Escalar (Curso 6):</strong> Todas las barras inician estrictamente en $0 USD sin cortes artificiales en el eje Y para evitar distorsiones visuales.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>$3.063,54 USD</strong>
+            Mediana Tech Chile (2° LatAm)
+          </div>
+          <div class="vis-metric-box">
+            <strong>+54,8%</strong>
+            Prima Grandes Empresas en LatAm
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN DE ACCIÓN RECOMENDADO -->
+  <section class="section" id="recomendaciones">
+    <div class="section-header">
+      <span class="section-tag">Fase 6: Actuar • Lista de Verificación del Curso 8</span>
+      <h2 class="section-title">Plan de Implementación Accionable</h2>
+      <p class="section-desc">
+        Matriz estructurada bajo los estándares oficiales de Google: Qué hay que hacer, Quién debería hacerlo, Cuándo (plazos 30, 60 y 90 días) y Métricas de Éxito (KPIs).
+      </p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Acción Concreta (Qué)</th>
+            <th>Responsable (Quién)</th>
+            <th>Plazo (Cuándo)</th>
+            <th>Indicador Clave de Éxito (KPI)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-highlight">1</td>
+            <td>
+              <strong>Rediseño Curricular Acelerado SQL + Cloud:</strong><br>
+              Incorporar módulos intensivos de SQL relacional y certificación inicial en Cloud (AWS o Azure) en todos los bootcamps de la academia.
+            </td>
+            <td>Dirección Académica & Coordinación de Programas Tech</td>
+            <td><span class="badge-status">Mes 1 (30 Días)</span></td>
+            <td>100% de estudiantes evaluados en proyectos prácticos SQL+Cloud; tasa de aprobación ≥ 85%.</td>
+          </tr>
+          <tr>
+            <td class="td-highlight">2</td>
+            <td>
+              <strong>Tablero de Transparencia Salarial Basado en Cuartiles p25–p75:</strong><br>
+              Publicar bandas salariales objetivas automáticas en la plataforma de reclutamiento para cargos Semi-Senior ($1.850–$2.600 USD) y Senior ($2.300–$4.000 USD).
+            </td>
+            <td>Líder de Producto Digital & Equipo de Inteligencia Salarial</td>
+            <td><span class="badge-status">Mes 2 (60 Días)</span></td>
+            <td>≥ 70% de vacantes con bandas salariales visibles; reducción del 35% en tiempo de vacancia.</td>
+          </tr>
+          <tr>
+            <td class="td-highlight">3</td>
+            <td>
+              <strong>Servicio de Asesoría en Contratación Remota Internacional:</strong><br>
+              Capacitar a clientes corporativos en modelos de compensación ajustados por alcance (Chile Local vs. Remoto Global/LatAm), transparentando que la prima remota responde a seniority internacional.
+            </td>
+            <td>Gerencia de Consultoría RRHH & Alianzas Corporativas</td>
+            <td><span class="badge-status">Mes 3 (90 Días)</span></td>
+            <td>Firma de al menos 8 empresas corporativas en el nuevo programa de colocación salarial.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ELEVATOR PITCH -->
+    <div class="pitch-box">
+      <div class="pitch-title">
+        <span>🎙 Discurso de Presentación Profesional (Elevator Pitch de 20 Segundos • Cursos 8 y 9)</span>
+      </div>
+      <p class="pitch-quote">
+        "Soy Manuel Yáñez Orellana, analista de datos formado con el Certificado Profesional de Google. En mi proyecto final audité más de 72.000 registros de Get on Board, Stack Overflow, Data Science Salaries y el INE usando SQL, Python y Tableau bajo la regla muestral N >= 30. Descubrí qué habilidades Cloud elevan los salarios hasta +32% y por qué el trabajo remoto mejor pagado responde a perfiles Senior internacionales, traduciéndolo en bandas p25–p75 y un plan curricular accionable a 90 días."
+      </p>
+      <div class="pitch-author">
+        — Manuel Yáñez Orellana • Analista de Datos Certificado por Google
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS & REPRODUCIBILIDAD -->
+  <section class="section" id="descargas">
+    <div class="section-header">
+      <span class="section-tag">Reproducibilidad & Recursos Abiertos</span>
+      <h2 class="section-title">Centro de Descargas del Proyecto</h2>
+      <p class="section-desc">
+        Accede al código fuente, cuaderno interactivo, consultas SQL y documentos oficiales generados a lo largo de las 6 fases.
+      </p>
+    </div>
+
+    <div class="hub-grid">
+      <!-- GITHUB -->
+      <a href="https://github.com/jmryanez/mercado-tech-chile-latam-2026" target="_blank" class="hub-card">
+        <div>
+          <div class="hub-icon">📦</div>
+          <h3 class="hub-name">Repositorio en GitHub</h3>
+          <p class="hub-desc">Código fuente completo, scripts de limpieza en Python, consultas SQL y control de versiones con CHANGELOG.md.</p>
+        </div>
+        <div class="hub-link">Explorar Repositorio →</div>
+      </a>
+
+      <!-- KAGGLE NOTEBOOK -->
+      <a href="06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb" download class="hub-card">
+        <div>
+          <div class="hub-icon">📓</div>
+          <h3 class="hub-name">Cuaderno de Kaggle</h3>
+          <p class="hub-desc">Notebook Jupyter con código reproducible de extracción, SQLite relacional y visualizaciones con autodetector de rutas.</p>
+        </div>
+        <div class="hub-link">Descargar .ipynb →</div>
+      </a>
+
+      <!-- TABLEAU EXCEL -->
+      <a href="05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx" download class="hub-card">
+        <div>
+          <div class="hub-icon">📊</div>
+          <h3 class="hub-name">Datos para Tableau Public</h3>
+          <p class="hub-desc">Libro Excel multi-hoja con las 4 poblaciones separadas, hoja de instrucciones y datos preconfigurados para mapas de calor.</p>
+        </div>
+        <div class="hub-link">Descargar Excel (.xlsx) →</div>
+      </a>
+
+      <!-- PDF PRESENTACIÓN -->
+      <a href="05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf" target="_blank" class="hub-card">
+        <div>
+          <div class="hub-icon">📑</div>
+          <h3 class="hub-name">Presentación Ejecutiva (PDF)</h3>
+          <p class="hub-desc">Deck de 12 diapositivas panorámicas en alta resolución estructurado para una reunión de directorio de 30 minutos.</p>
+        </div>
+        <div class="hub-link">Ver Presentación PDF →</div>
+      </a>
+
+      <!-- CONSULTAS SQL -->
+      <a href="04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql" download class="hub-card">
+        <div>
+          <div class="hub-icon">🗄️</div>
+          <h3 class="hub-name">Script SQL Relacional</h3>
+          <p class="hub-desc">14 consultas (Q01 a Q13) en SQLite con tablas temporales, agregaciones HAVING y control contra duplicación 1:N.</p>
+        </div>
+        <div class="hub-link">Descargar SQL (.sql) →</div>
+      </a>
+
+      <!-- BITÁCORA DOCX -->
+      <a href="DIARIO_DE_DATOS_BITACORA.docx" download class="hub-card">
+        <div>
+          <div class="hub-icon">📖</div>
+          <h3 class="hub-name">Diario de Datos (Bitácora)</h3>
+          <p class="hub-desc">Registro continuo del proceso reflexivo, lecciones aprendidas y preguntas de autorreflexión de los Cursos 1 al 9.</p>
+        </div>
+        <div class="hub-link">Descargar Bitácora (.docx) →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MODAL PARA ZOOM DE IMÁGENES -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://github.com/jmryanez" target="_blank">GitHub: @jmryanez</a></li>
+        <li><a href="mailto:jmryanez@gmail.com">Email: jmryanez@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+        <li><a href="CHANGELOG.md" target="_blank">Registro de Cambios (Changelog v0.6.0)</a></li>
+      </ul>
+      <p style="margin-bottom: 0.5rem; color: #FFF; font-weight: 600;">
+        Caso Práctico 3 (Pista B) • Certificado Profesional de Análisis de Datos de Google
+      </p>
+      <p style="color: var(--text-muted); font-size: 0.8rem;">
+        Desarrollado y publicado por Manuel Yáñez Orellana • Año del Estudio: 2026 • Periodo analizado: 2024–2026.
+        Cumplimiento estricto de las directrices metodológicas de los 9 cursos oficiales de Google.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function openModal(imgSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modal.style.display = 'block';
+      modalImg.src = imgSrc;
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

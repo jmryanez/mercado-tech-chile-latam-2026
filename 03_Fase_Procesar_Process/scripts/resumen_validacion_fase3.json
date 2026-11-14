@@ -1,0 +1,169 @@
+{
+  "st_gob": {
+    "raw_total": 759,
+    "dup_job_id": 0,
+    "excl_2025": 20,
+    "excl_fuera_pais": 60,
+    "scope_total": 679,
+    "raw_con_salario_scope": 237,
+    "salarios_anulados": 2,
+    "salarios_validos": 235,
+    "min_gt_max": 0,
+    "ofertas_con_tecnologia": 528
+  },
+  "st_so": {
+    "global_total": 65437,
+    "dup_response_id": 0,
+    "latam_total": 3074,
+    "chile_total": 133,
+    "latam_con_salario_raw": 1408,
+    "latam_salarios_anulados_bajo": 64,
+    "latam_salarios_anulados_alto": 3,
+    "latam_salarios_validos": 1341,
+    "chile_salarios_validos": 46,
+    "latam_sin_tecnologias": 72,
+    "chile_sin_tecnologias": 2
+  },
+  "st_dss": {
+    "total_rows": 6599,
+    "nulls": 0,
+    "min_yearly_usd": 15000.0,
+    "max_yearly_usd": 750000.0,
+    "exact_duplicates": 0
+  },
+  "st_ine": {
+    "total_rows": 2,
+    "mediano_clp": 680000,
+    "medio_clp": 962945
+  },
+  "file_sizes": {
+    "GetOnBoard_Vacantes_2026_20261111_v01_clean.csv": {
+      "rows": 679,
+      "cols": 22,
+      "bytes": 146079
+    },
+    "GetOnBoard_Habilidades_2026_20261111_v01_clean.csv": {
+      "rows": 1877,
+      "cols": 3,
+      "bytes": 131589
+    },
+    "StackOverflow_LatAm_2024_20261111_v01_clean.csv": {
+      "rows": 3074,
+      "cols": 19,
+      "bytes": 561671
+    },
+    "StackOverflow_Tecnologias_2024_20261111_v01_clean.csv": {
+      "rows": 31759,
+      "cols": 6,
+      "bytes": 1532423
+    },
+    "DataScienceSalaries_2020_2024_20261111_v01_clean.csv": {
+      "rows": 6599,
+      "cols": 14,
+      "bytes": 980052
+    },
+    "INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv": {
+      "rows": 2,
+      "cols": 9,
+      "bytes": 625
+    }
+  },
+  "total_clean_bytes": 3352439,
+  "validaciones": [
+    {
+      "tipo": "1. Tipo de datos",
+      "estado": "APROBADO",
+      "detalle": "Salarios como float64, IDs enteros/string, flags booleanos y años enteros validados."
+    },
+    {
+      "tipo": "2. Rango de datos",
+      "estado": "APROBADO",
+      "detalle": "GOB salarios válidos [650, 14400] USD/mes y fechas [2026-01-05..2026-11-10]; SO LatAm [1109, 500000] USD/año; DSS 2020–2024."
+    },
+    {
+      "tipo": "3. Restricción de datos",
+      "estado": "APROBADO",
+      "detalle": "Claves primarias únicas (job_id 679/679, ResponseId 3.074/3.074), 19 países LatAm exactos, 0 duplicados 1:N y paridad 100% de pares (tipo_tecnologia, tecnologia) entre GOB y SO."
+    },
+    {
+      "tipo": "4. Coherencia de datos",
+      "estado": "APROBADO",
+      "detalle": "min_salary <= max_salary en 100%, integridad referencial 1:N verificada y N >= 30 cumplido en todas las modalidades GOB/SO y tamaños DSS."
+    },
+    {
+      "tipo": "5. Estructura de datos",
+      "estado": "APROBADO",
+      "detalle": "6 tablas CSV UTF-8 con encabezados snake_case/limpios, texto sin HTML ni ';' multivalor en columnas analíticas."
+    },
+    {
+      "tipo": "6. Validación del código de aplicación",
+      "estado": "AUDITADO Y CONTENIDO",
+      "detalle": "Detectadas debilidades de captura en origen: GOB permitió salarios libres <$500 (2 casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios (67 casos en LatAm). Contenidos vía flags y anulación transparente."
+    }
+  ],
+  "top_gob_tech": {
+    "Lenguaje": {
+      "SQL": 223,
+      "Python": 193,
+      "JavaScript": 186,
+      "TypeScript": 117,
+      "Java": 78,
+      "C#": 54,
+      "HTML/CSS": 52,
+      "Go": 19
+    },
+    "Base de datos": {
+      "PostgreSQL": 97,
+      "MongoDB": 56,
+      "Microsoft SQL Server": 44,
+      "Oracle": 36,
+      "MySQL": 35,
+      "Redis": 35,
+      "BigQuery": 24,
+      "DynamoDB": 15
+    },
+    "Cloud": {
+      "AWS": 204,
+      "Microsoft Azure": 141,
+      "Google Cloud": 117,
+      "Databricks": 21,
+      "Oracle Cloud (OCI)": 6,
+      "Firebase": 6,
+      "Vercel": 4,
+      "Cloudflare": 4
+    }
+  },
+  "n_checks": {
+    "gob_modalidades_sal_valido": {
+      "Híbrido": 103,
+      "Remoto Total": 53,
+      "Remoto Local": 45,
+      "Presencial": 34
+    },
+    "gob_seniority_sal_valido": {
+      "Senior": 113,
+      "Semi-Senior": 97,
+      "Junior": 17,
+      "Lead": 7,
+      "Trainee": 1
+    },
+    "so_modalidades_sal_valido": {
+      "Remoto": 831,
+      "Híbrido": 310,
+      "Presencial": 200
+    },
+    "so_exp_sal_valido": {
+      "10+ años": 563,
+      "5-9 años": 369,
+      "2-4 años": 311,
+      "0-1 años (<2)": 89,
+      "Sin dato": 9
+    },
+    "so_orgsize_sal_valido": {
+      "Pequeña (1-99)": 622,
+      "Grande (1.000+)": 343,
+      "Mediana (100-999)": 342,
+      "Sin dato / NS-NR": 34
+    }
+  }
+}

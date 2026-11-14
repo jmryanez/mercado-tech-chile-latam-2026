@@ -1,0 +1,69 @@
+tipo_tecnologia,tecnologia,n_encuestados_con_salario_valido,media_mensual_usd,min_mensual_usd,max_mensual_usd
+Base de datos,Snowflake,40,6167.55,373.0,18750.0
+Base de datos,DynamoDB,159,4728.52,139.83,20202.75
+Base de datos,BigQuery,88,4454.11,108.67,19166.67
+Base de datos,Cosmos DB,50,4330.83,188.17,13986.5
+Base de datos,Redis,344,4327.31,104.67,37297.42
+Base de datos,Cassandra,37,4137.97,188.17,15000.0
+Base de datos,Elasticsearch,173,4126.59,188.17,20202.75
+Base de datos,H2,61,3812.54,188.17,20202.75
+Base de datos,Supabase,60,3710.83,179.67,16641.92
+Base de datos,PostgreSQL,771,3515.77,96.33,41666.67
+Base de datos,MongoDB,372,3249.97,98.83,20833.33
+Base de datos,MariaDB,264,3184.91,100.0,41666.67
+Base de datos,Oracle,168,3183.11,92.42,37297.42
+Base de datos,Cloud Firestore,97,3100.51,155.42,20833.33
+Base de datos,SQLite,411,3080.84,96.33,18648.75
+Base de datos,MySQL,601,3011.85,96.33,41666.67
+Base de datos,Microsoft SQL Server,386,2947.48,92.42,37297.42
+Base de datos,Databricks SQL,37,2911.52,125.0,13054.08
+Base de datos,Firebird,39,2820.16,186.5,11666.67
+Base de datos,Firebase Realtime Database,87,2738.31,183.33,15000.0
+Base de datos,Microsoft Access,51,2497.51,100.0,11666.67
+Cloud,Fly.io,30,5981.58,369.67,20202.75
+Cloud,"Linode, now Akamai",42,4629.88,233.08,41666.67
+Cloud,Supabase,56,4504.53,179.67,41666.67
+Cloud,DigitalOcean,166,4103.12,104.67,41666.67
+Cloud,Cloudflare,196,4064.68,103.33,41666.67
+Cloud,AWS,714,3969.58,96.33,41666.67
+Cloud,OpenShift,36,3915.28,188.17,11666.67
+Cloud,Heroku,136,3859.6,108.67,37297.42
+Cloud,Google Cloud,348,3793.66,108.67,20833.33
+Cloud,Managed Hosting,34,3732.63,120.42,15833.33
+Cloud,VMware,55,3601.0,131.08,16666.67
+Cloud,Microsoft Azure,335,3533.4,108.33,20833.33
+Cloud,Netlify,75,3472.99,104.67,41666.67
+Cloud,Vercel,180,3226.28,103.33,41666.67
+Cloud,Oracle Cloud (OCI),61,3157.49,131.08,13986.5
+Cloud,Databricks,32,2919.2,158.42,7000.0
+Cloud,Firebase,214,2907.14,96.33,15000.0
+Cloud,Render,37,2618.52,139.83,10833.33
+Lenguaje,Assembly,38,5434.68,668.42,41666.67
+Lenguaje,Elixir,45,5429.96,427.33,14166.67
+Lenguaje,Scala,33,5181.87,188.17,20202.75
+Lenguaje,Clojure,31,5081.08,188.17,15833.33
+Lenguaje,Ruby,106,4523.44,124.33,17583.33
+Lenguaje,Groovy,61,4419.03,186.5,20202.75
+Lenguaje,Go,195,4357.19,103.33,19166.67
+Lenguaje,Rust,105,4110.76,155.42,41666.67
+Lenguaje,Kotlin,122,4087.07,100.0,20202.75
+Lenguaje,Swift,43,3944.23,158.42,16666.67
+Lenguaje,Bash/Shell,406,3737.38,100.0,41666.67
+Lenguaje,C,165,3686.24,100.0,41666.67
+Lenguaje,TypeScript,629,3469.18,92.42,41666.67
+Lenguaje,Java,402,3273.17,98.83,37297.42
+Lenguaje,C++,183,3264.08,100.0,20202.75
+Lenguaje,Python,628,3263.12,98.83,37297.42
+Lenguaje,JavaScript,968,3204.28,92.42,41666.67
+Lenguaje,R,58,3128.94,158.42,10878.42
+Lenguaje,PowerShell,164,3111.24,131.08,20202.75
+Lenguaje,SQL,825,3086.98,92.42,41666.67
+Lenguaje,HTML/CSS,753,3044.37,96.33,41666.67
+Lenguaje,Delphi,43,2899.33,233.08,11515.58
+Lenguaje,C#,355,2875.77,92.42,20833.33
+Lenguaje,Visual Basic (.Net),82,2819.97,100.0,20202.75
+Lenguaje,Dart,99,2640.88,188.17,13986.5
+Lenguaje,VBA,66,2593.57,100.0,15540.58
+Lenguaje,PHP,299,2518.66,100.0,41666.67
+Lenguaje,MATLAB,39,2442.25,100.0,11666.67
+Lenguaje,Lua,49,2220.55,108.67,10000.0

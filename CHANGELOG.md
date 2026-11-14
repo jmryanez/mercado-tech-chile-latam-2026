@@ -1,0 +1,126 @@
+# CHANGELOG — Portafolio Google Data Analytics (Caso Práctico 3 • Pista B)
+
+Este archivo registra cronológicamente (de la versión más reciente a la más antigua) los cambios realizados en los datos, scripts y entregables del estudio **"Mercado Laboral y Salarios en Tecnología (Chile y LatAm)"**, siguiendo las prácticas recomendadas del **Curso 4 (Módulo 4: Registros de cambios)**.
+
+---
+
+## Versión 0.6.0 (`2026-11-11`) — Cierre Fase 6: Actuar (*Act* • Cursos 8 y 9)
+
+### Añadido
+- Entregable Oficial 6 [`06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx`](06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx) con conclusiones de alto nivel, glosario muestral `N >= 30` (Curso 4), `3` recomendaciones prioritarias con alternativas (`Pros y Contras`), matriz `Qué / Quién / Cuándo`, `4` líneas de exploración futura (**Curso 8**), guía para **GitHub / Kaggle / Tableau Public**, viñetas `X-Y-Z`, historia `STAR` y elevator pitch de `20 segundos` (**Curso 9**).
+- Portada pública del repositorio [`README.md`](README.md) con hallazgos verificados, visualizaciones incrustadas (`300 DPI`), glosario `N >= 30`, estructura completa (Fases 1–6) e instrucciones de reproducibilidad.
+- Cuaderno interactivo [`06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb`](06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb) en Python/Markdown listo para publicar en Kaggle.
+- Archivo [`.gitignore`](.gitignore) excluyendo archivos temporales del sistema y carpeta personal `cv/` (protección PII antes de publicar en GitHub).
+
+### Modificado
+- Actualización final de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) añadiendo la entrada de cierre **Fase 6: Actuar (`Cursos 8 y 9`)**.
+
+---
+
+## Versión 0.5.3 (`2026-11-11`) — Alineación Visual y Léxica Final con los 9 Cursos (Fases 1–5)
+
+### Modificado
+- **Visual 06 Panel B ([`06_paises_latam_y_tamano_empresa_p4.png`](05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png))**: Reemplazo de puntos conectados desde `$1.000` por **barras verticales desde `$0 USD`** para cumplir literalmente la regla del **Curso 6** (*no cortar el eje Y ni conectar categorías no temporales*, [`Principios de diseño esenciales.md`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx)).
+- **Lenguaje literal de los Cursos 5 y 6 en Fases 1, 2, 4, 5, SQL y Bitácora**: Reemplazo de anglicismos/términos externos (*"duplicación en uniones 1:N"* en vez de jerga inglesa de `JOIN`, *"continua y ascendente en cada tramo"* en la progresión salarial de Fase 4, y *"alta proporción datos-tinta"* en Checklist de Fase 5).
+
+---
+
+## Versión 0.5.2 (`2026-11-11`) — Homologación Léxica Literal con los 9 Cursos (Fases 1–5)
+
+### Modificado
+- **Alineación literal con Cursos 6 y 7** en código, resúmenes y documentación de Fases 1, 4 y 5 (Fases 2 y 3 ya cumplían al 100%):
+  - Estandarización de las métricas de dispersión salarial a **"cuartiles (`p25–p75`)"** y **`amplitud_p25_p75_usd`** (derivados directamente de `describe()` y `quantile([0.25, 0.75])` enseñados en el **Curso 7**, y de cuartiles/percentiles del **Curso 6**).
+  - Estandarización de la nomenclatura cromática a **"paleta apta para daltonismo (azul/naranja • Curso 6)"**.
+- Regeneración completa de [`04_Fase_Analizar_Analyze/resumenes/`](04_Fase_Analizar_Analyze/resumenes/), [`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx), [`05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png`](05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png), [`05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf) y los `.docx` de Fases 1, 4 y 5.
+
+---
+
+## Versión 0.5.1 (`2026-11-11`) — Glosario Transversal de `N`, Regla `N >= 30` y Derivadas (Fases 1–5 • Curso 4)
+
+### Añadido
+- Definición formal de **`N`** (conteo exacto de observaciones válidas), fundamentación oficial de **`N >= 30`** (**Curso 4, Módulo 1**: *Teorema del Límite Central*, `95%` de confianza, menor margen de error y significación estadística) y glosario unificado de sus derivadas (`N universo vs. N salarios válidos`, `N < 30` exploratorio / `cumple_n30=False`, `N = 0`, y cotas mínimas observadas `N >= 38`, `N >= 335`, `N >= 34`, `N >= 60`, `N >= 75`) incorporado transversalmente en:
+  - **Fase 1**: [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) y [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx).
+  - **Fase 2**: [`02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx).
+  - **Fase 3**: [`03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) (`Sección 4.1`).
+  - **Fase 4**: [`04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) (`Sección 9`).
+  - **Fase 5**: [`05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) (`Sección 1.3`), hoja `LEEME_Poblaciones` (`6x1`) de [`Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx) y barra metodológica en Diapositiva 3 de [`05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf).
+
+---
+
+## Versión 0.5.0 (`2026-11-11`) — Fase 5: Compartir (*Share* • Cursos 6 y 8)
+
+### Añadido
+- Script reproducible de visualización y deck [`05_Fase_Compartir_Share/scripts/05_generar_visualizaciones_y_deck.py`](05_Fase_Compartir_Share/scripts/05_generar_visualizaciones_y_deck.py) (`matplotlib`, `seaborn`, `openpyxl`, `PdfPages`).
+- Siete visualizaciones ejecutivas a `300 DPI` en [`05_Fase_Compartir_Share/visualizaciones/`](05_Fase_Compartir_Share/visualizaciones/) (`01_demanda_vs_adopcion_top5_p1.png` a `07_evolucion_dss_2020_2024_p4.png`) con paleta daltónica segura (azul/naranja • Curso 6), ejes de barras en `$0`/`0%`, máximo `4` líneas, etiquetado directo, separación estricta de las 4 poblaciones y umbral `N >= 30`.
+- Paquete multi-hoja limpio para Tableau Public [`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx) (`9` hojas independientes incluyendo `LEEME_Poblaciones` y `SO_Paises_LatAm_N30` para mapa coroplético).
+- Presentación ejecutiva panorámica `16:9` de `12` diapositivas [`05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf) estructurada bajo la agenda oficial de 30 minutos (`4+5+10+3+3+5`) del **Curso 6**.
+- Entregable Oficial 5 [`05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) con Marcos de McCandless y Fung, textos alternativos (Alt-Text), guía de diseño en Tableau Public + Tabla Complementaria, Notas del Orador, Matriz de Objeciones (datos/análisis/hallazgos) y Rúbrica de Evaluación de Diapositivas + Checklist de 13 puntos.
+
+### Modificado
+- Actualización de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) añadiendo `TABLA 5` (Fase 5: Compartir).
+- Homologación en Diapositiva 11 del deck y Tabla 3 del Entregable 5 (`34,9% nominal / 34,6% válido`, `Argentina $2.958,34`, `México $2.632,54` y aviso exploratorio `Pequeñas 2024 N=0` / subceldas DSS `N < 30`).
+
+### Correcciones
+- Desactivación de `text.parse_math` en `matplotlib` para evitar interpretación LaTeX en signos `$`; fondo blanco (`bbox`) y reubicación de etiquetas en Visual 01 (`17.2%`), Visual 02 (`JavaScript` y `TypeScript` fuera de ejes punteados), Visual 04 (2 líneas para `Med: $560` y `Med: $1.305` sin cruce con `$3.064`) y Visual 07 (conector directo a `$6.886` en 2021 y nota `2024: Small N=0`).
+
+---
+
+## Versión 0.4.0 (`2026-11-11`) — Fase 4: Analizar (*Analyze*) Ampliada (`Q01–Q13`)
+
+### Añadido
+- Script SQL relacional [`04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql`](04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql) ejecutado en SQLite con `CREATE TEMP TABLE`, `LEFT JOIN`, `INNER JOIN`, `COUNT(DISTINCT ...)`, `CASE WHEN`, `COALESCE`, `HAVING` y salvaguarda sin duplicación en uniones 1:N (`14` consultas `Q01–Q13`).
+- Script de cálculo descriptivo [`04_Fase_Analizar_Analyze/scripts/04_analisis_estadistico_python.py`](04_Fase_Analizar_Analyze/scripts/04_analisis_estadistico_python.py) (`pandas`, `numpy`, `groupby()`, `size()`, `agg()`, `describe()`, `quantile()`).
+- Resúmenes analíticos exportados en [`04_Fase_Analizar_Analyze/resumenes/`](04_Fase_Analizar_Analyze/resumenes/) (incluyendo `resumen_q11_tecnologia_vs_salario.csv`, `resumen_q12_modalidad_composicion_seniority.csv`, `resumen_q13_gob_categorias.csv` y `resumen_fase4_completo.json`).
+- Entregable Oficial 4 [`04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) incorporando la Matriz Volumen vs. Compensación (`Q11`), el contraste **Correlación ≠ Causalidad** en Modalidad × Seniority (`Q12`) y el desglose por categoría (`Q13`).
+
+### Modificado
+- Reubicación de `Stack Overflow Chile 2024 (Agregado)` al cierre de su bloque en la Tabla 2, precisión narrativa sobre los cinco motores de BD sobre `22%` en Stack Overflow (incluyendo `SQLite`) y estandarización decimal con coma en tablas.
+- Actualización de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) con la entrada completa de Fase 4 (`Q01–Q13`).
+
+---
+
+## Versión 0.3.0 (`2026-11-11`) — Cierre Fase 3: Procesar (*Process*) y Auditoría V2
+
+### Añadido
+- Script reproducible en Python [`03_Fase_Procesar_Process/scripts/03_limpieza_y_validacion.py`](03_Fase_Procesar_Process/scripts/03_limpieza_y_validacion.py) con `pandas`, `numpy` y `re` (Curso 7).
+- Seis conjuntos de datos limpios y normalizados (Ancho + Largo) en [`03_Fase_Procesar_Process/datos_limpios_processed/`](03_Fase_Procesar_Process/datos_limpios_processed/) (`3.352.439` bytes totales):
+  - `GetOnBoard_Vacantes_2026_20261111_v01_clean.csv` (`679` filas; `235` salarios válidos).
+  - `GetOnBoard_Habilidades_2026_20261111_v01_clean.csv` (`1.877` filas; `528` ofertas con match).
+  - `StackOverflow_LatAm_2024_20261111_v01_clean.csv` (`3.074` filas; `1.341` salarios válidos; `46` en Chile).
+  - `StackOverflow_Tecnologias_2024_20261111_v01_clean.csv` (`31.759` filas; conserva `72` encuestados LatAm con `NA` para `LEFT JOIN`).
+  - `DataScienceSalaries_2020_2024_20261111_v01_clean.csv` (`6.599` filas intactas con salario mensual USD y ref. CLP).
+  - `INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv` (`2` indicadores oficiales con tipo de cambio BCCh `2026-11-10 = $969,80`).
+- Entregable Oficial 3 [`03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) con los 6 tipos de validación (Curso 5), checklist de 12 puntos + 3 pasos de objetivo (Curso 4), control `N >= 30` y tabla Changelog de 7 campos.
+
+### Modificado
+- Reclasificación de `Databricks` (`Cloud`) y `Oracle Cloud (OCI)` (`Cloud`), y separación de `PowerShell` vs. `Bash/Shell` en Get on Board para lograr paridad taxonómica 1:1 con `StackOverflow_Tecnologias`.
+- Actualización cronológica de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) con la entrada de Fase 3.
+
+### Correcciones
+- **Regex `.NET` (`C#`):** Corregido límite de palabra para recuperar `15` ofertas reales con `.NET` (total `C#` = `54`).
+- **Regex `Go`:** Excluido `'Go / No-Go'`, `'Go-Live'`, `'Go Deep'` y `'Go-To'` (`Go` = `19` ofertas reales sin falsos positivos).
+- **Filtro `Oracle` DB:** Excluidas `8` menciones no-BD (certificaciones `OCP`, `OCI`, `Middleware/OSB/WebLogic/SOA`, `Flexcube`, `ERP Oracle`), quedando `36` ofertas de Oracle Database.
+- **Paridad `JavaScript`:** Restringido a mención explícita del lenguaje (`186` ofertas) sin inferencia por frameworks para evitar inflación artificial frente a Stack Overflow `LanguageHaveWorkedWith`.
+
+---
+
+## Versión 0.2.0 (`2026-11-11`) — Fase 2: Preparar (*Prepare*) y Actualización de Alcance
+
+### Añadido
+- Incorporación de 3 fuentes complementarias junto a Get on Board (`72.797` registros crudos inmutables, `21,05 MiB` / `22,07 MB` totales en `datos_crudos_raw/`): `StackOverflow_DeveloperSurvey_2024_20261111_v01_raw.csv.gz` (`65.437`), `DataScienceSalaries_2020_2024_20261110_v01_raw.csv` (`6.599`) e `INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv` (`2`).
+- Entregable Oficial 2 [`02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx) con metadatos completos, auditoría ROCCC, 0% PII, seguridad, licencias y diseño Wide/Long + salvaguarda SQL sin duplicación en uniones 1:N.
+
+### Modificado
+- Actualización formal de [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) y [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx) ampliando Get on Board a todo 2026 hasta el corte `2026-11-10` (`America/Santiago GMT-3`) y alineando el Objetivo Métrico #3 a `N >= 30`.
+
+### Correcciones
+- Renombrado de `GetOnBoard_OfertasTech_2026_20261110_v01_raw.json` con periodo `_2026_` explícito (Curso 3).
+- Ajuste de conteos exactos en `02_Descripcion_Fuentes_y_ROCCC.docx` (`72` registros LatAm con `NA` tecnológico en los 19 países completos; `6` outliers bajos `$8–$63 USD/año` en Stack Overflow Chile; pesos exactos en `bytes` y `MiB`).
+
+---
+
+## Versión 0.1.0 (`2026-11-10`) — Fase 1: Preguntar (*Ask*) Inicial
+
+### Añadido
+- Estructura inicial de carpetas por las 6 fases del proceso de análisis de datos de Google en el portafolio.
+- Documentos iniciales de Fase 1: `01_Alcance_del_Trabajo_SOW.docx`, `01_Declaracion_Tarea_Empresarial.docx` y apertura de `DIARIO_DE_DATOS_BITACORA.docx` con las 4 preguntas de reflexión del Curso 8.

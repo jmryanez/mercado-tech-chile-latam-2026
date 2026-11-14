@@ -1,0 +1,4 @@
+org_size_grupo,n_salarios_validos,media_mensual_usd,media_mensual_clp_ref,min_mensual_usd,max_mensual_usd
+Pequeña (1-99),622,3141.02,3046159.0,92.42,37297.42
+Mediana (100-999),342,3653.93,3543585.0,96.33,41666.67
+Grande (1.000+),343,3439.92,3336035.0,101.0,20202.75

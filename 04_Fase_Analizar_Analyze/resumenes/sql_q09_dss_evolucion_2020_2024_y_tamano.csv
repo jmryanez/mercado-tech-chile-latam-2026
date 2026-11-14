@@ -1,0 +1,15 @@
+work_year,tamano_es,n_registros,media_mensual_usd,min_mensual_usd,max_mensual_usd
+2020,Pequeña (Small),24,6451.01,1330.5,21666.67
+2020,Mediana (Medium),17,9432.92,1250.0,37500.0
+2020,Grande (Large),34,9526.0,2977.92,34333.33
+2021,Pequeña (Small),42,7561.04,1408.67,34666.67
+2021,Mediana (Medium),52,7030.28,1575.58,16666.67
+2021,Grande (Large),122,9081.02,1250.0,35250.0
+2022,Pequeña (Small),48,7351.0,1666.67,22916.67
+2022,Mediana (Medium),893,11356.09,1250.0,35913.92
+2022,Grande (Large),171,10050.1,1250.0,33750.0
+2023,Pequeña (Small),56,7446.48,1317.42,20000.0
+2023,Mediana (Medium),4339,12744.32,1459.25,62500.0
+2023,Grande (Large),230,10447.51,1306.67,34828.08
+2024,Mediana (Medium),559,12735.5,1388.83,62500.0
+2024,Grande (Large),12,13917.36,2166.67,21666.67
