@@ -76,10 +76,11 @@
     .nav-container {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0.9rem 1.5rem;
+      padding: 0.8rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1.5rem;
     }
 
     .brand {
@@ -88,6 +89,7 @@
       gap: 0.75rem;
       text-decoration: none;
       color: var(--text-primary);
+      flex-shrink: 0;
     }
 
     .brand-content {
@@ -134,15 +136,17 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.25rem;
       list-style: none;
+      flex-wrap: nowrap;
     }
 
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
+      white-space: nowrap;
       transition: color 0.2s;
     }
 
@@ -780,6 +784,18 @@
     }
 
     /* RESPONSIVE DESIGN */
+    @media (max-width: 1180px) {
+      .nav-links {
+        gap: 0.85rem;
+      }
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+      .brand-sub {
+        display: none;
+      }
+    }
+
     @media (max-width: 900px) {
       .vis-card {
         grid-template-columns: 1fr;
@@ -1193,18 +1209,18 @@
         <div class="brand-content">
           <div class="brand-top">
             <span class="brand-name">Manuel Yáñez Orellana</span>
-            <span class="brand-badge">Caso Práctico</span>
+            <span class="brand-badge">Google Certified</span>
           </div>
-          <span class="brand-sub">Estudio de Caso para Certificación Google Data Analytics</span>
+          <span class="brand-sub">Estudio de Caso • Caso Práctico 3</span>
         </div>
       </a>
       <ul class="nav-links">
-        <li><a href="#explorador-datos">Explorador de Datos</a></li>
-        <li><a href="#metodologia">Metodología (6 Fases)</a></li>
-        <li><a href="#patrones">Patrones Descubiertos</a></li>
-        <li><a href="#recomendaciones">Plan de Acción</a></li>
-        <li><a href="#descargas">Descargas & Código</a></li>
-        <li><a href="#autor">Sobre el Autor</a></li>
+        <li><a href="#explorador-datos">Explorador</a></li>
+        <li><a href="#metodologia">Metodología</a></li>
+        <li><a href="#patrones">Hallazgos</a></li>
+        <li><a href="#recomendaciones">Recomendaciones</a></li>
+        <li><a href="#descargas">Descargas</a></li>
+        <li><a href="#autor">Autor</a></li>
         <li><a href="#contacto" class="nav-cta">Contacto</a></li>
       </ul>
     </div>
