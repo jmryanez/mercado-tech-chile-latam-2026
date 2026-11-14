@@ -83,24 +83,52 @@
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
       color: var(--text-primary);
-      font-weight: 700;
+    }
+
+    .brand-content {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .brand-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      white-space: nowrap;
+    }
+
+    .brand-name {
+      font-weight: 800;
       font-size: 1.05rem;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
     .brand-badge {
       background: linear-gradient(135deg, #1A73E8, #0072B2);
       color: #FFF;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
-      padding: 0.2rem 0.55rem;
+      padding: 0.15rem 0.55rem;
       border-radius: var(--radius-sm);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+      margin-top: 2px;
     }
 
     .nav-links {
@@ -761,6 +789,19 @@
         display: none;
       }
     }
+
+    @media (max-width: 600px) {
+      .brand-name {
+        font-size: 0.95rem;
+      }
+      .brand-sub {
+        font-size: 0.68rem;
+      }
+      .brand-badge {
+        font-size: 0.62rem;
+        padding: 0.1rem 0.4rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -768,10 +809,15 @@
   <!-- HEADER NAVIGATION -->
   <header class="header">
     <div class="nav-container">
-      <a href="#" class="brand" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none;">
-        <img src="favicon-32x32.png?v=20261114" alt="Logo Manuel Yáñez" width="30" height="30" style="border-radius: 50%; box-shadow: 0 0 8px rgba(0,0,0,0.4);">
-        <span class="brand-badge">Google Data Analytics</span>
-        <span>Manuel Yáñez Orellana</span>
+      <a href="#" class="brand">
+        <img src="favicon-32x32.png?v=20261114" alt="Logo Manuel Yáñez" width="34" height="34" style="border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.5); flex-shrink: 0;">
+        <div class="brand-content">
+          <div class="brand-top">
+            <span class="brand-name">Manuel Yáñez Orellana</span>
+            <span class="brand-badge">Caso Práctico</span>
+          </div>
+          <span class="brand-sub">Estudio de Caso para Certificación Google Data Analytics</span>
+        </div>
       </a>
       <ul class="nav-links">
         <li><a href="#metodologia">Metodología (6 Fases)</a></li>
@@ -788,7 +834,7 @@
   <section class="hero">
     <div class="hero-container">
       <div class="hero-tag">
-        <span>★ Certificado Profesional Google Data Analytics • Caso Práctico 3 (Pista B)</span>
+        <span>🎓 Investigación y Estudio de Caso para la Certificación Profesional de Análisis de Datos de Google • Caso Práctico 3 (Pista B)</span>
       </div>
       <h1 class="hero-title">Mercado Laboral y Salarios en Tecnología</h1>
       <p class="hero-subtitle">
