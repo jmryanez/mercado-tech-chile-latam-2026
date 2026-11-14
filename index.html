@@ -302,7 +302,10 @@
       padding: 1.5rem;
       border-radius: var(--radius-md);
       text-align: center;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .stat-card:hover {
@@ -1245,29 +1248,33 @@
     </div>
   </section>
 
-  <!-- STATS STRIP -->
+  <!-- STATS STRIP (INTERACTIVE HYPERLINKS & BUTTONS) -->
   <section class="stats-strip">
     <div class="stats-grid">
-      <div class="stat-card">
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-fuentes" onclick="openDataExplorer('tab-fuentes'); return false;" role="button" tabindex="0" title="Ver auditoría de fuentes y explorador de vacantes">
         <div class="stat-number">72.797</div>
         <div class="stat-label">Registros Crudos Auditados</div>
         <span class="stat-badge">4 Fuentes Independientes</span>
-      </div>
-      <div class="stat-card">
+        <div class="stat-cta-hint">Explorar vacantes y fuentes ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-muestral" onclick="openDataExplorer('tab-muestral'); return false;" role="button" tabindex="0" title="Ver representatividad de 19 países LatAm y regla N ≥ 30">
         <div class="stat-number">N ≥ 30</div>
         <div class="stat-label">Umbral Muestral Teorema Límite Central</div>
         <span class="stat-badge">95% Nivel de Confianza</span>
-      </div>
-      <div class="stat-card">
+        <div class="stat-cta-hint">Ver matriz 19 países LatAm ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-salarios" onclick="openDataExplorer('tab-salarios'); return false;" role="button" tabindex="0" title="Ver bandas salariales p25-p75 y salto +42,2%">
         <div class="stat-number">+42,2%</div>
         <div class="stat-label">Salto Salarial Semi-Sr a Senior (Chile)</div>
         <span class="stat-badge">$2.250 a $3.200 USD Mediana</span>
-      </div>
-      <div class="stat-card">
+        <div class="stat-cta-hint">Ver bandas y saltos % ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-integridad" onclick="openDataExplorer('tab-integridad'); return false;" role="button" tabindex="0" title="Ver matriz de validación y reglas de integridad 1:N">
         <div class="stat-number">0% PII</div>
         <div class="stat-label">Protección de Datos & Integridad 1:N</div>
         <span class="stat-badge">Sin Duplicación de Filas</span>
-      </div>
+        <div class="stat-cta-hint">Ver matriz de validación ↓</div>
+      </a>
     </div>
   </section>
 
@@ -1949,6 +1956,61 @@
         </div>
         <div class="hub-link">Descargar Bitácora (.docx) →</div>
       </a>
+
+      <!-- DATASETS AUDITADOS DEL EXPLORADOR (NUEVOS) -->
+      <a href="descargas/GetOnBoard_Vacantes_Auditadas_679.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📋</div>
+          <h3 class="hub-name">679 Vacantes Limpias (CSV)</h3>
+          <p class="hub-desc">Dataset procesado de Get on Board 2026 con país, modalidad, categoría, nivel de seniority y rangos salariales.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (103 KB) →</div>
+      </a>
+
+      <a href="descargas/Matriz_TLC_19_Paises_LatAm.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🎯</div>
+          <h3 class="hub-name">Matriz TLC 19 Países LatAm (CSV)</h3>
+          <p class="hub-desc">Tabla de representatividad estadística (N ≥ 30), medianas, cuartiles p25–p75 y márgenes de error por país.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (2,3 KB) →</div>
+      </a>
+
+      <a href="descargas/Bandas_Salariales_y_Saltos_Seniority.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📈</div>
+          <h3 class="hub-name">Bandas Salariales y Saltos % (CSV)</h3>
+          <p class="hub-desc">Distribución no paramétrica (p25, mediana, p75) y cálculo de salto salarial (+42,2% Senior) en Chile y LatAm.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (1,9 KB) →</div>
+      </a>
+
+      <a href="descargas/Matriz_Validacion_Integridad_Calidad.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🛡️</div>
+          <h3 class="hub-name">Matriz de Validación & 0% PII (CSV)</h3>
+          <p class="hub-desc">Las 6 validaciones del Curso 4 de Google, reglas relacionales 1:N y protocolo de anonimización ética.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (3,1 KB) →</div>
+      </a>
+
+      <a href="descargas/StackOverflow_LatAm_19_Paises_2024.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🌎</div>
+          <h3 class="hub-name">Stack Overflow LatAm 2024 (CSV)</h3>
+          <p class="hub-desc">Dataset con 3.074 desarrolladores encuestados en los 19 países de la región con variables de salarios y tecnologías.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (549 KB) →</div>
+      </a>
+
+      <a href="descargas/Explorador_Datasets_Consolidados.json?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">⚡</div>
+          <h3 class="hub-name">Datasets Consolidados (JSON)</h3>
+          <p class="hub-desc">Estructura unificada de los 4 conjuntos de datos del explorador interactivo para desarrollo o reanálisis directo.</p>
+        </div>
+        <div class="hub-link">Descargar JSON (214 KB) →</div>
+      </a>
     </div>
   </section>
 
@@ -2130,12 +2192,14 @@
       }
     }
 
-    // OPEN FROM STAT CARDS WITH SMOOTH SCROLL
+    // OPEN FROM STAT CARDS WITH SMOOTH SCROLL & HEADER OFFSET
     function openDataExplorer(tabId) {
       switchExplorerTab(tabId);
       const section = document.getElementById('explorador-datos');
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navHeight = document.querySelector('.header')?.offsetHeight || 75;
+        const targetY = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     }
 
@@ -2558,6 +2622,17 @@
       renderTlcTable();
       renderSalTable();
       renderValTable();
+
+      // Bind stat-card clicks for double assurance
+      document.querySelectorAll('.stat-clickable').forEach(card => {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          const tabId = this.getAttribute('data-tab');
+          if (tabId) {
+            openDataExplorer(tabId);
+          }
+        });
+      });
     });
   </script>
 
