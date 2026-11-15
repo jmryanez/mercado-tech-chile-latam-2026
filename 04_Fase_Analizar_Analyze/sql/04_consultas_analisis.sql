@@ -12,7 +12,10 @@
 -- PASO PREVIO: Tablas temporales de denominadores globales (CREATE TEMP TABLE)
 -- -----------------------------------------------------------------------------
 -- [SQL_SETUP]
-CREATE TEMP TABLE tmp_denominadores AS
+DROP TABLE IF EXISTS tmp_denominadores;
+
+-- [SQL_SETUP]
+CREATE TEMP TABLE IF NOT EXISTS tmp_denominadores AS
 SELECT
     'GetOnBoard_2026' AS fuente,
     COUNT(DISTINCT job_id) AS n_total,
@@ -63,7 +66,10 @@ LEFT JOIN so_tecnologias AS t
 -- para comparar tecnologías sin duplicar filas al unir ni mezclar poblaciones.
 -- -----------------------------------------------------------------------------
 -- [SQL_SETUP]
-CREATE TEMP TABLE tmp_gob_tech AS
+DROP TABLE IF EXISTS tmp_gob_tech;
+
+-- [SQL_SETUP]
+CREATE TEMP TABLE IF NOT EXISTS tmp_gob_tech AS
 SELECT
     COALESCE(h.tipo_tecnologia, 'Sin mención taxonómica') AS tipo_tecnologia,
     COALESCE(h.tecnologia, 'Sin mención taxonómica') AS tecnologia,
@@ -81,7 +87,10 @@ LEFT JOIN vacante_habilidades AS h
 GROUP BY 1, 2;
 
 -- [SQL_SETUP]
-CREATE TEMP TABLE tmp_so_tech AS
+DROP TABLE IF EXISTS tmp_so_tech;
+
+-- [SQL_SETUP]
+CREATE TEMP TABLE IF NOT EXISTS tmp_so_tech AS
 SELECT
     COALESCE(t.tipo_tecnologia, 'Sin mención taxonómica') AS tipo_tecnologia,
     COALESCE(t.tecnologia, 'Sin mención taxonómica') AS tecnologia,

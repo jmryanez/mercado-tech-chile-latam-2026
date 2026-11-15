@@ -840,7 +840,7 @@
       "max_usd": 11666.67,
       "mediana_clp_ref": 1306644,
       "media_clp_ref": 2425237,
-      "amplitud_p25_p75_usd": 2617.24,
+      "amplitud_p25_p75_usd": 2617.25,
       "cumple_n30": true,
       "fuente": "Stack Overflow LatAm 2024 (Detalle)"
     },
@@ -1024,7 +1024,7 @@
       "max_usd": 62500.0,
       "mediana_clp_ref": 11152700,
       "media_clp_ref": 12374978,
-      "amplitud_p25_p75_usd": 7636.46,
+      "amplitud_p25_p75_usd": 7636.45,
       "cumple_n30": true,
       "fuente": "Data Science Salaries 2020-2024 (Año)"
     }
@@ -1097,7 +1097,7 @@
       "max_usd": 41666.67,
       "mediana_clp_ref": 2424500,
       "media_clp_ref": 3406901,
-      "amplitud_p25_p75_usd": 3419.12,
+      "amplitud_p25_p75_usd": 3419.13,
       "cumple_n30": true
     },
     {
@@ -1288,7 +1288,7 @@
       "max_usd": 41666.67,
       "mediana_clp_ref": 2188354,
       "media_clp_ref": 3409595,
-      "amplitud_p25_p75_usd": 3501.26,
+      "amplitud_p25_p75_usd": 3501.25,
       "cumple_n30": true,
       "so_n_latam": 1532,
       "pct_adopcion_latam": 49.84,

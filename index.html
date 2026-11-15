@@ -1770,7 +1770,7 @@
           <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
             <div style="font-size: 0.75rem; color: #C084FC; font-weight: 700; text-transform: uppercase;">INE ESI Chile 2025 (Censo)</div>
             <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: #F9FAFB; margin: 0.25rem 0;">2 Indicadores Oficiales</div>
-            <div style="font-size: 0.8rem; color: var(--text-secondary);">Mediana (k) & Media (k) CLP • ESI 2025</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">$680.000 CLP mediana • $962.945 CLP media</div>
           </div>
         </div>
 
@@ -1991,7 +1991,7 @@
         </div>
 
         <div class="callout-box">
-          <strong>Auditoría de Integridad Relacional 1:N (SQL):</strong> Al cruzar vacantes u ofertas con múltiples tecnologías requeridas (relación 1:N), una misma oferta se expande en múltiples filas (de 679 vacantes únicas a 1.877 filas expandidas). Si el analista calcula el promedio salarial sin control de clave foránea, el salario promedio resulta sobreestimado artificialmente en <code>+$75 USD</code> ($2.920 USD vs $2.845 USD real), sesgando las conclusiones hacia empresas que demandan pilas tecnológicas excesivas. Este estudio auditó y controló cada cruce relacional mediante subconsultas y funciones agregadas a nivel de entidad.
+          <strong>Auditoría de Integridad Relacional 1:N (SQL):</strong> Al cruzar vacantes u ofertas con múltiples tecnologías requeridas (relación 1:N), una misma oferta se expande en múltiples filas (de 679 vacantes únicas a 1.877 filas expandidas). Si el analista calcula el promedio salarial sin control de clave foránea, el salario promedio resulta sobreestimado artificialmente en <code>+$38,30 USD</code> en Get on Board ($2.920,43 USD naive vs $2.882,13 USD real) y <code>+$120,50 USD</code> en Stack Overflow LatAm ($3.455,35 USD naive vs $3.334,85 USD real), sesgando las conclusiones hacia empresas que demandan pilas tecnológicas excesivas. Este estudio auditó y controló cada cruce relacional mediante subconsultas y funciones agregadas a nivel de entidad.
         </div>
       </div>
 
@@ -2105,7 +2105,7 @@
           </div>
           <h3 class="phase-title">Analizar (Analyze)</h3>
           <p class="phase-text">
-            14 consultas analíticas en SQLite con tablas temporales y control de uniones 1:N (evitando sesgo de +$75 USD). Cálculo de medianas y bandas intercuartiles p25–p75. Evaluación rigurosa de Correlación ≠ Causalidad en Remoto Local.
+            14 consultas analíticas en SQLite con tablas temporales y control de uniones 1:N (evitando sesgos de duplicación de +$38,30 USD en GOB y +$120,50 USD en SO). Cálculo de medianas y bandas intercuartiles p25–p75. Evaluación rigurosa de Correlación ≠ Causalidad en Remoto Local.
           </p>
           <div class="phase-doc-badge">
             <span>📄</span> 04_Resumen_Analisis_SQL_y_Python.docx
@@ -2411,7 +2411,7 @@
           <div class="pillar-card">
             <div class="pillar-card-title">🗄️ 14 Consultas SQL & Control 1:N</div>
             <ul class="pillar-list">
-              <li><strong>Q01:</strong> Control de integridad relacional contra duplicación en uniones 1:N (evitó sesgo de +$75 USD).</li>
+              <li><strong>Q01:</strong> Control de integridad relacional contra duplicación en uniones 1:N (evitó sesgos de duplicación de +$38,30 USD en GOB y +$120,50 USD en SO).</li>
               <li><strong>Q02:</strong> Cruce analítico de demanda en avisos vs adopción real en desarrolladores.</li>
               <li><strong>Q03:</strong> Filtrado de tecnologías prioritarias que superan el umbral crítico (HAVING &ge; 20%).</li>
               <li><strong>Q04 & Q05:</strong> Estructura salarial por nivel de seniority en Chile y Latinoamérica.</li>
@@ -11933,7 +11933,7 @@
     {
       "tipo": "2. Rango de Datos (Data Range)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
-      "descripcion": "Filtro de plausibilidad económica: salarios mensuales >=  USD en GOB y anuales [1.000..500.000 USD] en SO LatAm; anulación estricta de outliers espurios.",
+      "descripcion": "Filtro de plausibilidad económica: salarios mensuales >= $500 USD en GOB y anuales [1.000..500.000 USD] en SO LatAm; anulación estricta de outliers espurios.",
       "poblacion": "3.074 SO LatAm / 679 GOB",
       "excluidos": "2 vacantes GOB (<) / 67 respuestas SO (<k o >k)",
       "resultado": "235 salarios válidos GOB (de 237) / 1.341 salarios válidos SO (de 1.408)",
@@ -12607,6 +12607,9 @@
       document.querySelectorAll('th.sortable').forEach(th => {
         th.setAttribute('tabindex', '0');
         th.setAttribute('role', 'button');
+        if (!th.hasAttribute('aria-label')) {
+          th.setAttribute('aria-label', 'Ordenar por ' + th.textContent.replace('↕', '').trim());
+        }
         th.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();

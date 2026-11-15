@@ -56,9 +56,9 @@ def resumen_salarios(df: pd.DataFrame, group_col: str, col_usd: str = "salario_m
         .reset_index()
     )
     out = pd.merge(agg, clp_med, on=group_col, how="inner")
-    out["amplitud_p25_p75_usd"] = (out["p75_usd"] - out["p25_usd"]).round(2)
     for c in ["media_usd", "mediana_usd", "p25_usd", "p75_usd", "min_usd", "max_usd"]:
         out[c] = out[c].round(2)
+    out["amplitud_p25_p75_usd"] = (out["p75_usd"] - out["p25_usd"]).round(2)
     for c in ["mediana_clp_ref", "media_clp_ref"]:
         out[c] = out[c].round(0).astype(int)
     out["cumple_n30"] = out["n"] >= 30
@@ -88,7 +88,7 @@ def ejecutar_sql_oficial(
 
     for kind, qname, stmt in pattern.findall(sql_text):
         if kind == "SQL_SETUP":
-            conn.execute(stmt)
+            conn.executescript(stmt)
         else:
             df_q = pd.read_sql_query(stmt, conn)
             resultados_sql[qname] = df_q

@@ -114,7 +114,7 @@ Cada una de las 6 fases del proceso metodológico cuenta con su respectivo entre
 | :---: | :--- | :---: | :--- |
 | **Fase 1: Preguntar** | [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) | Cursos 1 y 2 | SOW en 7 secciones obligatorias, técnica de los 5 Porqués, 4 preguntas S.M.A.R.T. y matriz de interesados. |
 | **Fase 1: Preguntar** | [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx) | Cursos 1 y 2 | Formulación formal del problema de negocio, métricas vs dimensiones y criterios de imparcialidad (*Fairness*). |
-| **Fase 2: Preparar** | [`02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx) | Cursos 3 y 4 | Evaluación formal de 4 fuentes (72.797 filas) bajo el marco ROCCC, metadatos y protocolo estricto 0% PII. |
+| **Fase 2: Preparar** | [`02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx) | Cursos 3 y 8 | Evaluación formal de 4 fuentes (72.797 filas) bajo el marco ROCCC, metadatos y protocolo estricto 0% PII. |
 | **Fase 3: Procesar** | [`03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) | Cursos 4, 5 y 7 | Los 6 tipos de validación, checklist de 12 puntos de limpieza de Google y Changelog de 7 campos. |
 | **Fase 4: Analizar** | [`04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) | Cursos 5 y 7 | Resumen del análisis relacional en SQLite (Q01–Q13), control 1:N (+42,2% Senior) y desmitificación de causalidad. |
 | **Fase 5: Compartir** | [`05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) | Cursos 6 y 8 | Guía de visualización (Edward Tufte, accesibilidad daltonismo, ejes en 0) y guion para reunión ejecutiva de 30 min. |
@@ -173,7 +173,7 @@ python3 04_Fase_Analizar_Analyze/scripts/04_analisis_estadistico_python.py
 python3 05_Fase_Compartir_Share/scripts/05_generar_visualizaciones_y_deck.py
 ```
 
-- **Tableau Public (tablero interactivo):** *Listo para vincular tras carga de `Datos_Consolidados_Tableau_Public.xlsx` (`9` hojas independientes).*
+- **Tableau Public (tablero interactivo):** *Listo para vincular tras carga de `Datos_Consolidados_Tableau_Public.xlsx` (`10` hojas independientes).*
 - **Kaggle Notebook:** [`06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb`](06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb) *(listo para importar junto a `03_Fase_Procesar_Process/datos_limpios_processed/`)*.
 
 ---

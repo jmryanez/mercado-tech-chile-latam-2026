@@ -4,6 +4,31 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.5.2 (`2026-11-15`) — Resolución Exhaustiva de la 3ra Auditoría Red-Team Independiente
+
+### Corregido
+- **Homologación de Hojas del Paquete Tableau Public (10 Hojas)**:
+  - Actualización de `9 hojas` a `10 hojas independientes` en `06_Plan_de_Accion_y_Conclusiones_Finales.docx` (p. 26), `DIARIO_DE_DATOS_BITACORA.docx` (Tabla 5) y `README.md` (línea 176), alineándolo con las 10 hojas reales contenidas en `Datos_Consolidados_Tableau_Public.xlsx` (incluyendo `Mapa_LatAm_19_Paises`).
+- **Integridad Sintáctica y Corrección de Omisión `$500 USD`**:
+  - Corrección de texto cortado `tras anular 2 casos <).` en la tabla ROCCC de `02_Descripcion_Fuentes_y_ROCCC.docx` a `tras anular 2 casos < $500 USD/mes).`.
+  - Reemplazo de cadenas truncadas `>=  USD` por `>= $500 USD` en `descargas/Matriz_Validacion_Integridad_Calidad.csv`, `descargas/Explorador_Datasets_Consolidados.json`, `explorador_datasets.json` e `index.html`.
+- **Cuantificación Exacta del Sesgo de Duplicación 1:N**:
+  - Reemplazo del valor desfasado preliminar `+$75 USD` por las cifras empíricas oficiales en `index.html` (líneas 1994, 2108, 2414) y `CHANGELOG.md` (línea 94): `+$38,30 USD` en Get on Board ($2.920,43 naive vs $2.882,13 real) y `+$120,50 USD` en Stack Overflow LatAm ($3.455,35 naive vs $3.334,85 real).
+- **Consistencia Muestral y Terminología Metodológica**:
+  - Homologación de cota de modalidades GOB en `02_Descripcion_Fuentes_y_ROCCC.docx` (p. 22): `todas N>=34 válidas / N>=35 nominales`.
+  - Corrección en `04_Resumen_Analisis_SQL_y_Python.docx` (Tabla 2): sustitución de `Excluido (<15)` por la regla formal binaria `Exploratorio (<30)` del Curso 4.
+  - Inclusión de la cota DSS `N >= 75` en la tabla glosario de `06_Plan_de_Accion_y_Conclusiones_Finales.docx`.
+  - Corrección de atribución de Fase 2 en `README.md`: referenciada a `Cursos 3 y 8` en lugar de Curso 4.
+  - Distinción explícita de nulos crudos vs. limpios en `03_Documentacion_Limpieza_y_Changelog.docx` (444 con flag falso en GOB y 1.733 en SO LatAm).
+- **Idempotencia SQL & Aritmética Estadística**:
+  - Adición de `DROP TABLE IF EXISTS` e `IF NOT EXISTS` en `04_consultas_analisis.sql` con bloques individuales `[SQL_SETUP]` para garantizar ejecución multisesión sin excepciones.
+  - Secuenciación del redondeo en `04_analisis_estadistico_python.py` para asegurar consistencia perfecta de cuartiles a 2 decimales.
+- **Frontend Web & Accesibilidad (WCAG 2.1.1)**:
+  - Tarjeta KPI INE ESI en `index.html` actualizada con visualización explícita: `$680.000 CLP mediana • $962.945 CLP media`.
+  - Incorporación dinámica de atributo `aria-label` descriptivo en las cabeceras ordenables (`th.sortable`).
+
+---
+
 ## Versión 1.5.1 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Segunda Ronda Red-Team
 
 ### Corregido
@@ -91,7 +116,7 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
   - **Fase 3**: Corrección de enumeraciones incompletas: el *Checklist de Limpieza de 12 Puntos de Google* ahora lista explícitamente los 12 puntos del Curso 4 (antes mostraba solo 4), y el *Changelog Oficial de 7 Campos* desglosa los 7 campos de auditoría (antes mostraba solo 3).
   - **Fase 1**: Desglose íntegro de los 5 Porqués (Toyota/Google), las 7 secciones obligatorias del SOW y las 4 preguntas S.M.A.R.T. con criterios de equidad (Fairness).
   - **Fase 2**: Enumeración explícita de las 4 fuentes inmutables (72.797 filas), los 5 criterios del marco ROCCC y los 3 tipos de metadatos (descriptivos, estructurales y administrativos).
-  - **Fase 4**: Mapeo completo de las 14 consultas SQL (Q01 a Q13) y control de clave foránea 1:N que evitó el sesgo de +$75 USD.
+  - **Fase 4**: Mapeo completo de las 14 consultas SQL (Q01 a Q13) y control de clave foránea 1:N que evitó sesgos de duplicación de +$38,30 USD en Get on Board y +$120,50 USD en Stack Overflow LatAm.
   - **Fase 5**: Detalle cronometrado de los 6 bloques de la presentación de 30 minutos (4+5+10+3+3+5 min) y los 3 estándares de Edward Tufte, accesibilidad para daltonismo y honestidad escalar.
   - **Fase 6**: Especificación completa de las 4 conclusiones, 3 recomendaciones con matriz Qué/Quién/Cuándo (30, 60 y 90 días) y las 3 herramientas de carrera del Curso 9 (STAR, X-Y-Z y Elevator Pitch).
 
