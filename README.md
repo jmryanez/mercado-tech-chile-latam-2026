@@ -106,6 +106,23 @@ El proyecto cuenta con un [Explorador Interactivo de Datos](https://jmryanez.git
 | [`StackOverflow_LatAm_19_Paises_2024.csv`](descargas/StackOverflow_LatAm_19_Paises_2024.csv) | CSV | 3.074 | Microdatos procesados de desarrolladores encuestados en los 19 países de América Latina. |
 | [`Explorador_Datasets_Consolidados.json`](descargas/Explorador_Datasets_Consolidados.json) | JSON | 4 tablas | Estructura JSON unificada que alimenta el explorador interactivo para desarrollo o reanálisis. |
 
+### Entregables Oficiales por Fases (.docx) • Certificación Google Data Analytics
+
+Cada una de las 6 fases del proceso metodológico cuenta con su respectivo entregable formal descargable y reproducible:
+
+| Fase | Entregable Oficial (.docx) | Cursos Google | Descripción y Contenido Clave |
+| :---: | :--- | :---: | :--- |
+| **Fase 1: Preguntar** | [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) | Cursos 1 y 2 | SOW en 7 secciones obligatorias, técnica de los 5 Porqués, 4 preguntas S.M.A.R.T. y matriz de interesados. |
+| **Fase 1: Preguntar** | [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx) | Cursos 1 y 2 | Formulación formal del problema de negocio, métricas vs dimensiones y criterios de imparcialidad (*Fairness*). |
+| **Fase 2: Preparar** | [`02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx) | Cursos 3 y 4 | Evaluación formal de 4 fuentes (72.797 filas) bajo el marco ROCCC, metadatos y protocolo estricto 0% PII. |
+| **Fase 3: Procesar** | [`03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) | Cursos 4, 5 y 7 | Los 6 tipos de validación, checklist de 12 puntos de limpieza de Google y Changelog de 7 campos. |
+| **Fase 4: Analizar** | [`04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) | Cursos 5 y 7 | Resumen del análisis relacional en SQLite (Q01–Q13), control 1:N (+42,2% Senior) y desmitificación de causalidad. |
+| **Fase 5: Compartir** | [`05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) | Cursos 6 y 8 | Guía de visualización (Edward Tufte, accesibilidad daltonismo, ejes en 0) y guion para reunión ejecutiva de 30 min. |
+| **Fase 6: Actuar** | [`06_Plan_de_Accion_y_Conclusiones_Finales.docx`](06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx) | Cursos 8 y 9 | Hoja de ruta Qué/Quién/Cuándo (30, 60, 90 días), pros y contras, narrativa STAR, viñetas X-Y-Z y Elevator Pitch. |
+| **Bitácora** | [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) | Cursos 1 a 9 | Data Journal con las 8 entradas cronológicas de autorreflexión y evolución del estudio (v1.4.0). |
+
+---
+
 ## Estructura del Repositorio (Fases 1 a 6)
 
 ```text
