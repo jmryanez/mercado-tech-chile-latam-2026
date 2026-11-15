@@ -4,6 +4,23 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.4.0 (`2026-11-15`) — Desglose Metodológico en Profundidad (6 Fases) y Descarga de Entregables Oficiales
+
+### Añadido
+- **Visor Metodológico en Profundidad (`#metodologia-deepdive`)**: Módulo interactivo con navegación por pestañas de las 6 fases (Preguntar, Preparar, Procesar, Analizar, Compartir y Actuar). Cada fase desglosa en cuadrículas estructuradas:
+  - Tarea Empresarial y Enfoque Google.
+  - Métodos, Técnicas y Herramientas Oficiales de los 9 Cursos.
+  - Criterios de Rigor, Verificación, Integridad y Control de Sesgos.
+  - Enlaces de descarga directa de cada entregable oficial y botones de navegación rápida a la sección correspondiente del sitio web.
+- **Tarjetas Interactivas de Fase**: Cada una de las 6 tarjetas en `.phases-grid` ahora actúa como disparador interactivo con indicador visual (`active-phase`), desplegando y desplazando suavemente la vista hacia el visor técnico en profundidad.
+- **Subsección de Entregables Oficiales por Fases (`.docx`) en el Centro de Descargas (`#descargas`)**: Incorporación de 7 tarjetas descargables correspondientes a los documentos oficiales de cada fase (SOW, Tarea Empresarial, Descripción ROCCC, Documentación de Limpieza/Changelog, Resumen SQL/Python, Guía de Diseño Visual y Plan de Acción/Empleabilidad).
+
+### Modificado
+- **Pie de Página Oficial**: Armonización y estandarización del texto de cierre del portafolio: *«Cumplimiento estricto de las directrices metodológicas de los 9 cursos oficiales para la obtención de la Certificación Profesional de Google Data Analytics»*.
+- **Consistencia de Cursos Oficiales**: Verificación de alineación del estándar de los 9 cursos (Cursos 1 al 8 de fundamentos y capstone + Curso 9 de empleabilidad, narrativa STAR, fórmula X-Y-Z y elevator pitch).
+
+---
+
 ## Versión 1.3.0 (`2026-11-14`) — Publicación Web Interactiva, Explorador de Datos y Optimización UX
 
 ### Añadido
