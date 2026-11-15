@@ -4,6 +4,21 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.4.1 (`2026-11-15`) — Sincronización y Ajustes de Despliegue para Kaggle y Tableau Public
+
+### Modificado
+- **Cuaderno Interactivo de Kaggle ([`06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb`](06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb))**:
+  - Eliminación absoluta de rutas locales del sistema y verificación de 0% PII.
+  - Autodetección robusta de rutas multi-entorno (`/kaggle/input/`, rutas relativas y carpeta `descargas/`).
+  - Incorporación del flujo analítico completo: consultas SQL en SQLite, respuestas empíricas a las 4 preguntas de negocio (P1 a P4) + Q11, visualizaciones con accesibilidad para daltonismo, matriz de implementación Qué/Quién/Cuándo (30, 60 y 90 días) y herramientas de carrera del Curso 9 (STAR, X-Y-Z y Elevator Pitch).
+  - Réplica sincronizada en [`descargas/kaggle_notebook_portafolio.ipynb`](descargas/kaggle_notebook_portafolio.ipynb).
+- **Libro de Trabajo para Tableau Public ([`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx))**:
+  - Actualización de la hoja de gobernanza `LEEME_Poblaciones` con los enlaces oficiales al sitio web en GitHub Pages, repositorio en GitHub y estandarización de los 9 cursos oficiales.
+  - Incorporación de la nueva hoja `Mapa_LatAm_19_Paises` con los 19 países de Latinoamérica, sus tamaños de muestra ($N_{total}$, $N_{sal}$), medianas, cuartiles $p25–p75$, error muestral y flag `cumple_n30` para la generación directa de mapas coropléticos.
+  - Réplica sincronizada en [`descargas/Datos_Consolidados_Tableau_Public.xlsx`](descargas/Datos_Consolidados_Tableau_Public.xlsx).
+
+---
+
 ## Versión 1.4.0 (`2026-11-15`) — Desglose Metodológico en Profundidad (6 Fases) y Descarga de Entregables Oficiales
 
 ### Añadido
