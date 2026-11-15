@@ -15,6 +15,15 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 - **Tarjetas Interactivas de Fase**: Cada una de las 6 tarjetas en `.phases-grid` ahora actúa como disparador interactivo con indicador visual (`active-phase`), desplegando y desplazando suavemente la vista hacia el visor técnico en profundidad.
 - **Subsección de Entregables Oficiales por Fases (`.docx`) en el Centro de Descargas (`#descargas`)**: Incorporación de 7 tarjetas descargables correspondientes a los documentos oficiales de cada fase (SOW, Tarea Empresarial, Descripción ROCCC, Documentación de Limpieza/Changelog, Resumen SQL/Python, Guía de Diseño Visual y Plan de Acción/Empleabilidad).
 
+### Corregido
+- **Auditoría y Completitud Exhaustiva de las 18 Tarjetas Metodológicas**:
+  - **Fase 3**: Corrección de enumeraciones incompletas: el *Checklist de Limpieza de 12 Puntos de Google* ahora lista explícitamente los 12 puntos del Curso 4 (antes mostraba solo 4), y el *Changelog Oficial de 7 Campos* desglosa los 7 campos de auditoría (antes mostraba solo 3).
+  - **Fase 1**: Desglose íntegro de los 5 Porqués (Toyota/Google), las 7 secciones obligatorias del SOW y las 4 preguntas S.M.A.R.T. con criterios de equidad (Fairness).
+  - **Fase 2**: Enumeración explícita de las 4 fuentes inmutables (72.797 filas), los 5 criterios del marco ROCCC y los 3 tipos de metadatos (descriptivos, estructurales y administrativos).
+  - **Fase 4**: Mapeo completo de las 14 consultas SQL (Q01 a Q13) y control de clave foránea 1:N que evitó el sesgo de +$75 USD.
+  - **Fase 5**: Detalle cronometrado de los 6 bloques de la presentación de 30 minutos (4+5+10+3+3+5 min) y los 3 estándares de Edward Tufte, accesibilidad para daltonismo y honestidad escalar.
+  - **Fase 6**: Especificación completa de las 4 conclusiones, 3 recomendaciones con matriz Qué/Quién/Cuándo (30, 60 y 90 días) y las 3 herramientas de carrera del Curso 9 (STAR, X-Y-Z y Elevator Pitch).
+
 ### Modificado
 - **Pie de Página Oficial**: Armonización y estandarización del texto de cierre del portafolio: *«Cumplimiento estricto de las directrices metodológicas de los 9 cursos oficiales para la obtención de la Certificación Profesional de Google Data Analytics»*.
 - **Consistencia de Cursos Oficiales**: Verificación de alineación del estándar de los 9 cursos (Cursos 1 al 8 de fundamentos y capstone + Curso 9 de empleabilidad, narrativa STAR, fórmula X-Y-Z y elevator pitch).
