@@ -8212,11 +8212,11 @@
       "n_total": 133,
       "n_sal": 46,
       "cumple_n30": true,
-      "med_usd": 3063.5,
+      "med_usd": 3063.54,
       "p25_usd": 2085.1,
       "p75_usd": 4264.9,
       "iqr_usd": 2179.8,
-      "med_clp": 2970982,
+      "med_clp": 2971022,
       "error_est": "±7,5%",
       "tratamiento": "Población Núcleo del Estudio (Alta Precisión)"
     },
@@ -8231,7 +8231,7 @@
       "p75_usd": 8018.5,
       "iqr_usd": 3915.9,
       "med_clp": 6222625,
-      "error_est": "±20.2%",
+      "error_est": "±20,2%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
     {
@@ -8245,7 +8245,7 @@
       "p75_usd": 4401.0,
       "iqr_usd": 2948.7,
       "med_clp": 2134045,
-      "error_est": "±22.6%",
+      "error_est": "±22,6%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8259,7 +8259,7 @@
       "p75_usd": 2000.0,
       "iqr_usd": 1350.0,
       "med_clp": 969800,
-      "error_est": "±23.6%",
+      "error_est": "±23,6%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
     {
@@ -8273,7 +8273,7 @@
       "p75_usd": 7921.9,
       "iqr_usd": 4086.1,
       "med_clp": 5911901,
-      "error_est": "±26.7%",
+      "error_est": "±26,7%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8287,7 +8287,7 @@
       "p75_usd": 3333.3,
       "iqr_usd": 2333.3,
       "med_clp": 1454700,
-      "error_est": "±26.7%",
+      "error_est": "±26,7%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8301,7 +8301,7 @@
       "p75_usd": 4089.5,
       "iqr_usd": 3395.0,
       "med_clp": 2185735,
-      "error_est": "±28.6%",
+      "error_est": "±28,6%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8315,7 +8315,7 @@
       "p75_usd": 3333.3,
       "iqr_usd": 1683.7,
       "med_clp": 2181468,
-      "error_est": "±30.6%",
+      "error_est": "±30,6%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8329,7 +8329,7 @@
       "p75_usd": 8083.3,
       "iqr_usd": 6480.0,
       "med_clp": 2260798,
-      "error_est": "±31.4%",
+      "error_est": "±31,4%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8343,7 +8343,7 @@
       "p75_usd": 4335.2,
       "iqr_usd": 3685.0,
       "med_clp": 1181798,
-      "error_est": "±34.6%",
+      "error_est": "±34,6%",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8357,7 +8357,7 @@
       "p75_usd": 1637.5,
       "iqr_usd": 799.3,
       "med_clp": 945555,
-      "error_est": "±40.9% (Alta Varianza)",
+      "error_est": "±40,9% (Alta Varianza)",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8371,7 +8371,7 @@
       "p75_usd": 4691.7,
       "iqr_usd": 3266.7,
       "med_clp": 2909400,
-      "error_est": "±42.8% (Alta Varianza)",
+      "error_est": "±42,8% (Alta Varianza)",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8385,7 +8385,7 @@
       "p75_usd": 5541.7,
       "iqr_usd": 2666.7,
       "med_clp": 4073160,
-      "error_est": "±45.0% (Alta Varianza)",
+      "error_est": "±45,0% (Alta Varianza)",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8399,7 +8399,7 @@
       "p75_usd": 6000.0,
       "iqr_usd": 3666.7,
       "med_clp": 3636750,
-      "error_est": "±46.2% (Alta Varianza)",
+      "error_est": "±46,2% (Alta Varianza)",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     },
     {
@@ -8413,7 +8413,7 @@
       "p75_usd": 1512.2,
       "iqr_usd": 917.0,
       "med_clp": 860407,
-      "error_est": "±49.0% (Alta Varianza)",
+      "error_est": "±49,0% (Alta Varianza)",
       "tratamiento": "Muestra Exploratoria (N < 30)"
     }
   ],
@@ -8608,7 +8608,7 @@
       "p25": 11333,
       "mediana": 15380,
       "p75": 19167,
-      "iqr": 7833,
+      "iqr": 7834,
       "salto": "+20,2%",
       "clp": 14915524,
       "tlc": "✓ Válido (N ≥ 30)"
@@ -8627,10 +8627,10 @@
     {
       "tipo": "2. Rango de Datos (Data Range)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
-      "descripcion": "Filtro de plausibilidad económica: salarios mensuales entre $300 USD y $20.000 USD para roles técnicos no directivos; supresión de valores negativos o tipeos de prueba.",
-      "poblacion": "2.998 SO LatAm / 679 GOB",
-      "excluidos": "14 vacantes GOB / 28 respuestas SO",
-      "resultado": "Banda limpia libre de valores espurios ($1 USD o $500.000 USD)",
+      "descripcion": "Filtro de plausibilidad económica: salarios mensuales >=  USD en GOB y anuales [1.000..500.000 USD] en SO LatAm; anulación estricta de outliers espurios.",
+      "poblacion": "3.074 SO LatAm / 679 GOB",
+      "excluidos": "2 vacantes GOB (<) / 67 respuestas SO (<k o >k)",
+      "resultado": "235 salarios válidos GOB (de 237) / 1.341 salarios válidos SO (de 1.408)",
       "impacto": "Previene distorsiones artificiales en la media aritmética y centra el análisis en la mediana."
     },
     {

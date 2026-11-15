@@ -102,7 +102,7 @@ El proyecto cuenta con un [Explorador Interactivo de Datos](https://jmryanez.git
 | [`GetOnBoard_Vacantes_Auditadas_679.csv`](descargas/GetOnBoard_Vacantes_Auditadas_679.csv) | CSV | 679 | Vacantes tecnológicas en Chile Local y Remoto LatAm con taxonomía limpia y salarios. |
 | [`Matriz_TLC_19_Paises_LatAm.csv`](descargas/Matriz_TLC_19_Paises_LatAm.csv) | CSV | 19 | Representatividad de los 19 países de LatAm + Chile, Teorema Límite Central (N ≥ 30) y error muestral. |
 | [`Bandas_Salariales_y_Saltos_Seniority.csv`](descargas/Bandas_Salariales_y_Saltos_Seniority.csv) | CSV | 15 | Estructura no paramétrica (p25, mediana, p75) y salto salarial (+42,2% Senior) en Chile y LatAm. |
-| [`Matriz_Validacion_Integridad_Calidad.csv`](descargas/Matriz_Validacion_Integridad_Calidad.csv) | CSV | 7 | Las 6 validaciones del Curso 4 de Google, reglas relacionales 1:N y protocolo de anonimización ética (0% PII). |
+| [`Matriz_Validacion_Integridad_Calidad.csv`](descargas/Matriz_Validacion_Integridad_Calidad.csv) | CSV | 7 | Las 6 validaciones del Curso 5 de Google, reglas relacionales 1:N y protocolo de anonimización ética (0% PII). |
 | [`StackOverflow_LatAm_19_Paises_2024.csv`](descargas/StackOverflow_LatAm_19_Paises_2024.csv) | CSV | 3.074 | Microdatos procesados de desarrolladores encuestados en los 19 países de América Latina. |
 | [`Explorador_Datasets_Consolidados.json`](descargas/Explorador_Datasets_Consolidados.json) | JSON | 4 tablas | Estructura JSON unificada que alimenta el explorador interactivo para desarrollo o reanálisis. |
 

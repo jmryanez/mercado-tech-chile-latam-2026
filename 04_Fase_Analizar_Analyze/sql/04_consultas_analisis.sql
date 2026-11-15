@@ -135,12 +135,12 @@ SELECT
     h.tipo_tecnologia,
     h.tecnologia,
     COUNT(DISTINCT v.job_id) AS n_ofertas,
-    ROUND(100.0 * COUNT(DISTINCT v.job_id) / 679.0, 2) AS pct_demanda_gob
+    ROUND(100.0 * COUNT(DISTINCT v.job_id) / (SELECT COUNT(DISTINCT job_id) FROM vacantes), 2) AS pct_demanda_gob
 FROM vacantes AS v
 INNER JOIN vacante_habilidades AS h
     ON v.job_id = h.job_id
 GROUP BY h.tipo_tecnologia, h.tecnologia
-HAVING (100.0 * COUNT(DISTINCT v.job_id) / 679.0) >= 20.0
+HAVING (100.0 * COUNT(DISTINCT v.job_id) / (SELECT COUNT(DISTINCT job_id) FROM vacantes)) >= 20.0
 ORDER BY pct_demanda_gob DESC;
 
 -- -----------------------------------------------------------------------------

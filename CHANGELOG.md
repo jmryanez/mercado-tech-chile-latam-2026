@@ -4,6 +4,30 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.5.1 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Segunda Ronda Red-Team
+
+### Corregido
+- **Consistencia Documental Muestras Pre vs. Post-Limpieza**:
+  - Explicitación de la distinción muestral en `01_Declaracion_Tarea_Empresarial.docx`, `02_Descripcion_Fuentes_y_ROCCC.docx` y `DIARIO_DE_DATOS_BITACORA.docx`: `Semi-Senior=97` y `Junior=17` salarios válidos post-limpieza (tras la anulación determinista de 2 casos $<$500 USD de las 18 ofertas Junior y 98 Semi-Senior iniciales).
+- **Matriz de Calidad y Validación de Integridad**:
+  - Actualización de `descargas/Matriz_Validacion_Integridad_Calidad.csv` y visor web de Validación: población formal de `3.074 SO LatAm / 679 GOB`, exclusión exacta de `2 vacantes GOB (<$500) / 67 respuestas SO (<$1k o >$500k)` y resultado de `235 salarios válidos GOB / 1.341 salarios válidos SO`.
+  - Corrección de atribución curricular: las 6 validaciones formales se referencian al **Curso 5** en `README.md` y `CHANGELOG.md`.
+- **Sincronización Total de Datasets Raíz y Descargas**:
+  - Sobreescritura del archivo `explorador_datasets.json` en la raíz del repositorio con los datos consolidados y auditados de `descargas/Explorador_Datasets_Consolidados.json`.
+  - Homologación de comas decimales en `error_est` (`±20,2%`, `±22,6%`, etc.) y ajuste de paridad de Chile a `$3.063,54 USD` y `$2.971.022 CLP` en `Matriz_TLC_19_Paises_LatAm.csv`.
+  - Corrección aritmética de IQR en tramo Director (`19.167 - 11.333 = 7.834 USD`) en `Bandas_Salariales_y_Saltos_Seniority.csv`.
+- **Cuaderno Kaggle y SQL Relacional**:
+  - Corrección textual en Celda Markdown 7 de `kaggle_notebook_portafolio.ipynb` y `descargas/kaggle_notebook_portafolio.ipynb`: transición Semi-Senior a Senior expresada como `de $2.250 USD a $3.200 USD ($2.182.050 a $3.103.360 CLP)`.
+  - Dinamismo en consulta `Q03` de `04_consultas_analisis.sql`, reemplazando el divisor cableado `679.0` por `(SELECT COUNT(DISTINCT job_id) FROM vacantes)`.
+- **Frontend Web & Accesibilidad (WCAG 2.1 AA)**:
+  - Corrección de cifras en Visualización 7 (`$138.000 USD anuales (~$11.500 USD/mes)`), texto de salarios (`$3.275 USD vs. $2.250 USD`) y armonización de primas en `index.html`.
+  - Soporte de ordenamiento numérico en columnas con porcentajes (`sortTlcTable` y `sortSalTable` con `parseSortValue`).
+  - Incorporación de prefijo UTF-8 BOM (`\uFEFF`) en funciones de exportación CSV para compatibilidad nativa con Microsoft Excel en Windows.
+  - Implementación de navegación accesible por teclado (WCAG 2.1.1): atributos `tabindex="0"`, `role="button"`, etiquetas `aria-label` y listeners `keydown` (`Enter` / `Espacio`) en los 29 encabezados ordenables, las 6 tarjetas interactivas de fase y los 7 contenedores de ampliación modal.
+  - Protección de seguridad inversa añadiendo `rel="noopener noreferrer"` en todos los enlaces externos con `target="_blank"`.
+
+---
+
 ## Versión 1.5.0 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Auditoría Red-Team Multi-Agente
 
 ### Corregido (Hallazgos Críticos)
@@ -85,7 +109,7 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
   - Pestaña 1: Auditoría de 72.797 registros crudos y tabla de **679 vacantes limpias de Get on Board 2026**.
   - Pestaña 2: **Matriz Teorema del Límite Central (TLC) de los 19 países de América Latina + Chile**, indicando cumplimiento de $N \ge 30$ e IQR.
   - Pestaña 3: **Estructura salarial, cuartiles ($p25–p75$) y salto de +42,2% al nivel Senior**.
-  - Pestaña 4: **Matriz de Integridad Relacional 1:N y los 6 tipos formales de validación de datos (Curso 4)**.
+  - Pestaña 4: **Matriz de Integridad Relacional 1:N y los 6 tipos formales de validación de datos (Curso 5)**.
 - **Centro de Descargas Abiertas ([`descargas/`](descargas/))**: Generación de 6 datasets en formatos abiertos CSV y JSON para auditoría y reproducibilidad pública.
 - **Marcador Activo en Tiempo Real (*Scrollspy*)**: Script con cálculo de posición por scroll que ilumina dinámicamente con una píldora azul la sección en la que se encuentra el usuario.
 - **Bloques Explícitos de Pregunta y Respuesta**: Cada tarjeta de visualización en la sección *Patrones Descubiertos* ahora integra un contenedor estructurado `❓ Pregunta de Negocio (P1 a P4)` y `💡 Hallazgo & Respuesta Directa`.
@@ -114,7 +138,7 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 ## Versión 0.5.3 (`2026-11-11`) — Alineación Visual y Léxica Final con los 9 Cursos (Fases 1–5)
 
 ### Modificado
-- **Visual 06 Panel B ([`06_paises_latam_y_tamano_empresa_p4.png`](05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png))**: Reemplazo de puntos conectados desde `$1.000` por **barras verticales desde `$0 USD`** para cumplir literalmente la regla del **Curso 6** (*no cortar el eje Y ni conectar categorías no temporales*, [`Principios de diseño esenciales.md`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx)).
+- **Visual 06 Panel B ([`06_paises_latam_y_tamano_empresa_p4.png`](05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png))**: Reemplazo de puntos conectados desde `$1.000` por **barras verticales desde `$0 USD`** para cumplir literalmente la regla del **Curso 6** (*no cortar el eje Y ni conectar categorías no temporales*, [Entregable Oficial de Diseño Visual](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx)).
 - **Lenguaje literal de los Cursos 5 y 6 en Fases 1, 2, 4, 5, SQL y Bitácora**: Reemplazo de anglicismos/términos externos (*"duplicación en uniones 1:N"* en vez de jerga inglesa de `JOIN`, *"continua y ascendente en cada tramo"* en la progresión salarial de Fase 4, y *"alta proporción datos-tinta"* en Checklist de Fase 5).
 
 ---
