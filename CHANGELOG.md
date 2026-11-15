@@ -4,6 +4,27 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.3.0 (`2026-11-14`) — Publicación Web Interactiva, Explorador de Datos y Optimización UX
+
+### Añadido
+- **Sitio Web Oficial en GitHub Pages ([`index.html`](https://jmryanez.github.io/mercado-tech-chile-latam-2026/))**: Plataforma web moderna responsive construida con HTML5 semántico, paleta de colores de Google (`#1A73E8`, `#0072B2`, `#D55E00`), tipografía Inter/JetBrains Mono y diseño accesible para daltonismo.
+- **Explorador Interactivo de Datos (`#explorador-datos`)**: Componente cliente con búsqueda en tiempo real, filtros por país/ámbito, paginación dinámica (10, 25, 50 registros) y exportación a CSV:
+  - Pestaña 1: Auditoría de 72.797 registros crudos y tabla de **679 vacantes limpias de Get on Board 2026**.
+  - Pestaña 2: **Matriz Teorema del Límite Central (TLC) de los 19 países de América Latina + Chile**, indicando cumplimiento de $N \ge 30$ e IQR.
+  - Pestaña 3: **Estructura salarial, cuartiles ($p25–p75$) y salto de +42,2% al nivel Senior**.
+  - Pestaña 4: **Matriz de Integridad Relacional 1:N y los 6 tipos formales de validación de datos (Curso 4)**.
+- **Centro de Descargas Abiertas ([`descargas/`](descargas/))**: Generación de 6 datasets en formatos abiertos CSV y JSON para auditoría y reproducibilidad pública.
+- **Marcador Activo en Tiempo Real (*Scrollspy*)**: Script con cálculo de posición por scroll que ilumina dinámicamente con una píldora azul la sección en la que se encuentra el usuario.
+- **Bloques Explícitos de Pregunta y Respuesta**: Cada tarjeta de visualización en la sección *Patrones Descubiertos* ahora integra un contenedor estructurado `❓ Pregunta de Negocio (P1 a P4)` y `💡 Hallazgo & Respuesta Directa`.
+- **Favicon Personalizado**: Avatar circular trazado con fondo transparente en resoluciones estándar (16x16, 32x32, 512x512 y Apple Touch Icon).
+
+### Modificado
+- **Barra de Navegación (Header)**: Rediseño a arquitectura de **isla flotante centrada** (*Floating Island Nav*) para eliminar la colisión de texto del subtítulo y evitar que los enlaces se partieran en dos líneas.
+- **Subtítulo de Sección de Hallazgos**: Reescritura del texto introductorio enfocándolo en los descubrimientos de mercado en lugar de rúbricas técnicas de diseño gráfico.
+- **Protección PII Absoluta**: Purgado total de datos de contacto personales en código fuente, metadatos y documentación (100% conforme a la directiva de ética y privacidad de Google).
+
+---
+
 ## Versión 0.6.0 (`2026-11-11`) — Cierre Fase 6: Actuar (*Act* • Cursos 8 y 9)
 
 ### Añadido
