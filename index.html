@@ -595,6 +595,58 @@
       border: 1px solid rgba(255,255,255,0.05);
     }
 
+    
+    /* QA BOX IN VISUAL CARDS */
+    .vis-qa-box {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 0.95rem 1.15rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .vis-qa-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .vis-qa-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .vis-qa-label.q {
+      color: #93C5FD;
+    }
+
+    .vis-qa-label.a {
+      color: #34D399;
+    }
+
+    .vis-qa-text {
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .vis-qa-text.q-text {
+      font-style: italic;
+      color: #CBD5E1;
+    }
+
+    .vis-qa-text.a-text {
+      font-weight: 500;
+      color: #F8FAFC;
+    }
+
     .vis-metric-box strong {
       color: #60A5FA;
       font-family: var(--font-mono);
@@ -1742,6 +1794,9 @@
       <p class="section-desc">
         Análisis empírico sobre la concentración de demanda tecnológica, las primas salariales Cloud, la progresión por niveles de experiencia y el posicionamiento competitivo de Chile en el mercado regional.
       </p>
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.35rem 0.95rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; color: #93C5FD; margin-top: 0.75rem;">
+        📌 Estructurado en 4 Preguntas de Investigación Estratégicas (P1 a P4) + 1 Profundización Cuantitativa Cloud (Q11)
+      </div>
     </div>
 
     <!-- VISUAL 1 -->
@@ -1750,8 +1805,20 @@
         <img src="05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png" alt="Demanda vs Adopción Top 5 Tecnologías">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Pregunta de Investigación 1 • Demanda vs Adopción</span>
+        <span class="vis-tag">Pregunta de Investigación 1 de 4 • Demanda vs. Adopción</span>
         <h3 class="vis-title">Solo 5 Tecnologías Superan el Umbral Crítico del ≥ 20%</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P1):</span>
+            <span class="vis-qa-text q-text">¿Cuáles son las tecnologías más demandadas por los empleadores tech en Chile y qué brechas existen frente a las habilidades que realmente dominan los profesionales?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Solo 5 tecnologías superan el umbral del 20% (SQL 32,8%, AWS 30,0%, Python 28,4%, JavaScript 27,4% y Azure 20,8%). Existe un déficit crítico de talento en Cloud: Microsoft Azure presenta una brecha de demanda no cubierta (+5,7% más solicitada en avisos que dominada por desarrolladores en Chile).</span>
+          </div>
+        </div>
+
         <p class="vis-desc">
           Al analizar 679 vacantes vigentes en Get on Board (2026) y 31.759 menciones de habilidades, únicamente SQL (32,84%), AWS (30,04%), Python (28,42%), JavaScript (27,39%) y Microsoft Azure (20,77%) superan la meta del 20%. Destaca la brecha positiva de Azure (20,77% demanda vs. 15,04% adopción en Stack Overflow Chile), reflejando una oportunidad inmediata de formación.
         </p>
@@ -1777,8 +1844,20 @@
         <img src="05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png" alt="Matriz Volumen vs Salario Cloud">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Análisis Cruzado Q11 • Compensación vs Oportunidad</span>
+        <span class="vis-tag">Profundización Analítica Q11 (Derivada de P1) • Volumen vs. Retorno Salarial</span>
         <h3 class="vis-title">Primas Salariales Cloud: AWS, Azure y Google Cloud</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (Q11):</span>
+            <span class="vis-qa-text q-text">¿Aprender la tecnología con mayor volumen de ofertas (SQL) asegura los mejores ingresos, o las plataformas Cloud pagan primas salariales superiores?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">SQL es el requisito más masivo pero establece el piso salarial base ($2.250 USD mediana). La verdadera prima de compensación la aportan las plataformas Cloud: AWS ($2.850 USD, +$600 USD/mes), Google Cloud ($2.825 USD) y Azure ($2.775 USD), que elevan la mediana salarial entre un +23,3% y +31,5% sobre SQL.</span>
+          </div>
+        </div>
+
         <p class="vis-desc">
           SQL ofrece el mayor volumen de entrada pero marca el piso salarial ($2.250 USD mediana GOB / $2.051 USD SO LatAm). En contraste, las tecnologías Cloud impulsan una prima salarial de +23,3% a +31,5%: AWS alcanza $2.850 USD en GOB ($2.697 USD en SO), Google Cloud $2.825 USD ($2.614 USD en SO) y Azure $2.775 USD ($2.684 USD en SO).
         </p>
@@ -1804,8 +1883,20 @@
         <img src="05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png" alt="Bandas Salariales por Seniority">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Pregunta de Investigación 2 • Experiencia y Compensación</span>
+        <span class="vis-tag">Pregunta de Investigación 2 de 4 • Experiencia y Progresión Salarial</span>
         <h3 class="vis-title">Salto de +42,2% al Nivel Senior y Bandas Cuartílicas p25–p75</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P2):</span>
+            <span class="vis-qa-text q-text">¿Cómo impactan los años de experiencia en la compensación mensual y cuál es la magnitud real del salto salarial al alcanzar el nivel Senior en Chile?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">El paso de Semi-Senior ($2.250 USD) a Senior ($3.200 USD) representa un salto salarial neto de +42,2% (+$950 USD mensuales adicionales). Ambos segmentos cumplen N ≥ 30, delimitando bandas de mercado sólidas: Semi-Sr ($1.850–$2.600 USD) y Senior ($2.300–$4.000 USD). A escala regional en LatAm, el salario se multiplica por 6,6x (+566,6%) a lo largo de 10+ años de trayectoria.</span>
+          </div>
+        </div>
+
         <p class="vis-desc">
           En Get on Board, el paso de Semi-Senior ($2.250 USD, N=97) a Senior ($3.200 USD, N=113) representa un aumento del +42,2% en la mediana salarial. Ambos segmentos cumplen rigurosamente N >= 30, permitiendo fijar bandas salariales confiables: Semi-Sr $1.850–$2.600 USD y Senior $2.300–$4.000 USD. En Stack Overflow LatAm, la progresión entre los 4 tramos con N >= 89 crece de forma continua y ascendente (+566,6% acumulado).
         </p>
@@ -1831,8 +1922,20 @@
         <img src="05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png" alt="Modalidades vs INE y Causalidad">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Pregunta de Investigación 3 • Correlación ≠ Causalidad (Q12)</span>
+        <span class="vis-tag">Pregunta de Investigación 3 de 4 • Modalidad y Correlación vs. Causalidad</span>
         <h3 class="vis-title">La Paradoja del Remoto Local: Sesgo de Composición</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P3):</span>
+            <span class="vis-qa-text q-text">¿El trabajo remoto ofrece salarios más altos por sí mismo, o existe un sesgo de composición de cargos que explica la diferencia salarial?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Correlación no implica causalidad. Aunque el 'Remoto Local' promedia $3.750 USD (5,35x la mediana nacional INE), el análisis Q12 demuestra que el 100% de estas ofertas proviene de empresas internacionales (Remoto Global/LatAm) y el 68,9% exige perfiles Senior o Lead. La prima salarial se explica por la jerarquía del cargo y el origen del empleador, no por la modalidad remota en sí.</span>
+          </div>
+        </div>
+
         <p class="vis-desc">
           Las vacantes etiquetadas como 'Remoto Local' en Get on Board pagan $3.750 USD/mes (5,35x la mediana nacional INE ESI 2025 de $701,18 USD y +66,7% sobre Presencial $2.250 USD). Sin embargo, el análisis relacional Q12 prueba que no es la modalidad lo que genera el sueldo, sino la composición del cargo: el 100% de estas ofertas corresponde a alcance Remoto Global/LatAm y el 68,9% exige perfiles Senior o Lead.
         </p>
@@ -1858,8 +1961,20 @@
         <img src="05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png" alt="Posicionamiento Regional y Tamaño de Empresa">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Pregunta de Investigación 4 • Posicionamiento Regional</span>
+        <span class="vis-tag">Pregunta de Investigación 4 de 4 • Posicionamiento Regional y Tamaño de Empresa</span>
         <h3 class="vis-title">Chile es 2° Regional en Salarios Tech y Prima de Grandes Empresas</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P4):</span>
+            <span class="vis-qa-text q-text">¿En qué posición competitiva se ubican las remuneraciones tecnológicas de Chile respecto a Latinoamérica y cómo influye el tamaño de la empresa empleadora?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Chile ocupa el 2° lugar salarial de Latinoamérica ($3.064 USD mediana en SO 2024), solo por detrás de Uruguay ($6.416 USD, hub de exportación de software a EE.UU.). Asimismo, las organizaciones grandes pagan una prima de +54,8% sobre las pequeñas, con un pico de $3.533 USD en empresas medianas-grandes (500–999 colaboradores).</span>
+          </div>
+        </div>
+
         <p class="vis-desc">
           Entre los 7 países de Latinoamérica que cumplen N >= 30 en Stack Overflow 2024, Chile ocupa el segundo puesto regional ($3.063,54 USD/mes, N=46) solo por detrás de Uruguay ($6.416,42 USD, N=36, impulsado por exportación de software a EE.UU.). Además, en LatAm las empresas grandes (1.000+ colaboradores, $2.784,92 USD) pagan +54,8% más que las pequeñas (1–99 colaboradores, $1.799,16 USD), con un pico salarial en el tramo de 500–999 empleados ($3.532,67 USD).
         </p>
