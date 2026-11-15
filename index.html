@@ -32,6 +32,9 @@
       --accent-orange: #D55E00;
       --accent-teal: #009E73;
       --accent-gold: #F59E0B;
+      --text-main: #F9FAFB;
+      --bg-body: #111827;
+      --accent-green: #34D399;
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
@@ -874,6 +877,9 @@
       cursor: pointer;
     }
 
+    .vis-media:focus-visible { outline: 3px solid #60A5FA; outline-offset: 4px; }
+    .modal-close { background: transparent; border: none; }
+    .modal-close:focus-visible { outline: 2px solid #60A5FA; outline-offset: 2px; }
     .modal-close:hover {
       color: var(--accent-orange);
     }
@@ -1735,22 +1741,22 @@
     <div class="explorer-container">
       <!-- TABS NAVIGATION -->
       <div class="explorer-tabs" role="tablist">
-        <button class="explorer-tab-btn active" id="btn-tab-fuentes" onclick="switchExplorerTab('tab-fuentes')" role="tab" aria-selected="true">
+        <button class="explorer-tab-btn active" id="btn-tab-fuentes" aria-controls="tab-fuentes" onclick="switchExplorerTab('tab-fuentes')" role="tab" aria-selected="true">
           📦 Registros & Fuentes <span class="tab-count">72.797 / 679</span>
         </button>
-        <button class="explorer-tab-btn" id="btn-tab-muestral" onclick="switchExplorerTab('tab-muestral')" role="tab" aria-selected="false">
+        <button class="explorer-tab-btn" id="btn-tab-muestral" aria-controls="tab-muestral" onclick="switchExplorerTab('tab-muestral')" role="tab" aria-selected="false">
           🎯 Matriz TLC N ≥ 30 <span class="tab-count">19 Países LatAm</span>
         </button>
-        <button class="explorer-tab-btn" id="btn-tab-salarios" onclick="switchExplorerTab('tab-salarios')" role="tab" aria-selected="false">
+        <button class="explorer-tab-btn" id="btn-tab-salarios" aria-controls="tab-salarios" onclick="switchExplorerTab('tab-salarios')" role="tab" aria-selected="false">
           📈 Bandas Salariales & Saltos % <span class="tab-count">+42,2% Sr</span>
         </button>
-        <button class="explorer-tab-btn" id="btn-tab-integridad" onclick="switchExplorerTab('tab-integridad')" role="tab" aria-selected="false">
+        <button class="explorer-tab-btn" id="btn-tab-integridad" aria-controls="tab-integridad" onclick="switchExplorerTab('tab-integridad')" role="tab" aria-selected="false">
           🛡️ Integridad 1:N & 0% PII <span class="tab-count">6 Validaciones</span>
         </button>
       </div>
 
       <!-- TAB 1: FUENTES Y VACANTES LIMPIAS (679) -->
-      <div class="explorer-tab-pane active" id="tab-fuentes" role="tabpanel">
+      <div class="explorer-tab-pane active" id="tab-fuentes" role="tabpanel" aria-labelledby="btn-tab-fuentes">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
           <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
             <div style="font-size: 0.75rem; color: #60A5FA; font-weight: 700; text-transform: uppercase;">Get on Board 2026 (API v0)</div>
@@ -1814,18 +1820,18 @@
         <!-- TABLE -->
         <div class="dt-table-wrapper">
           <table class="dt-table" id="gobTable">
-            <thead>
+            <th scope=\"col\"ead>
               <tr>
-                <th class="sortable" onclick="sortGobTable('id')">ID Vacante <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('pais_geo')">País / Ámbito <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('paises_det')">Países Específicos <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('titulo')">Título del Cargo <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('categoria')">Categoría <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('modalidad')">Modalidad <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('seniority')">Seniority <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('sal_usd')">Salario Mensual USD <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('sal_clp')">Salario Ref. CLP <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortGobTable('postulaciones')">Postulaciones <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('id')">ID Vacante <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('pais_geo')">País / Ámbito <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('paises_det')">Países Específicos <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('titulo')">Título del Cargo <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('categoria')">Categoría <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('modalidad')">Modalidad <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('seniority')">Seniority <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('sal_usd')">Salario Mensual USD <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('sal_clp')">Salario Ref. CLP <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortGobTable('postulaciones')">Postulaciones <span class="sort-icon">↕</span></th>
               </tr>
             </thead>
             <tbody id="gobTableBody">
@@ -1844,7 +1850,7 @@
       </div>
 
       <!-- TAB 2: MATRIZ MUESTRAL TLC N >= 30 (19 PAISES LATAM + CHILE) -->
-      <div class="explorer-tab-pane" id="tab-muestral" role="tabpanel">
+      <div class="explorer-tab-pane" id="tab-muestral" role="tabpanel" aria-labelledby="btn-tab-muestral">
         <div style="margin-bottom: 1.25rem;">
           <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
             Matriz de Representatividad Muestral: Teorema del Límite Central (N ≥ 30)
@@ -1875,18 +1881,18 @@
         <!-- TABLE -->
         <div class="dt-table-wrapper">
           <table class="dt-table" id="tlcTable">
-            <thead>
+            <th scope=\"col\"ead>
               <tr>
-                <th class="sortable" onclick="sortTlcTable('pais')">País <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('n_total')">Muestra Total (N) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('n_sal')">Salarios Válidos (N_sal) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('cumple_n30')">Estado TLC (N ≥ 30) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('med_usd')">Mediana USD / Mes <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('p25_usd')">Rango Intercuartílico (p25–p75 USD) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('iqr_usd')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('med_clp')">Mediana CLP (Ref. $969,8) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortTlcTable('error_est')">Margen de Error (95%) <span class="sort-icon">↕</span></th>
-                <th>Tratamiento Metodológico Google</th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('pais')">País <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('n_total')">Muestra Total (N) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('n_sal')">Salarios Válidos (N_sal) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('cumple_n30')">Estado TLC (N ≥ 30) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('med_usd')">Mediana USD / Mes <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('p25_usd')">Rango Intercuartílico (p25–p75 USD) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('iqr_usd')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('med_clp')">Mediana CLP (Ref. $969,8) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortTlcTable('error_est')">Margen de Error (95%) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\">Tratamiento Metodológico Google</th>
               </tr>
             </thead>
             <tbody id="tlcTableBody">
@@ -1901,7 +1907,7 @@
       </div>
 
       <!-- TAB 3: BANDAS SALARIALES Y SALTOS % -->
-      <div class="explorer-tab-pane" id="tab-salarios" role="tabpanel">
+      <div class="explorer-tab-pane" id="tab-salarios" role="tabpanel" aria-labelledby="btn-tab-salarios">
         <div style="margin-bottom: 1.25rem;">
           <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
             Estructura Salarial, Cuartiles (p25–p75) y Salto Porcentual por Nivel
@@ -1933,19 +1939,19 @@
         <!-- TABLE -->
         <div class="dt-table-wrapper">
           <table class="dt-table" id="salTable">
-            <thead>
+            <th scope=\"col\"ead>
               <tr>
-                <th class="sortable" onclick="sortSalTable('ambito')">País / Ámbito Geográfico <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('nivel')">Seniority / Experiencia <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('fuente')">Fuente de Datos <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('n')">Muestra (N) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('p25')">Cuartil 25 (USD) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('mediana')">Mediana p50 (USD) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('p75')">Cuartil 75 (USD) <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('iqr')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('salto')">Salto Salarial % <span class="sort-icon">↕</span></th>
-                <th class="sortable" onclick="sortSalTable('clp')">Mediana Ref. CLP <span class="sort-icon">↕</span></th>
-                <th>Estado TLC</th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('ambito')">País / Ámbito Geográfico <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('nivel')">Seniority / Experiencia <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('fuente')">Fuente de Datos <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('n')">Muestra (N) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('p25')">Cuartil 25 (USD) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('mediana')">Mediana p50 (USD) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('p75')">Cuartil 75 (USD) <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('iqr')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('salto')">Salto Salarial % <span class="sort-icon">↕</span></th>
+                <th scope=\"col\" class="sortable" onclick="sortSalTable('clp')">Mediana Ref. CLP <span class="sort-icon">↕</span></th>
+                <th scope=\"col\">Estado TLC</th>
               </tr>
             </thead>
             <tbody id="salTableBody">
@@ -1960,7 +1966,7 @@
       </div>
 
       <!-- TAB 4: INTEGRIDAD RELACIONAL 1:N Y 6 VALIDACIONES -->
-      <div class="explorer-tab-pane" id="tab-integridad" role="tabpanel">
+      <div class="explorer-tab-pane" id="tab-integridad" role="tabpanel" aria-labelledby="btn-tab-integridad">
         <div style="margin-bottom: 1.25rem;">
           <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
             Matriz de Integridad Relacional 1:N y los 6 Tipos Formales de Validación de Datos
@@ -1970,18 +1976,21 @@
           </p>
         </div>
 
-        <!-- TABLE -->
+        <!-- TABLE TOOLBAR -->
+        <div class="dt-toolbar" style="justify-content: flex-end; margin-bottom: 0.75rem;">
+          <button class="dt-btn-action" onclick="exportValCSV()">📥 Exportar Matriz Validación CSV</button>
+        </div>
         <div class="dt-table-wrapper">
           <table class="dt-table" id="valTable">
-            <thead>
+            <th scope=\"col\"ead>
               <tr>
-                <th>Tipo de Validación (Curso 4)</th>
-                <th>Ámbito Geográfico / País</th>
-                <th>Definición y Regla Aplicada</th>
-                <th>Población Auditada</th>
-                <th>Registros Excluidos / Ajustados</th>
-                <th>Resultado de Calidad</th>
-                <th>Impacto Metodológico</th>
+                <th scope=\"col\">Tipo de Validación (Curso 4)</th>
+                <th scope=\"col\">Ámbito Geográfico / País</th>
+                <th scope=\"col\">Definición y Regla Aplicada</th>
+                <th scope=\"col\">Población Auditada</th>
+                <th scope=\"col\">Registros Excluidos / Ajustados</th>
+                <th scope=\"col\">Resultado de Calidad</th>
+                <th scope=\"col\">Impacto Metodológico</th>
               </tr>
             </thead>
             <tbody id="valTableBody">
@@ -2195,17 +2204,17 @@
           </p>
         </div>
         <div class="deepdive-nav" role="tablist">
-          <button class="deepdive-btn active" id="deepdive-btn-1" onclick="switchPhase(1)" role="tab" aria-selected="true">01. Preguntar</button>
-          <button class="deepdive-btn" id="deepdive-btn-2" onclick="switchPhase(2)" role="tab" aria-selected="false">02. Preparar</button>
-          <button class="deepdive-btn" id="deepdive-btn-3" onclick="switchPhase(3)" role="tab" aria-selected="false">03. Procesar</button>
-          <button class="deepdive-btn" id="deepdive-btn-4" onclick="switchPhase(4)" role="tab" aria-selected="false">04. Analizar</button>
-          <button class="deepdive-btn" id="deepdive-btn-5" onclick="switchPhase(5)" role="tab" aria-selected="false">05. Compartir</button>
-          <button class="deepdive-btn" id="deepdive-btn-6" onclick="switchPhase(6)" role="tab" aria-selected="false">06. Actuar</button>
+          <button class="deepdive-btn active" id="deepdive-btn-1" aria-controls="phase-pane-1" onclick="switchPhase(1)" role="tab" aria-selected="true">01. Preguntar</button>
+          <button class="deepdive-btn" id="deepdive-btn-2" aria-controls="phase-pane-2" onclick="switchPhase(2)" role="tab" aria-selected="false">02. Preparar</button>
+          <button class="deepdive-btn" id="deepdive-btn-3" aria-controls="phase-pane-3" onclick="switchPhase(3)" role="tab" aria-selected="false">03. Procesar</button>
+          <button class="deepdive-btn" id="deepdive-btn-4" aria-controls="phase-pane-4" onclick="switchPhase(4)" role="tab" aria-selected="false">04. Analizar</button>
+          <button class="deepdive-btn" id="deepdive-btn-5" aria-controls="phase-pane-5" onclick="switchPhase(5)" role="tab" aria-selected="false">05. Compartir</button>
+          <button class="deepdive-btn" id="deepdive-btn-6" aria-controls="phase-pane-6" onclick="switchPhase(6)" role="tab" aria-selected="false">06. Actuar</button>
         </div>
       </div>
 
       <!-- PANE 1: PREGUNTAR -->
-      <div class="phase-pane active" id="phase-pane-1" role="tabpanel">
+      <div class="phase-pane active" id="phase-pane-1" role="tabpanel" aria-labelledby="deepdive-btn-1">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 1 y 2 • Aspectos Básicos & Formulación de Preguntas</span>
@@ -2269,7 +2278,7 @@
       </div>
 
       <!-- PANE 2: PREPARAR -->
-      <div class="phase-pane" id="phase-pane-2" role="tabpanel">
+      <div class="phase-pane" id="phase-pane-2" role="tabpanel" aria-labelledby="deepdive-btn-2">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 3 y 4 • Preparación de Datos & Gobernanza de Fuentes</span>
@@ -2328,7 +2337,7 @@
       </div>
 
       <!-- PANE 3: PROCESAR -->
-      <div class="phase-pane" id="phase-pane-3" role="tabpanel">
+      <div class="phase-pane" id="phase-pane-3" role="tabpanel" aria-labelledby="deepdive-btn-3">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 4, 5 y 7 • Limpieza con Python & Validación de Datos</span>
@@ -2398,7 +2407,7 @@
       </div>
 
       <!-- PANE 4: ANALIZAR -->
-      <div class="phase-pane" id="phase-pane-4" role="tabpanel">
+      <div class="phase-pane" id="phase-pane-4" role="tabpanel" aria-labelledby="deepdive-btn-4">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 5 y 7 • SQLite Relacional & Análisis Estadístico en Python</span>
@@ -2459,7 +2468,7 @@
       </div>
 
       <!-- PANE 5: COMPARTIR -->
-      <div class="phase-pane" id="phase-pane-5" role="tabpanel">
+      <div class="phase-pane" id="phase-pane-5" role="tabpanel" aria-labelledby="deepdive-btn-5">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 6 y 8 • Visualización con Edward Tufte & Presentación de 30 Minutos</span>
@@ -2520,7 +2529,7 @@
       </div>
 
       <!-- PANE 6: ACTUAR -->
-      <div class="phase-pane" id="phase-pane-6" role="tabpanel">
+      <div class="phase-pane" id="phase-pane-6" role="tabpanel" aria-labelledby="deepdive-btn-6">
         <div class="pane-header">
           <div>
             <span class="pane-badge-course">Cursos 8 y 9 • Plan de Acción Qué/Quién/Cuándo & Herramientas de Carrera</span>
@@ -2882,13 +2891,13 @@
 
     <div class="table-container">
       <table>
-        <thead>
+        <th scope=\"col\"ead>
           <tr>
-            <th>#</th>
-            <th>Acción Concreta (Qué)</th>
-            <th>Responsable (Quién)</th>
-            <th>Plazo (Cuándo)</th>
-            <th>Indicador Clave de Éxito (KPI)</th>
+            <th scope=\"col\">#</th>
+            <th scope=\"col\">Acción Concreta (Qué)</th>
+            <th scope=\"col\">Responsable (Quién)</th>
+            <th scope=\"col\">Plazo (Cuándo)</th>
+            <th scope=\"col\">Indicador Clave de Éxito (KPI)</th>
           </tr>
         </thead>
         <tbody>
@@ -3184,11 +3193,11 @@
     <div class="profile-card" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; margin-top: 2rem; box-shadow: var(--shadow-sm);">
       <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; justify-content: space-between;">
         <div style="flex: 1 1 540px;">
-          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(217, 119, 6, 0.12); color: #B45309; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid rgba(217, 119, 6, 0.3);">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(217, 119, 6, 0.12); color: #F59E0B; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid rgba(217, 119, 6, 0.3);">
             🏆 Premio Nacional de Innovación Avonni 2024 • Innovación Pública BID
           </div>
           <h3 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem;">Manuel Yáñez Orellana</h3>
-          <p style="font-size: 1.05rem; font-weight: 600; color: var(--google-blue); margin-bottom: 1rem;">
+          <p style="font-size: 1.05rem; font-weight: 600; color: #60A5FA; margin-bottom: 1rem;">
             Senior IT Project Manager | Scrum Master | Delivery Lead | Analista de Datos
           </p>
           <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.25rem;">
@@ -11462,11 +11471,11 @@
       "n_total": 1375,
       "n_sal": 673,
       "cumple_n30": true,
-      "med_usd": 2020.2,
+      "med_usd": 2020.25,
       "p25_usd": 1087.8,
       "p75_usd": 3729.8,
       "iqr_usd": 2642.0,
-      "med_clp": 1959190,
+      "med_clp": 1959238,
       "error_est": "±2,6%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
@@ -11476,11 +11485,11 @@
       "n_total": 402,
       "n_sal": 164,
       "cumple_n30": true,
-      "med_usd": 2632.5,
+      "med_usd": 2632.54,
       "p25_usd": 1347.8,
       "p75_usd": 4151.6,
       "iqr_usd": 2803.8,
-      "med_clp": 2552998,
+      "med_clp": 2553039,
       "error_est": "±5,0%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
@@ -11490,11 +11499,11 @@
       "n_total": 345,
       "n_sal": 124,
       "cumple_n30": true,
-      "med_usd": 2958.3,
+      "med_usd": 2958.34,
       "p25_usd": 1200.9,
       "p75_usd": 5493.8,
       "iqr_usd": 4292.9,
-      "med_clp": 2868959,
+      "med_clp": 2868992,
       "error_est": "±5,0%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
@@ -11532,11 +11541,11 @@
       "n_total": 94,
       "n_sal": 36,
       "cumple_n30": true,
-      "med_usd": 6416.4,
+      "med_usd": 6416.42,
       "p25_usd": 4102.6,
       "p75_usd": 8018.5,
       "iqr_usd": 3915.9,
-      "med_clp": 6222625,
+      "med_clp": 6222641,
       "error_est": "±20,2%",
       "tratamiento": "Inferencia No Paramétrica Válida (N ≥ 30)"
     },
@@ -11725,7 +11734,7 @@
   ],
   "salarios_saltos": [
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Junior",
       "fuente": "Get on Board 2026",
       "n": 17,
@@ -11738,7 +11747,7 @@
       "tlc": "Exploratorio (N < 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Semi-Senior",
       "fuente": "Get on Board 2026",
       "n": 97,
@@ -11751,7 +11760,7 @@
       "tlc": "✓ Válido (N ≥ 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Senior",
       "fuente": "Get on Board 2026",
       "n": 113,
@@ -11764,7 +11773,7 @@
       "tlc": "✓ Válido (N ≥ 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Lead",
       "fuente": "Get on Board 2026",
       "n": 7,
@@ -11777,7 +11786,7 @@
       "tlc": "Exploratorio (N < 15)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Trainee",
       "fuente": "Get on Board 2026",
       "n": 1,
@@ -11935,7 +11944,7 @@
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
       "descripcion": "Filtro de plausibilidad económica: salarios mensuales >= $500 USD en GOB y anuales [1.000..500.000 USD] en SO LatAm; anulación estricta de outliers espurios.",
       "poblacion": "3.074 SO LatAm / 679 GOB",
-      "excluidos": "2 vacantes GOB (<) / 67 respuestas SO (<k o >k)",
+      "excluidos": "2 vacantes GOB (<$500 USD) / 67 respuestas SO (<$1k o >$500k USD/año)",
       "resultado": "235 salarios válidos GOB (de 237) / 1.341 salarios válidos SO (de 1.408)",
       "impacto": "Previene distorsiones artificiales en la media aritmética y centra el análisis en la mediana."
     },
@@ -12242,12 +12251,10 @@
       gobFiltered.sort((a, b) => {
         let valA = a[gobSortCol];
         let valB = b[gobSortCol];
-        if (valA === null || valA === undefined) valA = gobSortAsc ? Infinity : -Infinity;
-        if (valB === null || valB === undefined) valB = gobSortAsc ? Infinity : -Infinity;
-
-        if (typeof valA === 'string') {
-          valA = valA.toLowerCase();
-          valB = (valB || '').toLowerCase();
+        if (valA === null || valA === undefined) return gobSortAsc ? 1 : -1;
+        if (valB === null || valB === undefined) return gobSortAsc ? -1 : 1;
+        if (typeof valA === 'string' && typeof valB === 'string') {
+          return gobSortAsc ? valA.localeCompare(valB, 'es') : valB.localeCompare(valA, 'es');
         }
         if (valA < valB) return gobSortAsc ? -1 : 1;
         if (valA > valB) return gobSortAsc ? 1 : -1;
@@ -12485,6 +12492,31 @@
         if (valA > valB) return salSortAsc ? 1 : -1;
         return 0;
       });
+    }
+
+    function exportValCSV() {
+      let csv = 'Tipo_Validacion,Ambito_Pais,Descripcion_Regla,Poblacion_Auditada,Excluidos_Ajustados,Resultado_Calidad,Impacto_Metodologico\n';
+      DATASETS.validacion_matrix.forEach(r => {
+        const row = [
+          `"${r.tipo}"`,
+          `"${r.ambito}"`,
+          `"${r.descripcion.replace(/"/g, '""')}"`,
+          `"${r.poblacion}"`,
+          `"${r.excluidos}"`,
+          `"${r.resultado}"`,
+          `"${r.impacto.replace(/"/g, '""')}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Matriz_Validacion_Integridad_Calidad.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     function exportSalCSV() {

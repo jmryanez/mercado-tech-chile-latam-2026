@@ -786,7 +786,7 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
 
         # Slides 4..10: Los 7 visuales corregidos
         slide_specs = [
-            ("Pregunta 1 • Demanda vs. Adopción Real", "Visual 1: Top 5 Tecnologías y Brecha Formativa en Nube", 4, viz_paths[0]),
+            ("Pregunta 1 • Demanda vs. Adopción Real", "Visual 1: Tecnologías Clave (Top 4 por Categoría) y Brecha Formativa en Nube", 4, viz_paths[0]),
             ("Profundización Q11 • Matriz Volumen vs. Salario", "Visual 2: SQL Abre Puertas (32,8%), Cloud Eleva Salarios (+23% a +32%)", 5, viz_paths[1]),
             ("Pregunta 1 • Mapa de Intensidad por Mercado", "Visual 3: Mapa de Calor — Chile Local vs. Remoto Global vs. LatAm", 6, viz_paths[2]),
             ("Pregunta 2 • Bandas Salariales por Experiencia", "Visual 4: Progresión p25–p75 y Control Estricto N >= 30", 7, viz_paths[3]),

@@ -8419,7 +8419,7 @@
   ],
   "salarios_saltos": [
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Junior",
       "fuente": "Get on Board 2026",
       "n": 17,
@@ -8432,7 +8432,7 @@
       "tlc": "Exploratorio (N < 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Semi-Senior",
       "fuente": "Get on Board 2026",
       "n": 97,
@@ -8445,7 +8445,7 @@
       "tlc": "✓ Válido (N ≥ 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Senior",
       "fuente": "Get on Board 2026",
       "n": 113,
@@ -8458,7 +8458,7 @@
       "tlc": "✓ Válido (N ≥ 30)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Lead",
       "fuente": "Get on Board 2026",
       "n": 7,
@@ -8471,7 +8471,7 @@
       "tlc": "Exploratorio (N < 15)"
     },
     {
-      "ambito": "🇨🇱 Chile Local",
+      "ambito": "🇨🇱 Chile & Remoto (Get on Board)",
       "nivel": "Trainee",
       "fuente": "Get on Board 2026",
       "n": 1,
@@ -8629,7 +8629,7 @@
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
       "descripcion": "Filtro de plausibilidad económica: salarios mensuales >= $500 USD en GOB y anuales [1.000..500.000 USD] en SO LatAm; anulación estricta de outliers espurios.",
       "poblacion": "3.074 SO LatAm / 679 GOB",
-      "excluidos": "2 vacantes GOB (<) / 67 respuestas SO (<k o >k)",
+      "excluidos": "2 vacantes GOB (<$500 USD) / 67 respuestas SO (<$1k o >$500k USD/año)",
       "resultado": "235 salarios válidos GOB (de 237) / 1.341 salarios válidos SO (de 1.408)",
       "impacto": "Previene distorsiones artificiales en la media aritmética y centra el análisis en la mediana."
     },

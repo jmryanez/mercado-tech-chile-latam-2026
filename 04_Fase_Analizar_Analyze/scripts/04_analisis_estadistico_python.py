@@ -25,6 +25,7 @@ CLEAN_DIR = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed"
 SQL_FILE = BASE_DIR / "04_Fase_Analizar_Analyze" / "sql" / "04_consultas_analisis.sql"
 RES_DIR = BASE_DIR / "04_Fase_Analizar_Analyze" / "resumenes"
 RES_DIR.mkdir(parents=True, exist_ok=True)
+DOLAR_OBSERVADO_BCCH = 969.80
 
 
 def q25(s: pd.Series) -> float:
@@ -50,17 +51,12 @@ def resumen_salarios(df: pd.DataFrame, group_col: str, col_usd: str = "salario_m
         )
         .reset_index()
     )
-    clp_med = (
-        df.groupby(group_col, dropna=False)[col_clp]
-        .agg(mediana_clp_ref="median", media_clp_ref="mean")
-        .reset_index()
-    )
-    out = pd.merge(agg, clp_med, on=group_col, how="inner")
+    out = agg.copy()
     for c in ["media_usd", "mediana_usd", "p25_usd", "p75_usd", "min_usd", "max_usd"]:
         out[c] = out[c].round(2)
     out["amplitud_p25_p75_usd"] = (out["p75_usd"] - out["p25_usd"]).round(2)
-    for c in ["mediana_clp_ref", "media_clp_ref"]:
-        out[c] = out[c].round(0).astype(int)
+    out["mediana_clp_ref"] = (out["mediana_usd"] * DOLAR_OBSERVADO_BCCH).round(0).astype(int)
+    out["media_clp_ref"] = (out["media_usd"] * DOLAR_OBSERVADO_BCCH).round(0).astype(int)
     out["cumple_n30"] = out["n"] >= 30
     return out
 

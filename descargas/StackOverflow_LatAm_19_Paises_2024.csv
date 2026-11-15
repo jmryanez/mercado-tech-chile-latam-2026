@@ -1,4 +1,4 @@
-ResponseId,pais,pais_raw,es_chile,subregion,empleo_raw,modalidad_raw,modalidad_grupo,years_code_pro_num,tramo_experiencia,org_size_detalle,org_size_grupo,salary_yearly_usd_raw,salary_yearly_usd_clean,salario_mensual_usd,salario_mensual_clp_ref,salario_valido_flag,motivo_exclusion_salario,tiene_tecnologia_flag
+﻿ResponseId,pais,pais_raw,es_chile,subregion,empleo_raw,modalidad_raw,modalidad_grupo,years_code_pro_num,tramo_experiencia,org_size_detalle,org_size_grupo,salary_yearly_usd_raw,salary_yearly_usd_clean,salario_mensual_usd,salario_mensual_clp_ref,salario_valido_flag,motivo_exclusion_salario,tiene_tecnologia_flag
 33,Brasil,Brazil,False,Resto LatAm,"Employed, full-time",In-person,Presencial,7.0,5-9 años,Sin dato,Sin dato / NS-NR,,,,,False,,True
 41,Brasil,Brazil,False,Resto LatAm,"Employed, full-time",Remote,Remoto,7.0,5-9 años,Sin dato,Sin dato / NS-NR,,,,,False,,True
 120,México,Mexico,False,Resto LatAm,"Independent contractor, freelancer, or self-employed",Remote,Remoto,25.0,10+ años,Sin dato,Sin dato / NS-NR,,,,,False,,True

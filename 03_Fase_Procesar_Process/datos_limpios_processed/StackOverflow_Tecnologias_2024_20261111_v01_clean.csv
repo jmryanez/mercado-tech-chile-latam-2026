@@ -1,4 +1,4 @@
-ResponseId,pais,es_chile,tipo_tecnologia,tecnologia,tecnologia_raw
+﻿ResponseId,pais,es_chile,tipo_tecnologia,tecnologia,tecnologia_raw
 33,Brasil,False,Lenguaje,Bash/Shell,Bash/Shell (all shells)
 33,Brasil,False,Lenguaje,JavaScript,JavaScript
 33,Brasil,False,Lenguaje,PHP,PHP

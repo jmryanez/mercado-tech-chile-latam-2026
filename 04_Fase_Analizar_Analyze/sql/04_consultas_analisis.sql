@@ -19,19 +19,19 @@ CREATE TEMP TABLE IF NOT EXISTS tmp_denominadores AS
 SELECT
     'GetOnBoard_2026' AS fuente,
     COUNT(DISTINCT job_id) AS n_total,
-    COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) AS n_salario_valido
+    COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) AS n_salario_valido
 FROM vacantes
 UNION ALL
 SELECT
     'StackOverflow_LatAm_2024' AS fuente,
     COUNT(DISTINCT ResponseId) AS n_total,
-    COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN ResponseId END) AS n_salario_valido
+    COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN ResponseId END) AS n_salario_valido
 FROM so_encuestados
 UNION ALL
 SELECT
     'StackOverflow_Chile_2024' AS fuente,
-    COUNT(DISTINCT CASE WHEN es_chile = 1 THEN ResponseId END) AS n_total,
-    COUNT(DISTINCT CASE WHEN es_chile = 1 AND salario_valido_flag = 1 THEN ResponseId END) AS n_salario_valido
+    COUNT(DISTINCT CASE WHEN (es_chile = 1 OR es_chile = 'True') THEN ResponseId END) AS n_total,
+    COUNT(DISTINCT CASE WHEN (es_chile = 1 OR es_chile = 'True') AND (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN ResponseId END) AS n_salario_valido
 FROM so_encuestados;
 
 -- -----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ SELECT
     COUNT(DISTINCT v.job_id) AS registros_unicos,
     COUNT(h.tecnologia) AS filas_expandidas_1aN,
     COUNT(DISTINCT CASE WHEN h.tecnologia IS NULL THEN v.job_id END) AS registros_sin_tecnologia_coalesce,
-    ROUND(AVG(CASE WHEN v.salario_valido_flag = 1 THEN v.salario_mensual_usd END), 2) AS media_con_duplicacion_join_1aN
+    ROUND(AVG(CASE WHEN (v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True') THEN v.salario_mensual_usd END), 2) AS media_con_duplicacion_join_1aN
 FROM vacantes AS v
 LEFT JOIN vacante_habilidades AS h
     ON v.job_id = h.job_id
@@ -55,7 +55,7 @@ SELECT
     COUNT(DISTINCT s.ResponseId) AS registros_unicos,
     COUNT(t.tecnologia) AS filas_expandidas_1aN,
     COUNT(DISTINCT CASE WHEN COALESCE(t.tecnologia, 'SIN_TECNOLOGIA') = 'SIN_TECNOLOGIA' THEN s.ResponseId END) AS registros_sin_tecnologia_coalesce,
-    ROUND(AVG(CASE WHEN s.salario_valido_flag = 1 THEN s.salario_mensual_usd END), 2) AS media_con_duplicacion_join_1aN
+    ROUND(AVG(CASE WHEN (s.salario_valido_flag = 1 OR s.salario_valido_flag = 'True') THEN s.salario_mensual_usd END), 2) AS media_con_duplicacion_join_1aN
 FROM so_encuestados AS s
 LEFT JOIN so_tecnologias AS t
     ON s.ResponseId = t.ResponseId;
@@ -100,10 +100,10 @@ SELECT
         (SELECT COUNT(DISTINCT ResponseId) FROM so_encuestados),
         2
     ) AS pct_adopcion_latam,
-    COUNT(DISTINCT CASE WHEN s.es_chile = 1 THEN s.ResponseId END) AS n_chile,
+    COUNT(DISTINCT CASE WHEN (s.es_chile = 1 OR s.es_chile = 'True') THEN s.ResponseId END) AS n_chile,
     ROUND(
-        100.0 * COUNT(DISTINCT CASE WHEN s.es_chile = 1 THEN s.ResponseId END) /
-        (SELECT COUNT(DISTINCT ResponseId) FROM so_encuestados WHERE es_chile = 1),
+        100.0 * COUNT(DISTINCT CASE WHEN (s.es_chile = 1 OR s.es_chile = 'True') THEN s.ResponseId END) /
+        (SELECT COUNT(DISTINCT ResponseId) FROM so_encuestados WHERE (es_chile = 1 OR es_chile = 'True')),
         2
     ) AS pct_adopcion_chile
 FROM so_encuestados AS s
@@ -160,14 +160,14 @@ ORDER BY pct_demanda_gob DESC;
 SELECT
     seniority_nivel,
     COUNT(DISTINCT job_id) AS total_ofertas_publicadas,
-    COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) AS n_salarios_validos,
-    ROUND(AVG(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_usd END), 2) AS media_mensual_usd,
-    MIN(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_usd END) AS min_mensual_usd,
-    MAX(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_usd END) AS max_mensual_usd,
+    COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) AS n_salarios_validos,
+    ROUND(AVG(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_usd END), 2) AS media_mensual_usd,
+    MIN(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_usd END) AS min_mensual_usd,
+    MAX(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_usd END) AS max_mensual_usd,
     CASE
-        WHEN COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) >= 30
+        WHEN COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) >= 30
             THEN 'Válido N >= 30 (Inferencia)'
-        WHEN COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) >= 15
+        WHEN COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) >= 15
             THEN 'Exploratorio N < 30 (Limitación muestral)'
         ELSE 'Excluido de inferencia (N < 15)'
     END AS estado_regla_n30
@@ -187,7 +187,7 @@ SELECT
     MIN(salario_mensual_usd) AS min_mensual_usd,
     MAX(salario_mensual_usd) AS max_mensual_usd
 FROM so_encuestados
-WHERE salario_valido_flag = 1
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
   AND tramo_experiencia <> 'Sin dato'
 GROUP BY tramo_experiencia
 HAVING COUNT(DISTINCT ResponseId) >= 30
@@ -217,7 +217,7 @@ SELECT
     COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Chile Local' THEN v.job_id END) AS n_chile_local,
     COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Remoto Global/LatAm' THEN v.job_id END) AS n_remoto_global
 FROM vacantes AS v
-WHERE v.salario_valido_flag = 1
+WHERE (v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True')
 GROUP BY v.modalidad_grupo
 HAVING COUNT(DISTINCT v.job_id) >= 30
 ORDER BY media_mensual_usd DESC;
@@ -237,7 +237,7 @@ SELECT
         2
     ) AS ratio_media_vs_mediana_ine_2025
 FROM so_encuestados
-WHERE salario_valido_flag = 1
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
   AND modalidad_grupo <> 'Sin dato'
 GROUP BY modalidad_grupo
 HAVING COUNT(DISTINCT ResponseId) >= 30
@@ -255,7 +255,7 @@ SELECT
     MIN(salario_mensual_usd) AS min_mensual_usd,
     MAX(salario_mensual_usd) AS max_mensual_usd
 FROM so_encuestados
-WHERE salario_valido_flag = 1
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
   AND org_size_grupo <> 'Sin dato / NS-NR'
 GROUP BY org_size_grupo
 HAVING COUNT(DISTINCT ResponseId) >= 30
@@ -295,12 +295,12 @@ ORDER BY work_year ASC,
 SELECT
     subregion,
     COUNT(DISTINCT ResponseId) AS n_total_encuestados,
-    COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN ResponseId END) AS n_salarios_validos,
-    ROUND(AVG(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_usd END), 2) AS media_mensual_usd,
-    ROUND(AVG(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_clp_ref END), 0) AS media_mensual_clp_ref
+    COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN ResponseId END) AS n_salarios_validos,
+    ROUND(AVG(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_usd END), 2) AS media_mensual_usd,
+    ROUND(AVG(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_clp_ref END), 0) AS media_mensual_clp_ref
 FROM so_encuestados
 GROUP BY subregion
-HAVING COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN ResponseId END) >= 30
+HAVING COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN ResponseId END) >= 30
 ORDER BY media_mensual_usd DESC;
 
 -- -----------------------------------------------------------------------------
@@ -319,7 +319,7 @@ SELECT
 FROM vacantes AS v
 INNER JOIN vacante_habilidades AS h
     ON v.job_id = h.job_id
-WHERE v.salario_valido_flag = 1
+WHERE (v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True')
 GROUP BY h.tipo_tecnologia, h.tecnologia
 HAVING COUNT(DISTINCT v.job_id) >= 30
 ORDER BY h.tipo_tecnologia, media_mensual_usd DESC;
@@ -338,7 +338,7 @@ SELECT
 FROM so_encuestados AS s
 INNER JOIN so_tecnologias AS t
     ON s.ResponseId = t.ResponseId
-WHERE s.salario_valido_flag = 1
+WHERE (s.salario_valido_flag = 1 OR s.salario_valido_flag = 'True')
 GROUP BY t.tipo_tecnologia, t.tecnologia
 HAVING COUNT(DISTINCT s.ResponseId) >= 30
 ORDER BY t.tipo_tecnologia, media_mensual_usd DESC;
@@ -358,7 +358,7 @@ SELECT
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Lead' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_lead,
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN alcance_geo = 'Remoto Global/LatAm' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_alcance_remoto_global
 FROM vacantes
-WHERE salario_valido_flag = 1
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
 GROUP BY modalidad_grupo
 HAVING COUNT(DISTINCT job_id) >= 30
 ORDER BY pct_senior DESC;
@@ -370,12 +370,12 @@ ORDER BY pct_senior DESC;
 SELECT
     categoria,
     COUNT(DISTINCT job_id) AS total_ofertas_publicadas,
-    COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) AS n_salarios_validos,
-    ROUND(AVG(CASE WHEN salario_valido_flag = 1 THEN salario_mensual_usd END), 2) AS media_mensual_usd,
+    COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) AS n_salarios_validos,
+    ROUND(AVG(CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN salario_mensual_usd END), 2) AS media_mensual_usd,
     CASE
-        WHEN COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) >= 30
+        WHEN COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) >= 30
             THEN 'Válido N >= 30 (Inferencia)'
-        WHEN COUNT(DISTINCT CASE WHEN salario_valido_flag = 1 THEN job_id END) >= 15
+        WHEN COUNT(DISTINCT CASE WHEN (salario_valido_flag = 1 OR salario_valido_flag = 'True') THEN job_id END) >= 15
             THEN 'Exploratorio N < 30 (Limitación muestral)'
         ELSE 'Excluido de inferencia (N < 15)'
     END AS estado_regla_n30

@@ -4,6 +4,32 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.5.3 (`2026-11-15`) — Resolución Exhaustiva de la 4ta Auditoría Red-Team Independiente
+
+### Corregido
+- **Compatibilidad Universal Excel (BOM UTF-8)**:
+  - Inyección del Byte Order Mark (`\xEF\xBB\xBF`) en los 5 CSV descargables en `descargas/` y los 7 CSV procesados en `03_Fase_Procesar_Process/datos_limpios_processed/` para prevenir errores de codificación/mojibake en Microsoft Excel (Windows y Mac).
+- **Paridad Numérica y Decimales en Matriz TLC (19 Países LatAm)**:
+  - Ajuste a 2 decimales y recálculo de CLP con tipo de cambio oficial $969,80 para Brasil ($2.020,25 USD / $1.959.238 CLP), México ($2.632,54 USD / $2.553.039 CLP), Argentina ($2.958,34 USD / $2.868.992 CLP) y Uruguay ($6.416,42 USD / $6.222.641 CLP) en CSVs, JSONs y visor web.
+- **Etiquetado de Ámbito en Bandas Salariales**:
+  - Homologación de etiqueta de Seniority GOB a `🇨🇱 Chile & Remoto (Get on Board)` en `Bandas_Salariales_y_Saltos_Seniority.csv`, exploradores JSON y visor interactivo.
+- **Matriz de Validación de Integridad**:
+  - Corrección de la descripción de rango numérico en la Validación 3: `2 vacantes GOB (<$500 USD) / 67 respuestas SO (<$1k o >$500k USD/año)`.
+- **Frontend Web & Accesibilidad (WCAG 2.1 AA)**:
+  - Declaración formal de variables CSS (`--text-main`, `--bg-body`, `--accent-green`) en `:root`.
+  - Corrección de contraste de color en insignias y subtítulos (`#F59E0B` y `#60A5FA`).
+  - Atributos `scope="col"` en todas las cabeceras de tabla.
+  - Vinculación bidireccional accesible `aria-controls` y `aria-labelledby` en pestañas del explorador y deepdive.
+  - Implementación del botón de exportación CSV para la Pestaña 4 (Validación de Integridad) con BOM UTF-8 (`exportValCSV()`).
+  - Algoritmo de ordenamiento robusto ante valores nulos o indefinidos en todas las tablas dinámicas.
+- **Homologación Técnica y Código**:
+  - Corrección de sintaxis de predicados booleanos portables en `04_consultas_analisis.sql` (`v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True'`).
+  - Definición explícita de `DOLAR_OBSERVADO_BCCH = 969.80` en `04_analisis_estadistico_python.py`.
+  - Reemplazo de residual `+$75 USD` por valores empíricos canónicos (`+$38,30 USD en GOB y +$120,50 USD en SO`) en el cuaderno Kaggle.
+  - Alineación de título de Diapositiva 4 en `05_generar_visualizaciones_y_deck.py` y referencia de `Mapa_LatAm_19_Paises` (Hoja 10) en documentación de Tableau.
+
+---
+
 ## Versión 1.5.2 (`2026-11-15`) — Resolución Exhaustiva de la 3ra Auditoría Red-Team Independiente
 
 ### Corregido

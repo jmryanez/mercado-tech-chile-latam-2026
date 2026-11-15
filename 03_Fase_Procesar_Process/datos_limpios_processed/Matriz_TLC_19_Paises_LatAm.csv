@@ -1,10 +1,10 @@
-pais,flag,n_total,n_sal,cumple_n30,med_usd,p25_usd,p75_usd,iqr_usd,med_clp,error_est,tratamiento
-Brasil,🇧🇷,1375,673,True,2020.2,1087.8,3729.8,2642.0,1959190,"±2,6%",Inferencia No Paramétrica Válida (N ≥ 30)
-México,🇲🇽,402,164,True,2632.5,1347.8,4151.6,2803.8,2552998,"±5,0%",Inferencia No Paramétrica Válida (N ≥ 30)
-Argentina,🇦🇷,345,124,True,2958.3,1200.9,5493.8,4292.9,2868959,"±5,0%",Inferencia No Paramétrica Válida (N ≥ 30)
+﻿pais,flag,n_total,n_sal,cumple_n30,med_usd,p25_usd,p75_usd,iqr_usd,med_clp,error_est,tratamiento
+Brasil,🇧🇷,1375,673,True,2020.25,1087.8,3729.8,2642.0,1959238,"±2,6%",Inferencia No Paramétrica Válida (N ≥ 30)
+México,🇲🇽,402,164,True,2632.54,1347.8,4151.6,2803.8,2553039,"±5,0%",Inferencia No Paramétrica Válida (N ≥ 30)
+Argentina,🇦🇷,345,124,True,2958.34,1200.9,5493.8,4292.9,2868992,"±5,0%",Inferencia No Paramétrica Válida (N ≥ 30)
 Colombia,🇨🇴,217,83,True,2500.0,1110.2,4529.4,3419.2,2424500,"±5,0%",Inferencia No Paramétrica Válida (N ≥ 30)
 Chile,🇨🇱,133,46,True,3063.54,2085.1,4264.9,2179.8,2971022,"±7,5%",Población Núcleo del Estudio (Alta Precisión)
-Uruguay,🇺🇾,94,36,True,6416.4,4102.6,8018.5,3915.9,6222625,"±20,2%",Inferencia No Paramétrica Válida (N ≥ 30)
+Uruguay,🇺🇾,94,36,True,6416.42,4102.6,8018.5,3915.9,6222641,"±20,2%",Inferencia No Paramétrica Válida (N ≥ 30)
 Perú,🇵🇪,75,29,False,2200.5,1452.3,4401.0,2948.7,2134045,"±22,6%",Muestra Exploratoria (N < 30)
 Venezuela,🇻🇪,69,33,True,1000.0,650.0,2000.0,1350.0,969800,"±23,6%",Inferencia No Paramétrica Válida (N ≥ 30)
 Costa Rica,🇨🇷,54,20,False,6096.0,3835.8,7921.9,4086.1,5911901,"±26,7%",Muestra Exploratoria (N < 30)
