@@ -15,6 +15,7 @@ Principios del Curso 6 aplicados literalmente:
 from __future__ import annotations
 
 import json
+import shutil
 import textwrap
 from pathlib import Path
 
@@ -25,9 +26,7 @@ import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.patches import FancyBboxPatch
 
-BASE_DIR = Path(
-    "/Users/leunam/Library/CloudStorage/GoogleDrive-manuelya@gmail.com/Mi unidad/Portafolio Google Data Analytics"
-)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 RES_DIR = BASE_DIR / "04_Fase_Analizar_Analyze" / "resumenes"
 SHARE_DIR = BASE_DIR / "05_Fase_Compartir_Share"
 VIZ_DIR = SHARE_DIR / "visualizaciones"
@@ -664,6 +663,10 @@ def exportar_excel_tableau() -> Path:
             ]
         }
     )
+    mapa_csv = BASE_DIR / "descargas" / "Matriz_TLC_19_Paises_LatAm.csv"
+    if not mapa_csv.exists():
+        mapa_csv = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed" / "Matriz_TLC_19_Paises_LatAm.csv"
+
     sheets = {
         "LEEME_Poblaciones": nota,
         "P1_Tecnologias": pd.read_csv(RES_DIR / "resumen_p1_tecnologias_gob_vs_so.csv"),
@@ -674,10 +677,16 @@ def exportar_excel_tableau() -> Path:
         "Q11_Tech_vs_Salario": pd.read_csv(RES_DIR / "resumen_q11_tecnologia_vs_salario.csv"),
         "Q12_Modalidad_Seniority": pd.read_csv(RES_DIR / "resumen_q12_modalidad_composicion_seniority.csv"),
         "Q13_Categorias_GOB": pd.read_csv(RES_DIR / "resumen_q13_gob_categorias.csv"),
+        "Mapa_LatAm_19_Paises": pd.read_csv(mapa_csv),
     }
     with pd.ExcelWriter(xlsx_path, engine="openpyxl") as writer:
         for name, dframe in sheets.items():
             dframe.to_excel(writer, sheet_name=name[:31], index=False)
+
+    descargas_xlsx = BASE_DIR / "descargas" / "Datos_Consolidados_Tableau_Public.xlsx"
+    if descargas_xlsx.parent.exists():
+        shutil.copyfile(xlsx_path, descargas_xlsx)
+
     return xlsx_path
 
 

@@ -20,9 +20,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-BASE_DIR = Path(
-    "/Users/leunam/Library/CloudStorage/GoogleDrive-manuelya@gmail.com/Mi unidad/Portafolio Google Data Analytics"
-)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 CLEAN_DIR = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed"
 SQL_FILE = BASE_DIR / "04_Fase_Analizar_Analyze" / "sql" / "04_consultas_analisis.sql"
 RES_DIR = BASE_DIR / "04_Fase_Analizar_Analyze" / "resumenes"

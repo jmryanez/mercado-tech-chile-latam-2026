@@ -4,6 +4,38 @@ Este archivo registra cronológicamente (de la versión más reciente a la más 
 
 ---
 
+## Versión 1.5.0 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Auditoría Red-Team Multi-Agente
+
+### Corregido (Hallazgos Críticos)
+- **Portabilidad Absoluta y Privacidad (0% PII)**:
+  - Eliminación de rutas absolutas locales en `03_limpieza_y_validacion.py`, `04_analisis_estadistico_python.py` y `05_generar_visualizaciones_y_deck.py`, reemplazándolas por resolución relativa `Path(__file__).resolve().parent.parent.parent`.
+  - Verificación estricta de 0% PII en todo el árbol del repositorio y purga de cachés de compilación.
+- **Reproducibilidad en Tableau Public**:
+  - Inclusión determinista de la 10ª hoja `Mapa_LatAm_19_Paises` en la función `exportar_excel_tableau()` y sincronización automática hacia `descargas/Datos_Consolidados_Tableau_Public.xlsx`.
+  - Actualización de `05_Diseno_Visual_Tableau_y_Presentacion.docx` a 10 hojas de trabajo y adición de fila explicativa en Tabla 4.
+- **Portabilidad de Cuaderno Kaggle & Pack de Datos Limpios**:
+  - Refinamiento de la lógica de autodetección en Celda 1 de `kaggle_notebook_portafolio.ipynb` mediante comprobación de archivos requeridos.
+  - Creación y publicación del archivo descargable `descargas/Datos_Limpios_Completos_Kaggle.zip` con los 6 datasets limpios para ejecución con un clic.
+- **Consistencia Muestral y Cuantitativa (TLC & Métricas)**:
+  - Reevaluación de la matriz `Matriz_TLC_19_Paises_LatAm.csv`: la bandera `cumple_n30` ahora evalúa estrictamente el tamaño de salarios válidos ($N_{sal} \ge 30$). Solo 7 países cumplen el criterio para inferencia no paramétrica, mientras que 12 países se clasifican con rigor metodológico como *Muestra Exploratoria (N < 30)*.
+  - Corrección de valores salariales en `Bandas_Salariales_y_Saltos_Seniority.csv` y `Explorador_Datasets_Consolidados.json`: Chile Local ($N=137$, Mediana=$2.250 USD) y Remoto Global ($N=98$, Mediana=$3.275 USD, salto $+45,6\%$).
+  - Rectificación de cifras en tarjetas de datos en `index.html`: GOB con 1.877 habilidades, SO con 3.074 desarrolladores, DSS con 6.599 registros históricos (corrigiendo la errata de 67.575 a 6.599), e INE ESI con 2 Indicadores Oficiales (Mediana y Media Nacional).
+  - Precisión de métricas en textos: sesgo por duplicación cartesiana 1:N ajustado a `+$38,30 USD` ($2.920,43 vs $2.882,13 real), y variable confusora en Remoto Local ajustada a `68,9%` Senior/Lead (31 de 45 ofertas con salario).
+
+### Añadido (Accesibilidad y UX Frontend)
+- **Menú de Navegación Móvil Táctil**: Habilitación de desplazamiento táctil horizontal continuo (`overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;`) en dispositivos de pantalla reducida ($\le 960$px), eliminando la ocultación no accesible.
+- **Prevención de Solapamiento de Encabezado Fijo**: Configuración global de `scroll-padding-top: 85px` en `html` y `scroll-margin-top: 85px` en todas las secciones y pie de página.
+- **Accesibilidad y Contraste WCAG 2.1 AA**:
+  - Calibración del token `--text-muted` a `#94A3B8` (ratio de contraste 6.9:1).
+  - Inclusión de atributos `aria-label` descriptivos en todos los controles de búsqueda, filtros desplegables y selector de tamaño de página del Explorador.
+  - Atributos `aria-sort` e indicadores visuales de flecha (▲/▼) en encabezados ordenables de tablas.
+  - Atributos `aria-label` y `aria-current="page"` en la paginación interactiva de vacantes.
+  - Diálogo modal accesible (`role="dialog"`, `aria-modal="true"`, `aria-label`, y texto alternativo dinámico para ampliación de visualizaciones).
+- **Galería Completa de 7 Visualizaciones en `#patrones`**:
+  - Incorporación interactiva de la **Visualización 03** (*Mapa de Calor de Tecnologías por Segmento de Mercado*) y la **Visualización 07** (*Evolución Salarial Tech Global y Tamaño de Empresa DSS 2020–2024*).
+
+---
+
 ## Versión 1.4.1 (`2026-11-15`) — Sincronización y Ajustes de Despliegue para Kaggle y Tableau Public
 
 ### Modificado

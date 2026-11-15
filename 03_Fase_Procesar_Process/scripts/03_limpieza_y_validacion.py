@@ -24,9 +24,7 @@ import numpy as np
 import pandas as pd
 
 # --- Configuración de rutas y constantes oficiales del SOW ---
-BASE_DIR = Path(
-    "/Users/leunam/Library/CloudStorage/GoogleDrive-manuelya@gmail.com/Mi unidad/Portafolio Google Data Analytics"
-)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 RAW_DIR = BASE_DIR / "02_Fase_Preparar_Prepare" / "datos_crudos_raw"
 CLEAN_DIR = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed"
 CLEAN_DIR.mkdir(parents=True, exist_ok=True)
