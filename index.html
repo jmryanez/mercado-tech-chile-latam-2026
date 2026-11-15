@@ -12601,6 +12601,45 @@
           }
         });
       });
+
+      // ACCESSIBILITY (WCAG 2.1.1): Keyboard Support for Interactive Elements
+      // Sortable Table Headers
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.setAttribute('tabindex', '0');
+        th.setAttribute('role', 'button');
+        th.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            th.click();
+          }
+        });
+      });
+
+      // Interactive Phase Cards
+      document.querySelectorAll('.phase-card-interactive').forEach((card, idx) => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Ver detalle metodológico de la Fase ${idx + 1}`);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+      // Visual Media Zoom Containers
+      document.querySelectorAll('.vis-media').forEach(media => {
+        media.setAttribute('tabindex', '0');
+        media.setAttribute('role', 'button');
+        media.setAttribute('aria-label', 'Ampliar visualización en alta resolución');
+        media.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            media.click();
+          }
+        });
+      });
     });
   </script>
 
