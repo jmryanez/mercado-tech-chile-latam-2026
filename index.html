@@ -991,46 +991,71 @@
       margin-top: 1.5rem;
       box-shadow: var(--shadow-lg);
     }
+    /* SEGMENTED TAB CONTROL (OPCIÓN 2) */
     .explorer-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      margin-bottom: 2rem;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 1080px) {
+      .explorer-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .explorer-tabs {
+        grid-template-columns: 1fr;
+      }
     }
     .explorer-tab-btn {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: transparent;
+      border: 1px solid transparent;
       color: var(--text-secondary);
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      padding: 0.7rem 1.25rem;
-      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
+      border-radius: calc(var(--radius-md) - 2px);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      text-align: center;
+      line-height: 1.3;
     }
     .explorer-tab-btn:hover {
-      background: var(--bg-card-hover);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-primary);
-      border-color: #4B5563;
     }
     .explorer-tab-btn.active {
-      background: rgba(26, 115, 232, 0.15);
-      border-color: var(--google-blue);
-      color: #60A5FA;
-      box-shadow: 0 0 15px rgba(26, 115, 232, 0.2);
+      background: var(--google-blue);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.4);
     }
     .explorer-tab-btn .tab-count {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.1rem 0.45rem;
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+      padding: 0.12rem 0.45rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .explorer-tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
     }
     .explorer-tab-pane {
       display: none;
