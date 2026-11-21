@@ -9,7 +9,7 @@
     "salarios_anulados": 2,
     "salarios_validos": 235,
     "min_gt_max": 0,
-    "ofertas_con_tecnologia": 528
+    "ofertas_con_tecnologia": 514
   },
   "st_so": {
     "global_total": 65437,
@@ -39,18 +39,18 @@
   "file_sizes": {
     "GetOnBoard_Vacantes_2026_20261111_v01_clean.csv": {
       "rows": 679,
-      "cols": 22,
-      "bytes": 146079
+      "cols": 23,
+      "bytes": 151703
     },
     "GetOnBoard_Habilidades_2026_20261111_v01_clean.csv": {
-      "rows": 1877,
+      "rows": 1749,
       "cols": 3,
-      "bytes": 131589
+      "bytes": 122247
     },
     "StackOverflow_LatAm_2024_20261111_v01_clean.csv": {
       "rows": 3074,
-      "cols": 19,
-      "bytes": 561671
+      "cols": 22,
+      "bytes": 609017
     },
     "StackOverflow_Tecnologias_2024_20261111_v01_clean.csv": {
       "rows": 31759,
@@ -60,7 +60,7 @@
     "DataScienceSalaries_2020_2024_20261111_v01_clean.csv": {
       "rows": 6599,
       "cols": 14,
-      "bytes": 980052
+      "bytes": 977184
     },
     "INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv": {
       "rows": 2,
@@ -68,7 +68,7 @@
       "bytes": 625
     }
   },
-  "total_clean_bytes": 3352439,
+  "total_clean_bytes": 3393199,
   "validaciones": [
     {
       "tipo": "1. Tipo de datos",
@@ -97,7 +97,7 @@
     },
     {
       "tipo": "6. Validación del código de aplicación",
-      "estado": "AUDITADO Y CONTENIDO",
+      "estado": "VERIFICADO Y CONTENIDO",
       "detalle": "Detectadas debilidades de captura en origen: GOB permitió salarios libres <$500 (2 casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios (67 casos en LatAm). Contenidos vía flags y anulación transparente."
     }
   ],
@@ -105,11 +105,11 @@
     "Lenguaje": {
       "SQL": 223,
       "Python": 193,
-      "JavaScript": 186,
       "TypeScript": 117,
+      "JavaScript": 101,
       "Java": 78,
-      "C#": 54,
       "HTML/CSS": 52,
+      "C#": 37,
       "Go": 19
     },
     "Base de datos": {
@@ -124,8 +124,8 @@
     },
     "Cloud": {
       "AWS": 204,
-      "Microsoft Azure": 141,
       "Google Cloud": 117,
+      "Microsoft Azure": 116,
       "Databricks": 21,
       "Oracle Cloud (OCI)": 6,
       "Firebase": 6,

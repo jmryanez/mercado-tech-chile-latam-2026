@@ -1,0 +1,9 @@
+tecnologia,n_total_salarios,media_total_usd,pct_senior_lead,n_senior,media_senior_usd,n_semi_senior,media_semi_senior_usd
+Google Cloud,38,3084.21,71.1,27,3524.07,7,2285.71
+Microsoft Azure,36,3205.56,69.4,25,3670.0,9,2266.67
+TypeScript,56,3050.89,62.5,34,3429.41,18,2394.44
+PostgreSQL,48,3025.0,60.4,28,3542.86,16,2128.13
+AWS,70,3195.36,60.0,39,3555.13,25,2481.0
+JavaScript,43,3119.77,58.1,24,3364.58,17,2694.12
+Python,73,2913.7,54.8,39,3565.38,28,2264.29
+SQL,69,2515.94,40.6,27,3183.33,34,2130.88

@@ -1,0 +1,15 @@
+work_year,tamano_es,n,mediana_usd,cumple_n30
+2020,Grande (Large),18,9000.0,False
+2020,Mediana (Medium),7,11529.17,False
+2020,Pequeña (Small),3,11500.0,False
+2021,Grande (Large),54,12625.0,True
+2021,Mediana (Medium),19,9314.58,False
+2021,Pequeña (Small),15,8333.33,False
+2022,Grande (Large),105,12375.0,True
+2022,Mediana (Medium),712,12012.5,True
+2022,Pequeña (Small),12,9500.0,False
+2023,Grande (Large),132,12387.5,True
+2023,Mediana (Medium),3701,12500.0,True
+2023,Pequeña (Small),21,10416.67,False
+2024,Grande (Large),11,15416.67,False
+2024,Mediana (Medium),495,11669.33,True

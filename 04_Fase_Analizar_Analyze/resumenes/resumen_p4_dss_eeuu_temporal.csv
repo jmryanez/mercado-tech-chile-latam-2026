@@ -1,0 +1,6 @@
+work_year,anio_rotulo,n,cumple_n30,mediana_usd,p25_usd,p75_usd,pct_senior,fuente
+2020,2020,28,False,9916.67,8291.67,15708.33,25.0,"Data Science Salaries, residentes en EE.UU."
+2021,2021,88,True,11666.67,8190.62,15104.17,40.9,"Data Science Salaries, residentes en EE.UU."
+2022,2022,829,True,12008.33,9216.67,15208.33,72.5,"Data Science Salaries, residentes en EE.UU."
+2023,2023,3854,True,12500.0,9418.75,16500.0,68.4,"Data Science Salaries, residentes en EE.UU."
+2024,2024 (parcial),506,True,11673.42,8333.33,16002.08,55.7,"Data Science Salaries, residentes en EE.UU."

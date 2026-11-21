@@ -1,4 +1,4 @@
-﻿job_id,tipo_tecnologia,tecnologia
+job_id,tipo_tecnologia,tecnologia
 lead-data-scientist-softserve-remote,Lenguaje,Python
 technical-lead-big-data-engineer-aws-softserve-remote,Base de datos,PostgreSQL
 technical-lead-big-data-engineer-aws-softserve-remote,Cloud,AWS
@@ -127,7 +127,6 @@ ingeniero-a-de-datos-gcp-bc-tecnologia-santiago,Cloud,Google Cloud
 ingeniero-a-de-datos-gcp-bc-tecnologia-santiago,Lenguaje,Python
 ingeniero-a-de-datos-gcp-bc-tecnologia-santiago,Lenguaje,SQL
 business-analyst-ssr-banca-tcit-santiago,Cloud,Google Cloud
-business-analyst-ssr-banca-tcit-santiago,Cloud,Microsoft Azure
 business-analyst-ssr-banca-tcit-santiago,Lenguaje,SQL
 arquitecto-de-datos-sr-data-ai-grupo-mariposa-remote-48e8,Base de datos,MongoDB
 arquitecto-de-datos-sr-data-ai-grupo-mariposa-remote-48e8,Cloud,Databricks
@@ -167,7 +166,6 @@ data-engineer-yom-yom-santiago,Base de datos,PostgreSQL
 data-engineer-yom-yom-santiago,Cloud,AWS
 data-engineer-yom-yom-santiago,Lenguaje,Python
 data-engineer-yom-yom-santiago,Lenguaje,SQL
-business-analyst-po-bc-tecnologia-santiago-bd4d,Cloud,Microsoft Azure
 data-engineer-senior-dsac-chile-remote,Base de datos,BigQuery
 data-engineer-senior-dsac-chile-remote,Cloud,Google Cloud
 data-engineer-senior-dsac-chile-remote,Lenguaje,Python
@@ -197,10 +195,12 @@ head-of-data-management-rankmi-santiago,Lenguaje,SQL
 business-analyst-data-science-dsac-chile-santiago,Lenguaje,SQL
 data-scientist-gcp-factor-it-santiago,Cloud,Google Cloud
 data-scientist-gcp-factor-it-santiago,Lenguaje,Python
+data-scientist-gcp-factor-it-santiago,Lenguaje,R
 data-scientist-gcp-factor-it-santiago,Lenguaje,SQL
 data-engineer-timining-santiago-45d2,Lenguaje,Python
 data-engineer-timining-santiago-45d2,Lenguaje,SQL
 cientifico-de-datos-atentus-santiago,Lenguaje,Python
+cientifico-de-datos-atentus-santiago,Lenguaje,R
 cientifico-de-datos-atentus-santiago,Lenguaje,SQL
 cientista-de-datos-coolebra-spa-remote,Base de datos,DynamoDB
 cientista-de-datos-coolebra-spa-remote,Base de datos,Redis
@@ -236,7 +236,6 @@ ingeniero-a-de-datos-semi-senior-bc-tecnologia-santiago,Lenguaje,Python
 ingeniero-a-de-datos-semi-senior-bc-tecnologia-santiago,Lenguaje,SQL
 desarrollador-bi-microsoft-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 desarrollador-bi-microsoft-bc-tecnologia-santiago,Base de datos,Oracle
-desarrollador-bi-microsoft-bc-tecnologia-santiago,Lenguaje,C#
 desarrollador-bi-microsoft-bc-tecnologia-santiago,Lenguaje,Python
 desarrollador-bi-microsoft-bc-tecnologia-santiago,Lenguaje,SQL
 arquitecto-de-datos-bice-vida-santiago-b551,Cloud,AWS
@@ -280,7 +279,6 @@ data-governance-consultant-artefact-latam-santiago,Cloud,Microsoft Azure
 data-governance-consultant-artefact-latam-santiago,Lenguaje,Python
 data-governance-consultant-artefact-latam-santiago,Lenguaje,SQL
 data-engineer-proyecto-hibrida-bc-tecnologia-santiago,Base de datos,PostgreSQL
-data-engineer-proyecto-hibrida-bc-tecnologia-santiago,Cloud,Microsoft Azure
 data-engineer-proyecto-hibrida-bc-tecnologia-santiago,Lenguaje,Python
 data-engineer-proyecto-hibrida-bc-tecnologia-santiago,Lenguaje,SQL
 bi-power-bi-bc-tecnologia-santiago,Base de datos,PostgreSQL
@@ -292,6 +290,7 @@ data-analyst-proyecto-bc-tecnologia-santiago,Cloud,Microsoft Azure
 data-analyst-proyecto-bc-tecnologia-santiago,Lenguaje,Python
 data-analyst-proyecto-bc-tecnologia-santiago,Lenguaje,SQL
 senior-data-scientist-artefact-latam-remote,Lenguaje,Python
+senior-data-scientist-artefact-latam-remote,Lenguaje,R
 senior-data-scientist-artefact-latam-remote,Lenguaje,SQL
 data-engineer-aws-bc-tecnologia-remote-d2a1,Cloud,AWS
 data-engineer-aws-bc-tecnologia-remote-d2a1,Lenguaje,SQL
@@ -307,14 +306,11 @@ desarrollador-a-full-stack-senior-factor-it-santiago-3250,Lenguaje,SQL
 desarrollador-a-full-stack-senior-factor-it-santiago-3250,Lenguaje,TypeScript
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago-ac9f,Base de datos,Microsoft SQL Server
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago-ac9f,Lenguaje,Java
-desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago-ac9f,Lenguaje,JavaScript
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago-ac9f,Lenguaje,SQL
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago,Lenguaje,Java
-desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-java-angular-bc-tecnologia-santiago,Lenguaje,SQL
 dev-ops-cumplo-santiago,Cloud,AWS
-dev-ops-cumplo-santiago,Lenguaje,JavaScript
 dev-ops-cumplo-santiago,Lenguaje,Python
 dev-ops-cumplo-santiago,Lenguaje,TypeScript
 go-engineer-microservices-improving-remote,Cloud,AWS
@@ -327,7 +323,6 @@ product-builder-comunidadfeliz-remote-04e2,Base de datos,PostgreSQL
 product-builder-comunidadfeliz-remote-04e2,Lenguaje,Ruby
 python-ml-optimization-engineer-improving-remote,Cloud,Microsoft Azure
 python-ml-optimization-engineer-improving-remote,Lenguaje,Python
-full-stack-software-engineer-react-python-improving-remote,Cloud,Microsoft Azure
 full-stack-software-engineer-react-python-improving-remote,Lenguaje,Python
 full-stack-software-engineer-improving-remote,Base de datos,MongoDB
 full-stack-software-engineer-improving-remote,Cloud,AWS
@@ -337,12 +332,10 @@ software-engineer-net-azure-improving-remote,Base de datos,Microsoft SQL Server
 software-engineer-net-azure-improving-remote,Cloud,Microsoft Azure
 software-engineer-net-azure-improving-remote,Lenguaje,C#
 software-engineer-net-azure-improving-remote,Lenguaje,SQL
-software-engineer-net-azure-improving-remote,Lenguaje,Swift
 desarrollador-oracle-sonda-santiago,Base de datos,Microsoft SQL Server
 desarrollador-oracle-sonda-santiago,Base de datos,Oracle
 desarrollador-oracle-sonda-santiago,Cloud,Microsoft Azure
 desarrollador-oracle-sonda-santiago,Lenguaje,C#
-desarrollador-oracle-sonda-santiago,Lenguaje,JavaScript
 desarrollador-oracle-sonda-santiago,Lenguaje,Python
 desarrollador-oracle-sonda-santiago,Lenguaje,SQL
 desarrollador-java-sonda-santiago,Base de datos,Oracle
@@ -365,7 +358,6 @@ desarrollador-full-stack-java-ci-canada-remote,Lenguaje,Java
 desarrollador-full-stack-java-ci-canada-remote,Lenguaje,SQL
 desarrollador-full-stack-react-bc-tecnologia-santiago,Base de datos,PostgreSQL
 desarrollador-full-stack-react-bc-tecnologia-santiago,Cloud,Google Cloud
-desarrollador-full-stack-react-bc-tecnologia-santiago,Lenguaje,JavaScript
 desarrollador-full-stack-react-bc-tecnologia-santiago,Lenguaje,Kotlin
 desarrollador-full-stack-react-bc-tecnologia-santiago,Lenguaje,SQL
 desarrollador-full-stack-react-bc-tecnologia-santiago,Lenguaje,TypeScript
@@ -373,8 +365,6 @@ desarrollador-a-full-stack-frontend-datos-bc-tecnologia-remote,Lenguaje,HTML/CSS
 desarrollador-a-full-stack-frontend-datos-bc-tecnologia-remote,Lenguaje,JavaScript
 ai-engineering-lead-niuro-remote,Lenguaje,Bash/Shell
 ai-engineering-lead-niuro-remote,Lenguaje,C++
-senior-full-stack-engineer-improving-remote,Cloud,Microsoft Azure
-senior-full-stack-engineer-improving-remote,Lenguaje,C#
 senior-full-stack-engineer-improving-remote,Lenguaje,Java
 desarrollador-fullstack-java-angular-improving-remote,Base de datos,MongoDB
 desarrollador-fullstack-java-angular-improving-remote,Base de datos,PostgreSQL
@@ -386,27 +376,21 @@ desarrollador-fullstack-java-angular-improving-remote,Lenguaje,Java
 desarrollador-fullstack-java-angular-improving-remote,Lenguaje,TypeScript
 fullstack-developer-react-node-js-improving-remote,Base de datos,MongoDB
 fullstack-developer-react-node-js-improving-remote,Base de datos,PostgreSQL
-fullstack-developer-react-node-js-improving-remote,Lenguaje,JavaScript
 fullstack-developer-react-node-js-improving-remote,Lenguaje,SQL
 ai-backend-engineer-improving-remote,Cloud,Microsoft Azure
 ai-backend-engineer-improving-remote,Lenguaje,C#
-ai-backend-engineer-improving-remote,Lenguaje,JavaScript
 ai-backend-engineer-improving-remote,Lenguaje,SQL
 desarrollador-a-full-stack-xintec-santiago,Cloud,Google Cloud
-desarrollador-a-full-stack-xintec-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-xintec-santiago,Lenguaje,TypeScript
 full-stack-developer-semi-senior-factor-it-santiago-00d4,Cloud,Google Cloud
 full-stack-developer-semi-senior-factor-it-santiago-00d4,Lenguaje,JavaScript
 full-stack-developer-semi-senior-factor-it-santiago-00d4,Lenguaje,SQL
 full-stack-developer-semi-senior-factor-it-santiago-00d4,Lenguaje,TypeScript
-react-front-end-engineer-prontopaga-santiago,Lenguaje,JavaScript
 react-front-end-engineer-prontopaga-santiago,Lenguaje,Kotlin
 react-front-end-engineer-prontopaga-santiago,Lenguaje,Swift
 react-front-end-engineer-prontopaga-santiago,Lenguaje,TypeScript
 node-backend-engineer-senior-prontopaga-santiago,Base de datos,DynamoDB
 node-backend-engineer-senior-prontopaga-santiago,Cloud,AWS
-node-backend-engineer-senior-prontopaga-santiago,Lenguaje,JavaScript
-react-front-end-engineer-senior-prontopaga-santiago,Lenguaje,JavaScript
 react-front-end-engineer-senior-prontopaga-santiago,Lenguaje,Kotlin
 react-front-end-engineer-senior-prontopaga-santiago,Lenguaje,Swift
 react-front-end-engineer-senior-prontopaga-santiago,Lenguaje,TypeScript
@@ -431,7 +415,6 @@ back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Base de datos,Dyn
 back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Base de datos,Elasticsearch
 back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Base de datos,MySQL
 back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Cloud,AWS
-back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Lenguaje,JavaScript
 back-end-software-engineer-nestjs-cloud-native-aws-witi-remote,Lenguaje,TypeScript
 full-stack-senior-con-ia-agentes-bc-tecnologia-remote-9cff,Cloud,AWS
 full-stack-senior-con-ia-agentes-bc-tecnologia-remote-9cff,Cloud,Google Cloud
@@ -459,7 +442,6 @@ desarrollador-full-stack-senior-42labs-santiago,Lenguaje,SQL
 desarrollador-full-stack-senior-42labs-santiago,Lenguaje,TypeScript
 developer-full-stack-bice-vida-santiago,Cloud,AWS
 developer-full-stack-bice-vida-santiago,Lenguaje,Java
-developer-full-stack-bice-vida-santiago,Lenguaje,JavaScript
 full-stack-python-developer-creativeworks-remote,Base de datos,PostgreSQL
 full-stack-python-developer-creativeworks-remote,Cloud,AWS
 full-stack-python-developer-creativeworks-remote,Cloud,Google Cloud
@@ -476,7 +458,6 @@ senior-javascript-developer-leytonmedia-santiago-d2d0,Cloud,Google Cloud
 senior-javascript-developer-leytonmedia-santiago-d2d0,Cloud,Microsoft Azure
 senior-javascript-developer-leytonmedia-santiago-d2d0,Lenguaje,JavaScript
 senior-javascript-developer-leytonmedia-santiago-d2d0,Lenguaje,TypeScript
-senior-fullstack-net-y-angular-42labs-santiago,Lenguaje,C#
 senior-fullstack-net-y-angular-42labs-santiago,Lenguaje,Java
 desarrollador-semi-senior-automatizaciones-e-integraciones-iboost-social-remote,Lenguaje,SQL
 back-end-developer-para-datos-industriales-detroit-s-a-santiago,Base de datos,MySQL
@@ -485,7 +466,6 @@ back-end-developer-para-datos-industriales-detroit-s-a-santiago,Lenguaje,JavaScr
 back-end-developer-para-datos-industriales-detroit-s-a-santiago,Lenguaje,SQL
 full-stack-engineer-typescript-next-js-postgres-opsbox-ai-remote,Base de datos,PostgreSQL
 full-stack-engineer-typescript-next-js-postgres-opsbox-ai-remote,Cloud,Vercel
-full-stack-engineer-typescript-next-js-postgres-opsbox-ai-remote,Lenguaje,JavaScript
 full-stack-engineer-typescript-next-js-postgres-opsbox-ai-remote,Lenguaje,SQL
 full-stack-engineer-typescript-next-js-postgres-opsbox-ai-remote,Lenguaje,TypeScript
 senior-software-engineer-observability-go-fastcto-remote,Base de datos,PostgreSQL
@@ -497,25 +477,21 @@ senior-software-engineer-observability-go-fastcto-remote,Lenguaje,Python
 senior-software-engineer-observability-go-fastcto-remote,Lenguaje,TypeScript
 fullstack-ai-engineer-improving-remote,Base de datos,MongoDB
 fullstack-ai-engineer-improving-remote,Cloud,AWS
-fullstack-ai-engineer-improving-remote,Lenguaje,JavaScript
 fullstack-ai-engineer-improving-remote,Lenguaje,TypeScript
 aws-iot-backend-engineer-improving-remote,Base de datos,PostgreSQL
 aws-iot-backend-engineer-improving-remote,Cloud,AWS
 aws-iot-backend-engineer-improving-remote,Cloud,Microsoft Azure
 aws-iot-backend-engineer-improving-remote,Lenguaje,C#
-aws-iot-backend-engineer-improving-remote,Lenguaje,JavaScript
 aws-iot-backend-engineer-improving-remote,Lenguaje,Python
 senior-net-backend-engineer-modern-platform-niuro-remote,Base de datos,PostgreSQL
 senior-net-backend-engineer-modern-platform-niuro-remote,Base de datos,Redis
 senior-net-backend-engineer-modern-platform-niuro-remote,Cloud,AWS
 senior-net-backend-engineer-modern-platform-niuro-remote,Lenguaje,C#
-senior-net-backend-engineer-modern-platform-niuro-remote,Lenguaje,JavaScript
 senior-net-backend-developer-legacy-platform-niuro-remote,Cloud,AWS
 senior-net-backend-developer-legacy-platform-niuro-remote,Lenguaje,C#
 senior-net-backend-developer-legacy-platform-niuro-remote,Lenguaje,SQL
 desarrollador-full-stack-bc-tecnologia-santiago-c766,Base de datos,PostgreSQL
 desarrollador-full-stack-bc-tecnologia-santiago-c766,Cloud,Google Cloud
-desarrollador-full-stack-bc-tecnologia-santiago-c766,Lenguaje,JavaScript
 desarrollador-full-stack-bc-tecnologia-santiago-c766,Lenguaje,Kotlin
 desarrollador-full-stack-bc-tecnologia-santiago-c766,Lenguaje,SQL
 desarrollador-full-stack-bc-tecnologia-santiago-c766,Lenguaje,TypeScript
@@ -538,7 +514,6 @@ desarrollador-a-full-stack-cloud-aws-ryc-tech-group-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-cloud-aws-ryc-tech-group-santiago,Lenguaje,Python
 desarrollador-a-full-stack-cloud-aws-ryc-tech-group-santiago,Lenguaje,SQL
 desarrollador-a-full-stack-cloud-aws-ryc-tech-group-santiago,Lenguaje,TypeScript
-backend-developer-senior-java-25-spring-boot-3-factor-it-santiago,Base de datos,Elasticsearch
 backend-developer-senior-java-25-spring-boot-3-factor-it-santiago,Base de datos,PostgreSQL
 backend-developer-senior-java-25-spring-boot-3-factor-it-santiago,Cloud,Google Cloud
 backend-developer-senior-java-25-spring-boot-3-factor-it-santiago,Lenguaje,Java
@@ -548,7 +523,6 @@ front-end-angular-grupo-mariposa-remote,Cloud,Microsoft Azure
 back-end-developer-grupo-mariposa-remote,Base de datos,MongoDB
 back-end-developer-grupo-mariposa-remote,Base de datos,Redis
 back-end-developer-grupo-mariposa-remote,Lenguaje,Java
-desarrollador-backend-3it-santiago-ea61,Base de datos,Elasticsearch
 desarrollador-backend-3it-santiago-ea61,Base de datos,Oracle
 desarrollador-backend-3it-santiago-ea61,Cloud,AWS
 desarrollador-backend-3it-santiago-ea61,Cloud,Oracle Cloud (OCI)
@@ -559,7 +533,6 @@ head-of-enterprise-architecture-integration-grupo-mariposa-remote,Cloud,Microsof
 desarrollador-full-stack-golang-net-react-3it-santiago-8fed,Base de datos,MongoDB
 desarrollador-full-stack-golang-net-react-3it-santiago-8fed,Cloud,Microsoft Azure
 desarrollador-full-stack-golang-net-react-3it-santiago-8fed,Lenguaje,Go
-desarrollador-full-stack-golang-net-react-3it-santiago-8fed,Lenguaje,JavaScript
 full-stack-engineer-typescript-react-dynamic-devs-santiago,Cloud,AWS
 full-stack-engineer-typescript-react-dynamic-devs-santiago,Cloud,Google Cloud
 full-stack-engineer-typescript-react-dynamic-devs-santiago,Cloud,Microsoft Azure
@@ -580,7 +553,6 @@ desarrollador-a-full-stack-financia-capital-santiago,Base de datos,MySQL
 desarrollador-a-full-stack-financia-capital-santiago,Base de datos,Redis
 desarrollador-a-full-stack-financia-capital-santiago,Cloud,AWS
 desarrollador-a-full-stack-financia-capital-santiago,Cloud,Cloudflare
-desarrollador-a-full-stack-financia-capital-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-financia-capital-santiago,Lenguaje,PHP
 desarrollador-a-full-stack-financia-capital-santiago,Lenguaje,Python
 desarrollador-a-full-stack-financia-capital-santiago,Lenguaje,SQL
@@ -591,7 +563,6 @@ full-stack-engineer-react-net-aws-improving-remote,Lenguaje,C#
 full-stack-engineer-react-net-aws-improving-remote,Lenguaje,Python
 full-stack-net-angularjs-react-3it-santiago,Base de datos,Microsoft SQL Server
 full-stack-net-angularjs-react-3it-santiago,Base de datos,MongoDB
-full-stack-net-angularjs-react-3it-santiago,Lenguaje,C#
 full-stack-net-angularjs-react-3it-santiago,Lenguaje,SQL
 desarrollador-mobile-mediastream-bogota-santiago-bf34,Cloud,Firebase
 desarrollador-mobile-mediastream-bogota-santiago-bf34,Lenguaje,Java
@@ -599,19 +570,16 @@ desarrollador-mobile-mediastream-bogota-santiago-bf34,Lenguaje,JavaScript
 desarrollador-mobile-mediastream-bogota-santiago-bf34,Lenguaje,Kotlin
 desarrollador-mobile-mediastream-bogota-santiago-bf34,Lenguaje,Swift
 fullstack-engineer-senior-node-js-react-aws-continuum-remote,Cloud,AWS
-fullstack-engineer-senior-node-js-react-aws-continuum-remote,Lenguaje,JavaScript
 fullstack-engineer-senior-node-js-react-aws-continuum-remote,Lenguaje,TypeScript
 fullstack-developer-tcit-santiago,Lenguaje,HTML/CSS
 fullstack-developer-tcit-santiago,Lenguaje,JavaScript
 fullstack-developer-tcit-santiago,Lenguaje,SQL
 senior-software-engineer-serverless-workflow-hyqoo-remote,Base de datos,DynamoDB
 senior-software-engineer-serverless-workflow-hyqoo-remote,Cloud,AWS
-senior-software-engineer-serverless-workflow-hyqoo-remote,Lenguaje,C#
 desarrollador-go-y-node-js-itsmart-santiago,Base de datos,MySQL
 desarrollador-go-y-node-js-itsmart-santiago,Base de datos,PostgreSQL
 desarrollador-go-y-node-js-itsmart-santiago,Base de datos,Redis
 desarrollador-go-y-node-js-itsmart-santiago,Lenguaje,Go
-desarrollador-go-y-node-js-itsmart-santiago,Lenguaje,JavaScript
 desarrollador-go-y-node-js-itsmart-santiago,Lenguaje,TypeScript
 senior-php-developer-laravel-aws-improving-remote,Cloud,AWS
 senior-php-developer-laravel-aws-improving-remote,Lenguaje,JavaScript
@@ -629,7 +597,6 @@ technical-lead-senior-bci-santiago-3e19,Lenguaje,JavaScript
 technical-lead-senior-bci-santiago-3e19,Lenguaje,TypeScript
 especialista-integracion-pleno-bci-santiago-f68d,Lenguaje,Java
 technical-lead-senior-factor-it-santiago,Cloud,Google Cloud
-technical-lead-senior-factor-it-santiago,Lenguaje,JavaScript
 technical-lead-senior-factor-it-santiago,Lenguaje,TypeScript
 desarrollador-full-stack-semi-senior-3it-santiago-6005,Base de datos,MongoDB
 desarrollador-full-stack-semi-senior-3it-santiago-6005,Base de datos,Oracle
@@ -639,19 +606,15 @@ desarrollador-full-stack-grafton-latam-santiago,Lenguaje,Python
 desarrollador-full-stack-liferay-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 desarrollador-full-stack-liferay-bc-tecnologia-santiago,Cloud,Microsoft Azure
 desarrollador-full-stack-liferay-bc-tecnologia-santiago,Lenguaje,C#
-desarrollador-full-stack-liferay-bc-tecnologia-santiago,Lenguaje,JavaScript
 desarrollador-full-stack-liferay-bc-tecnologia-santiago,Lenguaje,SQL
 desarrollador-full-stack-java-angular-3it-santiago-07c4,Base de datos,Oracle
 desarrollador-full-stack-java-angular-3it-santiago-07c4,Cloud,Microsoft Azure
 desarrollador-full-stack-java-angular-3it-santiago-07c4,Cloud,Oracle Cloud (OCI)
-desarrollador-full-stack-java-angular-3it-santiago-07c4,Lenguaje,C#
 desarrollador-full-stack-java-angular-3it-santiago-07c4,Lenguaje,Java
-desarrollador-full-stack-java-angular-3it-santiago-07c4,Lenguaje,JavaScript
 desarrollador-full-stack-java-angular-3it-santiago-07c4,Lenguaje,SQL
 ingeniero-full-stack-laravel-vue-poderjudicialvirtual-com-remote,Base de datos,MongoDB
 ingeniero-full-stack-laravel-vue-poderjudicialvirtual-com-remote,Base de datos,MySQL
 ingeniero-full-stack-laravel-vue-poderjudicialvirtual-com-remote,Cloud,AWS
-ingeniero-full-stack-laravel-vue-poderjudicialvirtual-com-remote,Lenguaje,JavaScript
 ingeniero-full-stack-laravel-vue-poderjudicialvirtual-com-remote,Lenguaje,PHP
 junior-integrations-developer-inversiones-vertice-limitada-santiago,Cloud,Vercel
 junior-integrations-developer-inversiones-vertice-limitada-santiago,Lenguaje,C#
@@ -659,7 +622,6 @@ junior-integrations-developer-inversiones-vertice-limitada-santiago,Lenguaje,Typ
 backend-developer-pci-aws-hf-solutions-santiago,Base de datos,MongoDB
 backend-developer-pci-aws-hf-solutions-santiago,Cloud,AWS
 backend-developer-pci-aws-hf-solutions-santiago,Lenguaje,Python
-technical-lead-backend-hubspot-integrations-migrations-wendt-partners-remote,Lenguaje,JavaScript
 technical-lead-backend-hubspot-integrations-migrations-wendt-partners-remote,Lenguaje,PHP
 technical-lead-backend-hubspot-integrations-migrations-wendt-partners-remote,Lenguaje,Python
 software-engineer-examedi-santiago,Lenguaje,TypeScript
@@ -681,7 +643,6 @@ developer-java-bice-vida-santiago,Lenguaje,Java
 developer-java-bice-vida-santiago,Lenguaje,Python
 developer-java-bice-vida-santiago,Lenguaje,SQL
 desarrollador-a-apex-group-chile-santiago-f267,Base de datos,Microsoft SQL Server
-desarrollador-a-apex-group-chile-santiago-f267,Cloud,Microsoft Azure
 desarrollador-a-apex-group-chile-santiago-f267,Lenguaje,C#
 desarrollador-a-apex-group-chile-santiago-f267,Lenguaje,SQL
 developer-frontend-bice-vida-santiago,Base de datos,MongoDB
@@ -690,7 +651,6 @@ developer-frontend-bice-vida-santiago,Base de datos,Oracle
 developer-frontend-bice-vida-santiago,Base de datos,PostgreSQL
 developer-frontend-bice-vida-santiago,Cloud,AWS
 developer-frontend-bice-vida-santiago,Lenguaje,Java
-developer-frontend-bice-vida-santiago,Lenguaje,JavaScript
 developer-frontend-bice-vida-santiago,Lenguaje,Python
 developer-frontend-bice-vida-santiago,Lenguaje,SQL
 developer-frontend-bice-vida-santiago,Lenguaje,TypeScript
@@ -733,7 +693,6 @@ senior-back-end-engineer-java-google-cloud-platform-factor-it-santiago,Lenguaje,
 senior-back-end-engineer-java-google-cloud-platform-factor-it-santiago,Lenguaje,SQL
 head-of-product-engineering-it-trusted-partner-santiago,Base de datos,BigQuery
 head-of-product-engineering-it-trusted-partner-santiago,Cloud,AWS
-head-of-product-engineering-it-trusted-partner-santiago,Lenguaje,JavaScript
 head-of-product-engineering-it-trusted-partner-santiago,Lenguaje,TypeScript
 lider-tecnico-full-stack-python-angular-azure-grupo-sud-santiago,Base de datos,PostgreSQL
 lider-tecnico-full-stack-python-angular-azure-grupo-sud-santiago,Cloud,Microsoft Azure
@@ -749,7 +708,6 @@ desarrollador-a-fullstack-semi-senior-hf-solutions-santiago-5a5d,Lenguaje,Java
 desarrollador-a-fullstack-semi-senior-hf-solutions-santiago-5a5d,Lenguaje,SQL
 desarrollador-a-full-stack-node-angular-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-a-full-stack-node-angular-bc-tecnologia-remote,Cloud,AWS
-desarrollador-a-full-stack-node-angular-bc-tecnologia-remote,Lenguaje,JavaScript
 ai-automation-engineer-contract-blupax-pharmaceuticals-remote,Lenguaje,Python
 ai-automation-engineer-contract-blupax-pharmaceuticals-remote,Lenguaje,SQL
 ingeniero-de-desarrollo-senior-inexoos-santiago,Base de datos,MySQL
@@ -760,11 +718,9 @@ ingeniero-de-desarrollo-senior-inexoos-santiago,Lenguaje,PHP
 ingeniero-de-desarrollo-senior-inexoos-santiago,Lenguaje,Python
 ingeniero-de-desarrollo-senior-inexoos-santiago,Lenguaje,SQL
 ingeniero-de-desarrollo-senior-inexoos-santiago,Lenguaje,TypeScript
-desarrollador-full-stack-hibrido-agilesoft-spa-santiago-d50c,Lenguaje,JavaScript
 desarrollador-full-stack-hibrido-agilesoft-spa-santiago-d50c,Lenguaje,SQL
 desarrollador-back-end-agilesoft-spa-remote-b90b,Cloud,Microsoft Azure
 desarrollador-back-end-agilesoft-spa-remote-b90b,Lenguaje,Java
-desarrollador-back-end-agilesoft-spa-remote-b90b,Lenguaje,JavaScript
 ingeniero-full-stack-semi-senior-laravel-react-rflex-io-santiago-bd8c,Base de datos,Elasticsearch
 ingeniero-full-stack-semi-senior-laravel-react-rflex-io-santiago-bd8c,Base de datos,Redis
 ingeniero-full-stack-semi-senior-laravel-react-rflex-io-santiago-bd8c,Cloud,AWS
@@ -805,13 +761,11 @@ developer-full-stack-tribu-producto-bice-vida-santiago,Cloud,AWS
 developer-full-stack-tribu-producto-bice-vida-santiago,Lenguaje,SQL
 ingeniero-a-de-terreno-ia-usercode-spa-santiago,Cloud,AWS
 ingeniero-a-de-terreno-ia-usercode-spa-santiago,Cloud,Microsoft Azure
-ingeniero-a-de-terreno-ia-usercode-spa-santiago,Lenguaje,JavaScript
 ingeniero-a-de-terreno-ia-usercode-spa-santiago,Lenguaje,Python
 ingeniero-a-de-terreno-ia-usercode-spa-santiago,Lenguaje,SQL
 fractional-full-stack-engineer-valsnapp-remote,Base de datos,PostgreSQL
 fractional-full-stack-engineer-valsnapp-remote,Cloud,Google Cloud
 fractional-full-stack-engineer-valsnapp-remote,Cloud,Vercel
-fractional-full-stack-engineer-valsnapp-remote,Lenguaje,JavaScript
 fractional-full-stack-engineer-valsnapp-remote,Lenguaje,SQL
 fractional-full-stack-engineer-valsnapp-remote,Lenguaje,TypeScript
 desarrollador-fullstack-laravel-usercode-spa-santiago,Base de datos,Microsoft SQL Server
@@ -831,11 +785,9 @@ front-end-developer-web-y-bd-detroit-s-a-lima-puerto-montt-santiago,Lenguaje,Jav
 software-engineer-node-js-react-bc-tecnologia-santiago,Base de datos,MongoDB
 software-engineer-node-js-react-bc-tecnologia-santiago,Base de datos,PostgreSQL
 software-engineer-node-js-react-bc-tecnologia-santiago,Cloud,AWS
-software-engineer-node-js-react-bc-tecnologia-santiago,Lenguaje,JavaScript
 software-engineer-node-js-nestjs-bc-tecnologia-santiago,Base de datos,MongoDB
 software-engineer-node-js-nestjs-bc-tecnologia-santiago,Base de datos,PostgreSQL
 software-engineer-node-js-nestjs-bc-tecnologia-santiago,Cloud,AWS
-software-engineer-node-js-nestjs-bc-tecnologia-santiago,Lenguaje,JavaScript
 technical-lead-senior-bci-santiago,Base de datos,MongoDB
 technical-lead-senior-bci-santiago,Base de datos,PostgreSQL
 technical-lead-senior-bci-santiago,Cloud,AWS
@@ -859,7 +811,6 @@ technical-lead-full-stack-bc-tecnologia-remote,Base de datos,Redis
 technical-lead-full-stack-bc-tecnologia-remote,Cloud,AWS
 technical-lead-full-stack-bc-tecnologia-remote,Cloud,Google Cloud
 technical-lead-full-stack-bc-tecnologia-remote,Cloud,Microsoft Azure
-technical-lead-full-stack-bc-tecnologia-remote,Lenguaje,JavaScript
 technical-lead-full-stack-bc-tecnologia-remote,Lenguaje,TypeScript
 software-engineer-zaelot-remote,Lenguaje,JavaScript
 software-engineer-zaelot-remote,Lenguaje,TypeScript
@@ -887,20 +838,15 @@ fullstack-developer-python-fastapi-react-bc-tecnologia-remote,Lenguaje,JavaScrip
 fullstack-developer-python-fastapi-react-bc-tecnologia-remote,Lenguaje,Python
 fullstack-developer-python-fastapi-react-bc-tecnologia-remote,Lenguaje,TypeScript
 senior-full-stack-engineer-ldd-santiago,Cloud,Google Cloud
-senior-full-stack-engineer-ldd-santiago,Lenguaje,JavaScript
 senior-full-stack-engineer-ldd-santiago,Lenguaje,Python
 senior-full-stack-engineer-ldd-santiago,Lenguaje,SQL
 senior-full-stack-engineer-ldd-santiago,Lenguaje,TypeScript
 desarrollador-a-sap-fiori-sapui5-lisit-remote,Lenguaje,HTML/CSS
 desarrollador-a-sap-fiori-sapui5-lisit-remote,Lenguaje,JavaScript
 senior-backend-developer-dynamics-365-i-bc-tecnologia-remote,Cloud,Microsoft Azure
-senior-backend-developer-dynamics-365-i-bc-tecnologia-remote,Lenguaje,C#
 senior-backend-developer-dynamics-365-i-bc-tecnologia-remote,Lenguaje,Java
-senior-backend-developer-dynamics-365-i-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-integraciones-con-dynamics-365-bc-tecnologia-remote,Cloud,Microsoft Azure
-desarrollador-integraciones-con-dynamics-365-bc-tecnologia-remote,Lenguaje,C#
 desarrollador-integraciones-con-dynamics-365-bc-tecnologia-remote,Lenguaje,Java
-desarrollador-integraciones-con-dynamics-365-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-fullstack-react-spring-boot-oracle-db-sonda-santiago,Base de datos,Oracle
 desarrollador-fullstack-react-spring-boot-oracle-db-sonda-santiago,Lenguaje,SQL
 desarrollador-fullstack-react-spring-boot-oracle-db-sonda-santiago,Lenguaje,TypeScript
@@ -926,7 +872,6 @@ desarrollador-net-hibrido-agilesoft-spa-santiago,Lenguaje,SQL
 desarrollador-fullstack-mean-bc-tecnologia-remote,Lenguaje,HTML/CSS
 desarrollador-fullstack-mean-bc-tecnologia-remote,Lenguaje,JavaScript
 fullstack-developer-node-js-typescript-react-aws-bc-tecnologia-remote,Cloud,AWS
-fullstack-developer-node-js-typescript-react-aws-bc-tecnologia-remote,Lenguaje,JavaScript
 fullstack-developer-node-js-typescript-react-aws-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrollador-a-full-stack-node-js-bc-tecnologia-remote,Lenguaje,HTML/CSS
 desarrollador-a-full-stack-node-js-bc-tecnologia-remote,Lenguaje,JavaScript
@@ -960,7 +905,6 @@ senior-ai-engineer-capital-express-santiago,Base de datos,MongoDB
 senior-ai-engineer-capital-express-santiago,Base de datos,PostgreSQL
 senior-ai-engineer-capital-express-santiago,Cloud,AWS
 senior-ai-engineer-capital-express-santiago,Lenguaje,Go
-senior-ai-engineer-capital-express-santiago,Lenguaje,JavaScript
 senior-ai-engineer-capital-express-santiago,Lenguaje,SQL
 senior-full-stack-engineer-vequity-remote,Base de datos,PostgreSQL
 senior-full-stack-engineer-vequity-remote,Cloud,Google Cloud
@@ -991,17 +935,14 @@ desarrollador-full-stack-senior-java-angular-bc-tecnologia-santiago,Cloud,Micros
 desarrollador-full-stack-senior-java-angular-bc-tecnologia-santiago,Lenguaje,Java
 senior-full-stack-engineer-go-react-native-california-injury-group-apc-remote,Base de datos,PostgreSQL
 senior-full-stack-engineer-go-react-native-california-injury-group-apc-remote,Lenguaje,Go
-senior-full-stack-engineer-go-react-native-california-injury-group-apc-remote,Lenguaje,JavaScript
 senior-full-stack-engineer-go-react-native-california-injury-group-apc-remote,Lenguaje,SQL
 senior-full-stack-engineer-go-react-native-california-injury-group-apc-remote,Lenguaje,TypeScript
 node-backend-engineer-semi-senior-prontopaga-santiago,Base de datos,DynamoDB
 node-backend-engineer-semi-senior-prontopaga-santiago,Cloud,AWS
-node-backend-engineer-semi-senior-prontopaga-santiago,Lenguaje,JavaScript
 technical-lead-capital-express-santiago,Lenguaje,HTML/CSS
 technical-lead-capital-express-santiago,Lenguaje,JavaScript
 technical-lead-capital-express-santiago,Lenguaje,TypeScript
 desarrollador-net-framework-web-forms-latam-qulane-remote-1993,Base de datos,Microsoft SQL Server
-desarrollador-net-framework-web-forms-latam-qulane-remote-1993,Lenguaje,C#
 desarrollador-net-framework-web-forms-latam-qulane-remote-1993,Lenguaje,HTML/CSS
 desarrollador-net-framework-web-forms-latam-qulane-remote-1993,Lenguaje,JavaScript
 desarrollador-net-framework-web-forms-latam-qulane-remote-1993,Lenguaje,SQL
@@ -1034,19 +975,16 @@ especialista-desarrollador-batch-bc-tecnologia-remote,Lenguaje,JavaScript
 especialista-desarrollador-batch-bc-tecnologia-remote,Lenguaje,SQL
 vp-of-engineering-kastor-acp-s-a-santiago,Cloud,AWS
 full-stack-developer-python-nodejs-bc-tecnologia-santiago,Cloud,AWS
-full-stack-developer-python-nodejs-bc-tecnologia-santiago,Lenguaje,JavaScript
 full-stack-developer-python-nodejs-bc-tecnologia-santiago,Lenguaje,Python
 desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Base de datos,Redis
 desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Cloud,AWS
 desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Cloud,Google Cloud
-desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-a-full-stack-ia-react-node-js-bc-tecnologia-remote,Lenguaje,TypeScript
 wordpress-content-publishing-specialist-junior-front-end-d-josh-brown-consulting-remote,Lenguaje,HTML/CSS
 wordpress-content-publishing-specialist-junior-front-end-d-josh-brown-consulting-remote,Lenguaje,JavaScript
 wordpress-content-publishing-specialist-junior-front-end-d-josh-brown-consulting-remote,Lenguaje,PHP
 full-stack-developer-aws-bc-tecnologia-remote,Cloud,AWS
-full-stack-developer-aws-bc-tecnologia-remote,Lenguaje,JavaScript
 full-stack-developer-aws-bc-tecnologia-remote,Lenguaje,Python
 tech-lead-neuralworks-santiago-dc0f,Cloud,AWS
 tech-lead-neuralworks-santiago-dc0f,Cloud,Google Cloud
@@ -1057,7 +995,6 @@ desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,C#
 desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,C++
 desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,HTML/CSS
 desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,Java
-desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,JavaScript
 desarrollador-a-full-stack-semi-senior-senior-timining-remote,Lenguaje,Python
 desarrollador-a-backend-junior-inversiones-vertice-limitada-santiago,Base de datos,PostgreSQL
 desarrollador-a-backend-junior-inversiones-vertice-limitada-santiago,Lenguaje,Python
@@ -1080,9 +1017,7 @@ wordpress-developer-ai-first-brand-bot-remote,Lenguaje,PHP
 desarrollador-fullstack-bc-tecnologia-santiago-8826,Cloud,AWS
 desarrollador-fullstack-bc-tecnologia-santiago-8826,Cloud,Microsoft Azure
 desarrollador-fullstack-bc-tecnologia-santiago-8826,Lenguaje,HTML/CSS
-desarrollador-fullstack-bc-tecnologia-santiago-8826,Lenguaje,JavaScript
 senior-fullstack-node-js-gcp-bc-tecnologia-santiago,Cloud,Google Cloud
-senior-fullstack-node-js-gcp-bc-tecnologia-santiago,Lenguaje,JavaScript
 senior-full-stack-software-developer-one-click-technology-llc-remote,Base de datos,Elasticsearch
 senior-full-stack-software-developer-one-click-technology-llc-remote,Cloud,AWS
 senior-full-stack-software-developer-one-click-technology-llc-remote,Lenguaje,JavaScript
@@ -1109,7 +1044,6 @@ tech-lead-engineer-checkr-santiago,Cloud,AWS
 tech-lead-engineer-checkr-santiago,Lenguaje,Python
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote-2c3b,Base de datos,MongoDB
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote-2c3b,Base de datos,MySQL
-desarrollador-full-stack-node-js-angular-bc-tecnologia-remote-2c3b,Lenguaje,JavaScript
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote-2c3b,Lenguaje,TypeScript
 desarrollador-full-stack-java-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 desarrollador-full-stack-java-bc-tecnologia-santiago,Base de datos,Oracle
@@ -1121,7 +1055,6 @@ backend-developer-net-python-ryc-tech-group-santiago,Base de datos,DynamoDB
 backend-developer-net-python-ryc-tech-group-santiago,Cloud,AWS
 backend-developer-net-python-ryc-tech-group-santiago,Lenguaje,C#
 backend-developer-net-python-ryc-tech-group-santiago,Lenguaje,Java
-backend-developer-net-python-ryc-tech-group-santiago,Lenguaje,JavaScript
 backend-developer-net-python-ryc-tech-group-santiago,Lenguaje,Python
 backend-developer-net-python-ryc-tech-group-santiago,Lenguaje,SQL
 desarrollador-a-sql-murex-bc-tecnologia-remote,Lenguaje,SQL
@@ -1148,19 +1081,15 @@ full-stack-developer-react-aws-serverless-ryc-tech-group-santiago,Lenguaje,JavaS
 full-stack-developer-react-aws-serverless-ryc-tech-group-santiago,Lenguaje,Python
 full-stack-developer-react-aws-serverless-ryc-tech-group-santiago,Lenguaje,TypeScript
 real-time-ai-orchestration-engineer-sugarshan-inc-remote,Cloud,Firebase
-freelance-full-stack-ai-automation-the-future-perfect-remote,Lenguaje,JavaScript
 freelance-full-stack-ai-automation-the-future-perfect-remote,Lenguaje,Python
 senior-backend-engineer-node-js-typescript-aws-bc-tecnologia-remote,Cloud,AWS
-senior-backend-engineer-node-js-typescript-aws-bc-tecnologia-remote,Lenguaje,JavaScript
 senior-backend-engineer-node-js-typescript-aws-bc-tecnologia-remote,Lenguaje,TypeScript
 aws-backend-event-driven-engineer-ryc-tech-group-santiago,Base de datos,DynamoDB
 aws-backend-event-driven-engineer-ryc-tech-group-santiago,Base de datos,PostgreSQL
 aws-backend-event-driven-engineer-ryc-tech-group-santiago,Cloud,AWS
-aws-backend-event-driven-engineer-ryc-tech-group-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Base de datos,PostgreSQL
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Cloud,Google Cloud
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Lenguaje,Java
-desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Lenguaje,JavaScript
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Lenguaje,Python
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Lenguaje,SQL
 desarrollador-a-full-stack-java-react-bc-tecnologia-santiago,Lenguaje,TypeScript
@@ -1168,7 +1097,6 @@ desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Base de dat
 desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Base de datos,Redis
 desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Cloud,AWS
 desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Cloud,Google Cloud
-desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-full-stack-react-node-js-ia-latam-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrollo-salesforce-bc-tecnologia-remote,Cloud,AWS
 desarrollador-full-stack-bc-tecnologia-remote-355f,Cloud,AWS
@@ -1180,21 +1108,16 @@ full-stack-developer-senior-latam-bc-tecnologia-remote,Base de datos,Redis
 full-stack-developer-senior-latam-bc-tecnologia-remote,Cloud,AWS
 full-stack-developer-senior-latam-bc-tecnologia-remote,Cloud,Databricks
 full-stack-developer-senior-latam-bc-tecnologia-remote,Cloud,Google Cloud
-full-stack-developer-senior-latam-bc-tecnologia-remote,Cloud,Microsoft Azure
-full-stack-developer-senior-latam-bc-tecnologia-remote,Lenguaje,JavaScript
 full-stack-developer-senior-latam-bc-tecnologia-remote,Lenguaje,SQL
 full-stack-developer-senior-latam-bc-tecnologia-remote,Lenguaje,TypeScript
 senior-full-stack-nestjs-react-latam-bc-tecnologia-remote,Base de datos,PostgreSQL
 senior-full-stack-nestjs-react-latam-bc-tecnologia-remote,Base de datos,Redis
-senior-full-stack-nestjs-react-latam-bc-tecnologia-remote,Cloud,Microsoft Azure
 senior-full-stack-nestjs-react-latam-bc-tecnologia-remote,Lenguaje,TypeScript
 fullstack-intermedio-ryc-group-santiago,Base de datos,DynamoDB
 fullstack-intermedio-ryc-group-santiago,Cloud,AWS
-fullstack-intermedio-ryc-group-santiago,Lenguaje,C#
 fullstack-intermedio-ryc-group-santiago,Lenguaje,Java
 fullstack-intermedio-ryc-group-santiago,Lenguaje,SQL
 full-stack-developer-bc-tecnologia-santiago,Lenguaje,Java
-full-stack-developer-bc-tecnologia-santiago,Lenguaje,JavaScript
 full-stack-developer-bc-tecnologia-santiago,Lenguaje,Python
 desarrollador-siebel-latam-bc-tecnologia-remote,Base de datos,Oracle
 desarrollador-siebel-latam-bc-tecnologia-remote,Lenguaje,Bash/Shell
@@ -1204,11 +1127,9 @@ desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Base de datos,Redis
 desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Cloud,AWS
 desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Cloud,Google Cloud
-desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-a-fullstack-con-ia-bc-tecnologia-remote,Lenguaje,TypeScript
 fullstack-senior-node-js-gcp-bc-tecnologia-santiago,Base de datos,PostgreSQL
 fullstack-senior-node-js-gcp-bc-tecnologia-santiago,Cloud,Google Cloud
-fullstack-senior-node-js-gcp-bc-tecnologia-santiago,Lenguaje,JavaScript
 fullstack-senior-node-js-gcp-bc-tecnologia-santiago,Lenguaje,Python
 fullstack-senior-node-js-gcp-bc-tecnologia-santiago,Lenguaje,SQL
 desarrollador-a-full-stack-bc-tecnologia-remote-6f97,Base de datos,PostgreSQL
@@ -1217,7 +1138,6 @@ desarrollador-a-full-stack-bc-tecnologia-remote-6f97,Cloud,Google Cloud
 desarrollador-a-full-stack-bc-tecnologia-remote-6f97,Cloud,Microsoft Azure
 desarrollador-a-full-stack-bc-tecnologia-remote-6f97,Lenguaje,PHP
 desarrollador-a-full-stack-bc-tecnologia-santiago-89e8,Lenguaje,Java
-desarrollador-a-full-stack-bc-tecnologia-santiago-89e8,Lenguaje,JavaScript
 desarrollador-a-full-stack-bc-tecnologia-santiago-89e8,Lenguaje,Python
 desarrollador-fullsatck-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-fullsatck-bc-tecnologia-remote,Base de datos,MySQL
@@ -1234,7 +1154,6 @@ backend-integration-developer-bc-tecnologia-santiago,Cloud,AWS
 backend-integration-developer-bc-tecnologia-santiago,Cloud,Microsoft Azure
 backend-integration-developer-bc-tecnologia-santiago,Lenguaje,C#
 backend-integration-developer-bc-tecnologia-santiago,Lenguaje,Java
-backend-integration-developer-bc-tecnologia-santiago,Lenguaje,JavaScript
 backend-integration-developer-bc-tecnologia-santiago,Lenguaje,Python
 desarrollador-a-full-stack-jr-bc-tecnologia-remote,Base de datos,PostgreSQL
 desarrollador-a-full-stack-jr-bc-tecnologia-remote,Cloud,Microsoft Azure
@@ -1243,7 +1162,6 @@ desarrollador-a-full-stack-jr-bc-tecnologia-remote,Lenguaje,HTML/CSS
 desarrollador-a-full-stack-jr-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-a-full-stack-jr-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrolladores-de-sw-sonda-santiago,Base de datos,Oracle
-desarrolladores-de-sw-sonda-santiago,Lenguaje,C#
 desarrolladores-de-sw-sonda-santiago,Lenguaje,SQL
 desarrollador-a-full-stack-bc-tecnologia-santiago-d266,Base de datos,PostgreSQL
 desarrollador-a-full-stack-bc-tecnologia-santiago-d266,Cloud,AWS
@@ -1261,8 +1179,6 @@ ingeniero-de-software-senior-python-ruby-java-go-checkr-santiago,Lenguaje,Java
 ingeniero-de-software-senior-python-ruby-java-go-checkr-santiago,Lenguaje,JavaScript
 ingeniero-de-software-senior-python-ruby-java-go-checkr-santiago,Lenguaje,Python
 ingeniero-de-software-senior-python-ruby-java-go-checkr-santiago,Lenguaje,Ruby
-full-stack-senior-bc-tecnologia-remote-f8dc,Lenguaje,C#
-full-stack-senior-bc-tecnologia-remote-f8dc,Lenguaje,JavaScript
 full-stack-senior-bc-tecnologia-remote-f8dc,Lenguaje,SQL
 full-stack-senior-bc-tecnologia-remote-f8dc,Lenguaje,TypeScript
 full-stack-engineer-cumplo-santiago-ae81,Base de datos,MySQL
@@ -1271,12 +1187,8 @@ full-stack-engineer-cumplo-santiago-ae81,Cloud,AWS
 full-stack-engineer-cumplo-santiago-ae81,Lenguaje,JavaScript
 full-stack-engineer-cumplo-santiago-ae81,Lenguaje,Python
 full-stack-engineer-cumplo-santiago-ae81,Lenguaje,SQL
-full-stack-developer-ia-bc-tecnologia-santiago,Lenguaje,C#
-full-stack-developer-ia-bc-tecnologia-santiago,Lenguaje,JavaScript
 full-stack-developer-ia-bc-tecnologia-santiago,Lenguaje,SQL
 full-stack-developer-ia-bc-tecnologia-santiago,Lenguaje,TypeScript
-lider-tecnico-full-stack-ia-bc-tecnologia-santiago,Lenguaje,C#
-lider-tecnico-full-stack-ia-bc-tecnologia-santiago,Lenguaje,JavaScript
 lider-tecnico-full-stack-ia-bc-tecnologia-santiago,Lenguaje,TypeScript
 desarrollador-a-de-software-bc-tecnologia-remote,Base de datos,MySQL
 desarrollador-a-de-software-bc-tecnologia-remote,Lenguaje,HTML/CSS
@@ -1304,7 +1216,6 @@ senior-full-stack-developer-bc-tecnologia-remote,Base de datos,MongoDB
 senior-full-stack-developer-bc-tecnologia-remote,Base de datos,Redis
 senior-full-stack-developer-bc-tecnologia-remote,Cloud,AWS
 senior-full-stack-developer-bc-tecnologia-remote,Cloud,Google Cloud
-senior-full-stack-developer-bc-tecnologia-remote,Lenguaje,JavaScript
 senior-full-stack-developer-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrollador-backend-java-spring-boot-bc-tecnologia-santiago,Cloud,Google Cloud
 desarrollador-backend-java-spring-boot-bc-tecnologia-santiago,Lenguaje,Java
@@ -1327,20 +1238,17 @@ desarrollador-fullstack-usercode-spa-remote,Lenguaje,JavaScript
 desarrollador-fullstack-usercode-spa-remote,Lenguaje,SQL
 desarrollador-fullstack-usercode-spa-remote,Lenguaje,TypeScript
 ingeniero-de-implementacion-de-ia-e-hiperautomatizacion-usercode-spa-remote,Cloud,AWS
-ingeniero-de-implementacion-de-ia-e-hiperautomatizacion-usercode-spa-remote,Lenguaje,JavaScript
 ingeniero-de-implementacion-de-ia-e-hiperautomatizacion-usercode-spa-remote,Lenguaje,Python
 fullstack-developer-senior-bc-tecnologia-remote,Base de datos,Elasticsearch
 fullstack-developer-senior-bc-tecnologia-remote,Base de datos,PostgreSQL
 fullstack-developer-senior-bc-tecnologia-remote,Base de datos,Redis
 fullstack-developer-senior-bc-tecnologia-remote,Cloud,AWS
-fullstack-developer-senior-bc-tecnologia-remote,Lenguaje,JavaScript
 fullstack-developer-senior-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Base de datos,Microsoft SQL Server
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Base de datos,MySQL
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Base de datos,PostgreSQL
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Lenguaje,HTML/CSS
-desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Lenguaje,JavaScript
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Lenguaje,SQL
 desarrollador-full-stack-node-js-angular-bc-tecnologia-remote,Lenguaje,TypeScript
 senior-cloud-platform-engineer-latam-bc-tecnologia-remote,Cloud,AWS
@@ -1362,8 +1270,6 @@ backend-java-jboss-bc-tecnologia-santiago,Lenguaje,Java
 backend-java-jboss-bc-tecnologia-santiago,Lenguaje,SQL
 especialista-desarrollador-bc-tecnologia-santiago-2b52,Base de datos,Microsoft SQL Server
 especialista-desarrollador-bc-tecnologia-santiago-2b52,Cloud,AWS
-especialista-desarrollador-bc-tecnologia-santiago-2b52,Lenguaje,C#
-especialista-desarrollador-bc-tecnologia-santiago-2b52,Lenguaje,JavaScript
 especialista-desarrollador-bc-tecnologia-santiago-2b52,Lenguaje,SQL
 analista-programador-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 analista-programador-bc-tecnologia-santiago,Base de datos,Oracle
@@ -1371,7 +1277,6 @@ analista-programador-bc-tecnologia-santiago,Lenguaje,Java
 analista-programador-bc-tecnologia-santiago,Lenguaje,SQL
 developer-backend-node-senior-latalm-bc-tecnologia-remote,Base de datos,MongoDB
 developer-backend-node-senior-latalm-bc-tecnologia-remote,Cloud,AWS
-developer-backend-node-senior-latalm-bc-tecnologia-remote,Lenguaje,JavaScript
 developer-backend-node-senior-latalm-bc-tecnologia-remote,Lenguaje,TypeScript
 desarrollador-a-front-end-senior-react-next-js-bc-tecnologia-santiago,Lenguaje,JavaScript
 desarrollador-a-front-end-senior-react-next-js-bc-tecnologia-santiago,Lenguaje,TypeScript
@@ -1384,7 +1289,6 @@ senior-ai-full-stack-engineer-common-forge-ventures-remote,Base de datos,Postgre
 senior-ai-full-stack-engineer-common-forge-ventures-remote,Cloud,AWS
 senior-ai-full-stack-engineer-common-forge-ventures-remote,Cloud,Google Cloud
 senior-ai-full-stack-engineer-common-forge-ventures-remote,Cloud,Microsoft Azure
-senior-ai-full-stack-engineer-common-forge-ventures-remote,Lenguaje,JavaScript
 senior-ai-full-stack-engineer-common-forge-ventures-remote,Lenguaje,Python
 senior-ai-full-stack-engineer-common-forge-ventures-remote,Lenguaje,TypeScript
 ai-ml-engineer-improving-remote,Lenguaje,Python
@@ -1402,7 +1306,6 @@ machine-learning-engineer-improving-remote,Lenguaje,Python
 machine-learning-engineer-improving-remote,Lenguaje,SQL
 backend-ai-engineer-python-llm-orchestration-improving-remote,Cloud,AWS
 backend-ai-engineer-python-llm-orchestration-improving-remote,Cloud,Microsoft Azure
-backend-ai-engineer-python-llm-orchestration-improving-remote,Lenguaje,C#
 backend-ai-engineer-python-llm-orchestration-improving-remote,Lenguaje,Python
 backend-ai-engineer-python-llm-orchestration-improving-remote,Lenguaje,SQL
 machine-learning-engineer-neuralworks-santiago-1ea2,Cloud,AWS
@@ -1422,12 +1325,10 @@ staff-data-scientist-machine-learning-engineer-andersen-lab-remote,Lenguaje,SQL
 senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Base de datos,PostgreSQL
 senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Cloud,AWS
 senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Cloud,Google Cloud
-senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Lenguaje,JavaScript
 senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Lenguaje,Python
 senior-full-stack-ai-engineer-healthcare-health-tech-niuro-remote,Lenguaje,TypeScript
 ai-engineer-rag-intelligent-agents-dynamic-devs-santiago-61bd,Lenguaje,Go
 ai-engineer-rag-intelligent-agents-dynamic-devs-santiago-61bd,Lenguaje,Java
-ai-engineer-rag-intelligent-agents-dynamic-devs-santiago-61bd,Lenguaje,JavaScript
 ai-engineer-rag-intelligent-agents-dynamic-devs-santiago-61bd,Lenguaje,Python
 machine-learning-engineer-con-enfoque-en-ia-generativa-improving-remote,Base de datos,Elasticsearch
 machine-learning-engineer-con-enfoque-en-ia-generativa-improving-remote,Base de datos,Snowflake
@@ -1469,7 +1370,6 @@ ai-engineer-bci-santiago,Cloud,Databricks
 ai-engineer-bci-santiago,Cloud,Google Cloud
 ai-engineer-bci-santiago,Cloud,Microsoft Azure
 senior-agentic-ai-engineer-bc-tecnologia-remote,Cloud,AWS
-senior-agentic-ai-engineer-bc-tecnologia-remote,Lenguaje,JavaScript
 senior-agentic-ai-engineer-bc-tecnologia-remote,Lenguaje,TypeScript
 full-stack-developer-ai-voice-agents-phoneninjas-ai-remote,Base de datos,PostgreSQL
 full-stack-developer-ai-voice-agents-phoneninjas-ai-remote,Cloud,Cloudflare
@@ -1551,7 +1451,6 @@ sap-basis-engineer-crest-it-resources-llc-remote,Base de datos,Oracle
 sap-basis-engineer-crest-it-resources-llc-remote,Lenguaje,Java
 sap-basis-engineer-crest-it-resources-llc-remote,Lenguaje,SQL
 qa-junior-english-required-alluxi-remote-a02e,Base de datos,Microsoft SQL Server
-qa-junior-english-required-alluxi-remote-a02e,Cloud,Microsoft Azure
 qa-junior-english-required-alluxi-remote-a02e,Lenguaje,C#
 qa-junior-english-required-alluxi-remote-a02e,Lenguaje,JavaScript
 qa-junior-english-required-alluxi-remote-a02e,Lenguaje,Python
@@ -1562,7 +1461,6 @@ desarrollador-a-full-stack-agilesoft-spa-santiago-b072,Cloud,AWS
 desarrollador-a-full-stack-agilesoft-spa-santiago-b072,Cloud,Google Cloud
 desarrollador-a-full-stack-agilesoft-spa-santiago-b072,Cloud,Microsoft Azure
 desarrollador-a-full-stack-agilesoft-spa-santiago-b072,Lenguaje,Java
-desarrollador-a-full-stack-agilesoft-spa-santiago-b072,Lenguaje,JavaScript
 ingeniero-de-soporte-y-monitoreo-factor-it-remote,Cloud,Databricks
 ingeniero-de-soporte-y-monitoreo-factor-it-remote,Cloud,Microsoft Azure
 ingeniero-de-soporte-y-monitoreo-factor-it-remote,Lenguaje,SQL
@@ -1574,7 +1472,6 @@ qa-automation-engineer-xintec-santiago,Cloud,Google Cloud
 devops-engineer-gcp-xintec-santiago,Cloud,Google Cloud
 devops-engineer-gcp-xintec-santiago,Lenguaje,Go
 devops-engineer-gcp-xintec-santiago,Lenguaje,Java
-devops-engineer-gcp-xintec-santiago,Lenguaje,JavaScript
 ingeniero-infraestructura-it-ot-onpremise-cloud-agrosuper-rancagua,Cloud,AWS
 ingeniero-infraestructura-it-ot-onpremise-cloud-agrosuper-rancagua,Cloud,Microsoft Azure
 consultor-de-operaciones-sonda-santiago-71bd,Cloud,AWS
@@ -1617,8 +1514,6 @@ devops-engineer-neuralworks-santiago-219c,Cloud,Google Cloud
 devops-engineer-neuralworks-santiago-219c,Cloud,Microsoft Azure
 devops-engineer-neuralworks-santiago-219c,Lenguaje,Python
 aws-infrastructure-engineer-niuro-remote,Cloud,AWS
-aws-infrastructure-engineer-niuro-remote,Lenguaje,C#
-qa-senior-estrategia-y-performance-continuum-remote,Lenguaje,JavaScript
 qa-automation-engineer-bc-tecnologia-santiago-f47a,Lenguaje,JavaScript
 qa-automation-engineer-bc-tecnologia-santiago-f47a,Lenguaje,Python
 qa-automation-engineer-bc-tecnologia-santiago-f47a,Lenguaje,TypeScript
@@ -1649,7 +1544,6 @@ administrador-a-de-infraestructura-linux-bc-tecnologia-santiago,Cloud,AWS
 administrador-a-de-infraestructura-linux-bc-tecnologia-santiago,Cloud,Microsoft Azure
 administrador-a-de-infraestructura-linux-bc-tecnologia-santiago,Lenguaje,Bash/Shell
 administrador-a-de-infraestructura-linux-bc-tecnologia-santiago,Lenguaje,Python
-analista-middleware-semi-senior-oracle-bc-tecnologia-santiago,Base de datos,Elasticsearch
 analista-middleware-semi-senior-oracle-bc-tecnologia-santiago,Cloud,AWS
 analista-middleware-semi-senior-oracle-bc-tecnologia-santiago,Cloud,Google Cloud
 ingeniero-devops-semi-senior-bc-tecnologia-santiago-36a8,Cloud,AWS
@@ -1667,7 +1561,6 @@ devops-engineer-dynamic-devs-santiago-0ac3,Cloud,AWS
 devops-engineer-dynamic-devs-santiago-0ac3,Cloud,Google Cloud
 devops-engineer-dynamic-devs-santiago-0ac3,Cloud,Microsoft Azure
 devops-engineer-dynamic-devs-santiago-0ac3,Lenguaje,Java
-devops-engineer-dynamic-devs-santiago-0ac3,Lenguaje,JavaScript
 devops-engineer-dynamic-devs-santiago-0ac3,Lenguaje,PHP
 devops-engineer-dynamic-devs-santiago-0ac3,Lenguaje,Python
 ingeniero-a-de-desarrollo-ia-y-plataforma-penta-vida-santiago,Lenguaje,Python
@@ -1683,7 +1576,6 @@ ingeniero-cloud-aws-promarketing-remote-274d,Base de datos,Elasticsearch
 ingeniero-cloud-aws-promarketing-remote-274d,Cloud,AWS
 ingeniero-cloud-aws-promarketing-remote-274d,Lenguaje,Bash/Shell
 ingeniero-cloud-aws-promarketing-remote-274d,Lenguaje,Python
-senior-wordpress-maintenance-deployment-engineer-creativeworks-remote,Lenguaje,JavaScript
 senior-wordpress-maintenance-deployment-engineer-creativeworks-remote,Lenguaje,PHP
 ingeniero-a-devops-cloud-gcp-aws-bc-tecnologia-santiago,Cloud,AWS
 ingeniero-a-devops-cloud-gcp-aws-bc-tecnologia-santiago,Cloud,Google Cloud
@@ -1711,14 +1603,12 @@ devops-engineer-full-stack-developer-informat-s-a-santiago,Cloud,Microsoft Azure
 devops-engineer-full-stack-developer-informat-s-a-santiago,Lenguaje,JavaScript
 devops-engineer-full-stack-developer-informat-s-a-santiago,Lenguaje,Python
 devops-engineer-full-stack-developer-informat-s-a-santiago,Lenguaje,TypeScript
-qa-junior-funcional-y-automatizacion-bc-tecnologia-santiago,Cloud,Microsoft Azure
 qa-junior-funcional-y-automatizacion-bc-tecnologia-santiago,Lenguaje,SQL
 qa-engineer-automation-molten-cloud-remote,Base de datos,MongoDB
 qa-engineer-automation-molten-cloud-remote,Lenguaje,JavaScript
 analista-devsecops-junior-bc-tecnologia-santiago,Cloud,AWS
 analista-devsecops-junior-bc-tecnologia-santiago,Cloud,Google Cloud
 analista-devsecops-junior-bc-tecnologia-santiago,Cloud,Microsoft Azure
-analista-qa-junior-bc-tecnologia-santiago,Cloud,Microsoft Azure
 analista-qa-junior-bc-tecnologia-santiago,Lenguaje,SQL
 analista-qa-funcional-junior-ecommerce-y-medios-de-pago-bc-tecnologia-santiago,Lenguaje,SQL
 lider-tecnico-devops-weblogic-bc-tecnologia-remote,Cloud,AWS
@@ -1731,7 +1621,6 @@ dba-oracle-senior-latam-bc-tecnologia-remote,Lenguaje,SQL
 site-reliability-engineer-sre-bc-tecnologia-remote,Cloud,AWS
 qa-junior-bc-tecnologia-santiago,Base de datos,PostgreSQL
 qa-junior-bc-tecnologia-santiago,Lenguaje,Java
-qa-junior-bc-tecnologia-santiago,Lenguaje,JavaScript
 ingeniero-a-de-plataformas-aws-bc-tecnologia-santiago,Base de datos,Microsoft SQL Server
 ingeniero-a-de-plataformas-aws-bc-tecnologia-santiago,Base de datos,MySQL
 ingeniero-a-de-plataformas-aws-bc-tecnologia-santiago,Cloud,AWS
@@ -1746,7 +1635,6 @@ administrador-senior-infraestructura-osb-odi-latam-bc-tecnologia-remote,Cloud,AW
 administrador-senior-infraestructura-osb-odi-latam-bc-tecnologia-remote,Cloud,Microsoft Azure
 administrador-senior-infraestructura-osb-odi-latam-bc-tecnologia-remote,Cloud,Oracle Cloud (OCI)
 qa-automatizador-web-latam-bc-tecnologia-remote,Lenguaje,Go
-qa-automatizador-web-latam-bc-tecnologia-remote,Lenguaje,JavaScript
 qa-automatizador-web-latam-bc-tecnologia-remote,Lenguaje,TypeScript
 qa-automation-engineer-latam-remoto-bc-tecnologia-remote,Lenguaje,JavaScript
 qa-automation-engineer-latam-remoto-bc-tecnologia-remote,Lenguaje,TypeScript
@@ -1767,7 +1655,6 @@ ingeniero-de-infraestructura-bc-tecnologia-santiago,Lenguaje,Python
 cloud-engineer-guinea-mobile-sac-cuy-movil-remote,Base de datos,BigQuery
 cloud-engineer-guinea-mobile-sac-cuy-movil-remote,Cloud,Google Cloud
 analista-qa-sonda-santiago,Base de datos,Microsoft SQL Server
-analista-qa-sonda-santiago,Cloud,Microsoft Azure
 analista-qa-sonda-santiago,Lenguaje,SQL
 android-software-engineer-improving-remote,Base de datos,SQLite
 android-software-engineer-improving-remote,Cloud,Firebase
@@ -1785,7 +1672,6 @@ desarrollad-r-mobile-ctv-mediastream-bogota-9881,Lenguaje,JavaScript
 desarrollad-r-mobile-ctv-mediastream-bogota-9881,Lenguaje,Kotlin
 desarrollad-r-mobile-ctv-mediastream-bogota-9881,Lenguaje,Swift
 desarrollador-senior-c-net-maui-ios-improving-remote,Base de datos,Oracle
-desarrollador-senior-c-net-maui-ios-improving-remote,Cloud,Microsoft Azure
 desarrollador-senior-c-net-maui-ios-improving-remote,Lenguaje,C#
 desarrollador-senior-c-net-maui-ios-improving-remote,Lenguaje,Java
 desarrollador-senior-c-net-maui-ios-improving-remote,Lenguaje,SQL
@@ -1801,7 +1687,6 @@ semi-senior-ios-developer-mb-solutions-remote,Cloud,AWS
 semi-senior-ios-developer-mb-solutions-remote,Lenguaje,Swift
 front-end-angular-flutter-grupo-mariposa-remote-5d9d,Lenguaje,HTML/CSS
 front-end-angular-flutter-grupo-mariposa-remote-5d9d,Lenguaje,TypeScript
-react-native-mobile-engineer-senior-prontopaga-santiago,Lenguaje,JavaScript
 react-native-mobile-engineer-senior-prontopaga-santiago,Lenguaje,Kotlin
 react-native-mobile-engineer-senior-prontopaga-santiago,Lenguaje,Swift
 react-native-mobile-engineer-senior-prontopaga-santiago,Lenguaje,TypeScript
@@ -1809,7 +1694,6 @@ desarrollador-a-android-senior-bc-tecnologia-santiago,Lenguaje,Kotlin
 desarrollador-a-ios-senior-bc-tecnologia-santiago,Lenguaje,Swift
 desarrollador-a-full-stack-node-js-flutter-bc-tecnologia-remote,Base de datos,MongoDB
 desarrollador-a-full-stack-node-js-flutter-bc-tecnologia-remote,Base de datos,MySQL
-desarrollador-a-full-stack-node-js-flutter-bc-tecnologia-remote,Lenguaje,JavaScript
 ingeniero-a-de-software-react-native-bc-tecnologia-santiago,Lenguaje,JavaScript
 ingeniero-a-de-software-react-native-bc-tecnologia-santiago,Lenguaje,TypeScript
 desarrollador-full-stack-mobile-web-bc-tecnologia-santiago,Base de datos,PostgreSQL
@@ -1835,25 +1719,15 @@ product-builder-comunidadfeliz-remote-3495,Lenguaje,SQL
 product-builder-comunidadfeliz-remote-3495,Lenguaje,TypeScript
 product-owner-cumplo-santiago-e448,Lenguaje,SQL
 practicante-agentes-ia-agendapro-santiago,Lenguaje,SQL
-outsystems-consultant-pm-i2b-technologies-remote-e875,Cloud,Microsoft Azure
-product-owner-productos-bancarios-e-hipotecarios-bc-tecnologia-santiago,Cloud,Microsoft Azure
-jefe-de-proyectos-semi-senior-tcit-santiago,Cloud,Microsoft Azure
-product-owner-operaciones-ti-geovictoria-santiago,Cloud,Microsoft Azure
 it-product-manager-tcit-santiago-7796,Cloud,AWS
 it-product-manager-tech-lead-digital-tcit-santiago,Cloud,AWS
 product-manager-fintech-factoring-financia-capital-santiago,Lenguaje,SQL
-scrum-master-senior-bc-tecnologia-santiago-b2d7,Cloud,Microsoft Azure
 product-manager-pagos-vita-solutions-spa-santiago,Lenguaje,SQL
 business-analyst-bice-vida-santiago,Lenguaje,SQL
 product-ops-and-customer-communications-stealth-seller-remote,Lenguaje,SQL
-jefe-a-de-producto-y-proyectos-vain-santiago,Cloud,Microsoft Azure
 business-analyst-senior-chile-uruguay-bc-tecnologia-santiago-montevideo,Lenguaje,SQL
-pmo-vmo-senior-bc-tecnologia-santiago,Cloud,Microsoft Azure
-product-owner-po-tech-management-banca-transaccional-bc-tecnologia-santiago,Cloud,Microsoft Azure
-pmo-senior-bc-tecnologia-santiago,Cloud,Microsoft Azure
 consultor-de-operaciones-sonda-santiago,Cloud,AWS
 project-manager-operations-signant-health-remote,Cloud,Google Cloud
-product-owner-po-agile-bc-tecnologia-santiago,Cloud,Microsoft Azure
 business-analyst-junior-bc-tecnologia-santiago,Lenguaje,SQL
 business-analyst-proyecto-bc-tecnologia-santiago,Lenguaje,SQL
 product-designer-bice-vida-santiago-137c,Lenguaje,HTML/CSS
@@ -1874,5 +1748,3 @@ ingeniero-de-infraestructura-y-soporte-ti-apex-group-chile-santiago,Cloud,Micros
 analista-de-soporte-l2-l3-informat-s-a-santiago-7512,Base de datos,PostgreSQL
 analista-de-soporte-l2-l3-informat-s-a-santiago-7512,Cloud,DigitalOcean
 analista-de-soporte-l2-l3-informat-s-a-santiago-7512,Lenguaje,Python
-analista-de-soporte-ti-n1-bc-tecnologia-santiago,Cloud,Microsoft Azure
-analista-de-soporte-ti-n1-mesa-de-ayuda-y-automatizacion-bc-tecnologia-santiago,Cloud,Microsoft Azure

@@ -1,0 +1,10 @@
+seniority_nivel,alcance_geo,n,media_mensual_usd,cumple_n30
+Junior,Chile Local,13,1526.92,0
+Junior,Remoto sin país declarado,4,1637.5,0
+Lead,Chile Local,3,5416.67,0
+Lead,Remoto sin país declarado,4,8250.0,0
+Semi-Senior,Chile Local,65,2249.23,1
+Semi-Senior,Remoto sin país declarado,32,2322.66,1
+Senior,Chile Local,55,2873.64,1
+Senior,Remoto sin país declarado,58,3834.91,1
+Trainee,Chile Local,1,650.0,0

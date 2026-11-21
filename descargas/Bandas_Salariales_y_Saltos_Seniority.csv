@@ -1,16 +1,14 @@
-﻿ambito,nivel,fuente,n,p25,mediana,p75,iqr,salto,clp,tlc
-🇨🇱 Chile & Remoto (Get on Board),Junior,Get on Board 2026,17,1200,1550,1700,500,Base Inicial,1503190,Exploratorio (N < 30)
-🇨🇱 Chile & Remoto (Get on Board),Semi-Senior,Get on Board 2026,97,1850,2250,2600,750,"+45,2%",2182050,✓ Válido (N ≥ 30)
-🇨🇱 Chile & Remoto (Get on Board),Senior,Get on Board 2026,113,2300,3200,4000,1700,"+42,2%",3103360,✓ Válido (N ≥ 30)
-🇨🇱 Chile & Remoto (Get on Board),Lead,Get on Board 2026,7,4700,6250,7850,3150,"+95,3%",6061250,Exploratorio (N < 15)
-🇨🇱 Chile & Remoto (Get on Board),Trainee,Get on Board 2026,1,650,650,650,0,Punto de Entrada,630370,Caso Aislado (N=1)
-🇨🇱 Chile Local,Chile Local,Get on Board 2026,137,1950,2250,2850,900,Ref. Local,2182050,✓ Válido (N ≥ 30)
-🌎 Remoto Global/LatAm,Remoto Global/LatAm,Get on Board 2026,98,2000,3275,4475,2475,"+45,6% vs Local",3176095,✓ Válido (N ≥ 30)
-🌎 América Latina (19 Países),0 a 1 años exp.,Stack Overflow LatAm 2024,89,373,560,1100,727,Base Inicial,542603,✓ Válido (N ≥ 30)
-🌎 América Latina (19 Países),2 a 4 años exp.,Stack Overflow LatAm 2024,311,800,1305,2166,1366,"+133,0%",1265993,✓ Válido (N ≥ 30)
-🌎 América Latina (19 Países),5 a 9 años exp.,Stack Overflow LatAm 2024,369,1399,2350,4167,2768,"+80,1%",2278788,✓ Válido (N ≥ 30)
-🌎 América Latina (19 Países),10+ años exp.,Stack Overflow LatAm 2024,563,2001,3730,6000,3999,"+58,7%",3617112,✓ Válido (N ≥ 30)
-🌐 Global Benchmark,Junior (Entry),Data Science Salaries,565,4137,6250,9167,5030,Base Global,6061250,✓ Válido (N ≥ 30)
-🌐 Global Benchmark,Semi-Senior (Mid),Data Science Salaries,1675,6127,8875,12500,6373,"+42,0%",8606975,✓ Válido (N ≥ 30)
-🌐 Global Benchmark,Senior,Data Science Salaries,4105,9833,12800,16600,6767,"+44,2%",12413440,✓ Válido (N ≥ 30)
-🌐 Global Benchmark,Executive (Director),Data Science Salaries,254,11333,15380,19167,7834,"+20,2%",14915524,✓ Válido (N ≥ 30)
+ambito,alcance,nivel,fuente,n,p25,mediana,p75,iqr,salto,clp,tlc,ic95_mediana_inf_usd,ic95_mediana_sup_usd
+🇨🇱 Chile Local (Get on Board),Chile Local,Trainee,Get on Board 2026,1,650,650,650,0,Base Inicial,630370,Exploratorio (N < 30),,
+🇨🇱 Chile Local (Get on Board),Chile Local,Junior,Get on Board 2026,13,1350,1600,1700,350,"+146,2%",1551680,Exploratorio (N < 30),1350.0,1700.0
+🇨🇱 Chile Local (Get on Board),Chile Local,Semi-Senior,Get on Board 2026,65,2000,2250,2500,500,"+40,6%",2182050,✓ Válido (N ≥ 30),2150.0,2350.0
+🇨🇱 Chile Local (Get on Board),Chile Local,Senior,Get on Board 2026,55,2150,2750,3675,1525,"+22,2%",2666950,✓ Válido (N ≥ 30),2350.0,3200.0
+🇨🇱 Chile Local (Get on Board),Chile Local,Lead,Get on Board 2026,3,4450,5400,6375,1925,"+96,4%",5236920,Exploratorio (N < 30),,
+🌎 Remoto sin país declarado (Get on Board),Remoto sin país declarado,Junior,Get on Board 2026,4,1112,1250,1775,662,Base Inicial,1212250,Exploratorio (N < 30),,
+🌎 Remoto sin país declarado (Get on Board),Remoto sin país declarado,Semi-Senior,Get on Board 2026,32,1475,2000,3038,1562,"+60,0%",1939600,✓ Válido (N ≥ 30),1700.0,2900.0
+🌎 Remoto sin país declarado (Get on Board),Remoto sin país declarado,Senior,Get on Board 2026,58,2750,3750,5000,2250,"+87,5%",3636750,✓ Válido (N ≥ 30),3450.0,4100.0
+🌎 Remoto sin país declarado (Get on Board),Remoto sin país declarado,Lead,Get on Board 2026,4,5688,7300,9862,4175,"+94,7%",7079540,Exploratorio (N < 30),,
+🌎 América Latina (19 Países),América Latina (19 Países),0 a 1 años exp.,Stack Overflow LatAm 2024,89,373,560,1100,727,Base Inicial,542603,✓ Válido (N ≥ 30),500.0,673.42
+🌎 América Latina (19 Países),América Latina (19 Países),2 a 4 años exp.,Stack Overflow LatAm 2024,311,800,1305,2166,1367,"+133,0%",1265996,✓ Válido (N ≥ 30),1168.0,1408.83
+🌎 América Latina (19 Países),América Latina (19 Países),5 a 9 años exp.,Stack Overflow LatAm 2024,369,1399,2350,4167,2768,"+80,1%",2278788,✓ Válido (N ≥ 30),2148.08,2641.92
+🌎 América Latina (19 Países),América Latina (19 Países),10+ años exp.,Stack Overflow LatAm 2024,563,2001,3730,6000,3999,"+58,7%",3617112,✓ Válido (N ≥ 30),3496.67,4005.83

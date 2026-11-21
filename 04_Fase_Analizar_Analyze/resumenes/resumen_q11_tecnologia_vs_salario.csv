@@ -1,10 +1,10 @@
 tipo_tecnologia,tecnologia,n,media_usd,mediana_usd,p25_usd,p75_usd,min_usd,max_usd,amplitud_p25_p75_usd,mediana_clp_ref,media_clp_ref,cumple_n30,gob_n_ofertas,pct_demanda_gob_total,fuente,so_n_latam,pct_adopcion_latam
 Base de datos,PostgreSQL,48,3025.0,2375.0,1937.5,3962.5,650.0,8350.0,2025.0,2303275,2933645,True,97.0,14.29,Get on Board 2026,,
+Cloud,Microsoft Azure,36,3205.56,2925.0,2312.5,3962.5,1550.0,5000.0,1650.0,2836665,3108752,True,116.0,17.08,Get on Board 2026,,
 Cloud,AWS,70,3195.36,2850.0,2250.0,3750.0,1550.0,8350.0,1500.0,2763930,3098860,True,204.0,30.04,Get on Board 2026,,
 Cloud,Google Cloud,38,3084.21,2825.0,2312.5,3912.5,1000.0,5000.0,1600.0,2739685,2991067,True,117.0,17.23,Get on Board 2026,,
-Cloud,Microsoft Azure,40,3065.0,2775.0,2187.5,3912.5,1300.0,5000.0,1725.0,2691195,2972437,True,141.0,20.77,Get on Board 2026,,
 Lenguaje,TypeScript,56,3050.89,2775.0,2075.0,3750.0,1200.0,6250.0,1675.0,2691195,2958753,True,117.0,17.23,Get on Board 2026,,
-Lenguaje,JavaScript,76,3033.55,2700.0,2250.0,3750.0,1300.0,6250.0,1500.0,2618460,2941937,True,186.0,27.39,Get on Board 2026,,
+Lenguaje,JavaScript,43,3119.77,2750.0,2225.0,4000.0,1300.0,6250.0,1775.0,2666950,3025553,True,101.0,14.87,Get on Board 2026,,
 Lenguaje,Python,73,2913.7,2600.0,2000.0,4000.0,650.0,6500.0,2000.0,2521480,2825706,True,193.0,28.42,Get on Board 2026,,
 Lenguaje,SQL,69,2515.94,2250.0,1750.0,2900.0,650.0,6250.0,1150.0,2182050,2439959,True,223.0,32.84,Get on Board 2026,,
 Base de datos,PostgreSQL,771,3515.77,2256.5,1160.92,4662.17,96.33,41666.67,3501.25,2188354,3409594,True,,,Stack Overflow LatAm 2024,1532.0,49.84

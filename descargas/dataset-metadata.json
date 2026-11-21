@@ -1,0 +1,44 @@
+{
+  "title": "Mercado Tech Chile y LatAm 2024-2026 (Datos Limpios)",
+  "id": "jmryanez/mercado-tech-chile-latam-limpios",
+  "licenses": [
+    {
+      "name": "ODbL-1.0"
+    }
+  ],
+  "description": "Conjunto de datos limpios, validados y normalizados para el estudio de caso de análisis de mercado tech y compensaciones salariales en Chile y América Latina. Incluye 4 poblaciones independientes con control muestral N >= 30.",
+  "resources": [
+    {
+      "path": "GetOnBoard_Vacantes_2026_20261111_v01_clean.csv",
+      "description": "Vacantes tech en Get on Board (Chile y Remoto) con nivel de seniority, modalidad, categoría y salario mensual normalizado."
+    },
+    {
+      "path": "GetOnBoard_Habilidades_2026_20261111_v01_clean.csv",
+      "description": "Relación 1:N de tecnologías y habilidades requeridas por cada vacante en Get on Board."
+    },
+    {
+      "path": "StackOverflow_LatAm_2024_20261111_v01_clean.csv",
+      "description": "Encuestados en 19 países de América Latina de Stack Overflow Developer Survey 2024 con compensación mensual y banderas de respuesta de bloque."
+    },
+    {
+      "path": "StackOverflow_Tecnologias_2024_20261111_v01_clean.csv",
+      "description": "Relación 1:N de tecnologías adoptadas y trabajadas profesionalmente por los desarrolladores de LatAm."
+    },
+    {
+      "path": "DataScienceSalaries_2020_2024_20261111_v01_clean.csv",
+      "description": "Serie salarial global de referencia en analítica y ciencia de datos 2020-2024."
+    },
+    {
+      "path": "INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv",
+      "description": "Línea base oficial de ingresos de los ocupados en Chile según Encuesta Suplementaria de Ingresos (ESI) INE 2025."
+    },
+    {
+      "path": "Matriz_TLC_19_Paises_LatAm.csv",
+      "description": "Matriz de suficiencia muestral según Teorema del Límite Central (N >= 30) para 19 países de América Latina."
+    },
+    {
+      "path": "resumen_ic_diferencias.csv",
+      "description": "Intervalos de confianza bootstrap al 95% para diferencias de medianas salariales entre segmentos clave."
+    }
+  ]
+}

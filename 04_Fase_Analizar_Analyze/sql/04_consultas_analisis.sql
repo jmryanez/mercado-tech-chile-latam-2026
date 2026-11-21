@@ -1,6 +1,6 @@
 -- =============================================================================
 -- FASE 4: ANALIZAR (ANALYZE) — CONSULTAS SQL RELACIONALES (SQLite / Curso 5)
--- Estudio de Caso 3 (Pista B): Mercado Laboral y Salarios Tech (Chile y LatAm)
+-- Estudio de Caso: Mercado Laboral y Salarios Tech (Chile y LatAm)
 -- Técnicas aplicadas del Curso 5:
 --   CREATE TEMP TABLE, LEFT JOIN, INNER JOIN, COUNT(DISTINCT ...), CASE WHEN,
 --   COALESCE, HAVING (control muestral N >= 30 y >= 20% presencia), GROUP BY,
@@ -39,6 +39,7 @@ FROM so_encuestados;
 -- Verifica que el denominador completo (679 GOB y 3.074 SO LatAm) no se pierda
 -- ni se multiplique al unir las tablas largas de tecnologías.
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q01_control_integridad_left_join]
 SELECT
     'Get on Board 2026 (Chile/Remoto)' AS poblacion,
@@ -80,7 +81,7 @@ SELECT
         2
     ) AS pct_demanda_gob_total,
     COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Chile Local' THEN v.job_id END) AS n_gob_chile_local,
-    COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Remoto Global/LatAm' THEN v.job_id END) AS n_gob_remoto
+    COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Remoto sin país declarado' THEN v.job_id END) AS n_gob_remoto
 FROM vacantes AS v
 LEFT JOIN vacante_habilidades AS h
     ON v.job_id = h.job_id
@@ -111,6 +112,7 @@ LEFT JOIN so_tecnologias AS t
     ON s.ResponseId = t.ResponseId
 GROUP BY 1, 2;
 
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q02_tecnologias_cruce_demanda_vs_adopcion]
 SELECT
     g.tipo_tecnologia,
@@ -139,6 +141,7 @@ ORDER BY g.tipo_tecnologia, g.n_ofertas DESC;
 -- -----------------------------------------------------------------------------
 -- Q03 (Pregunta 1 — Filtro Objetivo Métrico #1 con HAVING >= 20% en Demanda)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q03_gob_tecnologias_meta_20pct_having]
 SELECT
     h.tipo_tecnologia,
@@ -156,6 +159,7 @@ ORDER BY pct_demanda_gob DESC;
 -- Q04 (Pregunta 2 — Compensación y Regla N >= 30 por Nivel de Experiencia GOB)
 -- Usa CASE WHEN para clasificar grupos válidos vs exploratorios/insuficientes.
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q04_gob_salarios_por_seniority]
 SELECT
     seniority_nivel,
@@ -178,6 +182,7 @@ ORDER BY n_salarios_validos DESC;
 -- -----------------------------------------------------------------------------
 -- Q05 (Pregunta 2 — Experiencia Profesional en Stack Overflow LatAm con HAVING N >= 30)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q05_so_latam_salarios_por_experiencia]
 SELECT
     tramo_experiencia,
@@ -202,6 +207,8 @@ ORDER BY
 
 -- -----------------------------------------------------------------------------
 -- Q06 (Pregunta 3 — Modalidad Laboral en Get on Board + Alcance Geográfico + INE)
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
+-- Modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.
 -- -----------------------------------------------------------------------------
 -- [QUERY: q06_gob_salarios_por_modalidad_y_alcance]
 SELECT
@@ -209,13 +216,8 @@ SELECT
     COUNT(DISTINCT v.job_id) AS n_salarios_validos,
     ROUND(AVG(v.salario_mensual_usd), 2) AS media_mensual_usd,
     ROUND(AVG(v.salario_mensual_clp_ref), 0) AS media_mensual_clp_ref,
-    ROUND(
-        AVG(v.salario_mensual_clp_ref) /
-        (SELECT monto_clp_mensual FROM ine_esi_2025 WHERE indicador LIKE '%Mediano%'),
-        2
-    ) AS ratio_media_vs_mediana_ine_2025,
     COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Chile Local' THEN v.job_id END) AS n_chile_local,
-    COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Remoto Global/LatAm' THEN v.job_id END) AS n_remoto_global
+    COUNT(DISTINCT CASE WHEN v.alcance_geo = 'Remoto sin país declarado' THEN v.job_id END) AS n_remoto_sin_pais_declarado
 FROM vacantes AS v
 WHERE (v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True')
 GROUP BY v.modalidad_grupo
@@ -224,18 +226,14 @@ ORDER BY media_mensual_usd DESC;
 
 -- -----------------------------------------------------------------------------
 -- Q07 (Pregunta 3 — Modalidad Laboral en Stack Overflow LatAm vs Línea Base INE)
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- -----------------------------------------------------------------------------
 -- [QUERY: q07_so_latam_salarios_por_modalidad]
 SELECT
     modalidad_grupo,
     COUNT(DISTINCT ResponseId) AS n_salarios_validos,
     ROUND(AVG(salario_mensual_usd), 2) AS media_mensual_usd,
-    ROUND(AVG(salario_mensual_clp_ref), 0) AS media_mensual_clp_ref,
-    ROUND(
-        AVG(salario_mensual_clp_ref) /
-        (SELECT monto_clp_mensual FROM ine_esi_2025 WHERE indicador LIKE '%Mediano%'),
-        2
-    ) AS ratio_media_vs_mediana_ine_2025
+    ROUND(AVG(salario_mensual_clp_ref), 0) AS media_mensual_clp_ref
 FROM so_encuestados
 WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
   AND modalidad_grupo <> 'Sin dato'
@@ -246,6 +244,7 @@ ORDER BY media_mensual_usd DESC;
 -- -----------------------------------------------------------------------------
 -- Q08 (Pregunta 4 — Tamaño de Empresa en Stack Overflow LatAm con HAVING N >= 30)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q08_so_latam_salarios_por_tamano_empresa]
 SELECT
     org_size_grupo,
@@ -270,6 +269,7 @@ ORDER BY
 -- -----------------------------------------------------------------------------
 -- Q09 (Pregunta 4 — Serie Histórica Data Science Salaries 2020–2024 por Año y Tamaño)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q09_dss_evolucion_2020_2024_y_tamano]
 SELECT
     work_year,
@@ -279,6 +279,7 @@ SELECT
     MIN(salario_mensual_usd) AS min_mensual_usd,
     MAX(salario_mensual_usd) AS max_mensual_usd
 FROM dss_salarios
+WHERE employee_residence = 'United States'
 GROUP BY work_year, tamano_es
 HAVING COUNT(*) >= 10
 ORDER BY work_year ASC,
@@ -291,6 +292,7 @@ ORDER BY work_year ASC,
 -- -----------------------------------------------------------------------------
 -- Q10 (Resumen Agregado País Chile vs LatAm en Stack Overflow 2024)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q10_so_chile_vs_resto_latam]
 SELECT
     subregion,
@@ -308,6 +310,7 @@ ORDER BY media_mensual_usd DESC;
 -- Nota: No existe duplicación de filas dentro de cada (tipo_tecnologia, tecnologia) porque
 -- vacante_habilidades está deduplicada por (job_id, tipo_tecnologia, tecnologia).
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q11a_gob_tecnologia_vs_salario]
 SELECT
     h.tipo_tecnologia,
@@ -327,6 +330,7 @@ ORDER BY h.tipo_tecnologia, media_mensual_usd DESC;
 -- -----------------------------------------------------------------------------
 -- Q11B (Matriz Adopción vs Compensación por Tecnología en Stack Overflow LatAm, N >= 30)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q11b_so_latam_tecnologia_vs_salario]
 SELECT
     t.tipo_tecnologia,
@@ -345,7 +349,11 @@ ORDER BY t.tipo_tecnologia, media_mensual_usd DESC;
 
 -- -----------------------------------------------------------------------------
 -- Q12 (Correlación != Causalidad • Curso 6: Composición Seniority y Alcance por Modalidad GOB)
--- Explica la brecha de Remoto Local ($3.750 USD) frente a Presencial ($2.250 USD).
+-- Examina la composición por seniority en cada modalidad de Get on Board, mostrando que
+-- las ofertas remotas concentran perfiles Senior y Lead. Modalidad y alcance son la misma partición
+-- en los datos (Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total).
+-- La composición por seniority explica parte de la diferencia salarial, no toda (ver análisis Q14 en Python).
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas y cuartiles se calculan en Python.
 -- -----------------------------------------------------------------------------
 -- [QUERY: q12_gob_modalidad_composicion_seniority]
 SELECT
@@ -356,7 +364,7 @@ SELECT
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Semi-Senior' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_semi_senior,
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel IN ('Junior', 'Trainee') THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_junior_trainee,
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Lead' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_lead,
-    ROUND(100.0 * COUNT(DISTINCT CASE WHEN alcance_geo = 'Remoto Global/LatAm' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_alcance_remoto_global
+    ROUND(100.0 * COUNT(DISTINCT CASE WHEN alcance_geo = 'Remoto sin país declarado' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_alcance_remoto_global
 FROM vacantes
 WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
 GROUP BY modalidad_grupo
@@ -366,6 +374,7 @@ ORDER BY pct_senior DESC;
 -- -----------------------------------------------------------------------------
 -- Q13 (Categorías de Puesto Get on Board con Control N >= 30 • CASE WHEN)
 -- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
 -- [QUERY: q13_gob_salarios_por_categoria]
 SELECT
     categoria,
@@ -382,3 +391,55 @@ SELECT
 FROM vacantes
 GROUP BY categoria
 ORDER BY n_salarios_validos DESC;
+
+
+-- -----------------------------------------------------------------------------
+-- Q14 (Análisis Estratificado: Salarios por Seniority x Alcance y Seniority x Modalidad)
+-- Demuestra el sesgo de composición y controla por nivel de experiencia.
+-- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
+-- [QUERY: q14_gob_salarios_estratificados_seniority_alcance]
+SELECT
+    seniority_nivel,
+    alcance_geo,
+    COUNT(DISTINCT job_id) AS n,
+    ROUND(AVG(salario_mensual_usd), 2) AS media_mensual_usd,
+    CASE WHEN COUNT(DISTINCT job_id) >= 30 THEN 1 ELSE 0 END AS cumple_n30
+FROM vacantes
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
+GROUP BY seniority_nivel, alcance_geo
+ORDER BY seniority_nivel, alcance_geo;
+
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
+-- [QUERY: q14b_gob_salarios_estratificados_seniority_modalidad]
+SELECT
+    seniority_nivel,
+    modalidad_grupo,
+    COUNT(DISTINCT job_id) AS n,
+    ROUND(AVG(salario_mensual_usd), 2) AS media_mensual_usd,
+    CASE WHEN COUNT(DISTINCT job_id) >= 30 THEN 1 ELSE 0 END AS cumple_n30
+FROM vacantes
+WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
+GROUP BY seniority_nivel, modalidad_grupo
+ORDER BY seniority_nivel, modalidad_grupo;
+
+-- -----------------------------------------------------------------------------
+-- Q15 (Tecnologías GOB con N >= 30: Composición Senior/Lead y Salarios por Nivel)
+-- -----------------------------------------------------------------------------
+-- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas, cuartiles p25-p75 e intervalos bootstrap se calculan en Python (Fase 4).
+-- [QUERY: q15_gob_tecnologia_estratificada_seniority]
+SELECT
+    h.tecnologia,
+    COUNT(DISTINCT v.job_id) AS n_total_salarios,
+    ROUND(AVG(v.salario_mensual_usd), 2) AS media_total_usd,
+    ROUND(100.0 * COUNT(DISTINCT CASE WHEN v.seniority_nivel IN ('Senior', 'Lead') THEN v.job_id END) / COUNT(DISTINCT v.job_id), 1) AS pct_senior_lead,
+    COUNT(DISTINCT CASE WHEN v.seniority_nivel = 'Senior' THEN v.job_id END) AS n_senior,
+    ROUND(AVG(CASE WHEN v.seniority_nivel = 'Senior' THEN v.salario_mensual_usd END), 2) AS media_senior_usd,
+    COUNT(DISTINCT CASE WHEN v.seniority_nivel = 'Semi-Senior' THEN v.job_id END) AS n_semi_senior,
+    ROUND(AVG(CASE WHEN v.seniority_nivel = 'Semi-Senior' THEN v.salario_mensual_usd END), 2) AS media_semi_senior_usd
+FROM vacante_habilidades h
+INNER JOIN vacantes v ON h.job_id = v.job_id
+WHERE (v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True')
+GROUP BY h.tecnologia
+HAVING COUNT(DISTINCT v.job_id) >= 30
+ORDER BY pct_senior_lead DESC;

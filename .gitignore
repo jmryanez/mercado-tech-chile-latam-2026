@@ -5,3 +5,7 @@ __pycache__/
 ~$*
 # Privacidad (Curso 3 / Curso 8): excluir CV personal con datos de contacto antes de publicar repositorio
 cv/
+INFORME_*.md
+
+# Herramientas internas de auditoría (no se publican)
+auditoria/

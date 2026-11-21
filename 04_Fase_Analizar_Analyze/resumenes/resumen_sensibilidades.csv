@@ -1,0 +1,38 @@
+tipo_tecnologia,tecnologia,gob_n_ofertas,pct_demanda_gob_total,gob_n_sin_empresa_top,pct_demanda_sin_empresa_top,so_pct_adopcion_latam_muestra_total,so_pct_adopcion_latam_responde_bloque,so_pct_adopcion_chile_muestra_total,so_pct_adopcion_chile_responde_bloque
+Lenguaje,SQL,223,32.84,151,33.11,57.48,59.0,53.38,54.2
+Lenguaje,Python,193,28.42,145,31.8,46.81,48.05,57.14,58.02
+Lenguaje,TypeScript,117,17.23,75,16.45,40.7,41.77,40.6,41.22
+Lenguaje,JavaScript,101,14.87,66,14.47,68.67,70.48,65.41,66.41
+Lenguaje,Java,78,11.49,52,11.4,29.67,30.45,23.31,23.66
+Lenguaje,HTML/CSS,52,7.66,34,7.46,55.2,56.66,48.12,48.85
+Lenguaje,C#,37,5.45,28,6.14,25.5,26.18,24.06,24.43
+Lenguaje,Go,19,2.8,15,3.29,13.37,13.72,13.53,13.74
+Lenguaje,PHP,17,2.5,14,3.07,22.25,22.84,15.79,16.03
+Lenguaje,Kotlin,15,2.21,10,2.19,9.24,9.48,6.77,6.87
+Lenguaje,Bash/Shell,14,2.06,8,1.75,27.78,28.51,31.58,32.06
+Lenguaje,Ruby,11,1.62,11,2.41,7.29,7.48,7.52,7.63
+Lenguaje,Swift,10,1.47,7,1.54,3.58,3.67,3.76,3.82
+Lenguaje,PowerShell,5,0.74,4,0.88,11.35,11.65,6.77,6.87
+Lenguaje,R,5,0.74,5,1.1,5.4,5.54,8.27,8.4
+Lenguaje,C++,3,0.44,3,0.66,15.35,15.76,14.29,14.5
+Cloud,AWS,204,30.04,137,30.04,45.41,59.68,46.62,62.63
+Cloud,Google Cloud,117,17.23,75,16.45,22.74,29.88,21.05,28.28
+Cloud,Microsoft Azure,116,17.08,79,17.32,22.28,29.29,15.04,20.2
+Cloud,Databricks,21,3.09,15,3.29,2.34,3.08,2.26,3.03
+Cloud,Firebase,6,0.88,5,1.1,15.0,19.71,10.53,14.14
+Cloud,Oracle Cloud (OCI),6,0.88,3,0.66,4.1,5.39,3.01,4.04
+Cloud,Cloudflare,4,0.59,4,0.88,12.52,16.46,17.29,23.23
+Cloud,Vercel,4,0.59,4,0.88,13.01,17.1,12.78,17.17
+Cloud,DigitalOcean,1,0.15,1,0.22,11.22,14.75,18.05,24.24
+Base de datos,PostgreSQL,97,14.29,66,14.47,49.84,56.55,50.38,57.26
+Base de datos,MongoDB,56,8.25,34,7.46,25.67,29.13,24.06,27.35
+Base de datos,Microsoft SQL Server,44,6.48,24,5.26,27.0,30.64,22.56,25.64
+Base de datos,Oracle,36,5.3,22,4.82,12.75,14.47,6.77,7.69
+Base de datos,MySQL,35,5.15,21,4.61,43.66,49.54,42.11,47.86
+Base de datos,Redis,35,5.15,20,4.39,20.56,23.33,16.54,18.8
+Base de datos,BigQuery,24,3.53,18,3.95,5.27,5.98,6.77,7.69
+Base de datos,DynamoDB,15,2.21,14,3.07,10.08,11.44,12.03,13.68
+Base de datos,Elasticsearch,11,1.62,8,1.75,10.41,11.81,8.27,9.4
+Base de datos,Snowflake,11,1.62,11,2.41,2.28,2.58,2.26,2.56
+Base de datos,SQLite,5,0.74,4,0.88,30.12,34.18,30.83,35.04
+Base de datos,MariaDB,1,0.15,1,0.22,17.96,20.38,16.54,18.8

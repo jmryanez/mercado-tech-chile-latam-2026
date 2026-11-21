@@ -1,0 +1,4058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado Laboral y Salarios en Tecnología (Chile y LatAm 2024–2026) | Portafolio Google Data Analytics</title>
+  <meta name="description" content="Estudio de caso profesional de análisis de datos desarrollado bajo el marco de los 9 cursos del Certificado Profesional de Google Data Analytics. Análisis reproducible con SQL y Python.">
+  <meta name="author" content="Manuel Yáñez Orellana">
+  <link rel="canonical" href="https://jmryanez.github.io/mercado-tech-chile-latam-2026/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mercado Laboral y Salarios en Tecnología (Chile y LatAm 2024–2026)">
+  <meta property="og:description" content="Estudio de caso profesional de análisis de datos desarrollado bajo el marco del Certificado Profesional de Google Data Analytics.">
+  <meta property="og:url" content="https://jmryanez.github.io/mercado-tech-chile-latam-2026/">
+  <meta property="og:image" content="https://jmryanez.github.io/mercado-tech-chile-latam-2026/og_image_1200x630.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jmryanez.github.io/mercado-tech-chile-latam-2026/og_image_1200x630.png">
+  <!-- FAVICON & APP ICONS -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=20261114">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png?v=20261114">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20261114">
+  <link rel="shortcut icon" href="favicon.ico?v=20261114">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0B0F19;
+      --bg-surface: #111827;
+      --bg-card: #1F2937;
+      --bg-card-hover: #263345;
+      --border-color: #374151;
+      --border-focus: #1A73E8;
+      --text-primary: #F9FAFB;
+      --text-secondary: #9CA3AF;
+      --text-muted: #94A3B8;
+      --google-blue: #1A73E8;
+      --google-blue-hover: #1557B0;
+      --navy-deep: #1B365D;
+      --accent-azure: #0072B2;
+      --accent-orange: #D55E00;
+      --accent-teal: #009E73;
+      --accent-gold: #F59E0B;
+      --text-main: #F9FAFB;
+      --bg-body: #111827;
+      --accent-green: #34D399;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+      font-size: 16px;
+    }
+
+    section[id], footer[id] {
+      scroll-margin-top: 85px;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* TOP HEADER & NAVBAR */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 15, 25, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .brand-content {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .brand-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      white-space: nowrap;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #1A73E8, #0072B2);
+      color: #FFF;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    /* CENTERED NAV MENU & FLOATING PILL CONTAINER */
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 auto;
+    }
+
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+      background: rgba(17, 24, 39, 0.75);
+      padding: 0.3rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      flex-wrap: nowrap;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #F8FAFC;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ACTIVE INDICATOR (SCROLLSPY MARKER) */
+    .nav-links a.active {
+      color: #FFFFFF;
+      background: var(--google-blue);
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(26, 115, 232, 0.45);
+    }
+
+    .nav-actions {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-cta {
+      background: var(--google-blue);
+      color: #FFF !important;
+      padding: 0.5rem 1.15rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--google-blue-hover) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      padding: 5rem 1.5rem 4rem;
+      background: radial-gradient(circle at 50% 20%, rgba(26, 115, 232, 0.12) 0%, transparent 70%);
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(26, 115, 232, 0.15);
+      border: 1px solid rgba(26, 115, 232, 0.35);
+      color: #60A5FA;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF 40%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-surface);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-meta-item strong {
+      color: var(--text-primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--google-blue);
+      color: #FFF;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--google-blue-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: var(--text-secondary);
+      transform: translateY(-2px);
+    }
+
+    /* STATS COUNTER STRIP */
+    .stats-strip {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.25rem 1.5rem;
+    }
+
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: #60A5FA;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #60A5FA;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .stat-badge {
+      margin-top: 0.5rem;
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(0, 158, 115, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(0, 158, 115, 0.3);
+    }
+
+    /* MAIN CONTENT SECTIONS */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-tag {
+      color: #60A5FA;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* PHASES TIMELINE GRID */
+    .phases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phase-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--google-blue);
+    }
+
+    .phase-card:hover {
+      transform: translateY(-4px);
+      border-color: #4B5563;
+      box-shadow: var(--shadow-md);
+    }
+
+    .phase-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .phase-1 { background: rgba(26, 115, 232, 0.15); color: #60A5FA; }
+    .phase-2 { background: rgba(0, 114, 178, 0.15); color: #38BDF8; }
+    .phase-3 { background: rgba(0, 158, 115, 0.15); color: #34D399; }
+    .phase-4 { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+    .phase-5 { background: rgba(213, 94, 0, 0.15); color: #FB923C; }
+    .phase-6 { background: rgba(139, 92, 246, 0.15); color: #A78BFA; }
+
+    .phase-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text-primary);
+    }
+
+    .phase-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+
+    .phase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: auto;
+    }
+
+    .phase-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+    }
+
+    /* PATTERNS & VISUALIZATIONS GALLERY */
+    .vis-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease;
+    }
+
+    .vis-card:hover {
+      border-color: #4B5563;
+    }
+
+    .vis-media {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-right: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+
+    .vis-media img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      transition: transform 0.3s ease;
+    }
+
+    .vis-media:hover img {
+      transform: scale(1.02);
+    }
+
+    .vis-content {
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .vis-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .vis-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .vis-desc {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .vis-takeaway {
+      background: var(--bg-card);
+      border-left: 3px solid var(--google-blue);
+      padding: 0.85rem 1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .vis-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .vis-metric-box {
+      background: rgba(255,255,255,0.03);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    
+    /* QA BOX IN VISUAL CARDS */
+    .vis-qa-box {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 0.95rem 1.15rem;
+      margin-bottom: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .vis-qa-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .vis-qa-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .vis-qa-label.q {
+      color: #93C5FD;
+    }
+
+    .vis-qa-label.a {
+      color: #34D399;
+    }
+
+    .vis-qa-text {
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .vis-qa-text.q-text {
+      font-style: italic;
+      color: #CBD5E1;
+    }
+
+    .vis-qa-text.a-text {
+      font-weight: 500;
+      color: #F8FAFC;
+    }
+
+    .vis-metric-box strong {
+      color: #60A5FA;
+      font-family: var(--font-mono);
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    /* ACTION RECOMMENDATIONS TABLE */
+    .table-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      margin-bottom: 3rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .td-highlight {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .badge-status {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(26, 115, 232, 0.15);
+      color: #60A5FA;
+      border: 1px solid rgba(26, 115, 232, 0.3);
+    }
+
+    /* PITCH & ABOUT BOX */
+    .pitch-box {
+      background: linear-gradient(135deg, rgba(27, 54, 93, 0.4), rgba(17, 24, 39, 0.9));
+      border: 1px solid rgba(26, 115, 232, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .pitch-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pitch-quote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .pitch-author {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* DOWNLOAD HUB */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .hub-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-4px);
+      border-color: #60A5FA;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hub-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #60A5FA;
+    }
+
+    .hub-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .hub-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .hub-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #60A5FA;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #070A10;
+      border-top: 1px solid var(--border-color);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.75rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #60A5FA;
+    }
+
+    /* MODAL FOR IMAGE ZOOM */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 92%;
+      max-height: 85vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #F1F1F1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .vis-media:focus-visible { outline: 3px solid #60A5FA; outline-offset: 4px; }
+    .modal-close { background: transparent; border: none; }
+    .modal-close:focus-visible { outline: 2px solid #60A5FA; outline-offset: 2px; }
+    .modal-close:hover {
+      color: var(--accent-orange);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1180px) {
+      .nav-links {
+        gap: 0.2rem;
+        padding: 0.25rem 0.35rem;
+      }
+      .nav-links a {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.65rem;
+      }
+      .brand-sub {
+        display: none;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .navbar {
+        padding: 0.5rem 1rem;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .nav-menu {
+        display: flex;
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding: 0.35rem 0;
+        scrollbar-width: none;
+      }
+      .nav-menu::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-links {
+        flex-wrap: nowrap;
+        gap: 0.25rem;
+      }
+      .nav-links a {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+      }
+      .vis-card {
+        grid-template-columns: 1fr;
+      }
+      .vis-media {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .brand-name {
+        font-size: 0.95rem;
+      }
+      .brand-sub {
+        font-size: 0.68rem;
+      }
+      .brand-badge {
+        font-size: 0.62rem;
+        padding: 0.1rem 0.4rem;
+      }
+    }
+  
+    /* EXPLORADOR INTERACTIVO DE DATOS & STAT CARDS */
+    .stat-clickable {
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+    }
+    .stat-clickable:hover {
+      transform: translateY(-4px);
+      border-color: #3B82F6;
+      box-shadow: 0 10px 25px rgba(26, 115, 232, 0.25);
+    }
+    .stat-clickable:focus {
+      outline: 2px solid var(--google-blue);
+      outline-offset: 2px;
+    }
+    .stat-cta-hint {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #93C5FD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .stat-clickable:hover .stat-cta-hint {
+      color: #60A5FA;
+      transform: translateY(2px);
+    }
+
+    /* SECTION EXPLORADOR */
+    .explorer-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    /* SEGMENTED TAB CONTROL (OPCIÓN 2) */
+    .explorer-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      margin-bottom: 2rem;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 1080px) {
+      .explorer-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .explorer-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+    .explorer-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.75rem 0.5rem;
+      border-radius: calc(var(--radius-md) - 2px);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .explorer-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+    .explorer-tab-btn.active {
+      background: var(--google-blue);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.4);
+    }
+    .explorer-tab-btn .tab-count {
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .explorer-tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+    .explorer-tab-pane {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    .explorer-tab-pane.active {
+      display: block;
+    }
+
+    /* TOOLBAR & CONTROLS */
+    .dt-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      background: var(--bg-card);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .dt-search-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      flex: 1 1 320px;
+    }
+    .dt-input-wrapper {
+      position: relative;
+      flex: 1 1 240px;
+    }
+    .dt-search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+    .dt-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      padding: 0.55rem 0.85rem 0.55rem 2.25rem;
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .dt-input:focus {
+      outline: none;
+      border-color: #60A5FA;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+    }
+    .dt-filters-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+    .dt-select {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+    .dt-select:focus {
+      outline: none;
+      border-color: #60A5FA;
+    }
+    .dt-btn-action {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .dt-btn-action:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: #60A5FA;
+    }
+
+    /* DATA TABLE STYLING */
+    .dt-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .dt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .dt-table th {
+      background: #1E293B;
+      color: #E2E8F0;
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid #334155;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      user-select: none;
+    }
+    .dt-table th.sortable {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .dt-table th.sortable:hover {
+      background: #334155;
+      color: #60A5FA;
+    }
+    .dt-table th .sort-icon {
+      margin-left: 0.35rem;
+      font-size: 0.72rem;
+      opacity: 0.5;
+    }
+    .dt-table th.sorted-asc .sort-icon,
+    .dt-table th.sorted-desc .sort-icon {
+      opacity: 1;
+      color: #60A5FA;
+    }
+    .dt-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #1E293B;
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+    .dt-table tbody tr {
+      transition: background 0.15s;
+    }
+    .dt-table tbody tr:hover {
+      background: rgba(30, 41, 59, 0.7);
+    }
+    .dt-table tbody tr:nth-child(even) {
+      background: rgba(17, 24, 39, 0.4);
+    }
+    .dt-table tbody tr:nth-child(even):hover {
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    /* BADGES INSIDE TABLE */
+    .dt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .badge-chile {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      color: #F87171;
+    }
+    .badge-remote {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34D399;
+    }
+    .badge-latam {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #60A5FA;
+    }
+    .badge-tlc-ok {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34D399;
+      font-weight: 700;
+    }
+    .badge-tlc-warn {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #FBBF24;
+      font-weight: 700;
+    }
+    .badge-seniority {
+      background: rgba(147, 51, 234, 0.15);
+      border: 1px solid rgba(147, 51, 234, 0.35);
+      color: #C084FC;
+    }
+    .badge-salario-ok {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .badge-salario-na {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+    /* FOOTER & PAGINATION */
+    .dt-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+    }
+    .dt-pagination {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .dt-page-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      min-width: 34px;
+      height: 34px;
+      padding: 0 0.5rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .dt-page-btn:hover:not(:disabled) {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: #60A5FA;
+    }
+    .dt-page-btn.active {
+      background: var(--google-blue);
+      border-color: #60A5FA;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .dt-page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* CALLOUT BOXES */
+    .callout-box {
+      background: rgba(27, 54, 93, 0.25);
+      border-left: 4px solid var(--google-blue);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #CBD5E1;
+    }
+    .callout-box strong {
+      color: #93C5FD;
+    }
+    .callout-box code {
+      background: rgba(0,0,0,0.3);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #38BDF8;
+    }
+
+
+    /* PHASE DEEP-DIVE & INTERACTIVE METHODOLOGY CARDS */
+    .phase-card-interactive {
+      cursor: pointer;
+      position: relative;
+    }
+    .phase-card-interactive:hover {
+      transform: translateY(-6px);
+      border-color: #3B82F6;
+      box-shadow: 0 12px 30px rgba(26, 115, 232, 0.22);
+    }
+    .phase-card-interactive.active-phase {
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6), 0 12px 30px rgba(26, 115, 232, 0.25);
+      background: linear-gradient(180deg, rgba(26, 115, 232, 0.08) 0%, var(--bg-surface) 100%);
+    }
+    .phase-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .phase-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.12);
+      font-family: var(--font-mono);
+      line-height: 1;
+    }
+    .phase-card-interactive.active-phase .phase-num {
+      color: rgba(96, 165, 250, 0.45);
+    }
+    .phase-doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.65rem;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      color: #93C5FD;
+      margin-bottom: 1rem;
+    }
+    .phase-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #60A5FA;
+      transition: color 0.2s ease;
+    }
+    .phase-card-interactive:hover .phase-card-footer {
+      color: #93C5FD;
+    }
+
+    /* DEEPDIVE CONTAINER */
+    .phase-deepdive-container {
+      margin-top: 2.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .deepdive-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.75rem;
+    }
+    @media (min-width: 960px) {
+      .deepdive-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+    .deepdive-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #60A5FA;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+    .deepdive-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .deepdive-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      line-height: 1.5;
+    }
+    .deepdive-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .deepdive-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .deepdive-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: #4B5563;
+    }
+    .deepdive-btn.active {
+      background: rgba(26, 115, 232, 0.2);
+      border-color: #3B82F6;
+      color: #93C5FD;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+    }
+    .phase-pane {
+      display: none;
+      animation: fadeInPane 0.3s ease;
+    }
+    .phase-pane.active {
+      display: block;
+    }
+    @keyframes fadeInPane {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pane-header {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pane-badge-course {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #93C5FD;
+      margin-bottom: 0.5rem;
+    }
+    .pane-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+    .pane-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .pillar-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #93C5FD;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 0.6rem;
+    }
+    .pillar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .pillar-list li {
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    .pillar-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0.2rem;
+      color: #3B82F6;
+      font-weight: bold;
+    }
+    .pillar-list strong {
+      color: var(--text-primary);
+    }
+    .phase-actions-strip {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .phase-actions-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .phase-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .phase-dl-primary {
+      background: #1A73E8;
+      color: #FFF;
+      border: 1px solid #1A73E8;
+    }
+    .phase-dl-primary:hover {
+      background: #1557B0;
+      color: #FFF;
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.35);
+    }
+    .phase-dl-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #CBD5E1;
+      border: 1px solid var(--border-color);
+    }
+    .phase-dl-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFF;
+      border-color: #64748B;
+    }
+    .phase-jump-link {
+      color: #38BDF8;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.2s ease;
+    }
+    .phase-jump-link:hover {
+      color: #93C5FD;
+      gap: 0.55rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="brand" aria-label="Ir al inicio de la página">
+        <img src="favicon-32x32.png?v=20261114" alt="Logo Manuel Yáñez" width="34" height="34" style="border-radius: 50%; box-shadow: 0 0 10px rgba(0,0,0,0.5); flex-shrink: 0;">
+        <div class="brand-content">
+          <div class="brand-top">
+            <span class="brand-name">Manuel Yáñez Orellana</span>
+            <span class="brand-badge" style="background: rgba(30, 58, 138, 0.4); color: #93C5FD; border: 1px solid rgba(59, 130, 246, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 999px;">Analista de Datos</span>
+          </div>
+          <span class="brand-sub">Estudio de Caso • Caso Práctico</span>
+        </div>
+      </a>
+
+      <!-- CENTERED NAV MENU (PILL) -->
+      <nav class="nav-menu" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#explorador-datos" class="nav-item">Explorador</a></li>
+          <li><a href="#metodologia" class="nav-item">Metodología</a></li>
+          <li><a href="#patrones" class="nav-item">Hallazgos</a></li>
+          <li><a href="#recomendaciones" class="nav-item">Recomendaciones</a></li>
+          <li><a href="#descargas" class="nav-item">Descargas</a></li>
+          <li><a href="#autor" class="nav-item">Autor</a></li>
+        </ul>
+      </nav>
+
+      <!-- RIGHT CTA BUTTON -->
+      <div class="nav-actions">
+        <a href="#contacto" class="nav-cta">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-tag">
+        <span>🎓 Investigación y Estudio de Caso para la Certificación Profesional de Análisis de Datos de Google</span>
+      </div>
+      <h1 class="hero-title">Mercado Laboral y Salarios en Tecnología</h1>
+      <p class="hero-subtitle">
+        Estudio integral de brechas de habilidades, primas salariales de computación en la nube y dinámica de contratación en Chile y Latinoamérica. Análisis reproducible sobre 4 poblaciones independientes con SQL relacional y Python.
+      </p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span>📅 Año del Estudio:</span>
+          <strong>2026</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>⏱ Periodo Analizado:</span>
+          <strong>2024–2026 (Get on Board 2026 • SO 2024 • DSS 2020–2024)</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>📍 Cobertura:</span>
+          <strong>Chile y 19 Países de Latinoamérica</strong>
+        </div>
+        <div class="hero-meta-item">
+          <span>🎯 Marco Metodológico:</span>
+          <strong>Regla Muestral N >= 30 (Muestra representativa)</strong>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#patrones" class="btn btn-primary">Explorar Patrones y Gráficos</a>
+        <a href="https://github.com/jmryanez/mercado-tech-chile-latam-2026" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver Repositorio en GitHub</a>
+        <a href="05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf?v=20261114_v2" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Descargar PDF Ejecutivo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP (INTERACTIVE HYPERLINKS & BUTTONS) -->
+  <section class="stats-strip">
+    <div class="stats-grid">
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-fuentes" onclick="openDataExplorer('tab-fuentes'); return false;" role="button" tabindex="0" title="Ver auditoría de fuentes y explorador de vacantes">
+        <div class="stat-number">72.797</div>
+        <div class="stat-label">Registros Crudos Validados</div>
+        <span class="stat-badge">4 Fuentes Independientes</span>
+        <div class="stat-cta-hint">Explorar vacantes y fuentes ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-muestral" onclick="openDataExplorer('tab-muestral'); return false;" role="button" tabindex="0" title="Ver representatividad de 19 países LatAm y regla N ≥ 30">
+        <div class="stat-number">N ≥ 30</div>
+        <div class="stat-label">Umbral Muestral Teorema Límite Central</div>
+        <span class="stat-badge">Estándar Muestral CLT</span>
+        <div class="stat-cta-hint">Ver matriz 19 países LatAm ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-salarios" onclick="openDataExplorer('tab-salarios'); return false;" role="button" tabindex="0" title="Ver bandas salariales p25-p75 y salto +{{gob_total_salto_semi_senior_pct.str}}">
+        <div class="stat-number">{{gob_total_salto_semi_senior_pct.str}}</div>
+        <div class="stat-label">Salto Semi-Sr a Senior (Total GOB)</div>
+        <span class="stat-badge">{{gob_total_semi_senior_mediana.str}} a {{gob_total_senior_mediana.str}} USD Mediana</span>
+        <div class="stat-cta-hint">Ver bandas y saltos % ↓</div>
+      </a>
+      <a href="#explorador-datos" class="stat-card stat-clickable" data-tab="tab-integridad" onclick="openDataExplorer('tab-integridad'); return false;" role="button" tabindex="0" title="Ver matriz de validación y reglas de integridad 1:N">
+        <div class="stat-number">Sin PII</div>
+        <div class="stat-label">Protección de Datos & Integridad 1:N</div>
+        <span class="stat-badge">Sin Duplicación de Filas</span>
+        <div class="stat-cta-hint">Ver matriz de validación ↓</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA: LAS 6 FASES DE GOOGLE -->
+  
+  <!-- EXPLORADOR INTERACTIVO DE DATOS DEL ESTUDIO -->
+  <section class="section" id="explorador-datos" style="padding-top: 2rem;">
+    <div class="section-header">
+      <span class="section-tag">📊 Auditoría y Explorador Interactivo • Cero Cajas Negras</span>
+      <h2 class="section-title">Explorador de Datos del Estudio de Caso</h2>
+      <p class="section-desc">
+        Acceda con total transparencia a los datos reales que sustentan la investigación: audite las <strong>679 vacantes limpias de Get on Board</strong>, examine la representatividad de <strong>19 países de América Latina</strong> bajo el Teorema del Límite Central (N ≥ 30), analice la estructura de <strong>bandas salariales y saltos porcentuales</strong>, y verifique la matriz de <strong>integridad relacional 1:N y anonimización</strong>.
+      </p>
+    </div>
+
+    <div class="explorer-container">
+      <!-- TABS NAVIGATION -->
+      <div class="explorer-tabs" role="tablist">
+        <button class="explorer-tab-btn active" id="btn-tab-fuentes" aria-controls="tab-fuentes" onclick="switchExplorerTab('tab-fuentes')" role="tab" aria-selected="true">
+          📦 Registros & Fuentes <span class="tab-count">72.797 / 679</span>
+        </button>
+        <button class="explorer-tab-btn" id="btn-tab-muestral" aria-controls="tab-muestral" onclick="switchExplorerTab('tab-muestral')" role="tab" aria-selected="false">
+          🎯 Matriz TLC N ≥ 30 <span class="tab-count">19 Países LatAm</span>
+        </button>
+        <button class="explorer-tab-btn" id="btn-tab-salarios" aria-controls="tab-salarios" onclick="switchExplorerTab('tab-salarios')" role="tab" aria-selected="false">
+          📈 Bandas Salariales & Saltos % <span class="tab-count">{{gob_total_salto_semi_senior_pct.str}} Sr</span>
+        </button>
+        <button class="explorer-tab-btn" id="btn-tab-integridad" aria-controls="tab-integridad" onclick="switchExplorerTab('tab-integridad')" role="tab" aria-selected="false">
+          🛡️ Integridad Relacional & Privacidad <span class="tab-count">7 Validaciones</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: FUENTES Y VACANTES LIMPIAS (679) -->
+      <div class="explorer-tab-pane active" id="tab-fuentes" role="tabpanel" aria-labelledby="btn-tab-fuentes">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: #60A5FA; font-weight: 700; text-transform: uppercase;">Get on Board 2026 (API v0)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: #F9FAFB; margin: 0.25rem 0;">679 Vacantes</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">1.775 Habilidades • Chile Local & Remoto sin país declarado</div>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: #34D399; font-weight: 700; text-transform: uppercase;">Stack Overflow 2024 LatAm</div>
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: #F9FAFB; margin: 0.25rem 0;">3.074 Desarrolladores</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">19 Países • 31.759 Tecnologías declaradas</div>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: #FBBF24; font-weight: 700; text-transform: uppercase;">Data Science Salaries (Global)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: #F9FAFB; margin: 0.25rem 0;">6.599 Registros</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">Referencia temporal 2020–2024 internacional</div>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: #C084FC; font-weight: 700; text-transform: uppercase;">INE ESI Chile 2025 (Referencia Oficial)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: #F9FAFB; margin: 0.25rem 0;">2 Indicadores Oficiales</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">{{ine_esi_mediana_clp.str}} mediana • {{ine_media_clp.str}} media</div>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="dt-toolbar">
+          <div class="dt-search-group">
+            <div class="dt-input-wrapper">
+              <span class="dt-search-icon">🔍</span>
+              <input type="text" id="gobSearch" class="dt-input" placeholder="Buscar por cargo, país, modalidad o seniority..." aria-label="Buscar vacante por cargo, país, modalidad o seniority" oninput="filterGobTable()">
+            </div>
+            <select id="gobPaisFilter" class="dt-select" aria-label="Filtrar por país o ámbito geográfico" onchange="filterGobTable()">
+              <option value="ALL">🌍 Todos los Países / Ámbitos</option>
+              <option value="Chile Local">🇨🇱 Chile Local (401)</option>
+              <option value="Remoto sin país declarado">🌎 Remoto sin país declarado (278)</option>
+            </select>
+            <select id="gobSeniorityFilter" class="dt-select" aria-label="Filtrar por nivel de experiencia o seniority" onchange="filterGobTable()">
+              <option value="ALL">Nivel: Todos los Seniorities</option>
+              <option value="Senior">Senior</option>
+              <option value="Semi-Senior">Semi-Senior</option>
+              <option value="Junior">Junior</option>
+              <option value="Lead">Lead</option>
+              <option value="Trainee">Trainee</option>
+            </select>
+            <select id="gobSalarioFilter" class="dt-select" aria-label="Filtrar por disponibilidad de salario publicado" onchange="filterGobTable()">
+              <option value="ALL">Salario: Todos los Registros</option>
+              <option value="WITH_SAL">Con Salario Publicado (235)</option>
+              <option value="NO_SAL">Sin Salario Explícito (444)</option>
+            </select>
+          </div>
+          <div class="dt-filters-group">
+            <select id="gobPageSize" class="dt-select" aria-label="Seleccionar cantidad de vacantes por página" onchange="changeGobPageSize()">
+              <option value="10">10 por página</option>
+              <option value="25" selected>25 por página</option>
+              <option value="50">50 por página</option>
+              <option value="ALL">Todas las vacantes</option>
+            </select>
+            <button class="dt-btn-action" onclick="exportGobCSV()">📥 Exportar CSV</button>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="dt-table-wrapper">
+          <table class="dt-table" id="gobTable">
+            <thead>
+              <tr>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('id')">ID Vacante <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('pais_geo')">País / Ámbito <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('paises_det')">Países Específicos <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('titulo')">Título del Cargo <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('categoria')">Categoría <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('modalidad')">Modalidad <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('seniority')">Seniority <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('sal_usd')">Salario Mensual USD <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('sal_clp')">Salario Ref. CLP <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortGobTable('postulaciones')">Postulaciones <span class="sort-icon">↕</span></th>
+              </tr>
+            </thead>
+            <tbody id="gobTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- FOOTER & PAGINATION -->
+        <div class="dt-footer">
+          <div id="gobCounter">Mostrando registros...</div>
+          <div class="dt-pagination" id="gobPagination">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: MATRIZ MUESTRAL TLC N >= 30 (19 PAISES LATAM + CHILE) -->
+      <div class="explorer-tab-pane" id="tab-muestral" role="tabpanel" aria-labelledby="btn-tab-muestral">
+        <div style="margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
+            Matriz de Representatividad Muestral: Teorema del Límite Central (N ≥ 30)
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Evaluación de representatividad estadística para los <strong>19 países de América Latina</strong> de Stack Overflow 2024 y Get on Board Chile 2026. Según los Cursos 3 y 4 de Google Data Analytics, un tamaño muestral de <strong>N ≥ 30</strong> es la condición matemática indispensable para que la distribución de la media muestral aproxime una distribución normal, permitiendo inferencias poblacionales bajo estándar muestral CLT.
+          </p>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="dt-toolbar">
+          <div class="dt-search-group">
+            <div class="dt-input-wrapper">
+              <span class="dt-search-icon">🔍</span>
+              <input type="text" id="tlcSearch" class="dt-input" placeholder="Buscar país..." aria-label="Buscar país en la matriz muestral" oninput="filterTlcTable()">
+            </div>
+            <select id="tlcStatusFilter" class="dt-select" aria-label="Filtrar países por representatividad muestral Teorema del Límite Central" onchange="filterTlcTable()">
+              <option value="ALL">Estado: Todos los Países (19 LatAm + Chile)</option>
+              <option value="OK">✓ Cumplen N_sal ≥ 30 (7 Países con Inferencia)</option>
+              <option value="WARN">⚠ Muestra Exploratoria N_sal < 30 (12 Países)</option>
+            </select>
+          </div>
+          <div class="dt-filters-group">
+            <button class="dt-btn-action" onclick="exportTlcCSV()">📥 Exportar Matriz CSV</button>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="dt-table-wrapper">
+          <table class="dt-table" id="tlcTable">
+            <thead>
+              <tr>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('pais')">País <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('n_total')">Muestra Total (N) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('n_sal')">Salarios Válidos (N_sal) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('cumple_n30')">Estado TLC (N ≥ 30) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('med_usd')">Mediana USD / Mes <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('p25_usd')">Rango Intercuartílico (p25–p75 USD) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('iqr_usd')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('med_clp')">Mediana CLP (Ref. {{dolar_observado_bcch.str}}) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortTlcTable('ic95_mediana_inf_usd')" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){sortTlcTable('ic95_mediana_inf_usd');event.preventDefault();}">IC 95% Mediana (USD) <span class="sort-icon">↕</span></th>
+                <th scope="col">Tratamiento Metodológico Google</th>
+              </tr>
+            </thead>
+            <tbody id="tlcTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-box">
+          <strong>Directriz Metodológica de Google Data Analytics:</strong> En la inferencia de compensaciones, solo 7 países cuentan con un tamaño muestral de salarios válidos N_sal ≥ 30 (Brasil 673, México 164, Argentina 124, Colombia 83, Chile 46, Uruguay 36 y Venezuela 33). Los restantes 12 países presentan un tamaño menor a 30 respuestas salariales (Perú 29, Ecuador 25, Rep. Dominicana 22, Guatemala 21, Costa Rica 20, Bolivia 17, Paraguay 12, Cuba 10, Nicaragua 7, El Salvador 7, Honduras 7 y Panamá 5). Conforme al Teorema del Límite Central (Cursos 3 y 4), estos 12 países se clasifican estrictamente como <em>Muestra Exploratoria (N < 30)</em> para evitar sesgos y sobregeneralizaciones.
+        </div>
+      </div>
+
+      <!-- TAB 3: BANDAS SALARIALES Y SALTOS % -->
+      <div class="explorer-tab-pane" id="tab-salarios" role="tabpanel" aria-labelledby="btn-tab-salarios">
+        <div style="margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
+            Estructura Salarial, Cuartiles (p25–p75) y Salto Porcentual por Nivel
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Análisis de dispersión no paramétrica para neutralizar el impacto de valores atípicos (outliers). Destaca el salto salarial de {{gob_total_salto_semi_senior_pct.str}} en Get on Board Total ({{gob_total_salto_semi_senior_monto.str}} adicionales al mes). Por su parte, en Chile Local el incremento es de {{gob_cl_salto_semi_senior_pct.str}} ({{gob_cl_salto_semi_senior_monto.str}} adicionales al mes). En vacantes remotas sin país declarado la mediana es {{gob_senior_remoto_mediana.str}} USD frente a {{gob_senior_local_mediana.str}} USD en Chile Local.
+          </p>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="dt-toolbar">
+          <div class="dt-search-group">
+            <div class="dt-input-wrapper">
+              <span class="dt-search-icon">🔍</span>
+              <input type="text" id="salSearch" class="dt-input" placeholder="Buscar por ámbito, país, nivel o fuente..." aria-label="Buscar por ámbito, país, nivel o fuente salarial" oninput="filterSalTable()">
+            </div>
+            <select id="salFuenteFilter" class="dt-select" aria-label="Filtrar por fuente o ámbito de compensación" onchange="filterSalTable()">
+              <option value="ALL">Ámbito / Fuente: Todos los Registros</option>
+              <option value="Get on Board 2026">🇨🇱 Chile Local & Remoto (Get on Board)</option>
+              <option value="Stack Overflow LatAm 2024">🌎 América Latina 19 Países (Stack Overflow)</option>
+              <option value="Data Science Salaries">🌐 Referencia Internacional (Data Science Salaries)</option>
+            </select>
+          </div>
+          <div class="dt-filters-group">
+            <button class="dt-btn-action" onclick="exportSalCSV()">📥 Exportar Bandas CSV</button>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="dt-table-wrapper">
+          <table class="dt-table" id="salTable">
+            <thead>
+              <tr>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('ambito')">País / Ámbito Geográfico <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('nivel')">Seniority / Experiencia <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('fuente')">Fuente de Datos <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('n')">Muestra (N) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('p25')">Cuartil 25 (USD) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('mediana')">Mediana p50 (USD) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('p75')">Cuartil 75 (USD) <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('iqr')">Amplitud IQR USD <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('salto')">Salto Salarial % <span class="sort-icon">↕</span></th>
+                <th scope="col" class="sortable" aria-sort="none" onclick="sortSalTable('clp')">Mediana Ref. CLP <span class="sort-icon">↕</span></th>
+                <th scope="col">Estado TLC</th>
+              </tr>
+            </thead>
+            <tbody id="salTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-box">
+          <strong>Fundamento Estadístico Google Data Analytics:</strong> En distribuciones de ingresos con asimetría positiva (sesgo a la derecha), la media aritmética sobreestima sistemáticamente la remuneración típica de mercado. Por ello, el análisis se sustenta en la <strong>mediana ($p50$)</strong> y el <strong>rango intercuartílico ($p25–p75$)</strong>, garantizando robustez ante ofertas atípicas o directivas aisladas.
+        </div>
+      </div>
+
+      <!-- TAB 4: INTEGRIDAD RELACIONAL 1:N Y 6 VALIDACIONES -->
+      <div class="explorer-tab-pane" id="tab-integridad" role="tabpanel" aria-labelledby="btn-tab-integridad">
+        <div style="margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #F9FAFB; margin-bottom: 0.4rem;">
+            Matriz de Integridad Relacional 1:N y los 6 Tipos Formales de Validación de Datos
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Protocolo de aseguramiento de calidad ejecutado en la Fase 3 (Procesar) según los estándares del Curso 4 de Google Data Analytics. Incluye el control matemático de duplicación en joins relacionales 1:N y el cumplimiento de la <strong>protección ética de datos sin PII</strong>.
+          </p>
+        </div>
+
+        <!-- TABLE TOOLBAR -->
+        <div class="dt-toolbar" style="justify-content: flex-end; margin-bottom: 0.75rem;">
+          <button class="dt-btn-action" onclick="exportValCSV()">📥 Exportar Matriz Validación CSV</button>
+        </div>
+        <div class="dt-table-wrapper">
+          <table class="dt-table" id="valTable">
+            <thead>
+              <tr>
+                <th scope="col">Tipo de Validación (Curso 4)</th>
+                <th scope="col">Ámbito Geográfico / País</th>
+                <th scope="col">Definición y Regla Aplicada</th>
+                <th scope="col">Población Validada</th>
+                <th scope="col">Registros Excluidos / Ajustados</th>
+                <th scope="col">Resultado de Calidad</th>
+                <th scope="col">Impacto Metodológico</th>
+              </tr>
+            </thead>
+            <tbody id="valTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-box">
+          <strong>Auditoría de Integridad Relacional 1:N (SQL):</strong> Al cruzar vacantes u ofertas con múltiples tecnologías requeridas (relación 1:N), una misma oferta se expande en múltiples filas (de {{gob_total_scope.val}} vacantes únicas a {{gob_habilidades_rows.str}} filas expandidas). Si el analista calcula el promedio salarial sin control de clave foránea, el salario promedio resulta sobreestimado artificialmente en <code>{{gob_sesgo_dup.str}} USD</code> en Get on Board ({{gob_media_con_dup.str}} USD naive vs {{gob_media_sin_dup.str}} USD real) y <code>{{so_sesgo_dup.str}} USD</code> en Stack Overflow LatAm ({{so_media_con_dup.str}} USD naive vs {{so_media_sin_dup.str}} USD real), sesgando las conclusiones hacia empresas que demandan pilas tecnológicas excesivas. Este estudio auditó y controló cada cruce relacional mediante subconsultas y funciones agregadas a nivel de entidad.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <section class="section" id="metodologia">
+    <div class="section-header">
+      <span class="section-tag">Marco de Análisis de Datos • Certificación Google Data Analytics</span>
+      <h2 class="section-title">El Proceso de Análisis en 6 Fases</h2>
+      <p class="section-desc">
+        Cumplimiento estricto de las directrices y herramientas enseñadas en los 9 cursos del Certificado Profesional: desde la formulación del problema en la Fase 1 hasta el plan de acción en la Fase 6. Haz clic en cualquier fase para explorar su desglose metodológico completo y descargar sus entregables oficiales.
+      </p>
+    </div>
+
+    <!-- 6 PHASE SUMMARY CARDS (INTERACTIVE) -->
+    <div class="phases-grid">
+      <!-- FASE 1 -->
+      <div class="phase-card phase-card-interactive active-phase" id="phase-card-1" onclick="openPhaseDetail(1)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-1">Fase 1 • Cursos 1 y 2</span>
+            <span class="phase-num">01</span>
+          </div>
+          <h3 class="phase-title">Preguntar (Ask)</h3>
+          <p class="phase-text">
+            Definición de la tarea empresarial para el patrocinador (Consultora RRHH & Academia Digital). Aplicación de los 5 Porqués para identificar la causa raíz, formalización del Alcance del Trabajo (SOW de 7 secciones) y 4 preguntas S.M.A.R.T.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 01_Alcance_del_Trabajo_SOW.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">5 Porqués</span>
+            <span class="phase-pill">SOW (7 Secciones)</span>
+            <span class="phase-pill">S.M.A.R.T.</span>
+            <span class="phase-pill">Métricas vs Dimensiones</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="phase-card phase-card-interactive" id="phase-card-2" onclick="openPhaseDetail(2)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-2">Fase 2 • Cursos 3 y 4</span>
+            <span class="phase-num">02</span>
+          </div>
+          <h3 class="phase-title">Preparar (Prepare)</h3>
+          <p class="phase-text">
+            Recopilación inmutable de 72.797 registros crudos de 4 fuentes independientes. Evaluación formal bajo el Marco ROCCC de Google, catalogación de metadatos (descriptivos/estructurales/admin), separación Wide/Long y privacidad estricta y anonimización.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 02_Descripcion_Fuentes_y_ROCCC.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">Marco ROCCC</span>
+            <span class="phase-pill">Wide vs Long</span>
+            <span class="phase-pill">Regla N >= 30</span>
+            <span class="phase-pill">Sin PII</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="phase-card phase-card-interactive" id="phase-card-3" onclick="openPhaseDetail(3)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-3">Fase 3 • Cursos 4, 5 y 7</span>
+            <span class="phase-num">03</span>
+          </div>
+          <h3 class="phase-title">Procesar (Process)</h3>
+          <p class="phase-text">
+            Construcción de pipeline reproducible en Python (pandas, numpy, regex) para limpieza determinista. Ejecución de los 6 tipos formales de validación de Google, lista de verificación de 12 puntos y Changelog oficial de 7 campos.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 03_Documentacion_Limpieza_y_Changelog.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">Python (pandas)</span>
+            <span class="phase-pill">6 Validaciones</span>
+            <span class="phase-pill">Checklist 12 Ptos</span>
+            <span class="phase-pill">Changelog 7 Campos</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 4 -->
+      <div class="phase-card phase-card-interactive" id="phase-card-4" onclick="openPhaseDetail(4)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-4">Fase 4 • Cursos 5 y 7</span>
+            <span class="phase-num">04</span>
+          </div>
+          <h3 class="phase-title">Analizar (Analyze)</h3>
+          <p class="phase-text">
+            Consultas analíticas relacionales en SQLite con tablas temporales y control de uniones 1:N (evitando sesgos de duplicación de {{gob_sesgo_dup.str}} USD en GOB y {{so_sesgo_dup.str}} USD en SO). Cálculo de medianas y bandas intercuartiles p25–p75. Evaluación rigurosa de Correlación ≠ Causalidad en Remoto Local.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 04_Resumen_Analisis_SQL_y_Python.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">SQLite Relacional</span>
+            <span class="phase-pill">Sin Duplicación 1:N</span>
+            <span class="phase-pill">Cuartiles p25–p75</span>
+            <span class="phase-pill">HAVING >= 20%</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 5 -->
+      <div class="phase-card phase-card-interactive" id="phase-card-5" onclick="openPhaseDetail(5)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-5">Fase 5 • Cursos 6 y 8</span>
+            <span class="phase-num">05</span>
+          </div>
+          <h3 class="phase-title">Compartir (Share)</h3>
+          <p class="phase-text">
+            Presentación ejecutiva de 14 diapositivas panorámicas (16:9) estructurada para sesión de 30 minutos (4+5+10+3+3+5 min). 7 visualizaciones con honestidad escalar (ejes en 0), accesibilidad para daltonismo y diseño ejecutivo.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 05_Diseno_Visual_Tableau_y_Presentacion.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">Paleta Azul/Naranja</span>
+            <span class="phase-pill">Ejes en 0 (Sin Corte)</span>
+            <span class="phase-pill">Deck 30 Minutos</span>
+            <span class="phase-pill">Visualizaciones Python</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 6 -->
+      <div class="phase-card phase-card-interactive" id="phase-card-6" onclick="openPhaseDetail(6)">
+        <div>
+          <div class="phase-header-row">
+            <span class="phase-badge phase-6">Fase 6 • Cursos 8 y 9</span>
+            <span class="phase-num">06</span>
+          </div>
+          <h3 class="phase-title">Actuar (Act)</h3>
+          <p class="phase-text">
+            4 conclusiones de alto nivel y 3 recomendaciones prioritarias sustentadas en N >= 30. Matriz de alternativas con Pros y Contras, hoja de ruta Qué/Quién/Cuándo (30, 60 y 90 días con KPIs), viñetas X-Y-Z, historia STAR y elevator pitch.
+          </p>
+          <div class="phase-doc-badge">
+            <span>📄</span> 06_Plan_de_Accion_y_Conclusiones_Finales.docx
+          </div>
+        </div>
+        <div>
+          <div class="phase-tags">
+            <span class="phase-pill">3 Recomendaciones</span>
+            <span class="phase-pill">Pros y Contras</span>
+            <span class="phase-pill">Qué/Quién/Cuándo</span>
+            <span class="phase-pill">Fórmula X-Y-Z & STAR</span>
+          </div>
+          <div class="phase-card-footer">
+            <span>Explorar Desglose Metodológico</span>
+            <span>↓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- INTERACTIVE METHODOLOGY DEEP-DIVE CONTAINER -->
+    <div class="phase-deepdive-container" id="metodologia-deepdive">
+      <div class="deepdive-header">
+        <div class="deepdive-header-left">
+          <span class="deepdive-tag">DESGLOSE METODOLÓGICO EN PROFUNDIDAD</span>
+          <h3 class="deepdive-title">Desglose Metodológico de las 6 Fases de Google</h3>
+          <p class="deepdive-desc">
+            Cada fase evidencia el aplicación rigurosa de las herramientas de las herramientas, normas y entregables oficiales exigidos para la obtención de la Certificación Profesional de Google Data Analytics.
+          </p>
+        </div>
+        <div class="deepdive-nav" role="tablist">
+          <button class="deepdive-btn active" id="deepdive-btn-1" aria-controls="phase-pane-1" onclick="switchPhase(1)" role="tab" aria-selected="true">01. Preguntar</button>
+          <button class="deepdive-btn" id="deepdive-btn-2" aria-controls="phase-pane-2" onclick="switchPhase(2)" role="tab" aria-selected="false">02. Preparar</button>
+          <button class="deepdive-btn" id="deepdive-btn-3" aria-controls="phase-pane-3" onclick="switchPhase(3)" role="tab" aria-selected="false">03. Procesar</button>
+          <button class="deepdive-btn" id="deepdive-btn-4" aria-controls="phase-pane-4" onclick="switchPhase(4)" role="tab" aria-selected="false">04. Analizar</button>
+          <button class="deepdive-btn" id="deepdive-btn-5" aria-controls="phase-pane-5" onclick="switchPhase(5)" role="tab" aria-selected="false">05. Compartir</button>
+          <button class="deepdive-btn" id="deepdive-btn-6" aria-controls="phase-pane-6" onclick="switchPhase(6)" role="tab" aria-selected="false">06. Actuar</button>
+        </div>
+      </div>
+
+      <!-- PANE 1: PREGUNTAR -->
+      <div class="phase-pane active" id="phase-pane-1" role="tabpanel" aria-labelledby="deepdive-btn-1">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 1 y 2 • Aspectos Básicos & Formulación de Preguntas</span>
+            <h4 class="pane-title">Fase 1: Preguntar (Ask) • Definición de la Tarea Empresarial</h4>
+            <p class="pane-subtitle">Identificación de la causa raíz de la brecha de talento tech mediante los 5 Porqués, formalización del Alcance del Trabajo (SOW en 7 secciones) y las 4 preguntas S.M.A.R.T.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">🎯 Problema & Los 5 Porqués (Toyota/Google)</div>
+            <ul class="pillar-list">
+              <li><strong>Patrocinador:</strong> Dirección de Capacitación y Talento Tech (Academia Digital y Consultora de RRHH).</li>
+              <li><strong>Problema Central:</strong> Desalineación entre programas formativos y las habilidades tecnológicas demandadas en avisos de empleo.</li>
+              <li><strong>Porqué 1:</strong> ¿Por qué caen las contrataciones? Los postulantes carecen de competencias en herramientas críticas de mercado.</li>
+              <li><strong>Porqué 2:</strong> ¿Por qué carecen de ellas? Los programas formativos enseñan contenidos desactualizados.</li>
+              <li><strong>Porqué 3:</strong> ¿Por qué no se actualizan? Se diseñan por percepción subjetiva y no con datos de avisos reales.</li>
+              <li><strong>Porqué 4:</strong> ¿Por qué no usan datos? La información de ofertas y encuestas está dispersa e incompatible.</li>
+              <li><strong>Porqué 5 (Causa Raíz):</strong> Falta de un marco cuantitativo integrado que cruce demanda real vs adopción para fundamentar decisiones formativas y salariales.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">📋 Alcance del Trabajo (SOW en 7 Secciones)</div>
+            <ul class="pillar-list">
+              <li><strong>1. Declaración de Tarea Empresarial:</strong> Definición del problema, justificación de negocio e impacto esperado.</li>
+              <li><strong>2. Descripción de Fuentes de Datos:</strong> Inventario de las 4 fuentes inmutables y matriz de metadatos.</li>
+              <li><strong>3. Documentación de Limpieza:</strong> Protocolos de validación, checklist de 12 puntos y Changelog de 7 campos.</li>
+              <li><strong>4. Resumen del Análisis Cuantitativo:</strong> Consultas relacionales en SQLite y modelos en Python.</li>
+              <li><strong>5. Visualizaciones y Presentación:</strong> Guion cronometrado de 30 minutos y visualizaciones y deck ejecutivo.</li>
+              <li><strong>6. Líneas de Exploración Futura:</strong> Delimitación de segmentos con submuestras N &lt; 30.</li>
+              <li><strong>7. Conclusiones y Plan de Acción:</strong> Hoja de ruta Qué/Quién/Cuándo (30, 60 y 90 días) con KPIs de éxito.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">❓ Las 4 Preguntas S.M.A.R.T. & Imparcialidad</div>
+            <ul class="pillar-list">
+              <li><strong>P1 (Demanda vs Adopción):</strong> ¿Cuáles son las tecnologías más demandadas y qué brechas existen frente a la adopción real de los profesionales?</li>
+              <li><strong>P2 (Experiencia & Salarios):</strong> ¿Cuál es la progresión remuneracional por nivel de experiencia y en qué tramo ocurre el mayor salto porcentual?</li>
+              <li><strong>P3 (Modalidades Laborales):</strong> ¿Existe una prima salarial estadísticamente significativa asociada al trabajo remoto frente al presencial en Chile?</li>
+              <li><strong>P4 (Tamaño & Región):</strong> ¿Cómo impacta el tamaño de empresa en los salarios y cómo se posiciona Chile respecto a los 19 países de Latinoamérica?</li>
+              <li><strong>Control de Imparcialidad (Fairness):</strong> Formulación neutra sin favorecer plataformas ni asumir hipótesis preconcebidas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-primary">
+              Descargar SOW Oficial (.docx)
+            </a>
+            <a href="01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-secondary">
+              Declaración de Tarea (.docx)
+            </a>
+          </div>
+          <a href="#patrones" class="phase-jump-link">
+            Ver las 4 Preguntas de Investigación en la Sección Hallazgos →
+          </a>
+        </div>
+      </div>
+
+      <!-- PANE 2: PREPARAR -->
+      <div class="phase-pane" id="phase-pane-2" role="tabpanel" aria-labelledby="deepdive-btn-2">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 3 y 4 • Preparación de Datos & Gobernanza de Fuentes</span>
+            <h4 class="pane-title">Fase 2: Preparar (Prepare) • Evaluación ROCCC & Integridad</h4>
+            <p class="pane-subtitle">Ingesta inmutable de 72.797 registros de 4 fuentes independientes, evaluación ROCCC de 5 criterios y protocolo de anonimización.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">📦 Inventario de las 4 Fuentes Inmutables</div>
+            <ul class="pillar-list">
+              <li><strong>1. Get on Board 2026 (API v0):</strong> 679 avisos activos en Chile y LatAm (1.775 relaciones vacante-habilidad normalizadas).</li>
+              <li><strong>2. Stack Overflow Survey 2024:</strong> 3.074 desarrolladores encuestados en 19 países de LatAm (133 en Chile).</li>
+              <li><strong>3. Data Science Salaries (2020–2024):</strong> 6.599 registros globales con trazabilidad histórica de salarios tech (2020–2024).</li>
+              <li><strong>4. INE ESI 2025 (Chile):</strong> Línea base nacional de ingresos laboraless laborales formales como ancla macroeconómica de control.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">🛡️ Evaluación Marco ROCCC de Google (5 Criterios)</div>
+            <ul class="pillar-list">
+              <li><strong>1. R — Reliable (Confiable):</strong> Fuentes oficiales, endpoints verificados y datos del INE con márgenes de error conocidos.</li>
+              <li><strong>2. O — Original:</strong> Datos primarios directos sin intermediación de agregadores ni manipulaciones externas.</li>
+              <li><strong>3. C — Comprehensive (Completa):</strong> 19 países de LatAm, múltiples salarios, modalidades y 47 categorías tecnológicas.</li>
+              <li><strong>4. C — Current (Actual):</strong> Ofertas vigentes capturadas al 2026, encuestas 2024 y datos de la encuesta ESI publicados en 2025.</li>
+              <li><strong>5. C — Cited (Citada):</strong> Documentación con URLs oficiales, DOIs, licencias y especificaciones de metadatos.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">⚖️ Los 3 Metadatos, TLC N ≥ 30 & Privacidad</div>
+            <ul class="pillar-list">
+              <li><strong>1. Metadatos Descriptivos:</strong> Títulos de vacantes, taxonomías de habilidades y categorías de desarrollo.</li>
+              <li><strong>2. Metadatos Estructurales:</strong> Tablas maestras anchas (Wide) y tablas transaccionales normalizadas 1:N (Long).</li>
+              <li><strong>3. Metadatos Administrativos:</strong> Fechas de extracción, versiones inmutables y licencias de uso abierto.</li>
+              <li><strong>Teorema del Límite Central (N ≥ 30):</strong> Umbral mínimo de suficiencia muestral exigido para inferencias estadísticas.</li>
+              <li><strong>Privacidad Estricta y Anonimización:</strong> Purgado total en origen de nombres, correos, teléfonos o identificadores individuales.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-primary">
+              Descargar Matriz ROCCC (.docx)
+            </a>
+            <a href="descargas/GetOnBoard_Vacantes_Auditadas_679.csv?v=20261114_v2" download class="phase-dl-btn phase-dl-secondary">
+              Descargar Vacantes Limpias (CSV)
+            </a>
+          </div>
+          <a href="#explorador-datos" class="phase-jump-link">
+            Explorar los 72.797 Registros en el Explorador de Datos →
+          </a>
+        </div>
+      </div>
+
+      <!-- PANE 3: PROCESAR -->
+      <div class="phase-pane" id="phase-pane-3" role="tabpanel" aria-labelledby="deepdive-btn-3">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 4, 5 y 7 • Limpieza con Python & Validación de Datos</span>
+            <h4 class="pane-title">Fase 3: Procesar (Process) • Pipeline de Limpieza Determinista</h4>
+            <p class="pane-subtitle">Ejecución automatizada de los 6 tipos formales de validación, checklist exhaustivo de 12 puntos y Changelog oficial de 7 campos.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">🧹 Los 6 Tipos de Validación Google</div>
+            <ul class="pillar-list">
+              <li><strong>1. Tipo de Dato:</strong> Conversión estricta en pandas (enteros, flotantes con 2 decimales y fechas estándar ISO 8601).</li>
+              <li><strong>2. Rango de Datos:</strong> Detección y filtrado de outliers económicos imposibles mediante límites intercuartiles.</li>
+              <li><strong>3. Restricción de Integridad:</strong> Deduplicación por clave primaria compuesta de vacante (job_id) y habilidad técnica.</li>
+              <li><strong>4. Coherencia Lógica:</strong> Verificación algorítmica de que el salario mínimo reportado no supere al salario máximo ofertado.</li>
+              <li><strong>5. Estructura:</strong> Normalización relacional de tablas maestras de vacantes y tablas transaccionales de tecnologías.</li>
+              <li><strong>6. Código / Catálogo:</strong> Mapeo determinista de sinónimos tecnológicos (ej. 'Node.js', 'Node', 'node' -> 'NodeJS').</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">📋 Checklist de 12 Puntos de Google</div>
+            <ul class="pillar-list">
+              <li><strong>1. Fuentes de errores:</strong> Pipeline automatizado en Python con 100% de trazabilidad reproducible.</li>
+              <li><strong>2. Datos nulos:</strong> Control y preservación de 442 vacantes sin salario para cálculo de demanda sin inflar sueldos.</li>
+              <li><strong>3. Palabras extrañas / typos:</strong> Estandarización ortográfica de nombres de países al español oficial.</li>
+              <li><strong>4. Números descompuestos:</strong> Anulación de salarios fuera de lógica de mercado (&lt; {{salario_min_filtro_usd.str}} USD/mes).</li>
+              <li><strong>5. Espacios extra (TRIM):</strong> Aplicación de strip() y colapso de espacios múltiples en descripciones.</li>
+              <li><strong>6. Duplicados:</strong> Verificación algorítmica de 0 duplicados en job_id (759/759) y ResponseId en SO.</li>
+              <li><strong>7. Tipos de datos falsos:</strong> Casteo de Unix epoch a zona horaria GMT-3 y monetarios a coma flotante.</li>
+              <li><strong>8. Cadenas inconsistentes:</strong> Paridad taxonómica 1:1 entre vacantes y encuestas de desarrolladores.</li>
+              <li><strong>9. Formatos de fecha:</strong> Normalización a ISO 8601 con huso horario America/Santiago observado.</li>
+              <li><strong>10. Etiquetas engañosas:</strong> Renombrado sistemático a variables snake_case autoexplicativas.</li>
+              <li><strong>11. Datos truncados:</strong> Verificación de 0 registros truncados en ingestas de APIs y volcados masivos.</li>
+              <li><strong>12. Lógica de negocio:</strong> Regla Salario_min &le; Salario_max y piso de formalidad legal de mercado.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">📝 Changelog Oficial de 7 Campos</div>
+            <ul class="pillar-list">
+              <li><strong>1. Datos / Componente Modificado:</strong> Identificación precisa de la tabla y columna intervenida.</li>
+              <li><strong>2. Descripción del Cambio:</strong> Detalle explícito de la transformación o imputación realizada.</li>
+              <li><strong>3. Fecha de Modificación:</strong> Registro cronológico inmutable con marca de tiempo UTC/GMT-3.</li>
+              <li><strong>4. Persona que Hizo el Cambio:</strong> Firma del Analista de Datos responsable de la ejecución.</li>
+              <li><strong>5. Persona que Aprobó:</strong> Registro de revisión y aprobación técnica del patrocinador.</li>
+              <li><strong>6. Versión del Registro:</strong> Identificador de control de versiones secuencial (v0.1 a v1.0).</li>
+              <li><strong>7. Razón / Justificación del Cambio:</strong> Fundamento metodológico y regla de negocio aplicada.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-primary">
+              Descargar Informe de Limpieza (.docx)
+            </a>
+            <a href="03_Fase_Procesar_Process/scripts/03_limpieza_y_validacion.py" target="_blank" rel="noopener noreferrer" class="phase-dl-btn phase-dl-secondary">
+              Ver Script Python de Limpieza (.py)
+            </a>
+          </div>
+          <a href="#explorador-datos" onclick="switchExplorerTab('tab-integridad')" class="phase-jump-link">
+            Ver Matriz de Validación de Calidad en el Explorador →
+          </a>
+        </div>
+      </div>
+
+      <!-- PANE 4: ANALIZAR -->
+      <div class="phase-pane" id="phase-pane-4" role="tabpanel" aria-labelledby="deepdive-btn-4">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 5 y 7 • SQLite Relacional & Análisis Estadístico en Python</span>
+            <h4 class="pane-title">Fase 4: Analizar (Analyze) • Consultas SQL & Control 1:N</h4>
+            <p class="pane-subtitle">Consultas analíticas relacionales en SQLite con protección relacional 1:N, cálculo de medianas p25–p75 y estratificación por nivel de seniority.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">🗄️ Consultas SQL & Control 1:N</div>
+            <ul class="pillar-list">
+              <li><strong>Q01:</strong> Control de integridad relacional contra duplicación en uniones 1:N (evitó sesgos de duplicación de {{gob_sesgo_dup.str}} USD en GOB y {{so_sesgo_dup.str}} USD en SO).</li>
+              <li><strong>Q02:</strong> Cruce analítico de demanda en avisos vs adopción real en desarrolladores.</li>
+              <li><strong>Q03:</strong> Filtrado de tecnologías prioritarias que superan el umbral crítico (HAVING &ge; 20%).</li>
+              <li><strong>Q04 & Q05:</strong> Estructura salarial por nivel de seniority en Chile y Latinoamérica.</li>
+              <li><strong>Q06, Q07 & Q08:</strong> Distribución de compensación según modalidad laboral y tamaño de empresa.</li>
+              <li><strong>Q09 & Q10:</strong> Evolución temporal histórica (2020–2024) y posicionamiento relativo de Chile vs LatAm.</li>
+              <li><strong>Q11a & Q11b:</strong> Primas tecnológicas Cloud (AWS y Azure) sobre la mediana base del mercado.</li>
+              <li><strong>Q12 & Q13:</strong> Descomposición de modalidad por seniority (estratificación de modalidad por seniority) y categorías tech.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">📊 Estadísticas Robustas (Medianas & IQR)</div>
+            <ul class="pillar-list">
+              <li><strong>Distribución Asimétrica Positiva:</strong> Justificación técnica del descarte de la media aritmética en favor de la mediana frente a sueldos atípicos (outliers).</li>
+              <li><strong>Bandas Intercuartiles p25–p75:</strong> Rango de dispersión robusto que captura el 50% central del mercado sin distorsiones.</li>
+              <li><strong>Salto Crítico a Senior ({{gob_total_salto_semi_senior_pct.str}}):</strong> El mayor salto remuneracional en Get on Board Total (de {{gob_total_semi_senior_mediana.str}} USD a {{gob_total_senior_mediana.str}} USD, {{gob_total_salto_semi_senior_monto.str}}/mes); en Chile Local el salto es de {{gob_cl_salto_semi_senior_pct.str}} (de {{gob_cl_semi_senior_mediana.str}} USD a {{gob_cl_senior_mediana.str}} USD, {{gob_cl_salto_semi_senior_monto.str}}/mes).</li>
+              <li><strong>Primas Cloud Cuantificadas:</strong> AWS ({{gob_senior_cloud_mediana.str}} USD vs {{gob_senior_sin_cloud_mediana.str}} USD sin Cloud en Senior, diferencia {{gob_senior_cloud_diff.str}} USD).</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">🔍 Correlación ≠ Causalidad ('Remoto Local')</div>
+            <ul class="pillar-list">
+              <li><strong>Regla de Oro de Google:</strong> Correlación no implica Causalidad (Correlation does not equal Causation).</li>
+              <li><strong>La Paradoja Inicial:</strong> Las ofertas remotas mostraban una mediana salarial superior a las presenciales.</li>
+              <li><strong>Variable Confusora Descubierta:</strong> Un {{gob_remoto_local_senior_lead_pct.str}} de las posiciones en Remoto Local corresponden a cargos Senior y Lead (31 de 45 ofertas con salario válido), reflejando un sesgo de composición por jerarquía del cargo.</li>
+              <li><strong>Efecto Aislado:</strong> Al controlar por nivel de experiencia, la prima por modalidad remota no resulta concluyente al controlar por seniority.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-primary">
+              Descargar Resumen SQL & Python (.docx)
+            </a>
+            <a href="04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql" download class="phase-dl-btn phase-dl-secondary">
+              Descargar Script SQL Relacional (.sql)
+            </a>
+          </div>
+          <a href="#patrones" class="phase-jump-link">
+            Revisar los Gráficos y Evidencia Empírica de Negocio →
+          </a>
+        </div>
+      </div>
+
+      <!-- PANE 5: COMPARTIR -->
+      <div class="phase-pane" id="phase-pane-5" role="tabpanel" aria-labelledby="deepdive-btn-5">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 6 y 8 • Visualización con Edward Tufte & Presentación de 30 Minutos</span>
+            <h4 class="pane-title">Fase 5: Compartir (Share) • Comunicación Ejecutiva & Accesibilidad</h4>
+            <p class="pane-subtitle">Deck oficial de 14 diapositivas panorámicas (16:9), paleta apta para daltonismo, ejes honestos en 0 y visualizaciones en Python.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">⏱️ 30 Minutos en 6 Bloques Oficiales</div>
+            <ul class="pillar-list">
+              <li><strong>Bloque 1 (4 min):</strong> Introducción, propósito empresarial y metas del estudio.</li>
+              <li><strong>Bloque 2 (5 min):</strong> Contexto del mercado tech, gobernanza y fuentes analizadas.</li>
+              <li><strong>Bloque 3 (10 min):</strong> Hallazgos empíricos clave y respuestas a las preguntas de negocio.</li>
+              <li><strong>Bloque 4 (3 min):</strong> Limitaciones metodológicas y control muestral (N &lt; 30).</li>
+              <li><strong>Bloque 5 (3 min):</strong> Recomendaciones estratégicas y plan de acción inmediato.</li>
+              <li><strong>Bloque 6 (5 min):</strong> Sesión interactiva de preguntas y respuestas con interesados (Q&A).</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">🎨 Los 3 Estándares de Visualización</div>
+            <ul class="pillar-list">
+              <li><strong>1. Edward Tufte (Data-Ink Ratio):</strong> Maximización de la proporción datos-tinta, suprimiendo fondos oscuros pesados y elementos decorativos sin valor.</li>
+              <li><strong>2. Accesibilidad Cromática:</strong> Paleta dual contrastante azul (#1A73E8) y naranja (#D97706) verificada para personas con daltonismo (deuteranopía y protanopía).</li>
+              <li><strong>3. Honestidad Escalar:</strong> Todos los gráficos de barras inician rigurosamente en $0 USD o 0% para no inducir a errores visuales de magnitud.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">🗺️ Tablero Interactivo</div>
+            <p style="padding: 1rem 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
+              Tablero en Tableau Public: pendiente de publicación (datos preparados en Datos_Consolidados_Tableau_Public.xlsx).
+            </p>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf?v=20261114_v2" target="_blank" rel="noopener noreferrer" class="phase-dl-btn phase-dl-primary">
+              Ver Presentación Ejecutiva (PDF 14 Láminas)
+            </a>
+            <a href="05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-secondary">
+              Guía de Diseño Visual (.docx)
+            </a>
+            <a href="05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx?v=20261114_v2" download class="phase-dl-btn phase-dl-secondary">
+              Datos Consolidados (.xlsx)
+            </a>
+          </div>
+          <a href="#patrones" class="phase-jump-link">
+            Ver la Galería de Visualizaciones con Accesibilidad →
+          </a>
+        </div>
+      </div>
+
+      <!-- PANE 6: ACTUAR -->
+      <div class="phase-pane" id="phase-pane-6" role="tabpanel" aria-labelledby="deepdive-btn-6">
+        <div class="pane-header">
+          <div>
+            <span class="pane-badge-course">Cursos 8 y 9 • Plan de Acción Qué/Quién/Cuándo & Herramientas de Carrera</span>
+            <h4 class="pane-title">Fase 6: Actuar (Act) • Hoja de Ruta & Kit de Empleabilidad</h4>
+            <p class="pane-subtitle">4 conclusiones basadas en N ≥ 30, matriz Qué/Quién/Cuándo (30, 60, 90 días), fórmula X-Y-Z y Elevator Pitch de 20 segundos.</p>
+          </div>
+        </div>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div class="pillar-card-title">🚀 Las 4 Conclusiones Basadas en Datos</div>
+            <ul class="pillar-list">
+              <li><strong>1. Concentración Tecnológica:</strong> Solo 3 tecnologías superan el 20% de presencia en demanda en Get on Board: {{tecnologia_top1_nombre.str}} ({{tecnologia_top1_pct.str}}, N={{tecnologia_top1_n.val}}), {{tecnologia_top2_nombre.str}} ({{tecnologia_top2_pct.str}}, N={{tecnologia_top2_n.val}}) y {{tecnologia_top3_nombre.str}} ({{tecnologia_top3_pct.str}}, N={{tecnologia_top3_n.val}}). En plataformas Cloud, solo AWS supera el umbral del 20%, mientras que Google Cloud ({{gob_gcp_pct.str}}, N={{gob_gcp_n.val}}) y Microsoft Azure ({{gob_azure_pct.str}}, N={{gob_azure_n.val}}) se sitúan por debajo del umbral estratégico. JavaScript se sitúa en {{gob_javascript_pct.str}} (101 ofertas).</li>
+              <li><strong>2. Demanda Cloud vs. Adopción:</strong> Microsoft Azure presenta {{gob_azure_pct.str}} de presencia en vacantes de Get on Board frente a {{tech_azure_so_chile_pct.pct_str}} de adopción en Stack Overflow Chile (+{{tech_azure_brecha_pp.val}} pp de diferencia, dentro del margen de error de ±{{tech_azure_moe_chile.val}} pp con N={{so_chile_total.val}}).</li>
+              <li><strong>3. Salto Remuneracional Senior:</strong> Transición de Semi-Senior a Senior con un incremento de {{gob_total_salto_semi_senior_pct.str}} en Get on Board Total ({{gob_total_senior_mediana.str}} USD mediana, p75 = {{banda_rem_senior_p75.str}}), mientras que en Chile Local el incremento es de {{gob_cl_salto_semi_senior_pct.str}} ({{gob_cl_senior_mediana.str}} USD mediana).</li>
+              <li><strong>4. Efecto de Composición en Trabajo Remoto:</strong> El diferencial del trabajo remoto está condicionado por la composición de cargos Senior.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">💡 3 Recomendaciones & Qué/Quién/Cuándo</div>
+            <ul class="pillar-list">
+              <li><strong>Recomendación 1:</strong> Rediseño curricular acelerado incorporando SQL relacional intensivo y certificaciones Cloud (AWS/Azure).</li>
+              <li><strong>Recomendación 2:</strong> Creación de programas puente de mentoría para acortar la brecha de Semi-Senior a Senior.</li>
+              <li><strong>Recomendación 3:</strong> Política de bandas salariales transparentes y benchmarking continuo.</li>
+              <li><strong>30 Días (Inmediato):</strong> Auditoría de planes y módulos intensivos SQL/Cloud.</li>
+              <li><strong>60 Días (Mediano Plazo):</strong> Tracks de mentoría técnica y proyectos prácticos.</li>
+              <li><strong>90 Días (Largo Plazo):</strong> Observatorio trimestral de empleo tech con KPIs.</li>
+              <li><strong>4 Líneas Futuras:</strong> Segmentos con N &lt; 30 reservados para recolecciones ampliadas.</li>
+            </ul>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-card-title">💼 Kit de Carrera Google (3 Herramientas Curso 9)</div>
+            <ul class="pillar-list">
+              <li><strong>1. Metodología STAR:</strong> Estructuración de la narrativa del proyecto (Situación, Tarea, Acción, Resultado) para entrevistas técnicas.</li>
+              <li><strong>2. Fórmula X-Y-Z de Google para CV:</strong> <em>«Logró [X], medido por [Y], haciendo [Z]»</em> aplicada a cada viñeta del perfil profesional.</li>
+              <li><strong>3. Elevator Pitch de 20 Segundos:</strong> Discurso conciso y memorable para presentar los hallazgos a reclutadores y líderes de negocio.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-actions-strip">
+          <div class="phase-actions-left">
+            <a href="06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx?v=20261114_v2" download class="phase-dl-btn phase-dl-primary">
+              Descargar Plan de Acción Final (.docx)
+            </a>
+            <a href="06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb?v=20261114_v2" download class="phase-dl-btn phase-dl-secondary">
+              Descargar Cuaderno Jupyter (.ipynb)
+            </a>
+          </div>
+          <a href="#recomendaciones" class="phase-jump-link">
+            Ir a la Matriz de Recomendaciones y Plan de Acción →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PATRONES Y VISUALIZACIONES -->
+  <section class="section" id="patrones">
+    <div class="section-header">
+      <span class="section-tag">Evidencia Empírica & Hallazgos</span>
+      <h2 class="section-title">Patrones Descubiertos en el Mercado Tech</h2>
+      <p class="section-desc">
+        Análisis empírico sobre la concentración de demanda tecnológica, las primas salariales Cloud, la progresión por niveles de experiencia y el posicionamiento competitivo de Chile en el mercado regional.
+      </p>
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.35rem 0.95rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; color: #93C5FD; margin-top: 0.75rem;">
+        📌 Galería Completa de 7 Visualizaciones de Alta Resolución (P1 a P4 + Q11 + Segmentación + Benchmark Global)
+      </div>
+    </div>
+
+    <!-- VISUAL 1 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Demanda vs Adopción Top 4 Tecnologías" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png" alt="Gráfico de barras agrupadas: Solo 4 tecnologías superan el 20% de demanda (SQL {{gob_sql_pct.str}}, AWS {{gob_aws_pct.str}}, Python {{gob_python_pct.str}}, Azure {{gob_azure_pct.str}}), con JavaScript en {{gob_javascript_pct.str}}.">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 1 de 4 • Demanda vs. Adopción</span>
+        <h3 class="vis-title">Solo 3 Tecnologías Superan el Umbral Crítico del ≥ 20%</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P1):</span>
+            <span class="vis-qa-text q-text">¿Cuáles son las tecnologías más demandadas por los empleadores tech en Chile y qué brechas existen frente a las habilidades que realmente dominan los profesionales?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Solo 3 tecnologías superan el umbral del 20% de presencia en demanda en Get on Board: {{tecnologia_top1_nombre.str}} ({{tecnologia_top1_pct.str}}, N={{tecnologia_top1_n.val}}), {{tecnologia_top2_nombre.str}} ({{tecnologia_top2_pct.str}}, N={{tecnologia_top2_n.val}}) y {{tecnologia_top3_nombre.str}} ({{tecnologia_top3_pct.str}}, N={{tecnologia_top3_n.val}}). En plataformas Cloud, solo AWS supera la meta del 20%, mientras que Google Cloud ({{gob_gcp_pct.str}}, N={{gob_gcp_n.val}}) y Microsoft Azure ({{gob_azure_pct.str}}, N={{gob_azure_n.val}}) se sitúan bajo el umbral. JavaScript registra {{gob_javascript_pct.str}} (101 ofertas).</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          Al analizar {{gob_total_scope.val}} vacantes vigentes en Get on Board (2026) con 1.775 menciones de habilidades, contrastadas con 31.759 menciones de tecnologías en Stack Overflow LatAm (2024), únicamente {{tecnologia_top1_nombre.str}} ({{tecnologia_top1_pct.str}}), {{tecnologia_top2_nombre.str}} ({{tecnologia_top2_pct.str}}) y {{tecnologia_top3_nombre.str}} ({{tecnologia_top3_pct.str}}) superan la meta del 20%. Microsoft Azure alcanza {{gob_azure_pct.str}} ({{gob_azure_n.val}} menciones) y Google Cloud {{gob_gcp_pct.str}} ({{gob_gcp_n.val}} menciones). En adopción local, Azure registra {{tech_azure_so_chile_pct.pct_str}} en Chile (N={{so_chile_total.val}}, ±{{tech_azure_moe_chile.val}} pp).
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Rediseñar la malla formativa obligatoria en torno a SQL + una nube pública (AWS o Azure) para maximizar la empleabilidad en menos de 90 días.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{tecnologia_top1_pct.str}}</strong>
+            SQL (Líder en volumen, N={{tecnologia_top1_n.val}})
+          </div>
+          <div class="vis-metric-box">
+            <strong>+2,0 pp</strong>
+            Diferencia en Azure vs SO (±6,1 pp MOE)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 2 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Matriz Volumen vs Salario Cloud" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/02_matriz_volumen_vs_salario_q11.png" alt="Gráfico de dispersión de cuadrantes: Ofertas que requieren Cloud muestran medianas más altas ({{gob_senior_cloud_mediana.str}} USD en Senior) pero concentran mayor proporción de cargos Senior.">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Profundización Analítica Q11 (Derivada de P1) • Volumen vs. Retorno Salarial</span>
+        <h3 class="vis-title">Primas Salariales Cloud: AWS, Azure y Google Cloud</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (Q11):</span>
+            <span class="vis-qa-text q-text">¿Aprender la tecnología con mayor volumen de ofertas (SQL) asegura los mejores ingresos, o las plataformas Cloud se asocian con remuneraciones superiores?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">SQL es el requisito más masivo y marca una mediana base ({{gob_cl_semi_senior_mediana.str}} USD). En posiciones Senior, las plataformas Cloud registran medianas superiores: AWS ({{gob_senior_cloud_mediana.str}} USD, {{gob_prima_aws_vs_sql_usd.str}}/mes) frente a posiciones sin Cloud ({{gob_senior_sin_cloud_mediana.str}} USD).</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          SQL ofrece el mayor volumen de entrada con una mediana de {{gob_cl_semi_senior_mediana.str}} USD en GOB. En contraste, las tecnologías Cloud presentan medianas de {{gob_senior_cloud_mediana.str}} USD en posiciones Senior en Get on Board.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Posicionar certificaciones Cloud como el factor de especialización prioritario para egresados y profesionales en transición.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{gob_prima_aws_vs_sql_usd.str}}</strong>
+            Prima mensual AWS vs. SQL
+          </div>
+          <div class="vis-metric-box">
+            <strong>{{so_prima_aws_vs_sql_pct.str}}</strong>
+            Incremento en mediana Cloud
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- VISUAL 3 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Mapa de Calor de Tecnologías por Segmento de Mercado" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/03_mapa_calor_tecnologias_mercado.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/03_mapa_calor_tecnologias_mercado.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/03_mapa_calor_tecnologias_mercado.png" alt="Mapa de Calor de Tecnologías por Segmento de Mercado">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Profundización Visual • Mapa de Calor Tecnologías por Mercado</span>
+        <h3 class="vis-title">Segmentación de Tecnologías: Chile Local vs. Remoto Global</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio:</span>
+            <span class="vis-qa-text q-text">¿Cómo varía la demanda técnica entre ofertas orientadas al mercado chileno versus vacantes de alcance remoto internacional?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">En vacantes remotas sin país declarado (N={{gob_remoto_sin_pais_total.val}}) destacan AWS ({{gob_aws_remoto_pct.str}}), SQL ({{gob_sql_remoto_pct.str}}), Python ({{gob_python_pct.str}}) y Azure ({{gob_azure_pct.str}}), mientras Chile Local (N={{gob_chile_local_total.val}}) prioriza SQL ({{gob_sql_chile_pct.str}}), Python ({{gob_python_pct.str}}) y AWS ({{gob_aws_chile_pct.str}}). JavaScript representa el {{gob_js_remoto_pct.str}} en vacantes remotas y el {{gob_js_chile_pct.str}} en Chile Local. En Stack Overflow LatAm, varios motores relacionales superan la adopción masiva.</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          El mapa de calor de 15 filas x 5 segmentos independientes (sin suma cruzada) revela que los perfiles internacionales exigen una especialización temprana en infraestructura cloud, mientras que el mercado doméstico mantiene su anclaje en analítica relacional y desarrollo backend tradicional.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Segmentar las rutas formativas según la aspiración laboral del estudiante (desarrollo doméstico vs. exportación de servicios remotos).
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{gob_aws_remoto_pct.str}}</strong>
+            AWS en Remoto sin país (vs {{gob_aws_chile_pct.str}} en Chile Local)
+          </div>
+          <div class="vis-metric-box">
+            <strong>{{gob_js_remoto_pct.str}}</strong>
+            JavaScript en Remoto sin país (vs {{gob_js_chile_pct.str}} en Chile Local)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 4 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Bandas Salariales por Seniority" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png" alt="Gráfico de rangos cuartílicos p25-p75: En Chile Local el salario mediano sube de {{gob_cl_semi_senior_mediana.str}} en Semi-Senior a {{gob_cl_senior_mediana.str}} en Senior (+{{gob_cl_salto_semi_senior_pct.str}}), y en el mercado general a {{gob_total_senior_mediana.str}} (+{{gob_total_salto_semi_senior_pct.str}}).">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 2 de 4 • Experiencia y Progresión Salarial</span>
+        <h3 class="vis-title">Salto Salarial al Nivel Senior y Bandas Cuartílicas p25–p75</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P2):</span>
+            <span class="vis-qa-text q-text">¿Cómo impactan los años de experiencia en la compensación mensual y cuál es la magnitud real del salto salarial al alcanzar el nivel Senior en Chile?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Entre posiciones con N ≥ 30 en Chile Local, el salario mediano sube de {{gob_cl_semi_senior_mediana.str}} USD en Semi-Senior (N={{gob_cl_semi_senior_n.val}}) a {{gob_cl_senior_mediana.str}} USD en Senior (N={{gob_cl_senior_n.val}}), un incremento del {{gob_cl_salto_semi_senior_pct.str}} ({{gob_cl_salto_semi_senior_monto.str}}). En el mercado general de Get on Board (Chile + remotas sin país declarado), la mediana sube de {{gob_total_semi_senior_mediana.str}} (N={{gob_total_semi_senior_mediana.n}}) a {{gob_total_senior_mediana.str}} (N={{gob_total_senior_mediana.n}}), {{gob_total_salto_semi_senior_pct.str}}. En Stack Overflow LatAm, el salto acumulado de 10+ años es de {{so_salto_acumulado_10anios_pct.str}}.</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          En Get on Board, el paso de Semi-Senior ({{gob_total_semi_senior_mediana.str}} USD, N={{gob_total_semi_senior_mediana.n}}) a Senior ({{gob_total_senior_mediana.str}} USD, N={{gob_total_senior_mediana.n}}) representa un aumento de {{gob_total_salto_semi_senior_pct.str}} en la mediana salarial. Ambos segmentos cumplen rigurosamente N >= 30, permitiendo fijar bandas salariales confiables: Semi-Sr {{banda_cl_semi_senior_p25.str}}–{{banda_rem_semi_senior_p75.str}} USD y Senior {{banda_cl_senior_p25.str}}–{{banda_rem_senior_p75.str}} USD. En Stack Overflow LatAm, la progresión acumulada es de {{so_salto_acumulado_10anios_pct.str}}.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Publicar bandas cuartílicas automáticas exclusivamente para Semi-Senior y Senior, tratando Junior (N={{gob_junior_n.val}}) y Lead (N={{gob_lead_n.val}}) como tramos cualitativos sujetos a exploración futura.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{gob_total_senior_mediana.str}} USD</strong>
+            Mediana Senior (p75 = {{gob_total_senior_p75.str}})
+          </div>
+          <div class="vis-metric-box">
+            <strong>{{gob_total_semi_senior_mediana.str}} USD</strong>
+            Mediana Semi-Senior (p25 = {{gob_total_semi_senior_p25.str}})
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 5 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Modalidades vs INE y Causalidad" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png" alt="Gráfico comparativo de modalidades y composición: Remoto Local alcanza mediana de {{gob_remoto_local_salario_mediano.str}} USD con {{gob_remoto_local_senior_lead_pct.pct_str}} de cargos Senior o Lead, demostrando sesgo de composición.">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 3 de 4 • Modalidad y Correlación vs. Causalidad</span>
+        <h3 class="vis-title">La Paradoja del Remoto Local: Sesgo de Composición</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P3):</span>
+            <span class="vis-qa-text q-text">¿El trabajo remoto ofrece salarios más altos por sí mismo, o existe un sesgo de composición de cargos que explica la diferencia salarial?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Correlación no implica causalidad. La mediana de ofertas remotas sin país declarado es superior a la de Chile Local ({{gob_cl_semi_senior_mediana.str}} USD). Esta diferencia refleja un sesgo de composición: las ofertas remotas exigen mayoritariamente cargos Senior o Lead ({{gob_remoto_local_senior_lead_pct.str}} en Remoto Local). Controlando por nivel, la diferencia entre Senior Remoto ({{gob_senior_remoto_mediana.str}}) y Senior Local ({{gob_senior_local_mediana.str}}) es de {{ic_senior_remoto_vs_local_diff.str}} USD (IC 95% bootstrap: [{{ic_senior_remoto_vs_local_ci95_inf.str}}, {{ic_senior_remoto_vs_local_ci95_sup.str}}], concluyente).</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          Las vacantes de 'Remoto Local' en Get on Board registran una mediana de {{gob_modalidad_remoto_local_mediana.str}} USD/mes. El análisis sugiere que la brecha frente a posiciones presenciales ({{gob_modalidad_presencial_mediana.str}} USD) responde a la composición del cargo: el {{gob_remoto_local_senior_lead_pct.str}} exige perfiles Senior o Lead. Controlando por nivel de experiencia, la diferencia para perfiles Senior es de {{ic_senior_remoto_vs_local_diff.str}} USD (IC 95% bootstrap: [{{ic_senior_remoto_vs_local_ci95_inf.str}}, {{ic_senior_remoto_vs_local_ci95_sup.str}}]), mientras que en perfiles Semi-Senior la diferencia entre Remoto ({{gob_semi_remoto_mediana.str}}) y Chile Local ({{gob_semi_local_mediana.str}}) es de {{ic_semi_remoto_vs_local_diff.str}} y no es concluyente (IC 95% incluye el cero).
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Principio Ético del Curso 6:</strong> Evitar recomendar el teletrabajo como garantía mágica de mayor sueldo; el salario está anclado a la vacantes remotas sin país declarado de alto seniority.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{ic_senior_remoto_vs_local_diff.str}} USD</strong>
+            Senior Remoto vs Local (IC [{{ic_senior_remoto_vs_local_ci95_inf.str}}, {{ic_senior_remoto_vs_local_ci95_sup.str}}])
+          </div>
+          <div class="vis-metric-box">
+            <strong>{{gob_remoto_local_senior_lead_pct.str}}</strong>
+            Perfiles Senior/Lead en Remoto
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 6 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Posicionamiento Regional y Tamaño de Empresa" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png" alt="Gráfico de barras con IC 95% bootstrap: Uruguay lidera en LatAm ({{so_uruguay_mediana.str}} USD), mientras Chile ({{so_chile_mediana.str}} USD, {{so_chile_salarios_validos.n_str}}) no se diferencia concluyentemente de Argentina, México y Colombia.">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Pregunta de Investigación 4 de 4 • Posicionamiento Regional y Tamaño de Empresa</span>
+        <h3 class="vis-title">Comparativa Salarial en Latinoamérica y Escala por Tamaño de Empresa</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio (P4):</span>
+            <span class="vis-qa-text q-text">¿En qué posición competitiva se ubican las remuneraciones tecnológicas de Chile respecto a Latinoamérica y cómo influye el tamaño de la empresa empleadora?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">En Stack Overflow LatAm, Uruguay registra la mayor mediana muestral ({{so_uruguay_mediana.str}} USD, N={{so_uruguay_n.val}}). Chile ({{so_chile_mediana.str}} USD, N={{so_chile_salarios_validos.val}}) no presenta diferencias estadísticamente concluyentes respecto de Argentina ({{so_argentina_mediana.str}}, N={{so_argentina_n.val}}), México ({{so_mexico_mediana.str}}, N={{so_mexico_n.val}}) ni Colombia ({{so_colombia_mediana.str}}, N={{so_colombia_n.val}}), dado que los intervalos de confianza del 95% de las diferencias incluyen el cero.</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          Entre los países de Latinoamérica que cumplen N >= 30 en Stack Overflow 2024, Uruguay registra la mayor mediana muestral ({{so_uruguay_mediana.str}} USD, N={{so_uruguay_n.val}}). Chile ({{so_chile_mediana.str}} USD, N={{so_chile_salarios_validos.val}}) se superpone con Argentina ({{so_argentina_mediana.str}} USD), México ({{so_mexico_mediana.str}} USD) y Colombia ({{so_colombia_mediana.str}} USD) al analizar los intervalos bootstrap de diferencia.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Honestidad Escalar (Curso 6):</strong> Todas las barras inician estrictamente en $0 USD sin cortes artificiales en el eje Y para evitar distorsiones visuales.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{so_chile_mediana.str}} USD</strong>
+            Mediana Tech Chile (N={{so_chile_salarios_validos.val}})
+          </div>
+          <div class="vis-metric-box">
+            <strong>{{gob_brecha_remoto_vs_chile_local_pct.str}}</strong>
+            Prima Grandes Empresas en LatAm
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISUAL 7 -->
+    <div class="vis-card">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Evolución Salarial Tech Global y Tamaño de Empresa (2020-2024)" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png" alt="Gráfico de líneas temporales: Data Science Salaries para residentes en EE.UU. 2020-2024, con 2020 en trazo punteado por N menor a 30 y 2024 parcial.">
+      </div>
+      <div class="vis-content">
+        <span class="vis-tag">Referencia Internacional • Benchmark Histórico Global 2020–2024</span>
+        <h3 class="vis-title">Evolución Salarial Tech Global y Tamaño de Empresa</h3>
+
+        <div class="vis-qa-box">
+          <div class="vis-qa-item">
+            <span class="vis-qa-label q">❓ Pregunta de Negocio:</span>
+            <span class="vis-qa-text q-text">¿Cómo han evolucionado las compensaciones técnicas globales post-pandemia y cuál es la escala salarial según el tamaño corporativo?</span>
+          </div>
+          <div class="vis-qa-item">
+            <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
+            <span class="vis-qa-text a-text">Crecimiento compuesto sostenido post-2020 en roles de ciencia de datos, alcanzando estabilidad en 2024 con medianas anuales de {{dss_global_2024_mediana_anual_usd.str}} (~{{dss_global_2024_mediana_mensual_usd.str}}/mes) lideradas por empresas medianas (M) y corporaciones (L).</span>
+          </div>
+        </div>
+
+        <p class="vis-desc">
+          Análisis sobre registros de compensación técnica en EE.UU. (2020–2024). Muestra la evolución salarial para roles de ciencia de datos residentes en EE.UU., sirviendo como serie internacional externa no directamente comparable con remuneraciones locales.
+        </p>
+        <div class="vis-takeaway">
+          <strong>💡 Decisión de Negocio:</strong> Utilizar la referencia salarial internacional como horizonte formativo de largo plazo para profesionales de analítica avanzada.
+        </div>
+        <div class="vis-metrics">
+          <div class="vis-metric-box">
+            <strong>{{dss_global_2024_mediana_mensual_usd.str}}</strong>
+            Mediana Mensual Global 2024 (Data Science)
+          </div>
+          <div class="vis-metric-box">
+            <strong>5.305</strong>
+            Residentes en EE.UU. (DSS 2020–2024)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PLAN DE ACCIÓN RECOMENDADO -->
+  <section class="section" id="recomendaciones">
+    <div class="section-header">
+      <span class="section-tag">Plan de Acción • Recomendaciones Estratégicas</span>
+      <h2 class="section-title">Plan de Implementación Accionable</h2>
+      <p class="section-desc">
+        Matriz de implementación estructurada bajo el estándar de acción de Google: Qué hay que hacer, Quién debería hacerlo, Cuándo (plazos 30, 60 y 90 días) y Métricas de Éxito (KPIs).
+      </p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Acción Concreta (Qué)</th>
+            <th scope="col">Responsable (Quién)</th>
+            <th scope="col">Plazo (Cuándo)</th>
+            <th scope="col">Indicador Clave de Éxito (KPI)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-highlight">1</td>
+            <td>
+              <strong>Rediseño Curricular Acelerado SQL + Cloud:</strong><br>
+              Incorporar módulos intensivos de SQL relacional y certificación inicial en Cloud (AWS o Azure) en todos los bootcamps de la academia.
+            </td>
+            <td>Dirección Académica & Coordinación de Programas Tech</td>
+            <td><span class="badge-status">Mes 1 (30 Días)</span></td>
+            <td>100% de estudiantes evaluados en proyectos prácticos SQL+Cloud; tasa de aprobación ≥ 80%.</td>
+          </tr>
+          <tr>
+            <td class="td-highlight">2</td>
+            <td>
+              <strong>Tablero de Transparencia Salarial Basado en Cuartiles p25–p75:</strong><br>
+              Publicar bandas salariales objetivas automáticas en la plataforma de reclutamiento para cargos Semi-Senior ({{banda_cl_semi_senior_p25.str}}–{{banda_rem_semi_senior_p75.str}} USD) y Senior ({{banda_cl_senior_p25.str}}–{{banda_rem_senior_p75.str}} USD).
+            </td>
+            <td>Líder de Producto Digital & Equipo de Inteligencia Salarial</td>
+            <td><span class="badge-status">Mes 2 (60 Días)</span></td>
+            <td>≥ 70% de vacantes con bandas salariales visibles; reducción del 35% en tiempo de vacancia.</td>
+          </tr>
+          <tr>
+            <td class="td-highlight">3</td>
+            <td>
+              <strong>Servicio de Asesoría en Contratación Remota Internacional:</strong><br>
+              Capacitar a clientes corporativos en modelos de compensación ajustados por alcance (Chile Local vs. Remoto sin país declarado), transparentando que la prima remota responde a seniority internacional.
+            </td>
+            <td>Gerencia de Consultoría RRHH & Alianzas Corporativas</td>
+            <td><span class="badge-status">Mes 3 (90 Días)</span></td>
+            <td>Firma de al menos 8 empresas corporativas en el nuevo programa de colocación salarial.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ELEVATOR PITCH -->
+    <div class="pitch-box">
+      <div class="pitch-title">
+        <span>🎙 Discurso de Presentación Profesional (Elevator Pitch de 20 Segundos • Cursos 8 y 9)</span>
+      </div>
+      <p class="pitch-quote">
+        "Soy Manuel Yáñez Orellana, analista de datos certificado con el Certificado Profesional de Google Data Analytics (Google, 2026). En mi proyecto final analicé más de 72.000 registros de Get on Board, Stack Overflow, Data Science Salaries y el INE usando SQL y Python bajo la regla muestral N >= 30. Identifiqué las 4 tecnologías líderes (SQL, AWS, Python, Azure), la estructura salarial por seniority y alcance, traduciéndolo en bandas p25–p75 y un plan curricular accionable a 90 días."
+      </p>
+      <div class="pitch-author">
+        — Manuel Yáñez Orellana • Analista de Datos
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS & REPRODUCIBILIDAD -->
+  <section class="section" id="descargas">
+    <div class="section-header">
+      <span class="section-tag">Reproducibilidad & Recursos Abiertos</span>
+      <h2 class="section-title">Centro de Descargas del Proyecto</h2>
+      <p class="section-desc">
+        Accede al código fuente, cuaderno interactivo, consultas SQL y documentos oficiales generados a lo largo de las 6 fases.
+      </p>
+    </div>
+
+        <!-- SUBSECCIÓN: ENTREGABLES OFICIALES POR FASES (.DOCX) -->
+    <div style="margin-top: 3.5rem; margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #FFF; display: flex; align-items: center; gap: 0.5rem;">
+        📑 Entregables Oficiales por Fases (.docx) • Certificación Google Data Analytics
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem;">
+        Documentos oficiales generados a lo largo de las 6 fases del ciclo de análisis de datos, elaborados con estricto apego al marco metodológico de los 9 cursos oficiales.
+      </p>
+    </div>
+
+    <div class="hub-grid">
+      <!-- FASE 1 DOCX SOW -->
+      <a href="01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📋</div>
+          <h3 class="hub-name">Fase 1: Alcance del Trabajo (SOW)</h3>
+          <p class="hub-desc">Documento oficial con 7 secciones obligatorias, técnica de los 5 Porqués, 4 preguntas S.M.A.R.T. y matriz de interesados.</p>
+        </div>
+        <div class="hub-link">Descargar SOW (.docx) →</div>
+      </a>
+
+      <!-- FASE 1 DOCX TAREA -->
+      <a href="01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🎯</div>
+          <h3 class="hub-name">Fase 1: Tarea Empresarial</h3>
+          <p class="hub-desc">Declaración formal del problema de negocio, justificación de métricas vs dimensiones y criterios de imparcialidad (Fairness).</p>
+        </div>
+        <div class="hub-link">Descargar Tarea (.docx) →</div>
+      </a>
+
+      <!-- FASE 2 DOCX ROCCC -->
+      <a href="02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📦</div>
+          <h3 class="hub-name">Fase 2: Fuentes & Marco ROCCC</h3>
+          <p class="hub-desc">Evaluación formal de las 4 fuentes crudas (72.797 filas) bajo el marco ROCCC, metadatos y protocolo estricto Sin PII.</p>
+        </div>
+        <div class="hub-link">Descargar ROCCC (.docx) →</div>
+      </a>
+
+      <!-- FASE 3 DOCX LIMPIEZA -->
+      <a href="03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🧹</div>
+          <h3 class="hub-name">Fase 3: Limpieza & Changelog</h3>
+          <p class="hub-desc">Documentación de los 6 tipos de validación, lista de verificación de 12 puntos de Google y Changelog de 7 campos.</p>
+        </div>
+        <div class="hub-link">Descargar Limpieza (.docx) →</div>
+      </a>
+
+      <!-- FASE 4 DOCX SQL -->
+      <a href="04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🗄️</div>
+          <h3 class="hub-name">Fase 4: Análisis SQL & Python</h3>
+          <p class="hub-desc">Resumen ejecutivo del análisis relacional en SQLite, control contra duplicación 1:N y estadísticas no paramétricas p25–p75.</p>
+        </div>
+        <div class="hub-link">Descargar Análisis (.docx) →</div>
+      </a>
+
+      <!-- FASE 5 DOCX DISENO -->
+      <a href="05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📊</div>
+          <h3 class="hub-name">Fase 5: Diseño Visual & Presentación</h3>
+          <p class="hub-desc">Guía de diseño con principios de Edward Tufte, accesibilidad para daltonismo y guion para reunión ejecutiva de 30 minutos.</p>
+        </div>
+        <div class="hub-link">Descargar Diseño (.docx) →</div>
+      </a>
+
+      <!-- FASE 6 DOCX PLAN ACCION -->
+      <a href="06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🚀</div>
+          <h3 class="hub-name">Fase 6: Plan de Acción & Carrera</h3>
+          <p class="hub-desc">Matriz Qué/Quién/Cuándo (30, 60, 90 días), pros y contras, narrativa STAR, viñetas de currículum X-Y-Z y Elevator Pitch.</p>
+        </div>
+        <div class="hub-link">Descargar Plan (.docx) →</div>
+      </a>
+    </div>
+
+    <!-- SUBSECCIÓN: CÓDIGO, DATASETS Y RECURSOS TÉCNICOS -->
+    <div style="margin-top: 3.5rem; margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #FFF; display: flex; align-items: center; gap: 0.5rem;">
+        💻 Código Fuente, Cuadernos Interactivos, Datasets Abiertos & Presentación
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem;">
+        Accede al repositorio en GitHub, cuaderno Jupyter reproducible, scripts SQL, datos preparados y limpios.
+      </p>
+    </div>
+
+    <div class="hub-grid">
+      <!-- GITHUB -->
+      <a href="https://github.com/jmryanez/mercado-tech-chile-latam-2026" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div>
+          <div class="hub-icon">📦</div>
+          <h3 class="hub-name">Repositorio en GitHub</h3>
+          <p class="hub-desc">Código fuente completo, scripts de limpieza en Python, consultas SQL y control de versiones con CHANGELOG.md.</p>
+        </div>
+        <div class="hub-link">Explorar Repositorio →</div>
+      </a>
+
+      <!-- KAGGLE NOTEBOOK -->
+      <a href="06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📓</div>
+          <h3 class="hub-name">Cuaderno Jupyter</h3>
+          <p class="hub-desc">Notebook Jupyter con código reproducible de extracción, SQLite relacional y visualizaciones con autodetector de rutas.</p>
+        </div>
+        <div class="hub-link">Descargar .ipynb →</div>
+      </a>
+
+      <!-- PACK DATASETS LIMPIOS KAGGLE -->
+      <a href="descargas/Datos_Limpios_Completos_Kaggle.zip?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📦</div>
+          <h3 class="hub-name">Pack de Datasets Limpios (.zip)</h3>
+          <p class="hub-desc">Cuaderno y dataset en Kaggle: pendientes de publicación (preparado en descargas/Datos_Limpios_Completos_Kaggle.zip).</p>
+        </div>
+        <div class="hub-link">Descargar ZIP (305 KB) →</div>
+      </a>
+
+      <!-- TABLEAU EXCEL -->
+      <a href="05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📊</div>
+          <h3 class="hub-name">Datos para Tablero Interactivo</h3>
+          <p class="hub-desc">Libro Excel multi-hoja con las 4 poblaciones separadas, hoja de instrucciones y datos preconfigurados para mapas de calor.</p>
+        </div>
+        <div class="hub-link">Descargar Excel (.xlsx) →</div>
+      </a>
+
+      <!-- PDF PRESENTACIÓN -->
+      <a href="05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf?v=20261114_v2" target="_blank" rel="noopener noreferrer" class="hub-card">
+        <div>
+          <div class="hub-icon">📑</div>
+          <h3 class="hub-name">Presentación Ejecutiva (PDF)</h3>
+          <p class="hub-desc">Deck de 14 diapositivas panorámicas en alta resolución estructurado para una reunión de directorio de 30 minutos.</p>
+        </div>
+        <div class="hub-link">Ver Presentación PDF →</div>
+      </a>
+
+      <!-- CONSULTAS SQL -->
+      <a href="04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🗄️</div>
+          <h3 class="hub-name">Script SQL Relacional</h3>
+          <p class="hub-desc">Consultas relacionales (Q01 a Q15) en SQLite con tablas temporales, agregaciones HAVING y control contra duplicación 1:N.</p>
+        </div>
+        <div class="hub-link">Descargar SQL (.sql) →</div>
+      </a>
+
+      <!-- BITÁCORA DOCX -->
+      <a href="DIARIO_DE_DATOS_BITACORA.docx?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📖</div>
+          <h3 class="hub-name">Diario de Datos (Bitácora)</h3>
+          <p class="hub-desc">Registro continuo del proceso reflexivo, lecciones aprendidas y preguntas de autorreflexión de los Cursos 1 al 9.</p>
+        </div>
+        <div class="hub-link">Descargar Bitácora (.docx) →</div>
+      </a>
+
+      <!-- DATASETS VALIDADOS DEL EXPLORADOR (NUEVOS) -->
+      <a href="descargas/GetOnBoard_Vacantes_Auditadas_679.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📋</div>
+          <h3 class="hub-name">679 Vacantes Limpias (CSV)</h3>
+          <p class="hub-desc">Dataset procesado de Get on Board 2026 con país, modalidad, categoría, nivel de seniority y rangos salariales.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (103 KB) →</div>
+      </a>
+
+      <a href="descargas/Matriz_TLC_19_Paises_LatAm.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🎯</div>
+          <h3 class="hub-name">Matriz TLC 19 Países LatAm (CSV)</h3>
+          <p class="hub-desc">Tabla de representatividad estadística (N ≥ 30), medianas, cuartiles p25–p75 y márgenes de error por país.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (2,3 KB) →</div>
+      </a>
+
+      <a href="descargas/Bandas_Salariales_y_Saltos_Seniority.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">📈</div>
+          <h3 class="hub-name">Bandas Salariales y Saltos % (CSV)</h3>
+          <p class="hub-desc">Distribución no paramétrica (p25, mediana, p75) y cálculo de salto salarial ({{gob_total_salto_semi_senior_pct.str}} en Get on Board Total. Por su parte, en Chile Local es {{gob_cl_salto_semi_senior_pct.str}}) en el mercado.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (1,9 KB) →</div>
+      </a>
+
+      <a href="descargas/Matriz_Validacion_Integridad_Calidad.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🛡️</div>
+          <h3 class="hub-name">Matriz de Validación & Privacidad (CSV)</h3>
+          <p class="hub-desc">Las 6 validaciones del Curso 4 de Google, reglas relacionales 1:N y protocolo de anonimización ética.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (3,1 KB) →</div>
+      </a>
+
+      <a href="descargas/StackOverflow_LatAm_19_Paises_2024.csv?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">🌎</div>
+          <h3 class="hub-name">Stack Overflow LatAm 2024 (CSV)</h3>
+          <p class="hub-desc">Dataset con 3.074 desarrolladores encuestados en los 19 países de la región con variables de salarios y tecnologías.</p>
+        </div>
+        <div class="hub-link">Descargar CSV (549 KB) →</div>
+      </a>
+
+      <a href="descargas/Explorador_Datasets_Consolidados.json?v=20261114_v2" download class="hub-card">
+        <div>
+          <div class="hub-icon">⚡</div>
+          <h3 class="hub-name">Datasets Consolidados (JSON)</h3>
+          <p class="hub-desc">Estructura unificada de los 4 conjuntos de datos del explorador interactivo para desarrollo o reanálisis directo.</p>
+        </div>
+        <div class="hub-link">Descargar JSON (214 KB) →</div>
+      </a>
+    </div>
+  </section>
+
+  
+  <!-- SECCIÓN: SOBRE EL AUTOR -->
+  <section class="section" id="autor">
+    <div class="section-header">
+      <span class="section-tag">Perfil Profesional & Trayectoria</span>
+      <h2 class="section-title">Sobre el Investigador & Analista</h2>
+      <p class="section-desc">
+        Ingeniero Civil Industrial e Ingeniero en Informática con más de 8 años liderando proyectos de tecnología, transformación digital y analítica de datos.
+      </p>
+    </div>
+
+    <div class="profile-card" style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; margin-top: 2rem; box-shadow: var(--shadow-sm);">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; justify-content: space-between;">
+        <div style="flex: 1 1 540px;">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(217, 119, 6, 0.12); color: #F59E0B; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid rgba(217, 119, 6, 0.3);">
+            🏆 Premio Nacional de Innovación Avonni 2024 • Innovación Pública BID
+          </div>
+          <h3 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem;">Manuel Yáñez Orellana</h3>
+          <p style="font-size: 1.05rem; font-weight: 600; color: #60A5FA; margin-bottom: 1rem;">
+            Senior IT Project Manager | Scrum Master | Delivery Lead | Analista de Datos
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.25rem;">
+            Especialista en dirección de proyectos de alta complejidad técnica y estratégica. Reconocido con el <strong>Premio Nacional de Innovación Avonni 2024</strong> por liderar como PM de negocio el desarrollo del <em>Modelo Predictivo de Pertinencia Clínica (MPP)</em> con IA en FONASA, reduciendo el ciclo de validación de 8 meses a 2 semanas (-94%). Amplia experiencia articulando objetivos de negocio con soluciones analíticas avanzadas bajo marcos ágiles (Scrum, Kanban, Lean) y estándares de gobernanza TI (ISO 27001, ITIL, CMF).
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: var(--bg-body); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Formación Académica</div>
+              <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin-top: 0.25rem;">Ing. Civil Industrial & Ing. en Informática</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Titulado · UDLA & IP Diego Portales</div>
+            </div>
+            <div style="background: var(--bg-body); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Ubicación & Disponibilidad</div>
+              <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin-top: 0.25rem;">Santiago, Chile</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Remoto / Híbrido / Presencial</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="mailto:jmryanez@gmail.com" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; padding: 0.75rem 1.4rem; background: #2563EB; border-color: #2563EB; color: #FFF; border-radius: var(--radius-sm); font-weight: 600;">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              Contactar por Email (jmryanez@gmail.com)
+            </a>
+            <a href="https://github.com/jmryanez" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; padding: 0.75rem 1.4rem; border: 1px solid var(--border-color); color: var(--text-main); border-radius: var(--radius-sm); font-weight: 600; background: var(--bg-surface);">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+              Perfil en GitHub (@jmryanez)
+            </a>
+          </div>
+        </div>
+
+        <div style="flex: 1 1 340px; background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+          <h4 style="font-size: 0.92rem; text-transform: uppercase; color: #60A5FA; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.05em;">
+            Certificación Profesional
+          </h4>
+          <p style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.5;">
+            <strong>Certificado Profesional de Análisis de Datos de Google</strong> (Google Data Analytics Professional Certificate), Google / Coursera, noviembre 2026.
+          </p>
+          <a href="https://www.credly.com/users/manuel-yanez" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; padding: 0.65rem 1.2rem; border: 1px solid #3B82F6; color: #93C5FD; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.85rem; background: rgba(59, 130, 246, 0.1);">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Ver todas mis certificaciones en Credly
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL PARA ZOOM DE IMÁGENES -->
+  <div id="imageModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Vista ampliada de visualización">
+    <button class="modal-close" aria-label="Cerrar ampliación" onclick="closeModal()">&times;</button>
+    <img class="modal-content" id="modalImg" alt="Visualización ampliada en alta resolución">
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="https://github.com/jmryanez" target="_blank" rel="noopener noreferrer">GitHub: @jmryanez</a></li>
+        <li><a href="mailto:jmryanez@gmail.com" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; padding: 0.75rem 1.4rem; background: #2563EB; border-color: #2563EB; color: #FFF; border-radius: var(--radius-sm); font-weight: 600;">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              Contactar por Email (jmryanez@gmail.com)
+            </a></li>
+        <li><span style="color: var(--text-muted);">Ubicación: Santiago, Chile</span></li>
+        <li><a href="CHANGELOG.md" target="_blank" rel="noopener noreferrer">Registro de Cambios (Changelog v{{meta_version.str}})</a></li>
+      </ul>
+      <p style="margin-bottom: 0.5rem; color: #FFF; font-weight: 600;">
+        Caso Práctico • Certificado Profesional de Análisis de Datos de Google
+      </p>
+      <p style="color: var(--text-muted); font-size: 0.8rem;">
+        Desarrollado y publicado por Manuel Yáñez Orellana • Año del Estudio: 2026 • Periodo analizado: 2024–2026.
+        Cumplimiento estricto de las directrices metodológicas de los 9 cursos oficiales para la obtención de la Certificación Profesional de Google Data Analytics.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    let _modalTrigger = null;
+    function openModal(imgSrc, altText) {
+      _modalTrigger = document.activeElement;
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modal.style.display = 'block';
+      modalImg.src = imgSrc;
+      if (altText) {
+        modalImg.alt = altText;
+      }
+      modal.setAttribute('tabindex', '-1');
+      modal.focus();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      if (_modalTrigger && typeof _modalTrigger.focus === 'function') {
+        _modalTrigger.focus();
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+  <script>
+    // DATASETS EMBEDDED
+    // DATASETS CARGADOS DINÁMICAMENTE VIA FETCH
+    let DATASETS = {
+      gob_vacantes: [],
+      paises_matrix: [],
+      salarios_saltos: [],
+      validacion_matrix: [],
+      matriz_tlc: [],
+      q14_modalidad_x_seniority: [],
+      q15_tecnologia_x_seniority: []
+    };
+
+    let currentTab = 'tab-fuentes';
+    let gobData = [];
+    let gobFiltered = [];
+    let gobPage = 1;
+    let gobPageSize = 25;
+    let gobSortCol = 'id';
+    let gobSortAsc = true;
+    let tlcData = [];
+    let tlcFiltered = [];
+    let tlcSortCol = 'n_total';
+    let tlcSortAsc = false;
+    let salData = [];
+    let salFiltered = [];
+    let salSortCol = 'mediana';
+    let salSortAsc = false;
+
+    async function cargarDatasets() {
+      try {
+        const resp = await fetch('explorador_datasets.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        DATASETS = await resp.json();
+        gobData = [...(DATASETS.gob_vacantes || [])];
+        gobFiltered = [...gobData];
+        tlcData = [...(DATASETS.paises_matrix || [])];
+        tlcFiltered = [...tlcData];
+        salData = [...(DATASETS.salarios_saltos || [])];
+        salFiltered = [...salData];
+        renderGobTable();
+        renderTlcTable();
+        renderSalTable();
+        renderValTable();
+      } catch (err) {
+        console.error('Error cargando explorador_datasets.json:', err);
+        const container = document.getElementById('explorador-datos');
+        if (container) {
+          const warn = document.createElement('div');
+          warn.className = 'callout-box';
+          warn.style.borderLeftColor = '#EF4444';
+          warn.innerHTML = '<strong>Nota de carga local:</strong> No se pudo cargar automáticamente <code>explorador_datasets.json</code>. Si está abriendo el archivo localmente vía protocolo <code>file://</code>, ejecute un servidor local (ej. <code>python3 -m http.server</code>) o consulte los datasets directamente desde la carpeta <code>descargas/</code>.';
+          container.prepend(warn);
+        }
+      }
+    }
+    
+    // PHASE SWITCHING & DEEP-DIVE NAVIGATION
+    function switchPhase(phaseNum) {
+      document.querySelectorAll('.phase-card-interactive').forEach(card => {
+        card.classList.remove('active-phase');
+      });
+      document.querySelectorAll('.deepdive-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.phase-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+
+      const targetCard = document.getElementById('phase-card-' + phaseNum);
+      const targetBtn = document.getElementById('deepdive-btn-' + phaseNum);
+      const targetPane = document.getElementById('phase-pane-' + phaseNum);
+
+      if (targetCard) targetCard.classList.add('active-phase');
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+        targetBtn.setAttribute('aria-selected', 'true');
+      }
+      if (targetPane) targetPane.classList.add('active');
+    }
+
+    function openPhaseDetail(phaseNum) {
+      switchPhase(phaseNum);
+      const section = document.getElementById('metodologia-deepdive');
+      if (section) {
+        const navHeight = document.querySelector('.header')?.offsetHeight || 75;
+        const targetY = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    }
+
+    // TAB SWITCHING
+    function switchExplorerTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.explorer-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.explorer-tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+
+      const targetBtn = document.getElementById('btn-' + tabId);
+      const targetPane = document.getElementById(tabId);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+        targetBtn.setAttribute('aria-selected', 'true');
+      }
+      if (targetPane) {
+        targetPane.classList.add('active');
+      }
+    }
+
+    // OPEN FROM STAT CARDS WITH SMOOTH SCROLL & HEADER OFFSET
+    function openDataExplorer(tabId) {
+      switchExplorerTab(tabId);
+      const section = document.getElementById('explorador-datos');
+      if (section) {
+        const navHeight = document.querySelector('.header')?.offsetHeight || 75;
+        const targetY = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    }
+
+    // RENDER GOB TABLE
+    function renderGobTable() {
+      const tbody = document.getElementById('gobTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const start = gobPageSize === 'ALL' ? 0 : (gobPage - 1) * gobPageSize;
+      const end = gobPageSize === 'ALL' ? gobFiltered.length : Math.min(start + gobPageSize, gobFiltered.length);
+      const pageRows = gobFiltered.slice(start, end);
+
+      if (pageRows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron vacantes con los filtros seleccionados.</td></tr>';
+      } else {
+        pageRows.forEach(r => {
+          const tr = document.createElement('tr');
+          const paisBadgeClass = r.pais_geo.includes('Chile') ? 'badge-chile' : 'badge-remote';
+          const flag = r.pais_geo.includes('Chile') ? '🇨🇱' : '🌎';
+          
+          const salUsdText = r.sal_usd ? `<span class="dt-badge badge-salario-ok">$${r.sal_usd.toLocaleString('es-CL')} USD</span>` : '<span class="badge-salario-na">No publicado</span>';
+          const salClpText = r.sal_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.sal_clp.toLocaleString('es-CL')}</span>` : '<span class="badge-salario-na">-</span>';
+
+          tr.innerHTML = `
+            <td><code style="font-size: 0.75rem; color: #94A3B8;">${r.id}</code></td>
+            <td><span class="dt-badge ${paisBadgeClass}">${flag} ${r.pais_geo}</span></td>
+            <td style="font-size: 0.8rem; color: #94A3B8;">${r.paises_det}</td>
+            <td style="font-weight: 600; color: #F1F5F9; max-width: 260px; overflow: hidden; text-overflow: ellipsis;" title="${r.titulo}">${r.titulo}</td>
+            <td style="font-size: 0.8rem; color: #CBD5E1;">${r.categoria}</td>
+            <td><span class="dt-badge" style="background: rgba(255,255,255,0.06); color: #E2E8F0;">${r.modalidad}</span></td>
+            <td><span class="dt-badge badge-seniority">${r.seniority}</span></td>
+            <td>${salUsdText}</td>
+            <td>${salClpText}</td>
+            <td style="text-align: right; font-family: var(--font-mono); font-weight: 600; color: #93C5FD;">${r.postulaciones}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Counter
+      const counter = document.getElementById('gobCounter');
+      if (counter) {
+        const total = gobFiltered.length;
+        if (total === 0) {
+          counter.textContent = 'Mostrando 0 de 0 vacantes';
+        } else {
+          counter.textContent = `Mostrando ${start + 1} a ${end} de ${total} vacantes validadas`;
+        }
+      }
+
+      // Pagination
+      renderGobPagination();
+    }
+
+    function renderGobPagination() {
+      const pag = document.getElementById('gobPagination');
+      if (!pag) return;
+      pag.innerHTML = '';
+
+      if (gobPageSize === 'ALL') return;
+
+      const totalPages = Math.ceil(gobFiltered.length / gobPageSize);
+      if (totalPages <= 1) return;
+
+      // Prev btn
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'dt-page-btn';
+      prevBtn.textContent = '‹';
+      prevBtn.setAttribute('aria-label', 'Página anterior de vacantes');
+      prevBtn.disabled = gobPage === 1;
+      prevBtn.onclick = () => { if (gobPage > 1) { gobPage--; renderGobTable(); } };
+      pag.appendChild(prevBtn);
+
+      // Page numbers (max 5 buttons)
+      let startP = Math.max(1, gobPage - 2);
+      let endP = Math.min(totalPages, startP + 4);
+      if (endP - startP < 4) {
+        startP = Math.max(1, endP - 4);
+      }
+
+      for (let p = startP; p <= endP; p++) {
+        const btn = document.createElement('button');
+        btn.className = 'dt-page-btn' + (p === gobPage ? ' active' : '');
+        btn.textContent = p;
+        btn.setAttribute('aria-label', 'Ir a la página ' + p);
+        if (p === gobPage) {
+          btn.setAttribute('aria-current', 'page');
+        }
+        btn.onclick = () => { gobPage = p; renderGobTable(); };
+        pag.appendChild(btn);
+      }
+
+      // Next btn
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'dt-page-btn';
+      nextBtn.textContent = '›';
+      nextBtn.setAttribute('aria-label', 'Página siguiente de vacantes');
+      nextBtn.disabled = gobPage === totalPages;
+      nextBtn.onclick = () => { if (gobPage < totalPages) { gobPage++; renderGobTable(); } };
+      pag.appendChild(nextBtn);
+    }
+
+    function filterGobTable() {
+      const query = (document.getElementById('gobSearch')?.value || '').toLowerCase().trim();
+      const pais = document.getElementById('gobPaisFilter')?.value || 'ALL';
+      const sen = document.getElementById('gobSeniorityFilter')?.value || 'ALL';
+      const sal = document.getElementById('gobSalarioFilter')?.value || 'ALL';
+
+      gobFiltered = gobData.filter(r => {
+        // query
+        const text = (r.id + ' ' + r.pais_geo + ' ' + r.paises_det + ' ' + r.titulo + ' ' + r.categoria + ' ' + r.modalidad + ' ' + r.seniority).toLowerCase();
+        if (query && !text.includes(query)) return false;
+
+        // pais
+        if (pais !== 'ALL' && r.pais_geo !== pais) return false;
+
+        // seniority
+        if (sen !== 'ALL' && r.seniority !== sen) return false;
+
+        // salario
+        if (sal === 'WITH_SAL' && !r.sal_usd) return false;
+        if (sal === 'NO_SAL' && r.sal_usd) return false;
+
+        return true;
+      });
+
+      gobPage = 1;
+      sortGobDataInternal();
+      renderGobTable();
+    }
+
+    function changeGobPageSize() {
+      const sz = document.getElementById('gobPageSize')?.value || '25';
+      gobPageSize = sz === 'ALL' ? 'ALL' : parseInt(sz, 10);
+      gobPage = 1;
+      renderGobTable();
+    }
+
+    function sortGobTable(col) {
+      if (gobSortCol === col) {
+        gobSortAsc = !gobSortAsc;
+      } else {
+        gobSortCol = col;
+        gobSortAsc = true;
+      }
+
+      // Update header classes & aria-sort
+      document.querySelectorAll('#gobTable th').forEach(th => {
+        th.classList.remove('sorted-asc', 'sorted-desc');
+        th.removeAttribute('aria-sort');
+        const oc = th.getAttribute('onclick') || '';
+        if (oc.includes("'" + col + "'") || oc.includes("'" + col + "'")) {
+          th.classList.add(gobSortAsc ? 'sorted-asc' : 'sorted-desc');
+          th.setAttribute('aria-sort', gobSortAsc ? 'ascending' : 'descending');
+        }
+      });
+
+      sortGobDataInternal();
+      renderGobTable();
+    }
+
+    function sortGobDataInternal() {
+      gobFiltered.sort((a, b) => {
+        let valA = a[gobSortCol];
+        let valB = b[gobSortCol];
+        if (valA === null || valA === undefined) return gobSortAsc ? 1 : -1;
+        if (valB === null || valB === undefined) return gobSortAsc ? -1 : 1;
+        if (typeof valA === 'string' && typeof valB === 'string') {
+          return gobSortAsc ? valA.localeCompare(valB, 'es') : valB.localeCompare(valA, 'es');
+        }
+        if (valA < valB) return gobSortAsc ? -1 : 1;
+        if (valA > valB) return gobSortAsc ? 1 : -1;
+        return 0;
+      });
+    }
+
+    function exportGobCSV() {
+      let csv = 'ID,Pais_Ambito,Paises_Especificos,Titulo,Categoria,Modalidad,Seniority,Salario_USD,Salario_CLP_Ref,Postulaciones\n';
+      gobFiltered.forEach(r => {
+        const row = [
+          `"${r.id}"`,
+          `"${r.pais_geo}"`,
+          `"${r.paises_det}"`,
+          `"${r.titulo.replace(/"/g, '""')}"`,
+          `"${r.categoria}"`,
+          `"${r.modalidad}"`,
+          `"${r.seniority}"`,
+          r.sal_usd || '',
+          r.sal_clp || '',
+          r.postulaciones
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'GetOnBoard_Vacantes_Auditadas_679.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // RENDER TLC TABLE (19 PAISES LATAM + CHILE)
+    function renderTlcTable() {
+      const tbody = document.getElementById('tlcTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      tlcFiltered.forEach(r => {
+        const tr = document.createElement('tr');
+        const badgeTlc = r.cumple_n30 
+          ? '<span class="dt-badge badge-tlc-ok">✓ Cumple N ≥ 30</span>' 
+          : '<span class="dt-badge badge-tlc-warn">⚠ N < 30 (Exploratorio)</span>';
+
+        const medUsdText = r.med_usd ? `<span style="font-family: var(--font-mono); font-weight: 700; color: #34D399;">$${r.med_usd.toLocaleString('es-CL')} USD</span>` : '-';
+        const iqrRangeText = (r.p25_usd && r.p75_usd) ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.p25_usd.toLocaleString('es-CL')} – $${r.p75_usd.toLocaleString('es-CL')}</span>` : '-';
+        const iqrText = r.iqr_usd ? `<span style="font-family: var(--font-mono); color: #93C5FD;">$${r.iqr_usd.toLocaleString('es-CL')}</span>` : '-';
+        const medClpText = r.med_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.med_clp.toLocaleString('es-CL')}</span>` : '-';
+
+        const ic95Text = (r.ic95_mediana_inf_usd && r.ic95_mediana_sup_usd)
+          ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #93C5FD;">[$${Math.round(r.ic95_mediana_inf_usd).toLocaleString('es-CL')} – $${Math.round(r.ic95_mediana_sup_usd).toLocaleString('es-CL')}]</span>`
+          : '<span style="color: #94A3B8; font-size: 0.8rem;">N/A (N < 5)</span>';
+        
+        tr.innerHTML = `
+          <td style="font-weight: 700; font-size: 0.9rem; color: #F8FAFC;"><span style="font-size: 1.1rem; margin-right: 0.4rem;">${r.flag}</span> ${r.pais}</td>
+          <td style="font-family: var(--font-mono); font-weight: 700; color: #60A5FA; text-align: right;">${r.n_total.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); color: #94A3B8; text-align: right;">${r.n_sal.toLocaleString('es-CL')}</td>
+          <td>${badgeTlc}</td>
+          <td>${medUsdText}</td>
+          <td>${iqrRangeText}</td>
+          <td>${iqrText}</td>
+          <td>${medClpText}</td>
+          <td>${ic95Text}</td>
+          <td style="font-size: 0.8rem; color: #CBD5E1;">${r.tratamiento}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterTlcTable() {
+      const q = (document.getElementById('tlcSearch')?.value || '').toLowerCase().trim();
+      const status = document.getElementById('tlcStatusFilter')?.value || 'ALL';
+
+      tlcFiltered = tlcData.filter(r => {
+        if (q && !r.pais.toLowerCase().includes(q)) return false;
+        if (status === 'OK' && !r.cumple_n30) return false;
+        if (status === 'WARN' && r.cumple_n30) return false;
+        return true;
+      });
+
+      sortTlcDataInternal();
+      renderTlcTable();
+    }
+
+    function sortTlcTable(col) {
+      if (tlcSortCol === col) {
+        tlcSortAsc = !tlcSortAsc;
+      } else {
+        tlcSortCol = col;
+        tlcSortAsc = false;
+      }
+
+      document.querySelectorAll('#tlcTable th').forEach(th => {
+        th.classList.remove('sorted-asc', 'sorted-desc');
+        th.removeAttribute('aria-sort');
+        const oc = th.getAttribute('onclick') || '';
+        if (oc.includes("'" + col + "'") || oc.includes("'" + col + "'")) {
+          th.classList.add(tlcSortAsc ? 'sorted-asc' : 'sorted-desc');
+          th.setAttribute('aria-sort', tlcSortAsc ? 'ascending' : 'descending');
+        }
+      });
+
+      sortTlcDataInternal();
+      renderTlcTable();
+    }
+
+    function parseSortValue(val) {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'number') return val;
+      if (typeof val === 'boolean') return val ? 1 : 0;
+      if (typeof val === 'string') {
+        const clean = val.replace('%', '').replace('±', '').replace('+', '').replace(',', '.').trim();
+        const num = parseFloat(clean);
+        if (!isNaN(num) && clean.match(/^-?\d+(\.\d+)?$/)) return num;
+        return val.toLowerCase();
+      }
+      return val;
+    }
+
+    function sortTlcDataInternal() {
+      tlcFiltered.sort((a, b) => {
+        let valA = parseSortValue(a[tlcSortCol]);
+        let valB = parseSortValue(b[tlcSortCol]);
+        if (valA === null || valA === undefined) valA = tlcSortAsc ? Infinity : -Infinity;
+        if (valB === null || valB === undefined) valB = tlcSortAsc ? Infinity : -Infinity;
+        if (valA < valB) return tlcSortAsc ? -1 : 1;
+        if (valA > valB) return tlcSortAsc ? 1 : -1;
+        return 0;
+      });
+    }
+
+    function exportTlcCSV() {
+      let csv = 'Pais,N_Total,N_Salarios,Cumple_N30,Mediana_USD,p25_USD,p75_USD,Amplitud_IQR_USD,Mediana_CLP_Ref,IC_95_Mediana,Tratamiento_Metodologico\n';
+      tlcFiltered.forEach(r => {
+        const row = [
+          `"${r.pais}"`,
+          r.n_total,
+          r.n_sal,
+          r.cumple_n30,
+          r.med_usd || '',
+          r.p25_usd || '',
+          r.p75_usd || '',
+          r.iqr_usd || '',
+          r.med_clp || '',
+          `"[${Math.round(r.ic95_mediana_inf_usd || 0)} - ${Math.round(r.ic95_mediana_sup_usd || 0)}]"`,
+          `"${r.tratamiento}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Matriz_TLC_19_Paises_LatAm.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // RENDER SALARIOS TABLE
+    function renderSalTable() {
+      const tbody = document.getElementById('salTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      salFiltered.forEach(r => {
+        const tr = document.createElement('tr');
+        const saltoBadgeClass = r.salto.includes('+') ? 'badge-tlc-ok' : 'badge-latam';
+        const saltoText = `<span class="dt-badge ${saltoBadgeClass}" style="font-family: var(--font-mono); font-weight: 700;">${r.salto}</span>`;
+        const tlcBadge = r.tlc.includes('Válido') 
+          ? '<span class="dt-badge badge-tlc-ok">✓ Válido N ≥ 30</span>' 
+          : `<span class="dt-badge badge-tlc-warn">${r.tlc}</span>`;
+
+        tr.innerHTML = `
+          <td style="font-weight: 600; color: #F1F5F9;">${r.ambito}</td>
+          <td style="font-weight: 700; color: #60A5FA;">${r.nivel}</td>
+          <td style="font-size: 0.8rem; color: #94A3B8;">${r.fuente}</td>
+          <td style="font-family: var(--font-mono); font-weight: 600; text-align: right; color: #CBD5E1;">${r.n.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); color: #94A3B8;">$${r.p25.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); font-weight: 700; color: #34D399; font-size: 0.95rem;">$${r.mediana.toLocaleString('es-CL')} USD</td>
+          <td style="font-family: var(--font-mono); color: #94A3B8;">$${r.p75.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); color: #93C5FD;">$${r.iqr.toLocaleString('es-CL')}</td>
+          <td>${saltoText}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.82rem; color: #CBD5E1;">$${r.clp.toLocaleString('es-CL')}</td>
+          <td>${tlcBadge}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterSalTable() {
+      const q = (document.getElementById('salSearch')?.value || '').toLowerCase().trim();
+      const fuente = document.getElementById('salFuenteFilter')?.value || 'ALL';
+
+      salFiltered = salData.filter(r => {
+        const text = (r.ambito + ' ' + r.nivel + ' ' + r.fuente + ' ' + r.salto).toLowerCase();
+        if (q && !text.includes(q)) return false;
+        if (fuente !== 'ALL' && !r.fuente.includes(fuente)) return false;
+        return true;
+      });
+
+      sortSalDataInternal();
+      renderSalTable();
+    }
+
+    function sortSalTable(col) {
+      if (salSortCol === col) {
+        salSortAsc = !salSortAsc;
+      } else {
+        salSortCol = col;
+        salSortAsc = false;
+      }
+
+      document.querySelectorAll('#salTable th').forEach(th => {
+        th.classList.remove('sorted-asc', 'sorted-desc');
+        th.removeAttribute('aria-sort');
+        const oc = th.getAttribute('onclick') || '';
+        if (oc.includes("'" + col + "'") || oc.includes("'" + col + "'")) {
+          th.classList.add(salSortAsc ? 'sorted-asc' : 'sorted-desc');
+          th.setAttribute('aria-sort', salSortAsc ? 'ascending' : 'descending');
+        }
+      });
+
+      sortSalDataInternal();
+      renderSalTable();
+    }
+
+    function sortSalDataInternal() {
+      salFiltered.sort((a, b) => {
+        let valA = parseSortValue(a[salSortCol]);
+        let valB = parseSortValue(b[salSortCol]);
+        if (valA === null || valA === undefined) valA = salSortAsc ? Infinity : -Infinity;
+        if (valB === null || valB === undefined) valB = salSortAsc ? Infinity : -Infinity;
+        if (valA < valB) return salSortAsc ? -1 : 1;
+        if (valA > valB) return salSortAsc ? 1 : -1;
+        return 0;
+      });
+    }
+
+    function exportValCSV() {
+      let csv = 'Tipo_Validacion,Ambito_Pais,Descripcion_Regla,Poblacion_Validada,Excluidos_Ajustados,Resultado_Calidad,Impacto_Metodologico\n';
+      DATASETS.validacion_matrix.forEach(r => {
+        const row = [
+          `"${r.tipo}"`,
+          `"${r.ambito}"`,
+          `"${r.descripcion.replace(/"/g, '""')}"`,
+          `"${r.poblacion}"`,
+          `"${r.excluidos}"`,
+          `"${r.resultado}"`,
+          `"${r.impacto.replace(/"/g, '""')}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Matriz_Validacion_Integridad_Calidad.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function exportSalCSV() {
+      let csv = 'Ambito_Pais,Seniority_Nivel,Fuente,Muestra_N,p25_USD,Mediana_USD,p75_USD,Amplitud_IQR_USD,Salto_Porcentual,Mediana_CLP_Ref,Estado_TLC\n';
+      salFiltered.forEach(r => {
+        const row = [
+          `"${r.ambito}"`,
+          `"${r.nivel}"`,
+          `"${r.fuente}"`,
+          r.n,
+          r.p25,
+          r.mediana,
+          r.p75,
+          r.iqr,
+          `"${r.salto}"`,
+          r.clp,
+          `"${r.tlc}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Bandas_Salariales_y_Saltos_Seniority.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // RENDER VALIDACION TABLE
+    function renderValTable() {
+      const tbody = document.getElementById('valTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      DATASETS.validacion_matrix.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 700; color: #60A5FA;">${r.tipo}</td>
+          <td><span class="dt-badge badge-latam">${r.ambito}</span></td>
+          <td style="font-size: 0.82rem; color: #E2E8F0; max-width: 280px; white-space: normal;">${r.descripcion}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">${r.poblacion}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.8rem; color: #FBBF24;">${r.excluidos}</td>
+          <td style="font-size: 0.82rem; color: #34D399; font-weight: 600;">✓ ${r.resultado}</td>
+          <td style="font-size: 0.8rem; color: #94A3B8; max-width: 240px; white-space: normal;">${r.impacto}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // INITIALIZE ALL ON LOAD
+    document.addEventListener('DOMContentLoaded', () => {
+      cargarDatasets();
+      renderGobTable();
+      renderTlcTable();
+      renderSalTable();
+      renderValTable();
+
+      // Bind stat-card clicks for double assurance
+      document.querySelectorAll('.stat-clickable').forEach(card => {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          const tabId = this.getAttribute('data-tab');
+          if (tabId) {
+            openDataExplorer(tabId);
+          }
+        });
+      });
+
+      // SCROLLSPY ACTIVE INDICATOR & SMOOTH SCROLL
+      const sectionIds = ['explorador-datos', 'metodologia', 'patrones', 'recomendaciones', 'descargas', 'autor', 'contacto'];
+      const navItems = document.querySelectorAll('.nav-links a.nav-item');
+
+      function updateActiveNavSection() {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const navHeight = document.querySelector('.header')?.offsetHeight || 75;
+        let activeSectionId = '';
+
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          const sec = document.getElementById(sectionIds[i]);
+          if (sec) {
+            const top = sec.offsetTop - navHeight - 140;
+            if (scrollY >= top) {
+              activeSectionId = sectionIds[i];
+              break;
+            }
+          }
+        }
+
+        navItems.forEach(item => {
+          const href = item.getAttribute('href').replace('#', '');
+          if (href === activeSectionId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNavSection, { passive: true });
+      updateActiveNavSection();
+
+      // Smooth scroll click for nav items with offset
+      navItems.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').replace('#', '');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            const navHeight = document.querySelector('.header')?.offsetHeight || 75;
+            const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 15;
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // ACCESSIBILITY (WCAG 2.1.1): Keyboard Support for Interactive Elements
+      // Sortable Table Headers
+      document.querySelectorAll('th.sortable').forEach(th => {
+        th.setAttribute('tabindex', '0');
+        th.setAttribute('role', 'button');
+        if (!th.hasAttribute('aria-label')) {
+          th.setAttribute('aria-label', 'Ordenar por ' + th.textContent.replace('↕', '').trim());
+        }
+        th.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            th.click();
+          }
+        });
+      });
+
+      // Interactive Phase Cards
+      document.querySelectorAll('.phase-card-interactive').forEach((card, idx) => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Ver detalle metodológico de la Fase ${idx + 1}`);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
+      // Visual Media Zoom Containers
+      document.querySelectorAll('.vis-media').forEach(media => {
+        media.setAttribute('tabindex', '0');
+        media.setAttribute('role', 'button');
+        media.setAttribute('aria-label', 'Ampliar visualización en alta resolución');
+        media.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            media.click();
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

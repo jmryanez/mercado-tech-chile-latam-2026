@@ -1,9 +1,9 @@
 tipo_tecnologia,tecnologia,n_ofertas_con_salario_valido,media_mensual_usd,min_mensual_usd,max_mensual_usd
 Base de datos,PostgreSQL,48,3025.0,650.0,8350.0
+Cloud,Microsoft Azure,36,3205.56,1550.0,5000.0
 Cloud,AWS,70,3195.36,1550.0,8350.0
 Cloud,Google Cloud,38,3084.21,1000.0,5000.0
-Cloud,Microsoft Azure,40,3065.0,1300.0,5000.0
+Lenguaje,JavaScript,43,3119.77,1300.0,6250.0
 Lenguaje,TypeScript,56,3050.89,1200.0,6250.0
-Lenguaje,JavaScript,76,3033.55,1300.0,6250.0
 Lenguaje,Python,73,2913.7,650.0,6500.0
 Lenguaje,SQL,69,2515.94,650.0,6250.0

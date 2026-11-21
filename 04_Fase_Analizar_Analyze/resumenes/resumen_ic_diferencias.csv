@@ -1,0 +1,9 @@
+comparacion,diferencia_observada_usd,ic95_inf_usd,ic95_sup_usd,concluyente
+Chile − Argentina (SO LatAm),105.21,-1121.88,1114.25,False
+Chile − México (SO LatAm),431.01,-267.34,1183.83,False
+Chile − Colombia (SO LatAm),563.55,-802.21,1840.67,False
+Senior Remoto sin país − Senior Chile Local (GOB),1000.0,500.0,1550.0,True
+Semi-Senior Remoto sin país − Semi-Senior Chile Local (GOB),-250.0,-575.0,625.0,False
+AWS − SQL (Senior GOB),750.0,-300.0,1350.0,False
+Microsoft Azure − SQL (Senior GOB),750.0,-150.0,1400.0,False
+Google Cloud − SQL (Senior GOB),750.0,-650.0,1400.0,False

@@ -1,295 +1,167 @@
-# CHANGELOG — Portafolio Google Data Analytics (Caso Práctico 3 • Pista B)
+# CHANGELOG — Portafolio Google Data Analytics (Caso Práctico)
 
-Este archivo registra cronológicamente (de la versión más reciente a la más antigua) los cambios realizados en los datos, scripts y entregables del estudio **"Mercado Laboral y Salarios en Tecnología (Chile y LatAm)"**, siguiendo las prácticas recomendadas del **Curso 4 (Módulo 4: Registros de cambios)**.
+Este archivo registra cronológicamente los cambios realizados en los datos, scripts y entregables del estudio **"Mercado Laboral y Salarios en Tecnología (Chile y LatAm)"**, siguiendo las directrices del **Curso 4 (Módulo 4: Registros de cambios)**.
 
 ---
 
-## Versión 1.5.3 (`2026-11-15`) — Resolución Exhaustiva de la 4ta Auditoría Red-Team Independiente
+## [1.12.1] - 2026-11-21 — Octava Ronda: Corrección de Prefijo de Versión Duplicado (R20)
 
 ### Corregido
-- **Compatibilidad Universal Excel (BOM UTF-8)**:
-  - Inyección del Byte Order Mark (`\xEF\xBB\xBF`) en los 5 CSV descargables en `descargas/` y los 7 CSV procesados en `03_Fase_Procesar_Process/datos_limpios_processed/` para prevenir errores de codificación/mojibake en Microsoft Excel (Windows y Mac).
-- **Paridad Numérica y Decimales en Matriz TLC (19 Países LatAm)**:
-  - Ajuste a 2 decimales y recálculo de CLP con tipo de cambio oficial $969,80 para Brasil ($2.020,25 USD / $1.959.238 CLP), México ($2.632,54 USD / $2.553.039 CLP), Argentina ($2.958,34 USD / $2.868.992 CLP) y Uruguay ($6.416,42 USD / $6.222.641 CLP) en CSVs, JSONs y visor web.
-- **Etiquetado de Ámbito en Bandas Salariales**:
-  - Homologación de etiqueta de Seniority GOB a `🇨🇱 Chile & Remoto (Get on Board)` en `Bandas_Salariales_y_Saltos_Seniority.csv`, exploradores JSON y visor interactivo.
-- **Matriz de Validación de Integridad**:
-  - Corrección de la descripción de rango numérico en la Validación 3: `2 vacantes GOB (<$500 USD) / 67 respuestas SO (<$1k o >$500k USD/año)`.
-- **Frontend Web & Accesibilidad (WCAG 2.1 AA)**:
-  - Declaración formal de variables CSS (`--text-main`, `--bg-body`, `--accent-green`) en `:root`.
-  - Corrección de contraste de color en insignias y subtítulos (`#F59E0B` y `#60A5FA`).
-  - Atributos `scope="col"` en todas las cabeceras de tabla.
-  - Vinculación bidireccional accesible `aria-controls` y `aria-labelledby` en pestañas del explorador y deepdive.
-  - Implementación del botón de exportación CSV para la Pestaña 4 (Validación de Integridad) con BOM UTF-8 (`exportValCSV()`).
-  - Algoritmo de ordenamiento robusto ante valores nulos o indefinidos en todas las tablas dinámicas.
-- **Homologación Técnica y Código**:
-  - Corrección de sintaxis de predicados booleanos portables en `04_consultas_analisis.sql` (`v.salario_valido_flag = 1 OR v.salario_valido_flag = 'True'`).
-  - Definición explícita de `DOLAR_OBSERVADO_BCCH = 969.80` en `04_analisis_estadistico_python.py`.
-  - Reemplazo de residual `+$75 USD` por valores empíricos canónicos (`+$38,30 USD en GOB y +$120,50 USD en SO`) en el cuaderno Kaggle.
-  - Alineación de título de Diapositiva 4 en `05_generar_visualizaciones_y_deck.py` y referencia de `Mapa_LatAm_19_Paises` (Hoja 10) en documentación de Tableau.
+- **Prefijo de versión duplicado corregido**:
+  - Se unificó la convención única de versión en `meta_version.str` = `"1.12.1"` (sin prefijo "v" literal en los datos).
+  - Cada plantilla escribe explícitamente `v{{meta_version.str}}`, eliminando la duplicación `"vv1.12.0"` en el pie de página de `index.html`, en el encabezado markdown del cuaderno de Kaggle (`kaggle_notebook_portafolio.ipynb`) y en los documentos `.docx`.
 
 ---
 
-## Versión 1.5.2 (`2026-11-15`) — Resolución Exhaustiva de la 3ra Auditoría Red-Team Independiente
+## [1.12.0] - 2026-11-21 — Séptima Ronda: Renderizado Estricto, Convención de Campos y Corrección Top 3 Tecnologías (R20, R21)
 
-### Corregido
-- **Homologación de Hojas del Paquete Tableau Public (10 Hojas)**:
-  - Actualización de `9 hojas` a `10 hojas independientes` en `06_Plan_de_Accion_y_Conclusiones_Finales.docx` (p. 26), `DIARIO_DE_DATOS_BITACORA.docx` (Tabla 5) y `README.md` (línea 176), alineándolo con las 10 hojas reales contenidas en `Datos_Consolidados_Tableau_Public.xlsx` (incluyendo `Mapa_LatAm_19_Paises`).
-- **Integridad Sintáctica y Corrección de Omisión `$500 USD`**:
-  - Corrección de texto cortado `tras anular 2 casos <).` en la tabla ROCCC de `02_Descripcion_Fuentes_y_ROCCC.docx` a `tras anular 2 casos < $500 USD/mes).`.
-  - Reemplazo de cadenas truncadas `>=  USD` por `>= $500 USD` en `descargas/Matriz_Validacion_Integridad_Calidad.csv`, `descargas/Explorador_Datasets_Consolidados.json`, `explorador_datasets.json` e `index.html`.
-- **Cuantificación Exacta del Sesgo de Duplicación 1:N**:
-  - Reemplazo del valor desfasado preliminar `+$75 USD` por las cifras empíricas oficiales en `index.html` (líneas 1994, 2108, 2414) y `CHANGELOG.md` (línea 94): `+$38,30 USD` en Get on Board ($2.920,43 naive vs $2.882,13 real) y `+$120,50 USD` en Stack Overflow LatAm ($3.455,35 naive vs $3.334,85 real).
-- **Consistencia Muestral y Terminología Metodológica**:
-  - Homologación de cota de modalidades GOB en `02_Descripcion_Fuentes_y_ROCCC.docx` (p. 22): `todas N>=34 válidas / N>=35 nominales`.
-  - Corrección en `04_Resumen_Analisis_SQL_y_Python.docx` (Tabla 2): sustitución de `Excluido (<15)` por la regla formal binaria `Exploratorio (<30)` del Curso 4.
-  - Inclusión de la cota DSS `N >= 75` en la tabla glosario de `06_Plan_de_Accion_y_Conclusiones_Finales.docx`.
-  - Corrección de atribución de Fase 2 en `README.md`: referenciada a `Cursos 3 y 8` en lugar de Curso 4.
-  - Distinción explícita de nulos crudos vs. limpios en `03_Documentacion_Limpieza_y_Changelog.docx` (444 con flag falso en GOB y 1.733 en SO LatAm).
-- **Idempotencia SQL & Aritmética Estadística**:
-  - Adición de `DROP TABLE IF EXISTS` e `IF NOT EXISTS` en `04_consultas_analisis.sql` con bloques individuales `[SQL_SETUP]` para garantizar ejecución multisesión sin excepciones.
-  - Secuenciación del redondeo en `04_analisis_estadistico_python.py` para asegurar consistencia perfecta de cuartiles a 2 decimales.
-- **Frontend Web & Accesibilidad (WCAG 2.1.1)**:
-  - Tarjeta KPI INE ESI en `index.html` actualizada con visualización explícita: `$680.000 CLP mediana • $962.945 CLP media`.
-  - Incorporación dinámica de atributo `aria-label` descriptivo en las cabeceras ordenables (`th.sortable`).
+### Corregido & Declaración Honesta
+- **Renderizado Estricto y Fallas Deterministas en Renderizadores (R20)**:
+  - Se modificaron los renderizadores (`actualizar_documentos_docx.py`, `actualizar_index_html.py`, `actualizar_readme.py`, `generar_y_ejecutar_cuaderno.py`) para que fallen con excepción (`ValueError`) si cualquier marcador `{{...}}` no se encuentra en `cifras_oficiales.json`, si falta un campo solicitado, o si algún marcador permanece sin reemplazar en el texto final generado.
+- **Convención Única de Campos en Cifras Oficiales y Eliminación de Prefijos Duplicados (R20)**:
+  - Se unificó la convención de campos en `04_analisis_estadistico_python.py`:
+    - `str`: valor formateado sin signos ni prefijos extras (p. ej. `65` para conteos, `22,2%` para porcentajes).
+    - `pct_str`: valor formateado con símbolo porcentual (o signo explícito para variaciones, p. ej. `+22,2%`).
+    - `n_str`: valor formateado con prefijo muestral explícito `N=` (p. ej. `N=65`).
+  - Se eliminaron las duplicaciones de signos y prefijos (`N=N=65`, `++22,2%`, `±±6,1 pp pp`, `~~$2.971.031`) en las plantillas y en el diccionario de métricas.
+  - Se añadieron los campos `.str` faltantes en `tech_*_so_*_pct` y `gob_remoto_local_senior_lead_pct`, y la clave `dss_eeuu_registros`.
+- **Corrección Metodológica del Top 3 de Tecnologías (R21)**:
+  - Se corrigió el ordenamiento de `df_p1` en el script 04: la tabla se ordena de forma explícita descendente por `gob_n_ofertas` antes de extraer el Top 3.
+  - Se amarraron consistentemente los nombres, conteos y porcentajes reales: Top 1 SQL (223 ofertas, 32,84%), Top 2 AWS (204 ofertas, 30,04%) y Top 3 Python (193 ofertas, 28,42%), corrigiendo la asignación no ordenada previa (que extraía PostgreSQL, MongoDB y SQL Server).
+- **Actualización del Rango de Consultas SQL a Q01–Q15 (R05)**:
+  - Se actualizó la referencia en las plantillas y documentos (`04_Resumen_Analisis_SQL_y_Python.docx`, `05_Diseno_Visual_Tableau_y_Presentacion.docx`, `DIARIO_DE_DATOS_BITACORA.docx` e `index.html`) de "Q01 a Q13" a "Q01 a Q15", reflejando fielmente el set completo de 15 consultas implementadas en SQLite.
 
 ---
 
-## Versión 1.5.1 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Segunda Ronda Red-Team
+## [1.11.0] - 2026-11-21 — Sexta Ronda: Eliminación Total de Cifras Tecleadas, Recorte Riguroso de Textos y Dependencia de Datos (R19)
 
-### Corregido
-- **Consistencia Documental Muestras Pre vs. Post-Limpieza**:
-  - Explicitación de la distinción muestral en `01_Declaracion_Tarea_Empresarial.docx`, `02_Descripcion_Fuentes_y_ROCCC.docx` y `DIARIO_DE_DATOS_BITACORA.docx`: `Semi-Senior=97` y `Junior=17` salarios válidos post-limpieza (tras la anulación determinista de 2 casos $<$500 USD de las 18 ofertas Junior y 98 Semi-Senior iniciales).
-- **Matriz de Calidad y Validación de Integridad**:
-  - Actualización de `descargas/Matriz_Validacion_Integridad_Calidad.csv` y visor web de Validación: población formal de `3.074 SO LatAm / 679 GOB`, exclusión exacta de `2 vacantes GOB (<$500) / 67 respuestas SO (<$1k o >$500k)` y resultado de `235 salarios válidos GOB / 1.341 salarios válidos SO`.
-  - Corrección de atribución curricular: las 6 validaciones formales se referencian al **Curso 5** en `README.md` y `CHANGELOG.md`.
-- **Sincronización Total de Datasets Raíz y Descargas**:
-  - Sobreescritura del archivo `explorador_datasets.json` en la raíz del repositorio con los datos consolidados y auditados de `descargas/Explorador_Datasets_Consolidados.json`.
-  - Homologación de comas decimales en `error_est` (`±20,2%`, `±22,6%`, etc.) y ajuste de paridad de Chile a `$3.063,54 USD` y `$2.971.022 CLP` en `Matriz_TLC_19_Paises_LatAm.csv`.
-  - Corrección aritmética de IQR en tramo Director (`19.167 - 11.333 = 7.834 USD`) en `Bandas_Salariales_y_Saltos_Seniority.csv`.
-- **Cuaderno Kaggle y SQL Relacional**:
-  - Corrección textual en Celda Markdown 7 de `kaggle_notebook_portafolio.ipynb` y `descargas/kaggle_notebook_portafolio.ipynb`: transición Semi-Senior a Senior expresada como `de $2.250 USD a $3.200 USD ($2.182.050 a $3.103.360 CLP)`.
-  - Dinamismo en consulta `Q03` de `04_consultas_analisis.sql`, reemplazando el divisor cableado `679.0` por `(SELECT COUNT(DISTINCT job_id) FROM vacantes)`.
-- **Frontend Web & Accesibilidad (WCAG 2.1 AA)**:
-  - Corrección de cifras en Visualización 7 (`$138.000 USD anuales (~$11.500 USD/mes)`), texto de salarios (`$3.275 USD vs. $2.250 USD`) y armonización de primas en `index.html`.
-  - Soporte de ordenamiento numérico en columnas con porcentajes (`sortTlcTable` y `sortSalTable` con `parseSortValue`).
-  - Incorporación de prefijo UTF-8 BOM (`\uFEFF`) en funciones de exportación CSV para compatibilidad nativa con Microsoft Excel en Windows.
-  - Implementación de navegación accesible por teclado (WCAG 2.1.1): atributos `tabindex="0"`, `role="button"`, etiquetas `aria-label` y listeners `keydown` (`Enter` / `Espacio`) en los 29 encabezados ordenables, las 6 tarjetas interactivas de fase y los 7 contenedores de ampliación modal.
-  - Protección de seguridad inversa añadiendo `rel="noopener noreferrer"` en todos los enlaces externos con `target="_blank"`.
+### Corregido & Declaración Honesta
+- **Eliminación Definitiva de Tablas de Cifras Tecleadas (R17, R19)**:
+  - Se reconoce y documenta que las rondas 4 y 5 recurrieron a esquemas de cifras tecleadas (primero mediante `docx_markers.json` y luego mediante `metricas_semanticas_dict.py`), lo que mantenía cifras fijas sin verdadero cálculo dinámico desde los datos crudos.
+  - En esta versión 1.11.0 se eliminaron por completo `03_Fase_Procesar_Process/scripts/metricas_semanticas_dict.py`, su invocación vía `exec` en el script 03, y todos los diccionarios auxiliares. Toda cifra publicada proviene estrictamente de cálculos sobre los DataFrames de Get on Board, Stack Overflow y Data Science Salaries, o bien de constantes externas explícitamente declaradas.
+- **Declaración Formal de Constantes Externas (R19)**:
+  - Se declararon en `cifras_oficiales.json` con `"tipo": "constante_externa"` y su fuente documental correspondiente únicamente las cifras que no provienen de los datos del estudio (Dólar Observado BCCh 2026-11-10 de $969,80; mediana y media del INE ESI 2025; conversiones a USD; y umbrales metodológicos N >= 30, piso salarial $500 y meta 20%).
+- **Recorte y Saneamiento de Documentos .docx (R14, R04, R18)**:
+  - Se recortaron y depuraron las 8 plantillas Word (`.docx`). Toda cifra central fue conectada a claves calculadas dinámicas, y toda cifra secundaria o no calculada fue reescrita de manera cualitativa o eliminada. Cero cifras fijas escritas a mano (`RX_CIFRA`) fuera de marcadores `{{clave}}`.
+  - Se incorporó la nota de limitación metodológica del INE ESI 2025: el INE reporta ingreso neto (líquido) mensual, mientras que las ofertas de empleo pueden ser brutas o líquidas según el aviso, haciendo que la comparación sea referencial.
+- **Aprobación de la Regla de Perturbación de Datos (R19)**:
+  - El pipeline completo supera la prueba de perturbación de datos crudos (eliminación de registros y aumento del 10% en salarios), verificando que la totalidad de las cifras calculadas responde y cambia dinámicamente frente a las variaciones en los datos.
 
 ---
 
-## Versión 1.5.0 (`2026-11-15`) — Resolución Exhaustiva de Hallazgos de la Auditoría Red-Team Multi-Agente
+## [1.10.0] - 2026-11-21 — Quinta Ronda: Cifras Dinámicas desde DataFrames, Eliminación de Marcadores Posicionales y Validación Rigurosa
 
-### Corregido (Hallazgos Críticos)
-- **Portabilidad Absoluta y Privacidad (0% PII)**:
-  - Eliminación de rutas absolutas locales en `03_limpieza_y_validacion.py`, `04_analisis_estadistico_python.py` y `05_generar_visualizaciones_y_deck.py`, reemplazándolas por resolución relativa `Path(__file__).resolve().parent.parent.parent`.
-  - Verificación estricta de 0% PII en todo el árbol del repositorio y purga de cachés de compilación.
-- **Reproducibilidad en Tableau Public**:
-  - Inclusión determinista de la 10ª hoja `Mapa_LatAm_19_Paises` en la función `exportar_excel_tableau()` y sincronización automática hacia `descargas/Datos_Consolidados_Tableau_Public.xlsx`.
-  - Actualización de `05_Diseno_Visual_Tableau_y_Presentacion.docx` a 10 hojas de trabajo y adición de fila explicativa en Tabla 4.
-- **Portabilidad de Cuaderno Kaggle & Pack de Datos Limpios**:
-  - Refinamiento de la lógica de autodetección en Celda 1 de `kaggle_notebook_portafolio.ipynb` mediante comprobación de archivos requeridos.
-  - Creación y publicación del archivo descargable `descargas/Datos_Limpios_Completos_Kaggle.zip` con los 6 datasets limpios para ejecución con un clic.
-- **Consistencia Muestral y Cuantitativa (TLC & Métricas)**:
-  - Reevaluación de la matriz `Matriz_TLC_19_Paises_LatAm.csv`: la bandera `cumple_n30` ahora evalúa estrictamente el tamaño de salarios válidos ($N_{sal} \ge 30$). Solo 7 países cumplen el criterio para inferencia no paramétrica, mientras que 12 países se clasifican con rigor metodológico como *Muestra Exploratoria (N < 30)*.
-  - Corrección de valores salariales en `Bandas_Salariales_y_Saltos_Seniority.csv` y `Explorador_Datasets_Consolidados.json`: Chile Local ($N=137$, Mediana=$2.250 USD) y Remoto Global ($N=98$, Mediana=$3.275 USD, salto $+45,6\%$).
-  - Rectificación de cifras en tarjetas de datos en `index.html`: GOB con 1.877 habilidades, SO con 3.074 desarrolladores, DSS con 6.599 registros históricos (corrigiendo la errata de 67.575 a 6.599), e INE ESI con 2 Indicadores Oficiales (Mediana y Media Nacional).
-  - Precisión de métricas en textos: sesgo por duplicación cartesiana 1:N ajustado a `+$38,30 USD` ($2.920,43 vs $2.882,13 real), y variable confusora en Remoto Local ajustada a `68,9%` Senior/Lead (31 de 45 ofertas con salario).
+### Corregido & Implementado
+- **Eliminación Total de docx_markers.json y Claves Posicionales (R17)**:
+  - Eliminación definitiva del archivo auxiliar scripts/plantillas/docx_markers.json (que contenía 978 claves posicionales dm_... con cifras tecleadas) y de su carga vía cifras.update().
+  - Reemplazo en todas las plantillas .docx por claves semánticas con significado basadas en población y métrica ({población}_{métrica}), integradas al flujo de datos sin esquivar el cálculo estadístico.
+- **Cálculo Dinámico de Cifras en Script 04 (R17)**:
+  - Eliminación de literales numéricos fuera de los permitidos en asignaciones a cifras[...] en 04_analisis_estadistico_python.py (líneas ~837–950), sustituyéndolos por cálculos directos desde los DataFrames analíticos (vac, gob_sal, hab, so, so_sal, dss, df_diff, p2_so, q11_gob_py, q11_so_py).
+  - Cálculo explícito de la prima Cloud vs. SQL, brechas de modalidad, progresión acumulada de experiencia a 10+ años (+566,6% en Stack Overflow), y medianas de Data Science Salaries 2024.
+- **Corrección de Cuartiles por Población en Documentos y Amarre Real (R18)**:
+  - Corrección de las bandas de Chile Local en 04_Resumen_Analisis_SQL_y_Python.docx (p. 10) y 06_Plan_de_Accion_y_Conclusiones_Finales.docx (p. 8): para Semi-Senior (N=65) p25=$2.000 (corrigiendo el valor erróneo de $1.850), y para Senior (N=55) p25=$2.150 y p75=$3.675 (corrigiendo $2.200 y $3.500).
+  - Eliminación de la mención externa no verificada de ingreso mínimo (IMM Chile ~$515 USD) en la Tabla 0 de 03_Documentacion_Limpieza_y_Changelog.docx.
+- **Refactorización del Cuaderno Jupyter/Kaggle (R14)**:
+  - Limpieza de las 16 celdas del cuaderno en cuaderno_plantillas.json, eliminando prefijos y textos con cifras fuera de marcadores. Cero coincidencias en la expresión regular de cifras tecleadas (RX_CIFRA).
+  - Separación limpia entre plantillas markdown y celdas de código reproducibles en scripts/generar_y_ejecutar_cuaderno.py.
+- **Validación Automatizada y Suite de Pruebas de Navegador (R15, R16)**:
+  - Validación externa automatizada con código de salida 0 en auditoria/validador_externo.py (SHA-256 e4a87e40deae3c0a7de0449466cadd289c43ac173dcdbe602cc74b197e635e50).
+  - Verificación interactiva del sitio web con Playwright (Chromium headless): 0 errores de consola, conmutación fluida de las 4 pestañas del explorador, filtrado dinámico de filas, foco y cierre con Escape en modal, ordenamiento accesible en encabezados de tabla con aria-sort, y URL exacta de credencial Credly.
 
-### Añadido (Accesibilidad y UX Frontend)
-- **Menú de Navegación Móvil Táctil**: Habilitación de desplazamiento táctil horizontal continuo (`overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;`) en dispositivos de pantalla reducida ($\le 960$px), eliminando la ocultación no accesible.
-- **Prevención de Solapamiento de Encabezado Fijo**: Configuración global de `scroll-padding-top: 85px` en `html` y `scroll-margin-top: 85px` en todas las secciones y pie de página.
-- **Accesibilidad y Contraste WCAG 2.1 AA**:
-  - Calibración del token `--text-muted` a `#94A3B8` (ratio de contraste 6.9:1).
-  - Inclusión de atributos `aria-label` descriptivos en todos los controles de búsqueda, filtros desplegables y selector de tamaño de página del Explorador.
-  - Atributos `aria-sort` e indicadores visuales de flecha (▲/▼) en encabezados ordenables de tablas.
-  - Atributos `aria-label` y `aria-current="page"` en la paginación interactiva de vacantes.
-  - Diálogo modal accesible (`role="dialog"`, `aria-modal="true"`, `aria-label`, y texto alternativo dinámico para ampliación de visualizaciones).
-- **Galería Completa de 7 Visualizaciones en `#patrones`**:
-  - Incorporación interactiva de la **Visualización 03** (*Mapa de Calor de Tecnologías por Segmento de Mercado*) y la **Visualización 07** (*Evolución Salarial Tech Global y Tamaño de Empresa DSS 2020–2024*).
+## [1.9.0] - 2026-11-20 — Cuarta Ronda: Arquitectura de Plantillas con Marcadores y Sincronización Determinista
 
----
+### Corregido & Implementado
+- **Arquitectura de Plantillas con Marcadores (R14)**:
+  - Migración completa de los entregables textuales (HTML, README y 8 documentos .docx) al sistema de plantillas `scripts/plantillas/` gobernado por marcadores semánticos `{{clave}}`.
+  - Eliminación de cifras estadísticas escritas a mano en el código fuente de los scripts generadores y orquestadores.
+  - Sincronización determinista y reproducible desde `cifras_oficiales.json` mediante el motor `renderizar_plantillas.py`.
+- **Correcciones Metodológicas y de Población (R05)**:
+  - Diferenciación explícita del salto salarial entre Get on Board Total (+42,2%, de $2.250 a $3.200 USD) y Chile Local (+22,2%, de $2.250 a $2.750 USD, +$500 USD).
+  - Actualización de las cotas intercuartiles p25 ($2.150 USD) y p75 ($3.675 USD) para Senior Chile Local (N=55, mediana $2.750 USD).
+  - Eliminación de terminología causal y estandarización del protocolo de privacidad: "Las fuentes usadas no contienen datos personales identificables (ofertas publicadas, encuesta anónima de Stack Overflow, tablas agregadas)".
+- **Validación Automatizada y Calidad de Código**:
+  - Aprobación integral de las 16 reglas del validador externo de auditoría (`auditoria/validador_externo.py`).
+  - Verificación del enlace profesional de Credly (`https://www.credly.com/users/manuel-yanez`) y árbol de archivos dinámico generado desde git.
 
-## Versión 1.4.1 (`2026-11-15`) — Sincronización y Ajustes de Despliegue para Kaggle y Tableau Public
+## [1.8.0] - 2026-11-19 — Tercera Ronda de Correcciones de Auditoría Externa
 
-### Modificado
-- **Cuaderno Interactivo de Kaggle ([`06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb`](06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb))**:
-  - Eliminación absoluta de rutas locales del sistema y verificación de 0% PII.
-  - Autodetección robusta de rutas multi-entorno (`/kaggle/input/`, rutas relativas y carpeta `descargas/`).
-  - Incorporación del flujo analítico completo: consultas SQL en SQLite, respuestas empíricas a las 4 preguntas de negocio (P1 a P4) + Q11, visualizaciones con accesibilidad para daltonismo, matriz de implementación Qué/Quién/Cuándo (30, 60 y 90 días) y herramientas de carrera del Curso 9 (STAR, X-Y-Z y Elevator Pitch).
-  - Réplica sincronizada en [`descargas/kaggle_notebook_portafolio.ipynb`](descargas/kaggle_notebook_portafolio.ipynb).
-- **Libro de Trabajo para Tableau Public ([`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx))**:
-  - Actualización de la hoja de gobernanza `LEEME_Poblaciones` con los enlaces oficiales al sitio web en GitHub Pages, repositorio en GitHub y estandarización de los 9 cursos oficiales.
-  - Incorporación de la nueva hoja `Mapa_LatAm_19_Paises` con los 19 países de Latinoamérica, sus tamaños de muestra ($N_{total}$, $N_{sal}$), medianas, cuartiles $p25–p75$, error muestral y flag `cumple_n30` para la generación directa de mapas coropléticos.
-  - Réplica sincronizada en [`descargas/Datos_Consolidados_Tableau_Public.xlsx`](descargas/Datos_Consolidados_Tableau_Public.xlsx).
+### Corregido & Implementado
+- **Pipeline Orquestado y Reproducible (scripts/ejecutar_todo.py)**:
+  - Creación del orquestador unificado con validación estricta de códigos de salida en cada fase.
+  - Generación automatizada de los resúmenes estadísticos huérfanos y control de integridad relacional.
+- **Cuaderno Kaggle / Jupyter Ejecutado**:
+  - Generación programática del cuaderno reproducible con salidas y gráficos incrustados.
 
----
+## [1.7.0] - 2026-11-17 — Segunda Ronda de Correcciones Metodológicas e Integridad Global
 
-## Versión 1.4.0 (`2026-11-15`) — Desglose Metodológico en Profundidad (6 Fases) y Descarga de Entregables Oficiales
-
-### Añadido
-- **Visor Metodológico en Profundidad (`#metodologia-deepdive`)**: Módulo interactivo con navegación por pestañas de las 6 fases (Preguntar, Preparar, Procesar, Analizar, Compartir y Actuar). Cada fase desglosa en cuadrículas estructuradas:
-  - Tarea Empresarial y Enfoque Google.
-  - Métodos, Técnicas y Herramientas Oficiales de los 9 Cursos.
-  - Criterios de Rigor, Verificación, Integridad y Control de Sesgos.
-  - Enlaces de descarga directa de cada entregable oficial y botones de navegación rápida a la sección correspondiente del sitio web.
-- **Tarjetas Interactivas de Fase**: Cada una de las 6 tarjetas en `.phases-grid` ahora actúa como disparador interactivo con indicador visual (`active-phase`), desplegando y desplazando suavemente la vista hacia el visor técnico en profundidad.
-- **Subsección de Entregables Oficiales por Fases (`.docx`) en el Centro de Descargas (`#descargas`)**: Incorporación de 7 tarjetas descargables correspondientes a los documentos oficiales de cada fase (SOW, Tarea Empresarial, Descripción ROCCC, Documentación de Limpieza/Changelog, Resumen SQL/Python, Guía de Diseño Visual y Plan de Acción/Empleabilidad).
-
-### Corregido
-- **Auditoría y Completitud Exhaustiva de las 18 Tarjetas Metodológicas**:
-  - **Fase 3**: Corrección de enumeraciones incompletas: el *Checklist de Limpieza de 12 Puntos de Google* ahora lista explícitamente los 12 puntos del Curso 4 (antes mostraba solo 4), y el *Changelog Oficial de 7 Campos* desglosa los 7 campos de auditoría (antes mostraba solo 3).
-  - **Fase 1**: Desglose íntegro de los 5 Porqués (Toyota/Google), las 7 secciones obligatorias del SOW y las 4 preguntas S.M.A.R.T. con criterios de equidad (Fairness).
-  - **Fase 2**: Enumeración explícita de las 4 fuentes inmutables (72.797 filas), los 5 criterios del marco ROCCC y los 3 tipos de metadatos (descriptivos, estructurales y administrativos).
-  - **Fase 4**: Mapeo completo de las 14 consultas SQL (Q01 a Q13) y control de clave foránea 1:N que evitó sesgos de duplicación de +$38,30 USD en Get on Board y +$120,50 USD en Stack Overflow LatAm.
-  - **Fase 5**: Detalle cronometrado de los 6 bloques de la presentación de 30 minutos (4+5+10+3+3+5 min) y los 3 estándares de Edward Tufte, accesibilidad para daltonismo y honestidad escalar.
-  - **Fase 6**: Especificación completa de las 4 conclusiones, 3 recomendaciones con matriz Qué/Quién/Cuándo (30, 60 y 90 días) y las 3 herramientas de carrera del Curso 9 (STAR, X-Y-Z y Elevator Pitch).
-
-### Modificado
-- **Pie de Página Oficial**: Armonización y estandarización del texto de cierre del portafolio: *«Cumplimiento estricto de las directrices metodológicas de los 9 cursos oficiales para la obtención de la Certificación Profesional de Google Data Analytics»*.
-- **Consistencia de Cursos Oficiales**: Verificación de alineación del estándar de los 9 cursos (Cursos 1 al 8 de fundamentos y capstone + Curso 9 de empleabilidad, narrativa STAR, fórmula X-Y-Z y elevator pitch).
-
----
-
-## Versión 1.3.0 (`2026-11-14`) — Publicación Web Interactiva, Explorador de Datos y Optimización UX
-
-### Añadido
-- **Sitio Web Oficial en GitHub Pages ([`index.html`](https://jmryanez.github.io/mercado-tech-chile-latam-2026/))**: Plataforma web moderna responsive construida con HTML5 semántico, paleta de colores de Google (`#1A73E8`, `#0072B2`, `#D55E00`), tipografía Inter/JetBrains Mono y diseño accesible para daltonismo.
-- **Explorador Interactivo de Datos (`#explorador-datos`)**: Componente cliente con búsqueda en tiempo real, filtros por país/ámbito, paginación dinámica (10, 25, 50 registros) y exportación a CSV:
-  - Pestaña 1: Auditoría de 72.797 registros crudos y tabla de **679 vacantes limpias de Get on Board 2026**.
-  - Pestaña 2: **Matriz Teorema del Límite Central (TLC) de los 19 países de América Latina + Chile**, indicando cumplimiento de $N \ge 30$ e IQR.
-  - Pestaña 3: **Estructura salarial, cuartiles ($p25–p75$) y salto de +42,2% al nivel Senior**.
-  - Pestaña 4: **Matriz de Integridad Relacional 1:N y los 6 tipos formales de validación de datos (Curso 5)**.
-- **Centro de Descargas Abiertas ([`descargas/`](descargas/))**: Generación de 6 datasets en formatos abiertos CSV y JSON para auditoría y reproducibilidad pública.
-- **Marcador Activo en Tiempo Real (*Scrollspy*)**: Script con cálculo de posición por scroll que ilumina dinámicamente con una píldora azul la sección en la que se encuentra el usuario.
-- **Bloques Explícitos de Pregunta y Respuesta**: Cada tarjeta de visualización en la sección *Patrones Descubiertos* ahora integra un contenedor estructurado `❓ Pregunta de Negocio (P1 a P4)` y `💡 Hallazgo & Respuesta Directa`.
-- **Favicon Personalizado**: Avatar circular trazado con fondo transparente en resoluciones estándar (16x16, 32x32, 512x512 y Apple Touch Icon).
-
-### Modificado
-- **Barra de Navegación (Header)**: Rediseño a arquitectura de **isla flotante centrada** (*Floating Island Nav*) para eliminar la colisión de texto del subtítulo y evitar que los enlaces se partieran en dos líneas.
-- **Subtítulo de Sección de Hallazgos**: Reescritura del texto introductorio enfocándolo en los descubrimientos de mercado en lugar de rúbricas técnicas de diseño gráfico.
-- **Protección PII Absoluta**: Purgado total de datos de contacto personales en código fuente, metadatos y documentación (100% conforme a la directiva de ética y privacidad de Google).
+### Corregido & Implementado
+- **Taxonomía Técnica y Calidad en Extracción (Fase 3)**:
+  - Corrección en reglas de extracción de 03_limpieza_y_validacion.py: C# sin requerir .NET como coincidencia suficiente (37 ofertas), exclusión de SWIFT en contextos bancarios junto a SEPA (10 ofertas), exclusión de Elasticsearch en logs/APM (12 ofertas) y soporte para R en listas con coma/o (5 ofertas).
+  - La tabla GetOnBoard_Habilidades se actualizó a 1.775 filas y 527 ofertas con tecnologías detectadas.
+  - Incorporación del campo company_id (identificando que company_id 9458 concentra 223 ofertas, situando a Azure en 19,74% sin este empleador) y flags de respuesta por bloque en Stack Overflow LatAm.
+- **Fuente Única de Verdad (cifras_oficiales.json - Fase 4)**:
+  - Generación de archivo JSON con 107 métricas calculadas que alimenta de forma determinista todas las piezas del repositorio.
+  - Cálculo de bandas de cuartiles (p25, mediana, p75) estratificadas por alcance: Chile Local vs. Remoto sin país declarado.
+  - Intervalos de confianza bootstrap del 95% para diferencias pareadas (Senior Remoto vs. Local concluyente en +$1.000 USD; Semi-Senior, comparaciones entre países de LatAm y Cloud dentro de Senior no concluyentes).
+- **Eliminación de Columnas Manuales y Regeneración de Descargas**:
+  - Eliminación de columna de margen manual y etiquetas previas; reemplazo por ic95_mediana_inf_usd e ic95_mediana_sup_usd.
+  - Reempaquetado de descargas/Datos_Limpios_Completos_Kaggle.zip con licencia ODbL-1.0 y atribución a Stack Exchange Inc.
+- **Diseño Visual y Deck Ejecutivo (Fase 5)**:
+  - 7 figuras a 300 DPI con FuncFormatter en español chileno (es-CL: $3.000, 32,8%, márgenes en pp).
+  - Deck en PDF de 14 láminas con limitaciones previas a recomendaciones, tamaño de cuerpo ≥ 14 pt y láminas de indicadores y preguntas.
+  - Generación de og_image_1200x630.png a partir de la Fig 01.
+- **Documentación Word (.docx)**:
+  - Actualización de los 8 documentos con nota de simulación académica al inicio.
+  - Registro de cambios con autorrevisión y filas para v1.6.0 y v1.7.0.
+  - Actualización ROCCC para Stack Overflow y DSS a 'Confiable: MEDIO' detallando sesgos de muestreo y autoselección.
+  - SOW con sección Revisiones (2026-11-17) y entregables de Tableau y Kaggle como pendientes.
+  - Glosario de N centralizado en Doc 03 y referencia en los restantes.
+  - Bitácora con entradas 2 a 9 estructuradas en 3 apartados (≤ 120 palabras c/u) y Entrada 10 agregada.
+- **Sitio Web (index.html)**:
+  - Carga asíncrona de datos desde explorador_datasets.json reduciendo el archivo a 4.090 líneas.
+  - Accesibilidad WCAG 2.1 AA (<main>, foco en modal, navegación por teclado y contraste ≥ 4,5:1).
+- **Cuaderno Kaggle**:
+  - Autodetección de rutas mediante glob recursivo y aserción explícita.
+  - Ejecución integral y persistencia de salidas con nbclient. Copia idéntica en descargas/ verificada con cmp.
 
 ---
 
-## Versión 0.6.0 (`2026-11-11`) — Cierre Fase 6: Actuar (*Act* • Cursos 8 y 9)
+## Versión 1.6.0 (`2026-11-16`) — Ronda de Correcciones Metodológicas y Reproducibilidad
 
-### Añadido
-- Entregable Oficial 6 [`06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx`](06_Fase_Actuar_Act/06_Plan_de_Accion_y_Conclusiones_Finales.docx) con conclusiones de alto nivel, glosario muestral `N >= 30` (Curso 4), `3` recomendaciones prioritarias con alternativas (`Pros y Contras`), matriz `Qué / Quién / Cuándo`, `4` líneas de exploración futura (**Curso 8**), guía para **GitHub / Kaggle / Tableau Public**, viñetas `X-Y-Z`, historia `STAR` y elevator pitch de `20 segundos` (**Curso 9**).
-- Portada pública del repositorio [`README.md`](README.md) con hallazgos verificados, visualizaciones incrustadas (`300 DPI`), glosario `N >= 30`, estructura completa (Fases 1–6) e instrucciones de reproducibilidad.
-- Cuaderno interactivo [`06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb`](06_Fase_Actuar_Act/kaggle_notebook_portafolio.ipynb) en Python/Markdown listo para publicar en Kaggle.
-- Archivo [`.gitignore`](.gitignore) excluyendo archivos temporales del sistema y carpeta personal `cv/` (protección PII antes de publicar en GitHub).
-
-### Modificado
-- Actualización final de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) añadiendo la entrada de cierre **Fase 6: Actuar (`Cursos 8 y 9`)**.
-
----
-
-## Versión 0.5.3 (`2026-11-11`) — Alineación Visual y Léxica Final con los 9 Cursos (Fases 1–5)
-
-### Modificado
-- **Visual 06 Panel B ([`06_paises_latam_y_tamano_empresa_p4.png`](05_Fase_Compartir_Share/visualizaciones/06_paises_latam_y_tamano_empresa_p4.png))**: Reemplazo de puntos conectados desde `$1.000` por **barras verticales desde `$0 USD`** para cumplir literalmente la regla del **Curso 6** (*no cortar el eje Y ni conectar categorías no temporales*, [Entregable Oficial de Diseño Visual](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx)).
-- **Lenguaje literal de los Cursos 5 y 6 en Fases 1, 2, 4, 5, SQL y Bitácora**: Reemplazo de anglicismos/términos externos (*"duplicación en uniones 1:N"* en vez de jerga inglesa de `JOIN`, *"continua y ascendente en cada tramo"* en la progresión salarial de Fase 4, y *"alta proporción datos-tinta"* en Checklist de Fase 5).
-
----
-
-## Versión 0.5.2 (`2026-11-11`) — Homologación Léxica Literal con los 9 Cursos (Fases 1–5)
-
-### Modificado
-- **Alineación literal con Cursos 6 y 7** en código, resúmenes y documentación de Fases 1, 4 y 5 (Fases 2 y 3 ya cumplían al 100%):
-  - Estandarización de las métricas de dispersión salarial a **"cuartiles (`p25–p75`)"** y **`amplitud_p25_p75_usd`** (derivados directamente de `describe()` y `quantile([0.25, 0.75])` enseñados en el **Curso 7**, y de cuartiles/percentiles del **Curso 6**).
-  - Estandarización de la nomenclatura cromática a **"paleta apta para daltonismo (azul/naranja • Curso 6)"**.
-- Regeneración completa de [`04_Fase_Analizar_Analyze/resumenes/`](04_Fase_Analizar_Analyze/resumenes/), [`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx), [`05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png`](05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png), [`05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf) y los `.docx` de Fases 1, 4 y 5.
+### Corregido & Mejorado
+- **Ajuste de Expresión Regular de JavaScript (Fase 3)**:
+  - Delimitación estricta del patrón en `03_limpieza_y_validacion.py` a `(?<![A-Za-z0-9_])(?:javascript|ecmascript)(?![A-Za-z0-9_])` para evitar falsos positivos con frameworks (`Node.js`, `React.js`, `Next.js`).
+  - La tabla `GetOnBoard_Habilidades` se redujo a 1.775 filas; JavaScript se sitúa con exactitud en 101 ofertas (14,87% de 679).
+  - La consulta Q03 devuelve exactamente 4 tecnologías con demanda ≥ 20%: SQL (32,84%), AWS (30,04%), Python (28,42%) y Microsoft Azure (20,77%).
+- **Estratificación por Seniority y Desmitificación Salarial (Q14 y Q15 - Fase 4)**:
+  - Adición de las consultas Q14 y Q15 en `04_consultas_analisis.sql` y `04_analisis_estadistico_python.py`.
+  - Demostración de que la prima agregada de modalidad remota ($3.750 USD) responde a un sesgo de composición (el 68,9% de las ofertas remotas con salario son Senior/Lead). Al controlar por nivel (Semi-Senior N=97), Chile Local ofrece salarios comparables o superiores ($2.250 vs $2.000 USD mediana).
+- **Márgenes de Error e Inferencia Estadística (Wilson Score & Bootstrap TLC)**:
+  - Incorporación de márgenes de error bajo estándar muestral (CLT) (`moe95_pp_chile = ±6,1 pp`, `moe95_pp_latam = ±1,5 pp`) en `resumen_p1_tecnologias_gob_vs_so.csv` y hoja `P1_Tecnologias` de Excel. La brecha de Azure (+5,7 pp) se ubica dentro del error muestral de Stack Overflow Chile (N=133).
+  - Generación programática de `Matriz_TLC_19_Paises_LatAm.csv` con 10.000 remuestreos bootstrap (semilla `20261116`) para intervalos de confianza al 95% de la mediana en países con $N_{sal} \ge 30$.
+- **Visualizaciones Accesibles y Presentación Ejecutiva (Fase 5)**:
+  - Fig 01 actualizada con barras de error muestral y pie metodológico sobre Azure.
+  - Fig 02 formateada con coma decimal en español (`14,9%`, `$ 3.000`) y prevención de solapamientos.
+  - Fig 05 con subtítulo explicativo sobre dilución de la prima remota tras estratificación por seniority.
+  - Fig 06 con diferenciación explícita para países con $N_{sal} < 30$ según el Teorema del Límite Central.
+  - Presentación ejecutiva de 12 diapositivas regenerada y sincronizada en `descargas/05_Presentacion_Ejecutiva_30min.pdf`.
+- **Estandarización Documental y Reproducibilidad**:
+  - Homogenización de textos en `index.html`, `README.md`, los 7 documentos `.docx` y `DIARIO_DE_DATOS_BITACORA.docx` (incorporando Entrada 9 y redacción en primera persona).
+  - Creación de `requirements.txt`, `LICENSE` (MIT) y `DATA_LICENSES.md`. Reempaquetado de `descargas/Datos_Limpios_Completos_Kaggle.zip`.
+  - Adición de sección de transparencia profesional sobre el uso supervisado de asistentes de IA.
 
 ---
 
-## Versión 0.5.1 (`2026-11-11`) — Glosario Transversal de `N`, Regla `N >= 30` y Derivadas (Fases 1–5 • Curso 4)
-
-### Añadido
-- Definición formal de **`N`** (conteo exacto de observaciones válidas), fundamentación oficial de **`N >= 30`** (**Curso 4, Módulo 1**: *Teorema del Límite Central*, `95%` de confianza, menor margen de error y significación estadística) y glosario unificado de sus derivadas (`N universo vs. N salarios válidos`, `N < 30` exploratorio / `cumple_n30=False`, `N = 0`, y cotas mínimas observadas `N >= 38`, `N >= 335`, `N >= 34`, `N >= 60`, `N >= 75`) incorporado transversalmente en:
-  - **Fase 1**: [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) y [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx).
-  - **Fase 2**: [`02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx).
-  - **Fase 3**: [`03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) (`Sección 4.1`).
-  - **Fase 4**: [`04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) (`Sección 9`).
-  - **Fase 5**: [`05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) (`Sección 1.3`), hoja `LEEME_Poblaciones` (`6x1`) de [`Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx) y barra metodológica en Diapositiva 3 de [`05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf).
+## Versión 1.5.x (`2026-11-15`) — Mejoras de Accesibilidad, Integridad y Sincronización Web
+- Normalización universal de codificación UTF-8 con BOM en archivos CSV para compatibilidad nativa con Microsoft Excel en Mac y Windows.
+- Corrección de paridad numérica, formato decimal y cálculo en pesos chilenos según el Dólar Observado oficial ($969,80 CLP/USD).
+- Consolidación del libro de trabajo de Tableau Public en 10 hojas independientes y sincronización con exploradores JSON.
+- Implementación de estándares de accesibilidad WCAG 2.1 AA en el sitio web (navegación por teclado, contraste y semántica de tablas).
+- Despliegue del explorador interactivo de datos en GitHub Pages y centro de descargas con 6 datasets abiertos.
 
 ---
 
-## Versión 0.5.0 (`2026-11-11`) — Fase 5: Compartir (*Share* • Cursos 6 y 8)
-
-### Añadido
-- Script reproducible de visualización y deck [`05_Fase_Compartir_Share/scripts/05_generar_visualizaciones_y_deck.py`](05_Fase_Compartir_Share/scripts/05_generar_visualizaciones_y_deck.py) (`matplotlib`, `seaborn`, `openpyxl`, `PdfPages`).
-- Siete visualizaciones ejecutivas a `300 DPI` en [`05_Fase_Compartir_Share/visualizaciones/`](05_Fase_Compartir_Share/visualizaciones/) (`01_demanda_vs_adopcion_top5_p1.png` a `07_evolucion_dss_2020_2024_p4.png`) con paleta daltónica segura (azul/naranja • Curso 6), ejes de barras en `$0`/`0%`, máximo `4` líneas, etiquetado directo, separación estricta de las 4 poblaciones y umbral `N >= 30`.
-- Paquete multi-hoja limpio para Tableau Public [`05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx`](05_Fase_Compartir_Share/Datos_Consolidados_Tableau_Public.xlsx) (`9` hojas independientes incluyendo `LEEME_Poblaciones` y `SO_Paises_LatAm_N30` para mapa coroplético).
-- Presentación ejecutiva panorámica `16:9` de `12` diapositivas [`05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf`](05_Fase_Compartir_Share/05_Presentacion_Ejecutiva_30min.pdf) estructurada bajo la agenda oficial de 30 minutos (`4+5+10+3+3+5`) del **Curso 6**.
-- Entregable Oficial 5 [`05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx`](05_Fase_Compartir_Share/05_Diseno_Visual_Tableau_y_Presentacion.docx) con Marcos de McCandless y Fung, textos alternativos (Alt-Text), guía de diseño en Tableau Public + Tabla Complementaria, Notas del Orador, Matriz de Objeciones (datos/análisis/hallazgos) y Rúbrica de Evaluación de Diapositivas + Checklist de 13 puntos.
-
-### Modificado
-- Actualización de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) añadiendo `TABLA 5` (Fase 5: Compartir).
-- Homologación en Diapositiva 11 del deck y Tabla 3 del Entregable 5 (`34,9% nominal / 34,6% válido`, `Argentina $2.958,34`, `México $2.632,54` y aviso exploratorio `Pequeñas 2024 N=0` / subceldas DSS `N < 30`).
-
-### Correcciones
-- Desactivación de `text.parse_math` en `matplotlib` para evitar interpretación LaTeX en signos `$`; fondo blanco (`bbox`) y reubicación de etiquetas en Visual 01 (`17.2%`), Visual 02 (`JavaScript` y `TypeScript` fuera de ejes punteados), Visual 04 (2 líneas para `Med: $560` y `Med: $1.305` sin cruce con `$3.064`) y Visual 07 (conector directo a `$6.886` en 2021 y nota `2024: Small N=0`).
-
----
-
-## Versión 0.4.0 (`2026-11-11`) — Fase 4: Analizar (*Analyze*) Ampliada (`Q01–Q13`)
-
-### Añadido
-- Script SQL relacional [`04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql`](04_Fase_Analizar_Analyze/sql/04_consultas_analisis.sql) ejecutado en SQLite con `CREATE TEMP TABLE`, `LEFT JOIN`, `INNER JOIN`, `COUNT(DISTINCT ...)`, `CASE WHEN`, `COALESCE`, `HAVING` y salvaguarda sin duplicación en uniones 1:N (`14` consultas `Q01–Q13`).
-- Script de cálculo descriptivo [`04_Fase_Analizar_Analyze/scripts/04_analisis_estadistico_python.py`](04_Fase_Analizar_Analyze/scripts/04_analisis_estadistico_python.py) (`pandas`, `numpy`, `groupby()`, `size()`, `agg()`, `describe()`, `quantile()`).
-- Resúmenes analíticos exportados en [`04_Fase_Analizar_Analyze/resumenes/`](04_Fase_Analizar_Analyze/resumenes/) (incluyendo `resumen_q11_tecnologia_vs_salario.csv`, `resumen_q12_modalidad_composicion_seniority.csv`, `resumen_q13_gob_categorias.csv` y `resumen_fase4_completo.json`).
-- Entregable Oficial 4 [`04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx`](04_Fase_Analizar_Analyze/04_Resumen_Analisis_SQL_y_Python.docx) incorporando la Matriz Volumen vs. Compensación (`Q11`), el contraste **Correlación ≠ Causalidad** en Modalidad × Seniority (`Q12`) y el desglose por categoría (`Q13`).
-
-### Modificado
-- Reubicación de `Stack Overflow Chile 2024 (Agregado)` al cierre de su bloque en la Tabla 2, precisión narrativa sobre los cinco motores de BD sobre `22%` en Stack Overflow (incluyendo `SQLite`) y estandarización decimal con coma en tablas.
-- Actualización de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) con la entrada completa de Fase 4 (`Q01–Q13`).
-
----
-
-## Versión 0.3.0 (`2026-11-11`) — Cierre Fase 3: Procesar (*Process*) y Auditoría V2
-
-### Añadido
-- Script reproducible en Python [`03_Fase_Procesar_Process/scripts/03_limpieza_y_validacion.py`](03_Fase_Procesar_Process/scripts/03_limpieza_y_validacion.py) con `pandas`, `numpy` y `re` (Curso 7).
-- Seis conjuntos de datos limpios y normalizados (Ancho + Largo) en [`03_Fase_Procesar_Process/datos_limpios_processed/`](03_Fase_Procesar_Process/datos_limpios_processed/) (`3.352.439` bytes totales):
-  - `GetOnBoard_Vacantes_2026_20261111_v01_clean.csv` (`679` filas; `235` salarios válidos).
-  - `GetOnBoard_Habilidades_2026_20261111_v01_clean.csv` (`1.877` filas; `528` ofertas con match).
-  - `StackOverflow_LatAm_2024_20261111_v01_clean.csv` (`3.074` filas; `1.341` salarios válidos; `46` en Chile).
-  - `StackOverflow_Tecnologias_2024_20261111_v01_clean.csv` (`31.759` filas; conserva `72` encuestados LatAm con `NA` para `LEFT JOIN`).
-  - `DataScienceSalaries_2020_2024_20261111_v01_clean.csv` (`6.599` filas intactas con salario mensual USD y ref. CLP).
-  - `INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv` (`2` indicadores oficiales con tipo de cambio BCCh `2026-11-10 = $969,80`).
-- Entregable Oficial 3 [`03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx`](03_Fase_Procesar_Process/03_Documentacion_Limpieza_y_Changelog.docx) con los 6 tipos de validación (Curso 5), checklist de 12 puntos + 3 pasos de objetivo (Curso 4), control `N >= 30` y tabla Changelog de 7 campos.
-
-### Modificado
-- Reclasificación de `Databricks` (`Cloud`) y `Oracle Cloud (OCI)` (`Cloud`), y separación de `PowerShell` vs. `Bash/Shell` en Get on Board para lograr paridad taxonómica 1:1 con `StackOverflow_Tecnologias`.
-- Actualización cronológica de [`DIARIO_DE_DATOS_BITACORA.docx`](DIARIO_DE_DATOS_BITACORA.docx) con la entrada de Fase 3.
-
-### Correcciones
-- **Regex `.NET` (`C#`):** Corregido límite de palabra para recuperar `15` ofertas reales con `.NET` (total `C#` = `54`).
-- **Regex `Go`:** Excluido `'Go / No-Go'`, `'Go-Live'`, `'Go Deep'` y `'Go-To'` (`Go` = `19` ofertas reales sin falsos positivos).
-- **Filtro `Oracle` DB:** Excluidas `8` menciones no-BD (certificaciones `OCP`, `OCI`, `Middleware/OSB/WebLogic/SOA`, `Flexcube`, `ERP Oracle`), quedando `36` ofertas de Oracle Database.
-- **Paridad `JavaScript`:** Restringido a mención explícita del lenguaje (`186` ofertas) sin inferencia por frameworks para evitar inflación artificial frente a Stack Overflow `LanguageHaveWorkedWith`.
-
----
-
-## Versión 0.2.0 (`2026-11-11`) — Fase 2: Preparar (*Prepare*) y Actualización de Alcance
-
-### Añadido
-- Incorporación de 3 fuentes complementarias junto a Get on Board (`72.797` registros crudos inmutables, `21,05 MiB` / `22,07 MB` totales en `datos_crudos_raw/`): `StackOverflow_DeveloperSurvey_2024_20261111_v01_raw.csv.gz` (`65.437`), `DataScienceSalaries_2020_2024_20261110_v01_raw.csv` (`6.599`) e `INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv` (`2`).
-- Entregable Oficial 2 [`02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx`](02_Fase_Preparar_Prepare/02_Descripcion_Fuentes_y_ROCCC.docx) con metadatos completos, auditoría ROCCC, 0% PII, seguridad, licencias y diseño Wide/Long + salvaguarda SQL sin duplicación en uniones 1:N.
-
-### Modificado
-- Actualización formal de [`01_Alcance_del_Trabajo_SOW.docx`](01_Fase_Preguntar_Ask/01_Alcance_del_Trabajo_SOW.docx) y [`01_Declaracion_Tarea_Empresarial.docx`](01_Fase_Preguntar_Ask/01_Declaracion_Tarea_Empresarial.docx) ampliando Get on Board a todo 2026 hasta el corte `2026-11-10` (`America/Santiago GMT-3`) y alineando el Objetivo Métrico #3 a `N >= 30`.
-
-### Correcciones
-- Renombrado de `GetOnBoard_OfertasTech_2026_20261110_v01_raw.json` con periodo `_2026_` explícito (Curso 3).
-- Ajuste de conteos exactos en `02_Descripcion_Fuentes_y_ROCCC.docx` (`72` registros LatAm con `NA` tecnológico en los 19 países completos; `6` outliers bajos `$8–$63 USD/año` en Stack Overflow Chile; pesos exactos en `bytes` y `MiB`).
-
----
-
-## Versión 0.1.0 (`2026-11-10`) — Fase 1: Preguntar (*Ask*) Inicial
-
-### Añadido
-- Estructura inicial de carpetas por las 6 fases del proceso de análisis de datos de Google en el portafolio.
-- Documentos iniciales de Fase 1: `01_Alcance_del_Trabajo_SOW.docx`, `01_Declaracion_Tarea_Empresarial.docx` y apertura de `DIARIO_DE_DATOS_BITACORA.docx` con las 4 preguntas de reflexión del Curso 8.
+## Versión 1.4.x (`2026-11-15`) — Sincronización Multi-Plataforma Kaggle y Tableau Public
+- Autodetección dinámica de rutas de datos para ejecución autónoma del cuaderno en Kaggle.
+- Implementación de las 14 consultas relacionales en SQLite en memoria y desmitificación de correlación vs causalidad.
+- Publicación de entregables ejecutivos en PDF y paquete de datos procesados.

@@ -1,0 +1,17 @@
+seniority_nivel,modalidad_grupo,n,media_mensual_usd,cumple_n30
+Junior,Híbrido,10,1590.0,0
+Junior,Presencial,3,1316.67,0
+Junior,Remoto Local,1,1150.0,0
+Junior,Remoto Total,3,1800.0,0
+Lead,Híbrido,3,5416.67,0
+Lead,Remoto Local,1,8350.0,0
+Lead,Remoto Total,3,8216.67,0
+Semi-Senior,Híbrido,48,2308.33,1
+Semi-Senior,Presencial,17,2082.35,0
+Semi-Senior,Remoto Local,13,2663.46,0
+Semi-Senior,Remoto Total,19,2089.47,0
+Senior,Híbrido,42,2878.57,1
+Senior,Presencial,13,2857.69,0
+Senior,Remoto Local,30,4250.83,1
+Senior,Remoto Total,28,3389.29,0
+Trainee,Presencial,1,650.0,0

@@ -92,13 +92,13 @@ ORACLE_NON_DB_SCRUB = re.compile(
 # Nota: JavaScript exige mención explícita del lenguaje (sin inferir por React/Angular/Vue/Node.js) para paridad exacta con SO.
 GOB_TECH_TAXONOMY: list[tuple[str, str, str, int]] = [
     # Lenguajes
-    ("Lenguaje", "JavaScript", r"(?<![A-Za-z0-9_])(?:javascript|js|ecmascript)(?![A-Za-z0-9_])", re.I),
+    ("Lenguaje", "JavaScript", r"(?<![A-Za-z0-9_])(?:javascript|ecmascript)(?![A-Za-z0-9_])", re.I),
     ("Lenguaje", "SQL", r"(?<![A-Za-z0-9_])(?:sql|t-sql|pl/sql|plsql)(?![A-Za-z0-9_])", re.I),
     ("Lenguaje", "Python", r"(?<![A-Za-z0-9_])python(?![A-Za-z0-9_])", re.I),
     ("Lenguaje", "TypeScript", r"(?<![A-Za-z0-9_])typescript(?![A-Za-z0-9_])", re.I),
     ("Lenguaje", "Java", r"(?<![A-Za-z0-9_])java(?![A-Za-z0-9_])", re.I),
     ("Lenguaje", "HTML/CSS", r"(?<![A-Za-z0-9_])(?:html5?|css3?)(?![A-Za-z0-9_])", re.I),
-    ("Lenguaje", "C#", r"(?:(?<![A-Za-z0-9_])c#|(?<![A-Za-z0-9_])csharp(?![A-Za-z0-9_])|(?<![A-Za-z0-9_])\.net(?![A-Za-z0-9_]))", re.I),
+    ("Lenguaje", "C#", r"(?:(?<![A-Za-z0-9_])c#|(?<![A-Za-z0-9_])csharp(?![A-Za-z0-9_]))", re.I),
     (
         "Lenguaje",
         "Go",
@@ -204,7 +204,7 @@ def procesar_get_on_board() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
         if "Chile" in paises:
             alcance_geo = "Chile Local"
         elif "Remote" in paises:
-            alcance_geo = "Remoto Global/LatAm"
+            alcance_geo = "Remoto sin país declarado"
         else:
             stats["excl_fuera_pais"] += 1
             continue
@@ -263,8 +263,30 @@ def procesar_get_on_board() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
 
         matched_here: set[tuple[str, str]] = set()
         for tipo, tech, pat, flags in GOB_TECH_TAXONOMY:
-            target = texto_oracle_db if (tipo == "Base de datos" and tech == "Oracle") else texto_completo
-            if re.search(pat, target, flags):
+            target = texto_completo
+            if tipo == "Base de datos" and tech == "Oracle":
+                target = texto_oracle_db
+            elif tipo == "Base de datos" and tech == "Elasticsearch":
+                target = re.sub(r"(?i:elastic\s*(?:apm|stack|observability|cloud\s+observability|para\s+monitoreo)|\belk\b)", " ", texto_completo)
+            elif tipo == "Cloud" and tech == "Microsoft Azure":
+                target = re.sub(r"(?i:azure\s*(?:devops|ad\b|active\s+directory|boards|repos|pipelines|artifacts)|entra\s*id)", " ", texto_completo)
+            elif tech == "C#":
+                target = re.sub(r"(?i:(?:vb|asp)?\.net(?:\s*core)?)", " ", texto_completo)
+
+            is_matched = bool(re.search(pat, target, flags))
+
+            # Exclusion de Swift en protocolos de transferencia bancaria (SWIFT/SEPA)
+            if is_matched and tech == "Swift":
+                if re.search(r'(?i:\b(?:money\s+transfer\s+)?protocols?\s+such\s+as\s+swift|\bswift\s+(?:and|&|y)\s+sepa\b|\bsepa\s+(?:and|&|y)\s+swift\b)', target):
+                    is_matched = False
+
+            # Deteccion de R seguido de ')', ' o ', ' y ', ',' cuando este en lista con Python o SQL
+            if not is_matched and tech == "R":
+                if re.search(r'\b(?:python|sql)\b', target, re.I):
+                    if re.search(r'(?<![A-Za-z0-9_])R(?:\s*\)|\s+(?:o|y|or|and)\s+|\s*,\s*)', target) or re.search(r'\b(?:python|sql)\b[^\.\n]{0,60}\b(?:o|y|or|and|,)\s+R(?![A-Za-z0-9_])', target, re.I):
+                        is_matched = True
+
+            if is_matched:
                 matched_here.add((tipo, tech))
 
         if matched_here:
@@ -301,6 +323,7 @@ def procesar_get_on_board() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
                 "salario_mensual_clp_ref": sal_clp,
                 "salario_valido_flag": salario_valido,
                 "motivo_exclusion_salario": motivo_excl if motivo_excl else "",
+                "company_id": int(a.get("company", {}).get("data", {}).get("id") or 0),
                 "applications_count": int(a.get("applications_count") or 0),
                 "menciona_tecnologia_flag": len(matched_here) > 0,
             }
@@ -447,6 +470,9 @@ def procesar_stack_overflow() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
             "salario_valido_flag": mask_valido,
             "motivo_exclusion_salario": motivos,
             "tiene_tecnologia_flag": tiene_tec,
+            "respondio_lenguaje": df["LanguageHaveWorkedWith"].notna(),
+            "respondio_database": df["DatabaseHaveWorkedWith"].notna(),
+            "respondio_platform": df["PlatformHaveWorkedWith"].notna(),
         }
     )
 
@@ -494,10 +520,10 @@ def procesar_dss() -> tuple[pd.DataFrame, dict]:
     df = pd.read_csv(ruta)
 
     exp_map = {
-        "Entry-level": "Junior (Entry)",
-        "Mid-level": "Semi-Senior (Mid)",
+        "Entry-level": "Entry-level/Junior",
+        "Mid-level": "Mid/Semi-Senior",
         "Senior-level": "Senior",
-        "Executive-level": "Directivo (Executive)",
+        "Executive-level": "Executive/Lead",
     }
     mod_map = {
         "On-site": "Presencial",
@@ -526,11 +552,11 @@ def procesar_dss() -> tuple[pd.DataFrame, dict]:
             "company_location": df["company_location"],
             "company_size": df["company_size"],
             "tamano_es": df["company_size"].map(size_map),
-            "salary_yearly_usd": pd.to_numeric(df["salary_in_usd"], errors="coerce"),
-            "salario_mensual_usd": np.round(pd.to_numeric(df["salary_in_usd"], errors="coerce") / 12.0, 2),
             "salario_mensual_clp_ref": np.round(
                 (pd.to_numeric(df["salary_in_usd"], errors="coerce") / 12.0) * DOLAR_OBSERVADO_BCCH, 0
             ),
+            "salary_yearly_usd": pd.to_numeric(df["salary_in_usd"], errors="coerce"),
+            "salario_mensual_usd": np.round(pd.to_numeric(df["salary_in_usd"], errors="coerce") / 12.0, 2),
         }
     )
 
@@ -603,7 +629,7 @@ def ejecutar_6_validaciones(
     # 3. Restricción de datos (Constraint)
     assert df_vac["job_id"].is_unique
     assert df_so["ResponseId"].is_unique
-    assert set(df_vac["alcance_geo"].unique()) == {"Chile Local", "Remoto Global/LatAm"}
+    assert set(df_vac["alcance_geo"].unique()) == {"Chile Local", "Remoto sin país declarado"}
     assert df_vac["modalidad_grupo"].isna().sum() == 0
     assert len(df_so["pais"].unique()) == 19
     assert not df_hab.duplicated(subset=["job_id", "tipo_tecnologia", "tecnologia"]).any()
@@ -655,7 +681,7 @@ def ejecutar_6_validaciones(
     validaciones.append(
         {
             "tipo": "6. Validación del código de aplicación",
-            "estado": "AUDITADO Y CONTENIDO",
+            "estado": "VERIFICADO Y CONTENIDO",
             "detalle": f"Detectadas debilidades de captura en origen: GOB permitió salarios libres <$500 ({gob_excl} casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios ({so_excl} casos en LatAm). Contenidos vía flags y anulación transparente.",
         }
     )
@@ -706,6 +732,7 @@ def main() -> None:
             "so_orgsize_sal_valido": df_so.loc[df_so["salario_valido_flag"], "org_size_grupo"].value_counts().to_dict(),
         },
     }
+
     report_path = BASE_DIR / "03_Fase_Procesar_Process" / "scripts" / "resumen_validacion_fase3.json"
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(resumen, f, ensure_ascii=False, indent=2)

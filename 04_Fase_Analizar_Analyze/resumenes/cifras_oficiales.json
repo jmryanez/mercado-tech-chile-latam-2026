@@ -1,0 +1,1157 @@
+{
+  "meta_fecha_estudio": {
+    "val": "2026-11-21",
+    "str": "2026-11-21"
+  },
+  "meta_version": {
+    "val": "1.12.1",
+    "str": "1.12.1"
+  },
+  "dolar_observado_bcch": {
+    "val": 969.8,
+    "str": "$969,80",
+    "tipo": "constante_externa",
+    "fuente": "Banco Central de Chile (BCCh) 2026-11-10"
+  },
+  "gob_total_raw": {
+    "val": 759,
+    "str": "759"
+  },
+  "gob_total_scope": {
+    "val": 679,
+    "str": "679"
+  },
+  "gob_salarios_raw": {
+    "val": 237,
+    "str": "237"
+  },
+  "gob_salarios_validos": {
+    "val": 235,
+    "str": "235",
+    "n_str": "N=235"
+  },
+  "gob_chile_local_total": {
+    "val": 401,
+    "str": "401",
+    "pct": 59.06,
+    "pct_str": "59,1%"
+  },
+  "gob_remoto_sin_pais_total": {
+    "val": 278,
+    "str": "278",
+    "pct": 40.94,
+    "pct_str": "40,9%"
+  },
+  "gob_habilidades_rows": {
+    "val": 1749,
+    "str": "1.749"
+  },
+  "gob_con_tecnologia": {
+    "val": 514,
+    "str": "514"
+  },
+  "so_global_total": {
+    "val": 65437,
+    "str": "65.437"
+  },
+  "so_latam_total": {
+    "val": 3074,
+    "str": "3.074"
+  },
+  "so_chile_total": {
+    "val": 133,
+    "str": "133",
+    "n_str": "N=133"
+  },
+  "so_latam_salarios_validos": {
+    "val": 1341,
+    "str": "1.341",
+    "n_str": "N=1.341"
+  },
+  "so_chile_salarios_validos": {
+    "val": 46,
+    "str": "46",
+    "n_str": "N=46"
+  },
+  "so_tecnologias_rows": {
+    "val": 31759,
+    "str": "31.759"
+  },
+  "dss_total": {
+    "val": 6599,
+    "str": "6.599"
+  },
+  "dss_eeuu_total": {
+    "val": 5305,
+    "str": "5.305"
+  },
+  "ine_mediana_clp": {
+    "val": 680000.0,
+    "str": "$680.000",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv"
+  },
+  "ine_mediana_usd": {
+    "val": 701.18,
+    "str": "$701,18",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv / BCCh"
+  },
+  "ine_media_clp": {
+    "val": 962945.0,
+    "str": "$962.945",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv"
+  },
+  "ine_media_usd": {
+    "val": 992.93,
+    "str": "$992,93",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv / BCCh"
+  },
+  "ine_mediana_usd_ref": {
+    "val": 701.18,
+    "str": "$701",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv / BCCh"
+  },
+  "ine_esi_mediana_clp": {
+    "val": 680000.0,
+    "str": "$680.000 CLP",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv"
+  },
+  "ine_esi_mediana_usd": {
+    "val": 701.18,
+    "str": "$701 USD",
+    "tipo": "constante_externa",
+    "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv / BCCh"
+  },
+  "tech_sql_gob_n": {
+    "val": 223,
+    "str": "223",
+    "pct": 32.84,
+    "pct_str": "32,84%"
+  },
+  "tech_sql_so_chile_pct": {
+    "val": 53.38,
+    "str": "53,38%",
+    "pct_str": "53,38%"
+  },
+  "tech_sql_so_latam_pct": {
+    "val": 57.48,
+    "str": "57,48%",
+    "pct_str": "57,48%"
+  },
+  "tech_aws_gob_n": {
+    "val": 204,
+    "str": "204",
+    "pct": 30.04,
+    "pct_str": "30,04%"
+  },
+  "tech_aws_so_chile_pct": {
+    "val": 46.62,
+    "str": "46,62%",
+    "pct_str": "46,62%"
+  },
+  "tech_aws_so_latam_pct": {
+    "val": 45.41,
+    "str": "45,41%",
+    "pct_str": "45,41%"
+  },
+  "tech_python_gob_n": {
+    "val": 193,
+    "str": "193",
+    "pct": 28.42,
+    "pct_str": "28,42%"
+  },
+  "tech_python_so_chile_pct": {
+    "val": 57.14,
+    "str": "57,14%",
+    "pct_str": "57,14%"
+  },
+  "tech_python_so_latam_pct": {
+    "val": 46.81,
+    "str": "46,81%",
+    "pct_str": "46,81%"
+  },
+  "tech_azure_gob_n": {
+    "val": 116,
+    "str": "116",
+    "pct": 17.08,
+    "pct_str": "17,08%"
+  },
+  "tech_azure_so_chile_pct": {
+    "val": 15.04,
+    "str": "15,04%",
+    "pct_str": "15,04%"
+  },
+  "tech_azure_so_latam_pct": {
+    "val": 22.28,
+    "str": "22,28%",
+    "pct_str": "22,28%"
+  },
+  "tech_javascript_gob_n": {
+    "val": 101,
+    "str": "101",
+    "pct": 14.87,
+    "pct_str": "14,87%"
+  },
+  "tech_javascript_so_chile_pct": {
+    "val": 65.41,
+    "str": "65,41%",
+    "pct_str": "65,41%"
+  },
+  "tech_javascript_so_latam_pct": {
+    "val": 68.67,
+    "str": "68,67%",
+    "pct_str": "68,67%"
+  },
+  "tech_typescript_gob_n": {
+    "val": 117,
+    "str": "117",
+    "pct": 17.23,
+    "pct_str": "17,23%"
+  },
+  "tech_typescript_so_chile_pct": {
+    "val": 40.6,
+    "str": "40,60%",
+    "pct_str": "40,60%"
+  },
+  "tech_typescript_so_latam_pct": {
+    "val": 40.7,
+    "str": "40,70%",
+    "pct_str": "40,70%"
+  },
+  "tech_google_cloud_gob_n": {
+    "val": 117,
+    "str": "117",
+    "pct": 17.23,
+    "pct_str": "17,23%"
+  },
+  "tech_google_cloud_so_chile_pct": {
+    "val": 21.05,
+    "str": "21,05%",
+    "pct_str": "21,05%"
+  },
+  "tech_google_cloud_so_latam_pct": {
+    "val": 22.74,
+    "str": "22,74%",
+    "pct_str": "22,74%"
+  },
+  "tech_csharp_gob_n": {
+    "val": 37,
+    "str": "37",
+    "pct": 5.45,
+    "pct_str": "5,45%"
+  },
+  "tech_csharp_so_chile_pct": {
+    "val": 24.06,
+    "str": "24,06%",
+    "pct_str": "24,06%"
+  },
+  "tech_csharp_so_latam_pct": {
+    "val": 25.5,
+    "str": "25,50%",
+    "pct_str": "25,50%"
+  },
+  "tech_swift_gob_n": {
+    "val": 10,
+    "str": "10",
+    "pct": 1.47,
+    "pct_str": "1,47%"
+  },
+  "tech_swift_so_chile_pct": {
+    "val": 3.76,
+    "str": "3,76%",
+    "pct_str": "3,76%"
+  },
+  "tech_swift_so_latam_pct": {
+    "val": 3.58,
+    "str": "3,58%",
+    "pct_str": "3,58%"
+  },
+  "tech_elasticsearch_gob_n": {
+    "val": 11,
+    "str": "11",
+    "pct": 1.62,
+    "pct_str": "1,62%"
+  },
+  "tech_elasticsearch_so_chile_pct": {
+    "val": 8.27,
+    "str": "8,27%",
+    "pct_str": "8,27%"
+  },
+  "tech_elasticsearch_so_latam_pct": {
+    "val": 10.41,
+    "str": "10,41%",
+    "pct_str": "10,41%"
+  },
+  "tech_r_gob_n": {
+    "val": 5,
+    "str": "5",
+    "pct": 0.74,
+    "pct_str": "0,74%"
+  },
+  "tech_r_so_chile_pct": {
+    "val": 8.27,
+    "str": "8,27%",
+    "pct_str": "8,27%"
+  },
+  "tech_r_so_latam_pct": {
+    "val": 5.4,
+    "str": "5,40%",
+    "pct_str": "5,40%"
+  },
+  "tech_azure_moe_chile": {
+    "val": 6.1,
+    "str": "±6,1 pp"
+  },
+  "tech_azure_brecha_pp": {
+    "val": 2.04,
+    "str": "+2,0 pp"
+  },
+  "tech_azure_sin_top": {
+    "val": 17.32,
+    "pct_str": "17,32%"
+  },
+  "banda_cl_semi_senior_n": {
+    "val": 65,
+    "str": "65",
+    "n_str": "N=65"
+  },
+  "banda_cl_semi_senior_p25": {
+    "val": 2000.0,
+    "str": "$2.000"
+  },
+  "banda_cl_semi_senior_mediana": {
+    "val": 2250.0,
+    "str": "$2.250"
+  },
+  "banda_cl_semi_senior_p75": {
+    "val": 2500.0,
+    "str": "$2.500"
+  },
+  "banda_cl_senior_n": {
+    "val": 55,
+    "str": "55",
+    "n_str": "N=55"
+  },
+  "banda_cl_senior_p25": {
+    "val": 2150.0,
+    "str": "$2.150"
+  },
+  "banda_cl_senior_mediana": {
+    "val": 2750.0,
+    "str": "$2.750"
+  },
+  "banda_cl_senior_p75": {
+    "val": 3675.0,
+    "str": "$3.675"
+  },
+  "salto_cl_semi_a_senior_monto": {
+    "val": 500.0,
+    "str": "+$500"
+  },
+  "salto_cl_semi_a_senior_pct": {
+    "val": 22.2,
+    "str": "22,2%",
+    "pct_str": "+22,2%"
+  },
+  "banda_rem_semi_senior_n": {
+    "val": 32,
+    "str": "32",
+    "n_str": "N=32"
+  },
+  "banda_rem_semi_senior_p25": {
+    "val": 1475.0,
+    "str": "$1.475"
+  },
+  "banda_rem_semi_senior_mediana": {
+    "val": 2000.0,
+    "str": "$2.000"
+  },
+  "banda_rem_semi_senior_p75": {
+    "val": 3037.5,
+    "str": "$3.038"
+  },
+  "banda_rem_senior_n": {
+    "val": 58,
+    "str": "58",
+    "n_str": "N=58"
+  },
+  "banda_rem_senior_p25": {
+    "val": 2750.0,
+    "str": "$2.750"
+  },
+  "banda_rem_senior_mediana": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "banda_rem_senior_p75": {
+    "val": 5000.0,
+    "str": "$5.000"
+  },
+  "gob_total_semi_senior_mediana": {
+    "val": 2250.0,
+    "str": "$2.250",
+    "n": 97,
+    "n_str": "N=97"
+  },
+  "gob_total_senior_mediana": {
+    "val": 3200.0,
+    "str": "$3.200",
+    "n": 113,
+    "n_str": "N=113"
+  },
+  "gob_total_salto_senior_monto": {
+    "val": 950.0,
+    "str": "+$950"
+  },
+  "gob_total_salto_senior_pct": {
+    "val": 42.2,
+    "pct_str": "+42,2%"
+  },
+  "gob_total_senior_p75": {
+    "val": 4000.0,
+    "str": "$4.000"
+  },
+  "gob_total_semi_senior_p25": {
+    "val": 1850.0,
+    "str": "$1.850"
+  },
+  "gob_modalidad_presencial_mediana": {
+    "val": 2250.0,
+    "str": "$2.250",
+    "n": 34,
+    "n_str": "N=34"
+  },
+  "gob_modalidad_hibrido_mediana": {
+    "val": 2300.0,
+    "str": "$2.300",
+    "n": 103,
+    "n_str": "N=103"
+  },
+  "gob_modalidad_remoto_local_mediana": {
+    "val": 3750.0,
+    "str": "$3.750",
+    "n": 45,
+    "n_str": "N=45"
+  },
+  "gob_modalidad_remoto_total_mediana": {
+    "val": 2600.0,
+    "str": "$2.600",
+    "n": 53,
+    "n_str": "N=53"
+  },
+  "gob_remoto_local_senior_pct": {
+    "val": 66.7,
+    "str": "66,7%",
+    "pct_str": "66,7%"
+  },
+  "gob_remoto_local_senior_lead_pct": {
+    "val": 68.9,
+    "str": "68,9%",
+    "pct_str": "68,9%"
+  },
+  "so_argentina_mediana": {
+    "val": 2958.34,
+    "str": "$2.958",
+    "n": 124,
+    "n_str": "N=124"
+  },
+  "so_bolivia_mediana": {
+    "val": 1218.58,
+    "str": "$1.219",
+    "n": 17,
+    "n_str": "N=17"
+  },
+  "so_brasil_mediana": {
+    "val": 2020.25,
+    "str": "$2.020",
+    "n": 673,
+    "n_str": "N=673"
+  },
+  "so_chile_mediana": {
+    "val": 3063.55,
+    "str": "$3.064",
+    "n": 46,
+    "n_str": "N=46"
+  },
+  "so_colombia_mediana": {
+    "val": 2500.0,
+    "str": "$2.500",
+    "n": 83,
+    "n_str": "N=83"
+  },
+  "so_costarica_mediana": {
+    "val": 6096.04,
+    "str": "$6.096",
+    "n": 20,
+    "n_str": "N=20"
+  },
+  "so_cuba_mediana": {
+    "val": 975.0,
+    "str": "$975",
+    "n": 10,
+    "n_str": "N=10"
+  },
+  "so_ecuador_mediana": {
+    "val": 1500.0,
+    "str": "$1.500",
+    "n": 25,
+    "n_str": "N=25"
+  },
+  "so_elsalvador_mediana": {
+    "val": 4200.0,
+    "str": "$4.200",
+    "n": 7,
+    "n_str": "N=7"
+  },
+  "so_guatemala_mediana": {
+    "val": 2249.42,
+    "str": "$2.249",
+    "n": 21,
+    "n_str": "N=21"
+  },
+  "so_honduras_mediana": {
+    "val": 887.17,
+    "str": "$887",
+    "n": 7,
+    "n_str": "N=7"
+  },
+  "so_mexico_mediana": {
+    "val": 2632.54,
+    "str": "$2.633",
+    "n": 164,
+    "n_str": "N=164"
+  },
+  "so_nicaragua_mediana": {
+    "val": 3000.0,
+    "str": "$3.000",
+    "n": 7,
+    "n_str": "N=7"
+  },
+  "so_panama_mediana": {
+    "val": 3750.0,
+    "str": "$3.750",
+    "n": 5,
+    "n_str": "N=5"
+  },
+  "so_paraguay_mediana": {
+    "val": 2331.25,
+    "str": "$2.331",
+    "n": 12,
+    "n_str": "N=12"
+  },
+  "so_peru_mediana": {
+    "val": 2200.5,
+    "str": "$2.200",
+    "n": 29,
+    "n_str": "N=29"
+  },
+  "so_republicadominicana_mediana": {
+    "val": 2253.75,
+    "str": "$2.254",
+    "n": 22,
+    "n_str": "N=22"
+  },
+  "so_uruguay_mediana": {
+    "val": 6416.41,
+    "str": "$6.416",
+    "n": 36,
+    "n_str": "N=36"
+  },
+  "so_venezuela_mediana": {
+    "val": 1000.0,
+    "str": "$1.000",
+    "n": 33,
+    "n_str": "N=33"
+  },
+  "dss_eeuu_2020_mediana": {
+    "val": 9916.67,
+    "str": "$9.917",
+    "n": 28,
+    "n_str": "N=28",
+    "pct_senior": 25.0,
+    "pct_senior_str": "25,0%"
+  },
+  "dss_eeuu_2020_n": {
+    "val": 28,
+    "str": "28",
+    "n_str": "N=28"
+  },
+  "dss_eeuu_2021_mediana": {
+    "val": 11666.67,
+    "str": "$11.667",
+    "n": 88,
+    "n_str": "N=88",
+    "pct_senior": 40.9,
+    "pct_senior_str": "40,9%"
+  },
+  "dss_eeuu_2021_n": {
+    "val": 88,
+    "str": "88",
+    "n_str": "N=88"
+  },
+  "dss_eeuu_2022_mediana": {
+    "val": 12008.33,
+    "str": "$12.008",
+    "n": 829,
+    "n_str": "N=829",
+    "pct_senior": 72.5,
+    "pct_senior_str": "72,5%"
+  },
+  "dss_eeuu_2022_n": {
+    "val": 829,
+    "str": "829",
+    "n_str": "N=829"
+  },
+  "dss_eeuu_2023_mediana": {
+    "val": 12500.0,
+    "str": "$12.500",
+    "n": 3854,
+    "n_str": "N=3.854",
+    "pct_senior": 68.4,
+    "pct_senior_str": "68,4%"
+  },
+  "dss_eeuu_2023_n": {
+    "val": 3854,
+    "str": "3.854",
+    "n_str": "N=3.854"
+  },
+  "dss_eeuu_2024_mediana": {
+    "val": 11673.42,
+    "str": "$11.673",
+    "n": 506,
+    "n_str": "N=506",
+    "pct_senior": 55.7,
+    "pct_senior_str": "55,7%"
+  },
+  "dss_eeuu_2024_n": {
+    "val": 506,
+    "str": "506",
+    "n_str": "N=506"
+  },
+  "dss_eeuu_registros": {
+    "val": 5305,
+    "str": "5.305"
+  },
+  "gob_sql_pct": {
+    "val": 32.84,
+    "str": "32,8%",
+    "pct_str": "32,84%"
+  },
+  "gob_aws_pct": {
+    "val": 30.04,
+    "str": "30,0%",
+    "pct_str": "30,04%"
+  },
+  "gob_python_pct": {
+    "val": 28.42,
+    "str": "28,4%",
+    "pct_str": "28,42%"
+  },
+  "gob_azure_pct": {
+    "val": 17.08,
+    "str": "17,1%",
+    "pct_str": "17,08%"
+  },
+  "gob_javascript_pct": {
+    "val": 14.87,
+    "str": "14,9%",
+    "pct_str": "14,87%"
+  },
+  "gob_sql_chile_pct": {
+    "val": 34.91,
+    "str": "34,9%"
+  },
+  "gob_sql_remoto_pct": {
+    "val": 29.86,
+    "str": "29,9%"
+  },
+  "gob_aws_chile_pct": {
+    "val": 26.68,
+    "str": "26,7%"
+  },
+  "gob_aws_remoto_pct": {
+    "val": 34.89,
+    "str": "34,9%"
+  },
+  "gob_senior_salario_mediano": {
+    "val": 3200.0,
+    "str": "$3.200"
+  },
+  "gob_semisenior_salario_mediano": {
+    "val": 2250.0,
+    "str": "$2.250"
+  },
+  "gob_salario_mediano_total": {
+    "val": 2500.0,
+    "str": "$2.500"
+  },
+  "gob_salto_senior_vs_semisenior_pct": {
+    "val": 42.2,
+    "str": "42,2%",
+    "pct_str": "+42,2%"
+  },
+  "gob_remoto_local_salario_mediano": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "gob_remoto_local_pct_senior_lead": {
+    "val": 68.9,
+    "str": "68,9%"
+  },
+  "gob_pct_con_salario": {
+    "val": 34.61,
+    "str": "34,6%"
+  },
+  "gob_junior_n": {
+    "val": 17,
+    "str": "17",
+    "n_str": "N=17"
+  },
+  "gob_lead_n": {
+    "val": 7,
+    "str": "7",
+    "n_str": "N=7"
+  },
+  "so_chile_salario_mediano": {
+    "val": 3063.55,
+    "str": "$3.064"
+  },
+  "salto_cl_semi_vs_ine_ratio": {
+    "val": 3.21,
+    "str": "3,21x"
+  },
+  "salto_cl_senior_vs_ine_ratio": {
+    "val": 3.92,
+    "str": "3,92x"
+  },
+  "salto_cl_total_vs_ine_ratio": {
+    "val": 3.21,
+    "str": "3,21x"
+  },
+  "gob_media_sin_dup": {
+    "val": 2882.13,
+    "str": "$2.882,13"
+  },
+  "so_media_sin_dup": {
+    "val": 3334.85,
+    "str": "$3.334,85"
+  },
+  "gob_media_con_dup": {
+    "val": 2943.44,
+    "str": "$2.943,44"
+  },
+  "so_media_con_dup": {
+    "val": 3455.45,
+    "str": "$3.455,45"
+  },
+  "gob_sesgo_dup": {
+    "val": 61.31,
+    "str": "+$61,31"
+  },
+  "so_sesgo_dup": {
+    "val": 120.6,
+    "str": "+$120,60"
+  },
+  "so_salto_acumulado_10anios_pct": {
+    "val": 566.6,
+    "str": "+566,6%"
+  },
+  "so_prima_aws_vs_sql_usd": {
+    "val": 646.01,
+    "monto_int": 646,
+    "str": "+$646 USD"
+  },
+  "so_prima_aws_vs_sql_pct": {
+    "val": 31.49,
+    "pct": 31.5,
+    "str": "+31,5%"
+  },
+  "gob_prima_aws_vs_sql_pct": {
+    "val": 26.67,
+    "pct": 26.7,
+    "str": "+26,7%"
+  },
+  "gob_prima_aws_vs_sql_usd": {
+    "val": 600.0,
+    "str": "+$600 USD"
+  },
+  "gob_brecha_remoto_vs_chile_local_pct": {
+    "val": 45.56,
+    "pct": 45.6,
+    "str": "+45,6%"
+  },
+  "gob_brecha_remoto_vs_chile_local_usd": {
+    "val": 1025.0,
+    "str": "+$1.025 USD"
+  },
+  "dss_2024_mediana_anual_usd": {
+    "val": 138000.0,
+    "str": "$138.000 USD"
+  },
+  "dss_2024_mediana_mensual_usd": {
+    "val": 11500.0,
+    "str": "$11.500 USD"
+  },
+  "ic_senior_remoto_vs_local_diff": {
+    "val": 1000.0,
+    "str": "+$1.000"
+  },
+  "ic_senior_remoto_vs_local_inf": {
+    "val": 500.0,
+    "str": "$500"
+  },
+  "ic_senior_remoto_vs_local_sup": {
+    "val": 1550.0,
+    "str": "$1.550"
+  },
+  "so_total_latam": {
+    "val": 3074,
+    "str": "3.074"
+  },
+  "so_total_latam_salarios": {
+    "val": 1341,
+    "str": "1.341",
+    "n_str": "N=1.341"
+  },
+  "dss_total_registros": {
+    "val": 6599,
+    "str": "6.599"
+  },
+  "ratio_cl_semi_vs_ine_mediana": {
+    "val": 3.21,
+    "str": "3,21x"
+  },
+  "salto_cl_semi_vs_ine_pct": {
+    "val": 220.9,
+    "str": "220,9%",
+    "pct_str": "+220,9%"
+  },
+  "total_registros_crudos": {
+    "val": 72797,
+    "str": "72.797"
+  },
+  "salario_min_filtro_usd": {
+    "val": 500,
+    "str": "$500",
+    "tipo": "constante_externa",
+    "fuente": "Protocolo Metodológico - Umbral Piso Salarial"
+  },
+  "umbral_tlc_n": {
+    "val": 30,
+    "str": "N >= 30",
+    "tipo": "constante_externa",
+    "fuente": "Teorema del Límite Central (CLT) - Muestra Mínima N>=30"
+  },
+  "meta_mejora_pct": {
+    "val": 20.0,
+    "str": "20%",
+    "tipo": "constante_externa",
+    "fuente": "Objetivo Métrico de Negocio - Presencia >=20%"
+  },
+  "gob_cl_semi_senior_mediana": {
+    "val": 2250.0,
+    "str": "$2.250"
+  },
+  "gob_cl_semi_senior_n": {
+    "val": 65,
+    "str": "65",
+    "n_str": "N=65"
+  },
+  "gob_cl_semi_senior_p25": {
+    "val": 2000.0,
+    "str": "$2.000"
+  },
+  "gob_cl_semi_senior_p75": {
+    "val": 2500.0,
+    "str": "$2.500"
+  },
+  "gob_cl_senior_mediana": {
+    "val": 2750.0,
+    "str": "$2.750"
+  },
+  "gob_cl_senior_n": {
+    "val": 55,
+    "str": "55",
+    "n_str": "N=55"
+  },
+  "gob_cl_senior_p25": {
+    "val": 2150.0,
+    "str": "$2.150"
+  },
+  "gob_cl_senior_p75": {
+    "val": 3675.0,
+    "str": "$3.675"
+  },
+  "gob_semi_local_mediana": {
+    "val": 2250.0,
+    "str": "$2.250"
+  },
+  "gob_senior_local_mediana": {
+    "val": 2750.0,
+    "str": "$2.750"
+  },
+  "gob_semi_remoto_mediana": {
+    "val": 2000.0,
+    "str": "$2.000"
+  },
+  "gob_senior_remoto_mediana": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "gob_azure_n": {
+    "val": 116,
+    "str": "116",
+    "pct": 17.08,
+    "pct_str": "17,08%"
+  },
+  "gob_gcp_n": {
+    "val": 117,
+    "str": "117",
+    "pct": 17.23,
+    "pct_str": "17,23%"
+  },
+  "gob_gcp_pct": {
+    "val": 17.23,
+    "str": "17,23%"
+  },
+  "gob_js_chile_pct": {
+    "val": 12.5,
+    "str": "12,5%"
+  },
+  "gob_js_remoto_pct": {
+    "val": 18.3,
+    "str": "18,3%"
+  },
+  "gob_cl_salto_semi_senior_pct": {
+    "val": 22.2,
+    "str": "22,2%",
+    "pct_str": "+22,2%"
+  },
+  "gob_cl_salto_semi_senior_monto": {
+    "val": 500.0,
+    "str": "+$500 USD"
+  },
+  "gob_total_salto_semi_senior_pct": {
+    "val": 42.2,
+    "str": "42,2%",
+    "pct_str": "+42,2%"
+  },
+  "gob_total_salto_semi_senior_monto": {
+    "val": 950.0,
+    "str": "+$950 USD"
+  },
+  "dss_global_2024_mediana_anual_usd": {
+    "val": 138000.0,
+    "str": "$138.000 USD"
+  },
+  "dss_global_2024_mediana_mensual_usd": {
+    "val": 11500.0,
+    "str": "$11.500 USD"
+  },
+  "gob_senior_cloud_mediana": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "gob_senior_sin_cloud_mediana": {
+    "val": 3000.0,
+    "str": "$3.000"
+  },
+  "gob_senior_cloud_diff": {
+    "val": 750.0,
+    "str": "+$750"
+  },
+  "gob_senior_cloud_n": {
+    "val": 56,
+    "str": "56",
+    "n_str": "N=56"
+  },
+  "gob_senior_sin_cloud_n": {
+    "val": 57,
+    "str": "57",
+    "n_str": "N=57"
+  },
+  "tecnologia_top1_nombre": {
+    "nombre": "SQL",
+    "str": "SQL"
+  },
+  "tecnologia_top1_n": {
+    "val": 223,
+    "str": "223",
+    "n_str": "N=223"
+  },
+  "tecnologia_top1_pct": {
+    "val": 32.84,
+    "str": "32,8%",
+    "pct_str": "32,84%"
+  },
+  "tecnologia_top2_nombre": {
+    "nombre": "AWS",
+    "str": "AWS"
+  },
+  "tecnologia_top2_n": {
+    "val": 204,
+    "str": "204",
+    "n_str": "N=204"
+  },
+  "tecnologia_top2_pct": {
+    "val": 30.04,
+    "str": "30,0%",
+    "pct_str": "30,04%"
+  },
+  "tecnologia_top3_nombre": {
+    "nombre": "Python",
+    "str": "Python"
+  },
+  "tecnologia_top3_n": {
+    "val": 193,
+    "str": "193",
+    "n_str": "N=193"
+  },
+  "tecnologia_top3_pct": {
+    "val": 28.42,
+    "str": "28,4%",
+    "pct_str": "28,42%"
+  },
+  "so_argentina_n": {
+    "val": 124,
+    "str": "124"
+  },
+  "so_brasil_n": {
+    "val": 673,
+    "str": "673"
+  },
+  "so_chile_n": {
+    "val": 46,
+    "str": "46"
+  },
+  "so_colombia_n": {
+    "val": 83,
+    "str": "83"
+  },
+  "so_mexico_n": {
+    "val": 164,
+    "str": "164"
+  },
+  "so_uruguay_n": {
+    "val": 36,
+    "str": "36"
+  },
+  "so_venezuela_n": {
+    "val": 33,
+    "str": "33"
+  },
+  "ic_senior_remoto_vs_local_ci95_inf": {
+    "val": 500.0,
+    "str": "$500"
+  },
+  "ic_senior_remoto_vs_local_ci95_sup": {
+    "val": 1550.0,
+    "str": "$1.550"
+  },
+  "ic_semi_remoto_vs_local_diff": {
+    "val": -250.0,
+    "str": "$-250 USD"
+  },
+  "ic_semi_remoto_vs_local_ci95_inf": {
+    "val": -575.0,
+    "str": "$-575"
+  },
+  "ic_semi_remoto_vs_local_ci95_sup": {
+    "val": 625.0,
+    "str": "$625"
+  },
+  "gob_total_ofertas": {
+    "val": 679,
+    "str": "679"
+  },
+  "gob_salarios_validos_total": {
+    "val": 235,
+    "str": "235",
+    "n_str": "N=235"
+  },
+  "so_latam_encuestados_total": {
+    "val": 3074,
+    "str": "3.074"
+  },
+  "so_chile_encuestados": {
+    "val": 133,
+    "str": "133",
+    "n_str": "N=133"
+  },
+  "so_chile_pesos_ref": {
+    "val": 2971031.0,
+    "str": "~$2.971.031 CLP"
+  },
+  "so_chile_clp": {
+    "val": 2971031.0,
+    "str": "~$2.971.031 CLP"
+  },
+  "gob_demanda_sql_pct": {
+    "val": 32.84,
+    "str": "32,84%"
+  },
+  "gob_demanda_sql_n": {
+    "val": 223,
+    "str": "223",
+    "pct": 32.84,
+    "pct_str": "32,84%"
+  },
+  "gob_demanda_aws_pct": {
+    "val": 30.04,
+    "str": "30,04%"
+  },
+  "gob_demanda_aws_n": {
+    "val": 204,
+    "str": "204",
+    "pct": 30.04,
+    "pct_str": "30,04%"
+  },
+  "gob_demanda_python_pct": {
+    "val": 28.42,
+    "str": "28,42%"
+  },
+  "gob_demanda_python_n": {
+    "val": 193,
+    "str": "193",
+    "pct": 28.42,
+    "pct_str": "28,42%"
+  },
+  "gob_demanda_gcp_pct": {
+    "val": 17.23,
+    "str": "17,23%"
+  },
+  "gob_demanda_gcp_n": {
+    "val": 117,
+    "str": "117",
+    "pct": 17.23,
+    "pct_str": "17,23%"
+  },
+  "gob_demanda_azure_pct": {
+    "val": 17.08,
+    "str": "17,08%"
+  },
+  "gob_demanda_azure_n": {
+    "val": 116,
+    "str": "116",
+    "pct": 17.08,
+    "pct_str": "17,08%"
+  },
+  "so_chile_adopcion_azure_pct": {
+    "val": 15.04,
+    "str": "15,04%"
+  },
+  "tree": {
+    "val": "",
+    "str": ""
+  },
+  "so_chile_salarios_raw": {
+    "val": 52,
+    "str": "52",
+    "n_str": "N=52"
+  }
+}

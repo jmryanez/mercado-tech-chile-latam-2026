@@ -1,5 +1,5 @@
-modalidad_grupo,n_salarios_validos,media_mensual_usd,media_mensual_clp_ref,ratio_media_vs_mediana_ine_2025,n_chile_local,n_remoto_global
-Remoto Local,45,3814.44,3699248.0,5.44,0,45
-Remoto Total,53,3106.6,3012784.0,4.43,0,53
-Híbrido,103,2561.65,2484289.0,3.65,103,0
-Presencial,34,2269.12,2200590.0,3.24,34,0
+modalidad_grupo,n_salarios_validos,media_mensual_usd,media_mensual_clp_ref,n_chile_local,n_remoto_sin_pais_declarado
+Remoto Local,45,3814.44,3699248.0,0,45
+Remoto Total,53,3106.6,3012784.0,0,53
+Híbrido,103,2561.65,2484289.0,103,0
+Presencial,34,2269.12,2200590.0,34,0

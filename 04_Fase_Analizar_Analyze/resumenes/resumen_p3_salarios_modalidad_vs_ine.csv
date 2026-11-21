@@ -1,10 +1,10 @@
-segmento,n,media_usd,mediana_usd,p25_usd,p75_usd,min_usd,max_usd,amplitud_p25_p75_usd,mediana_clp_ref,media_clp_ref,cumple_n30,fuente,ratio_mediana_vs_ine_esi_2025,brecha_pct_vs_ine_esi_2025
-Híbrido,103,2561.65,2300.0,2000.0,2850.0,900.0,7350.0,850.0,2230540,2484288,True,Get on Board 2026 (Modalidad),3.28,228.0
-Presencial,34,2269.12,2250.0,1850.0,2637.5,650.0,4100.0,787.5,2182050,2200593,True,Get on Board 2026 (Modalidad),3.21,220.9
-Remoto Local,45,3814.44,3750.0,3000.0,4750.0,1150.0,8350.0,1750.0,3636750,3699244,True,Get on Board 2026 (Modalidad),5.35,434.8
-Remoto Total,53,3106.6,2600.0,1750.0,3800.0,700.0,14400.0,2050.0,2521480,3012781,True,Get on Board 2026 (Modalidad),3.71,270.8
-Chile Local,137,2489.05,2250.0,1950.0,2850.0,650.0,7350.0,900.0,2182050,2413881,True,Get on Board 2026 (Alcance Geográfico),3.21,220.9
-Remoto Global/LatAm,98,3431.63,3275.0,2000.0,4475.0,700.0,14400.0,2475.0,3176095,3327995,True,Get on Board 2026 (Alcance Geográfico),4.67,367.1
-Híbrido,310,2718.78,2020.25,1125.14,3710.31,98.83,20833.33,2585.17,1959238,2636673,True,Stack Overflow LatAm 2024 (Modalidad),2.88,188.1
-Presencial,200,1672.19,1146.12,666.67,2020.25,92.42,11515.58,1353.58,1111507,1621690,True,Stack Overflow LatAm 2024 (Modalidad),1.63,63.5
-Remoto,831,3964.84,2797.33,1474.96,5225.0,96.33,41666.67,3750.04,2712851,3845102,True,Stack Overflow LatAm 2024 (Modalidad),3.99,298.9
+segmento,n,media_usd,mediana_usd,p25_usd,p75_usd,min_usd,max_usd,amplitud_p25_p75_usd,mediana_clp_ref,media_clp_ref,cumple_n30,fuente,nota,ratio_mediana_vs_ine_esi_2025,brecha_pct_vs_ine_esi_2025
+Híbrido,103,2561.65,2300.0,2000.0,2850.0,900.0,7350.0,850.0,2230540,2484288,True,Get on Board 2026 (Modalidad),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,3.28,228.0
+Presencial,34,2269.12,2250.0,1850.0,2637.5,650.0,4100.0,787.5,2182050,2200593,True,Get on Board 2026 (Modalidad),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,3.21,221.0
+Remoto Local,45,3814.44,3750.0,3000.0,4750.0,1150.0,8350.0,1750.0,3636750,3699244,True,Get on Board 2026 (Modalidad),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,5.35,435.0
+Remoto Total,53,3106.6,2600.0,1750.0,3800.0,700.0,14400.0,2050.0,2521480,3012781,True,Get on Board 2026 (Modalidad),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,3.71,271.0
+Chile Local,137,2489.05,2250.0,1950.0,2850.0,650.0,7350.0,900.0,2182050,2413881,True,Get on Board 2026 (Alcance),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,3.21,221.0
+Remoto sin país declarado,98,3431.63,3275.0,2000.0,4475.0,700.0,14400.0,2475.0,3176095,3327995,True,Get on Board 2026 (Alcance),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.,4.67,367.0
+Híbrido,310,2718.78,2020.25,1125.14,3710.31,98.83,20833.33,2585.17,1959238,2636673,True,Stack Overflow LatAm 2024 (Modalidad),,2.88,188.0
+Presencial,200,1672.19,1146.12,666.67,2020.25,92.42,11515.58,1353.58,1111507,1621690,True,Stack Overflow LatAm 2024 (Modalidad),,1.63,63.0
+Remoto,831,3964.84,2797.33,1474.96,5225.0,96.33,41666.67,3750.04,2712851,3845102,True,Stack Overflow LatAm 2024 (Modalidad),,3.99,299.0
