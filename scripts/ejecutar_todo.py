@@ -60,7 +60,7 @@ def ejecutar_paso(cmd: list[str], descripcion: str) -> None:
 
 def main() -> None:
     print("=====================================================================")
-    print("INICIANDO EJECUCIÓN MAESTRA DEL PIPELINE (PORTAFOLIO v1.12.1)")
+    print("INICIANDO EJECUCIÓN MAESTRA DEL PIPELINE (PORTAFOLIO v1.13.8)")
     print("=====================================================================")
 
     # Paso 0: Restauración de plantillas base si fueron eliminadas

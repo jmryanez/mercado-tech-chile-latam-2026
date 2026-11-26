@@ -5,12 +5,12 @@ Certificado Profesional de Análisis de Datos de Google • Cursos 6 y 8 (Caso P
 Reglas de Oro del Proyecto (v1.7.0):
 1. Cero cifras escritas a mano: todas provienen de cifras_oficiales.json.
 2. Formato es-CL en todos los ejes numéricos (FuncFormatter: $ con punto para miles, coma decimal, pp para márgenes).
-3. Visual 1: Top 4 tecnologías >= 20% con error en pp.
+3. Visual 1: tecnologías sobre la meta de demanda, con error en pp.
 4. Visual 2: Etiquetas sin solapamiento, leyenda en ambos paneles, líneas de referencia con medianas calculadas.
 5. Visual 3: Título dinámico desde datos (sin 'tracciona').
 6. Visual 4: Bandas salariales p25–p75 con control N >= 30.
 7. Visual 5: Referencia oficial INE exclusiva para Chile Local; análisis de causalidad.
-8. Visual 6: Países LatAm con IC 95% bootstrap; sin afirmación 'Chile es 2°'; panel B sin solapamiento.
+8. Visual 6: Países LatAm con IC 95% bootstrap; sin afirmar posiciones de Chile en un ranking; panel B sin solapamiento.
 9. Visual 7: DSS residentes en EE.UU. con línea punteada en N < 30 y etiqueta 'Small N=0'.
 10. Deck PDF: 14 diapositivas, cuerpo >= 14 pt, limitaciones antes de recomendaciones, slide de indicadores y preguntas de cierre.
 """
@@ -18,7 +18,9 @@ Reglas de Oro del Proyecto (v1.7.0):
 from __future__ import annotations
 
 import json
+import re
 import shutil
+import zipfile
 import textwrap
 from pathlib import Path
 
@@ -27,6 +29,11 @@ import matplotlib.ticker as mtick
 from matplotlib.ticker import FuncFormatter
 import numpy as np
 import pandas as pd
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from politica_publicacion import SENIOR_LEAD, RESTO, suprimir_n_menor  # noqa: E402
+import celdas_vacias  # noqa: E402
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.patches import FancyBboxPatch
 
@@ -67,6 +74,14 @@ def fmt_es_num(val, decimals=1):
         return ""
     s = f"{val:,.{decimals}f}"
     return s.replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+META_STR = CIFRAS["meta_mejora_pct"]["str"]
+_P1_META = pd.read_csv(RES_DIR / "resumen_p1_tecnologias_gob_vs_so.csv").sort_values("pct_demanda_gob_total", ascending=False)
+_P1_META = _P1_META[_P1_META["pct_demanda_gob_total"] >= float(CIFRAS["meta_mejora_pct"]["val"])]
+N_TOP_META = len(_P1_META)
+_ITEMS_META = [f"{r.tecnologia} ({fmt_es_num(r.pct_demanda_gob_total, 1)}%)" for r in _P1_META.itertuples()]
+LISTA_TOP_META = ", ".join(_ITEMS_META[:-1]) + (" y " if len(_ITEMS_META) > 1 else "") + _ITEMS_META[-1]
 
 
 def fmt_es_usd(val, decimals=0):
@@ -137,7 +152,7 @@ def fig_01_demanda_vs_adopcion() -> Path:
     ax.barh(y - h, df["so_lat"], height=h, color=AMBER, alpha=0.9, label=f"Uso Real LatAm SO 2024 (N={CIFRAS['so_latam_total']['str']})", zorder=3)
 
     ax.axvline(20.0, color=ORANGE, linestyle="--", linewidth=1.6, zorder=4)
-    ax.text(20.7, len(df) - 0.25, "Meta ≥ 20% (Obj. Métrico #1)", color=ORANGE, fontsize=9, fontweight="bold")
+    ax.text(20.7, len(df) - 0.25, f"Meta ≥ {META_STR} (Obj. Métrico #1)", color=ORANGE, fontsize=9, fontweight="bold")
 
     for i, val in enumerate(df["gob"]):
         ax.text(
@@ -171,7 +186,7 @@ def fig_01_demanda_vs_adopcion() -> Path:
     estilizar_ejes(ax, "x")
 
     fig.suptitle(
-        f"Solo 4 Tecnologías Superan el 20% de Demanda en Ofertas GOB: SQL ({CIFRAS['gob_sql_pct']['str']}), AWS ({CIFRAS['gob_aws_pct']['str']}), Python ({CIFRAS['gob_python_pct']['str']}) y Azure ({CIFRAS['gob_azure_pct']['str']})",
+        f"Solo {N_TOP_META} Tecnologías Superan el {META_STR} de Demanda en Ofertas GOB: {LISTA_TOP_META}",
         fontsize=11.6,
         fontweight="bold",
         color=NAVY,
@@ -227,7 +242,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
         )
     ax.axvline(20.0, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
     ax.axhline(med_gob_ref, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
-    ax.text(20.5, 3250, "Meta ≥ 20%", color=GRAY_MID, fontsize=7.8)
+    ax.text(20.5, 3250, f"Meta ≥ {META_STR}", color=GRAY_MID, fontsize=7.8)
     ax.text(11.5, med_gob_ref + 40, f"Mediana ref.: ${int(med_gob_ref):,}".replace(",", "."), color=GRAY_MID, fontsize=7.8)
 
     offsets_g = {
@@ -258,7 +273,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
     ax.set_ylim(0, 3600)
     ax.xaxis.set_major_formatter(FuncFormatter(axis_fmt_pct))
     ax.yaxis.set_major_formatter(FuncFormatter(axis_fmt_usd))
-    ax.set_title(f"A. Ofertas Get on Board 2026 (N ≥ 38 por tecnología)", fontsize=10.3, fontweight="bold", color=NAVY, loc="left")
+    ax.set_title(f"A. Ofertas Get on Board 2026 (N ≥ 30 por tecnología)", fontsize=10.3, fontweight="bold", color=NAVY, loc="left")
     ax.set_xlabel(f"% Demanda en Ofertas (N={CIFRAS['gob_total_scope']['str']})", fontsize=9)
     ax.set_ylabel("Mediana Salarial Mensual (USD)", fontsize=9)
     estilizar_ejes(ax, "both")
@@ -279,8 +294,9 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
             zorder=4,
         )
     ax2.axhline(med_so_ref, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
-    ax2.axvline(40.0, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
-    ax2.text(40.5, 3050, "Referencia 40%", color=GRAY_MID, fontsize=7.8)
+    ref_pct = 40.0  # línea guía visual del gráfico, no es un dato
+    ax2.axvline(ref_pct, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
+    ax2.text(ref_pct + 0.5, 3050, f"Referencia {ref_pct:.0f}%", color=GRAY_MID, fontsize=7.8)
     ax2.text(11.5, med_so_ref + 35, f"Mediana ref.: ${int(med_so_ref):,}".replace(",", "."), color=GRAY_MID, fontsize=7.8)
 
     offsets_s = {
@@ -311,7 +327,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
     ax2.set_ylim(0, 3600)
     ax2.xaxis.set_major_formatter(FuncFormatter(axis_fmt_pct))
     ax2.yaxis.set_major_formatter(FuncFormatter(axis_fmt_usd))
-    ax2.set_title(f"B. Profesionales SO LatAm 2024 (N ≥ 335 por tecnología)", fontsize=10.3, fontweight="bold", color=NAVY, loc="left")
+    ax2.set_title(f"B. Profesionales SO LatAm 2024 (N ≥ 30 por tecnología)", fontsize=10.3, fontweight="bold", color=NAVY, loc="left")
     ax2.set_xlabel(f"% Adopción en LatAm (N={CIFRAS['so_latam_total']['str']})", fontsize=9)
     estilizar_ejes(ax2, "both")
     ax2.legend(loc="upper left", frameon=True, facecolor="white", edgecolor=GRAY_LIGHT, fontsize=8.2, markerscale=0.75)
@@ -463,7 +479,8 @@ def fig_04_bandas_experiencia() -> Path:
         ha="left",
         y=0.97,
     )
-    pie_fuente(fig, f"*Junior GOB (N={CIFRAS['gob_junior_n']['val']} < 30) es exploratorio; Lead (N={CIFRAS['gob_lead_n']['val']}) y Trainee (N={1}) excluidos de inferencia (Curso 4). Bandas muestran cuartiles p25–p75 y mediana.")
+    n_trainee = int(pd.read_csv(RES_DIR / "resumen_p2_salarios_experiencia.csv").set_index("seniority_nivel").loc["Trainee", "n"])
+    pie_fuente(fig, f"*Junior GOB (N={CIFRAS['gob_junior_n']['val']} < 30) es exploratorio; Lead (N={CIFRAS['gob_lead_n']['val']}) y Trainee (N={n_trainee}) excluidos de inferencia (Curso 4). Bandas muestran cuartiles p25–p75 y mediana.")
     plt.tight_layout(rect=[0, 0.04, 1, 0.91])
     out = VIZ_DIR / "04_bandas_salariales_experiencia_p2.png"
     fig.savefig(out, dpi=300)
@@ -485,13 +502,13 @@ def fig_05_modalidades_y_causalidad() -> Path:
     # Panel A: Modalidades vs INE
     ax = axes[0]
     items = [
-        (f"SO LatAm: Presencial (N={200})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Presencial"), "mediana_usd"], GRAY_MID),
-        (f"SO LatAm: Híbrido (N={310})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Híbrido"), "mediana_usd"], TEAL),
-        (f"SO LatAm: Remoto (N={831})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Remoto"), "mediana_usd"], BLUE),
-        (f"GOB: Presencial (N={34})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Presencial"), "mediana_usd"], GRAY_MID),
-        (f"GOB: Híbrido (N={103})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Híbrido"), "mediana_usd"], TEAL),
-        (f"GOB: Remoto Total (N={53})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Remoto Total"), "mediana_usd"], BLUE),
-        (f"GOB: Remoto Local (N={45})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Remoto Local"), "mediana_usd"], ORANGE),
+        (f"SO LatAm: Presencial (N={int(p3_csv.loc[('Stack Overflow LatAm 2024 (Modalidad)', 'Presencial'), 'n'])})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Presencial"), "mediana_usd"], GRAY_MID),
+        (f"SO LatAm: Híbrido (N={int(p3_csv.loc[('Stack Overflow LatAm 2024 (Modalidad)', 'Híbrido'), 'n'])})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Híbrido"), "mediana_usd"], TEAL),
+        (f"SO LatAm: Remoto (N={int(p3_csv.loc[('Stack Overflow LatAm 2024 (Modalidad)', 'Remoto'), 'n'])})", p3_csv.loc[("Stack Overflow LatAm 2024 (Modalidad)", "Remoto"), "mediana_usd"], BLUE),
+        (f"GOB: Presencial (N={int(p3_csv.loc[('Get on Board 2026 (Modalidad)', 'Presencial'), 'n'])})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Presencial"), "mediana_usd"], GRAY_MID),
+        (f"GOB: Híbrido (N={int(p3_csv.loc[('Get on Board 2026 (Modalidad)', 'Híbrido'), 'n'])})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Híbrido"), "mediana_usd"], TEAL),
+        (f"GOB: Remoto Total (N={int(p3_csv.loc[('Get on Board 2026 (Modalidad)', 'Remoto Total'), 'n'])})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Remoto Total"), "mediana_usd"], BLUE),
+        (f"GOB: Remoto Local (N={int(p3_csv.loc[('Get on Board 2026 (Modalidad)', 'Remoto Local'), 'n'])})", p3_csv.loc[("Get on Board 2026 (Modalidad)", "Remoto Local"), "mediana_usd"], ORANGE),
     ]
     y = np.arange(len(items))
     vals = [x[1] for x in items]
@@ -511,21 +528,19 @@ def fig_05_modalidades_y_causalidad() -> Path:
     ax.set_xlabel("Mediana Salarial Mensual (USD)", fontsize=8.8)
     estilizar_ejes(ax, "x")
 
-    # Panel B: Barras apiladas 100% — Composición Seniority
+    # Panel B: Barras apiladas 100% — Composición Seniority en 2 grupos (política de publicación)
     ax2 = axes[1]
     mods = ["Presencial", "Híbrido", "Remoto Total", "Remoto Local"]
-    sen = np.array([q12_df.loc[m, "pct_senior"] + q12_df.loc[m, "pct_lead"] for m in mods])
-    semi = np.array([q12_df.loc[m, "pct_semi_senior"] for m in mods])
-    jr = np.array([100.0 - s - sm for s, sm in zip(sen, semi)])
+    sen = np.array([q12_df.loc[m, "pct_senior_lead"] for m in mods])
+    jr = np.array([q12_df.loc[m, "pct_junior_trainee_semi_senior"] for m in mods])
 
     y2 = np.arange(len(mods))
-    ax2.barh(y2, sen, color=NAVY, height=0.54, label="Senior + Lead", zorder=3)
-    ax2.barh(y2, semi, left=sen, color=BLUE, height=0.54, label="Semi-Senior", zorder=3)
-    ax2.barh(y2, jr, left=sen + semi, color=GRAY_LIGHT, height=0.54, label="Junior / Trainee", zorder=3)
+    ax2.barh(y2, sen, color=NAVY, height=0.54, label=SENIOR_LEAD, zorder=3)
+    ax2.barh(y2, jr, left=sen, color=BLUE, height=0.54, label=RESTO, zorder=3)
 
     for i in range(len(mods)):
         ax2.text(sen[i] / 2, i, f"{fmt_es_num(sen[i], 1)}%", ha="center", va="center", color="white", fontsize=8.5, fontweight="bold")
-        ax2.text(sen[i] + semi[i] / 2, i, f"{fmt_es_num(semi[i], 1)}%", ha="center", va="center", color="white", fontsize=8.5, fontweight="bold")
+        ax2.text(sen[i] + jr[i] / 2, i, f"{fmt_es_num(jr[i], 1)}%", ha="center", va="center", color="white", fontsize=8.5, fontweight="bold")
 
     ax2.set_yticks(y2)
     ax2.set_yticklabels(mods, fontsize=9, fontweight="bold", color=GRAY_DARK)
@@ -533,12 +548,12 @@ def fig_05_modalidades_y_causalidad() -> Path:
     ax2.set_xticks([0, 25, 50, 75, 100])
     ax2.xaxis.set_major_formatter(FuncFormatter(axis_fmt_pct))
     ax2.set_title("B. Composición Seniority (Correlación ≠ Causalidad)", fontsize=9.8, fontweight="bold", color=NAVY, loc="left")
-    ax2.set_xlabel("% Composición de Seniority y Alcance (Get on Board)", fontsize=8.8)
-    ax2.legend(loc="lower center", bbox_to_anchor=(0.38, -0.22), ncol=3, frameon=False, fontsize=8.2)
+    ax2.set_xlabel("% de ofertas por grupo de seniority (Get on Board)", fontsize=8.8)
+    ax2.legend(loc="lower center", bbox_to_anchor=(0.38, -0.22), ncol=2, frameon=False, fontsize=8.2)
     estilizar_ejes(ax2, "x")
 
     fig.suptitle(
-        f"Remoto Local: mediana ${int(CIFRAS['gob_remoto_local_salario_mediano']['val']):,} con {fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}% de cargos Senior o Lead".replace(",", "."),
+        f"Remoto Local: mediana {CIFRAS['gob_remoto_local_salario_mediano']['str']} con {fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}% de cargos Senior o Lead",
         fontsize=11.4,
         fontweight="bold",
         color=NAVY,
@@ -546,7 +561,7 @@ def fig_05_modalidades_y_causalidad() -> Path:
         ha="left",
         y=0.97,
     )
-    pie_fuente(fig, f"Dólar Observado BCCh al 2026-11-10 = {CIFRAS['dolar_observado_bcch']['str']} CLP/USD. ESI 2025 INE referencial ({CIFRAS['ine_esi_mediana_clp']['str']}/mes). El Panel B evidencia sesgo de composición (Curso 6, Correlación != Causalidad).")
+    pie_fuente(fig, f"Dólar Observado BCCh al 2026-11-10 = {CIFRAS['dolar_observado_bcch']['str']} CLP/USD. ESI 2025 INE referencial ({CIFRAS['ine_esi_mediana_clp']['str']}/mes). El Panel B muestra la composición por seniority de cada modalidad (Curso 6, Correlación != Causalidad).")
     fig.text(0.50, 0.925, f"Estratificación por Seniority (Q14): Senior Remoto {CIFRAS['banda_rem_senior_mediana']['str']} ({CIFRAS['banda_rem_senior_n']['str']}) vs. Chile Local {CIFRAS['banda_cl_senior_mediana']['str']} ({CIFRAS['banda_cl_senior_n']['str']}) • Semi-Senior Remoto {CIFRAS['banda_rem_semi_senior_mediana']['str']} ({CIFRAS['banda_rem_semi_senior_n']['str']}) vs. Chile Local {CIFRAS['banda_cl_semi_senior_mediana']['str']} ({CIFRAS['banda_cl_semi_senior_n']['str']})", fontsize=8.2, color=NAVY, fontweight="bold", ha="center")
     plt.tight_layout(rect=[0, 0.05, 1, 0.90])
     out = VIZ_DIR / "05_modalidades_vs_ine_y_causalidad_p3_q12.png"
@@ -617,7 +632,7 @@ def fig_06_latam_y_tamano_empresa() -> Path:
     ax.set_yticklabels(paises["pais"], fontsize=9.2, fontweight="bold", color=GRAY_DARK)
     ax.set_xlim(0, 8200)
     ax.xaxis.set_major_formatter(FuncFormatter(axis_fmt_usd))
-    ax.set_title("A. Los 7 países LatAm con N ≥ 30 [IC 95% de la mediana (bootstrap)]", fontsize=9.8, fontweight="bold", color=NAVY, loc="left")
+    ax.set_title(f"A. Los {len(paises)} países LatAm con N ≥ 30 [IC 95% de la mediana (bootstrap)]", fontsize=9.8, fontweight="bold", color=NAVY, loc="left")
     ax.set_xlabel("Mediana Salarial Mensual USD (SO 2024)", fontsize=8.8)
     estilizar_ejes(ax, "x")
 
@@ -647,7 +662,7 @@ def fig_06_latam_y_tamano_empresa() -> Path:
     estilizar_ejes(ax2, "y")
 
     fig.suptitle(
-        f"Uruguay lidera; Chile (${int(CIFRAS['so_chile_salario_mediano']['val']):,}, N={CIFRAS['so_chile_salarios_validos']['str']}) no se distingue estadísticamente de Argentina, México y Colombia".replace(",", "."),
+        f"Uruguay lidera; Chile ({CIFRAS['so_chile_salario_mediano']['str']}, N={CIFRAS['so_chile_salarios_validos']['str']}) no se distingue estadísticamente de Argentina, México y Colombia",
         fontsize=11.2,
         fontweight="bold",
         color=NAVY,
@@ -655,7 +670,7 @@ def fig_06_latam_y_tamano_empresa() -> Path:
         ha="left",
         y=0.97,
     )
-    pie_fuente(fig, "Fuente: Stack Overflow Survey 2024 LatAm (19 países). Solo se muestran países con N >= 30 salarios válidos; en Panel B todos los tramos tienen N >= 60. Barras de error: IC 95% bootstrap.")
+    pie_fuente(fig, f"Fuente: Stack Overflow Survey 2024 LatAm (19 países). Solo se muestran países con N >= 30 salarios válidos; en Panel B el tramo con menos respuestas tiene N = {int(org['n'].min())}. Barras de error: IC 95% bootstrap.")
     plt.tight_layout(rect=[0, 0.04, 1, 0.91])
     out = VIZ_DIR / "06_paises_latam_y_tamano_empresa_p4.png"
     fig.savefig(out, dpi=300)
@@ -673,6 +688,7 @@ def fig_07_evolucion_dss_2020_2024() -> Path:
 
     piv = dss_us.groupby(["work_year", "tamano_es"])["salario_mensual_usd"].median().unstack()
     tot_y = pd.read_csv(RES_DIR / "resumen_p4_dss_eeuu_temporal.csv").set_index("work_year")
+    n_small_2024 = int(((dss_us["work_year"] == 2024) & (dss_us["tamano_es"] == "Pequeña (Small)")).sum())
 
     fig, ax = plt.subplots(figsize=(10.8, 5.5), dpi=300)
     years = [2020, 2021, 2022, 2023, 2024]
@@ -690,7 +706,7 @@ def fig_07_evolucion_dss_2020_2024() -> Path:
     if "Pequeña (Small)" in piv.columns:
         small_years = [2020, 2021, 2022, 2023]
         small_vals = [float(piv.loc[y, "Pequeña (Small)"]) for y in small_years]
-        ax.plot(small_years, small_vals, marker="d", linewidth=2.0, linestyle=":", color=ORANGE, label=f"Empresas Pequeñas (N={0} en 2024)", zorder=4)
+        ax.plot(small_years, small_vals, marker="d", linewidth=2.0, linestyle=":", color=ORANGE, label=f"Empresas Pequeñas (N={n_small_2024} en 2024)", zorder=4)
 
     offsets_y = {2020: -780, 2021: 520, 2022: -900, 2023: 540, 2024: -850}
     for yr in years:
@@ -708,10 +724,10 @@ def fig_07_evolucion_dss_2020_2024() -> Path:
             zorder=6,
             bbox=dict(boxstyle="round,pad=0.18", facecolor="white", edgecolor="none", alpha=0.88),
         )
-    ax.text(2023.7, 9800, f"Small N={0}", fontsize=8.0, style="italic", color=ORANGE, fontweight="bold")
+    ax.text(2023.7, 9800, f"Small N={n_small_2024}", fontsize=8.0, style="italic", color=ORANGE, fontweight="bold")
 
     ax.set_xticks(years)
-    ax.set_xticklabels([f"2020\n(N={28}, explor.)", f"2021\n(N={88})", f"2022\n(N={829})", f"2023\n(N={3854:,})".replace(",", "."), f"2024\n(parcial, N={506})"])
+    ax.set_xticklabels([f"2020\n(N={int(tot_y.loc[2020, 'n'])}, explor.)", f"2021\n(N={int(tot_y.loc[2021, 'n'])})", f"2022\n(N={int(tot_y.loc[2022, 'n'])})", f"2023\n(N={int(tot_y.loc[2023, 'n']):,})".replace(",", "."), f"2024\n(parcial, N={int(tot_y.loc[2024, 'n'])})"])
     ax.set_ylim(0, 16500)
     ax.yaxis.set_major_formatter(FuncFormatter(axis_fmt_usd))
     ax.set_ylabel("Mediana Salarial Mensual (USD)", fontsize=9.5, color=GRAY_DARK)
@@ -735,7 +751,7 @@ def fig_07_evolucion_dss_2020_2024() -> Path:
     pie_fuente(
         fig,
         f"Fuente: Data Science Salaries 2020–2024 (ai-jobs.net, CC0 1.0; filtro estricto residentes en EE.UU., N={int(tot_y['n'].sum()):,}).\n"
-        f"Nota N>=30: Segmentos con N < 30 (2020 N={28}) se muestran en trazo punteado como exploratorios; en 2024 empresas pequeñas tiene N={0}.",
+        f"Nota N>=30: Segmentos con N < 30 (2020 N={int(tot_y.loc[2020, 'n'])}) se muestran en trazo punteado como exploratorios; en 2024 empresas pequeñas tiene N={n_small_2024}.",
     )
     plt.tight_layout(rect=[0, 0.06, 1, 0.92])
     out = VIZ_DIR / "07_evolucion_dss_2020_2024_p4.png"
@@ -765,7 +781,7 @@ def generar_og_image() -> Path:
     # Tarjetas métricas
     kpis = [
         (f"SQL {CIFRAS['gob_sql_pct']['str']}", "Tecnología #1 GOB"),
-        (f"${int(CIFRAS['gob_senior_salario_mediano']['val']):,}".replace(",", "."), f"Senior Mediana (N={113})"),
+        (f"${int(CIFRAS['gob_senior_salario_mediano']['val']):,}".replace(",", "."), f"Senior Mediana (N={CIFRAS['gob_total_senior_mediana']['n']})"),
         (f"+{CIFRAS['gob_salto_senior_vs_semisenior_pct']['str']}", "Salto Seniority"),
         (f"N={CIFRAS['so_latam_salarios_validos']['str']}", "Salarios SO LatAm"),
     ]
@@ -786,6 +802,47 @@ def generar_og_image() -> Path:
 # =============================================================================
 # EXCEL PARA TABLEAU Y DESCARGAS
 # =============================================================================
+N_MIN_GOB_PUBLICO = 5  # mínimo de ofertas por grupo para publicar agregados de Get on Board
+_COLS_N_GOB = {"n", "n_salarios_validos", "n_ofertas", "gob_n_ofertas", "n_total_salarios", "n_ofertas_con_salario_valido"}
+_COLS_EXTREMOS = {"min_usd", "max_usd", "min_mensual_usd", "max_mensual_usd"}
+_HOJAS_SOLO_GOB = {"P1_Tecnologias", "P3_Modalidad_INE", "Q12_Seniority_Largo", "Q13_Categorias_GOB"}
+
+
+def _gob_solo_agregado(df: pd.DataFrame, hoja_gob: bool) -> pd.DataFrame:
+    """Get on Board solo como agregado público: sin mínimos/máximos y sin grupos con N < 5 (términos de su API)."""
+    df = df.copy()
+    if hoja_gob:
+        es_gob = pd.Series(True, index=df.index)
+    elif "fuente" in df.columns:
+        es_gob = df["fuente"].astype(str).str.contains("Get on Board", na=False)
+    else:
+        return df
+    extremos = [c for c in df.columns if c.lower() in _COLS_EXTREMOS]
+    if hoja_gob:
+        df = df.drop(columns=extremos)
+    else:
+        for c in extremos:
+            df[c] = df[c].where(~es_gob)
+    for c in [c for c in df.columns if c.lower() in _COLS_N_GOB]:
+        quitar = es_gob & (pd.to_numeric(df[c], errors="coerce") < N_MIN_GOB_PUBLICO)
+        df = df[~quitar]
+        es_gob = es_gob[~quitar]
+    return df.reset_index(drop=True)
+
+
+def _fijar_fecha_xlsx(ruta: Path) -> None:
+    """Deja fijas las fechas internas del Excel para que el archivo sea idéntico en cada ejecución (README reproducible)."""
+    fecha = f"{CIFRAS['meta_fecha_estudio']['str']}T00:00:00Z".encode()
+    with zipfile.ZipFile(ruta) as zin:
+        items = [(i, zin.read(i.filename)) for i in zin.infolist()]
+    with zipfile.ZipFile(ruta, "w", zipfile.ZIP_DEFLATED) as zout:
+        for info, datos in items:
+            if info.filename == "docProps/core.xml":
+                datos = re.sub(rb"(<dcterms:(?:created|modified)[^>]*>)[^<]*(<)", lambda m: m.group(1) + fecha + m.group(2), datos)
+            info.date_time = (1980, 1, 1, 0, 0, 0)
+            zout.writestr(info, datos)
+
+
 def exportar_excel_tableau() -> Path:
     """Genera el paquete multi-hoja Datos_Consolidados_Tableau_Public.xlsx con formato largo y consistencia total."""
     xlsx_path = SHARE_DIR / "Datos_Consolidados_Tableau_Public.xlsx"
@@ -794,7 +851,7 @@ def exportar_excel_tableau() -> Path:
             "Regla_de_Uso_en_Tableau_Public": [
                 "1. Nunca promediar ni sumar juntas filas de poblaciones distintas (Get on Board 2026, Stack Overflow 2024, DSS 2020-2024 e INE ESI 2025).",
                 "2. ¿Qué es N y N >= 30 (Curso 4, Teorema del Límite Central)? N es el conteo exacto de observaciones válidas en un grupo; 30 es el tamaño mínimo muestral representativo bajo el Teorema del Límite Central.",
-                f"3. Derivadas de N: (a) N total de universo vs. N salarios válidos (ej. GOB N={CIFRAS['gob_total_scope']['val']} ofertas vs. N={CIFRAS['gob_salarios_validos']['val']} con sueldo válido); (b) N < 30 / cumple_n30=False = exploratorio sin inferencia (ej. Junior N={17}, {12} países LatAm); (c) N = {0} = sin datos (Small 2024); (d) Cotas observadas = mínimo real resultante tras filtrar N>=30.",
+                f"3. Derivadas de N: (a) N total de universo vs. N salarios válidos (ej. GOB N={CIFRAS['gob_total_scope']['val']} ofertas vs. N={CIFRAS['gob_salarios_validos']['val']} con sueldo válido); (b) N < 30 / cumple_n30=False = exploratorio sin inferencia (ej. Junior + Trainee Chile Local N={CIFRAS['pub_cl_junior_trainee_n']['val']}); (c) grupo sin observaciones = sin datos; (d) en Get on Board no se publican mínimos, máximos ni grupos con menos de {N_MIN_GOB_PUBLICO} ofertas, para no exponer ofertas individuales.",
                 "4. Usar las hojas como fuentes independientes o tablas complementarias.",
                 f"5. Tipo de cambio referencial oficial: Dólar Observado BCCh al 2026-11-10 = {CIFRAS['dolar_observado_bcch']['str']} CLP/USD.",
             ]
@@ -816,12 +873,12 @@ def exportar_excel_tableau() -> Path:
     df_paises["fuente_salario"] = "Stack Overflow LatAm 2024"
 
     # Versión en formato largo de P1
-    df_p1 = pd.read_csv(RES_DIR / "resumen_p1_tecnologias_gob_vs_so.csv")
+    df_p1 = _gob_solo_agregado(pd.read_csv(RES_DIR / "resumen_p1_tecnologias_gob_vs_so.csv"), True)
     p1_long = []
     for _, r in df_p1.iterrows():
-        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Get on Board Total (Ofertas)", "n_universo": 679, "porcentaje": r["pct_demanda_gob_total"], "moe_pp": None})
-        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Stack Overflow Chile (Uso)", "n_universo": 133, "porcentaje": r["pct_adopcion_chile"], "moe_pp": r.get("moe95_pp_chile")})
-        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Stack Overflow LatAm (Uso)", "n_universo": 3074, "porcentaje": r["pct_adopcion_latam"], "moe_pp": r.get("moe95_pp_latam")})
+        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Get on Board Total (Ofertas)", "n_universo": CIFRAS['gob_total_scope']['val'], "porcentaje": r["pct_demanda_gob_total"], "moe_pp": None})
+        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Stack Overflow Chile (Uso)", "n_universo": CIFRAS['so_chile_total']['val'], "porcentaje": r["pct_adopcion_chile"], "moe_pp": r.get("moe95_pp_chile")})
+        p1_long.append({"tecnologia": r["tecnologia"], "tipo_tecnologia": r["tipo_tecnologia"], "poblacion": "Stack Overflow LatAm (Uso)", "n_universo": CIFRAS['so_latam_total']['val'], "porcentaje": r["pct_adopcion_latam"], "moe_pp": r.get("moe95_pp_latam")})
     df_p1_long = pd.DataFrame(p1_long)
 
     # Versión en formato largo de Q12
@@ -830,10 +887,8 @@ def exportar_excel_tableau() -> Path:
     for _, r in df_q12.iterrows():
         m = r["modalidad_grupo"]
         tot = r["n_salarios_validos"]
-        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": "Senior", "pct": r["pct_senior"]})
-        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": "Semi-Senior", "pct": r["pct_semi_senior"]})
-        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": "Junior / Trainee", "pct": r["pct_junior_trainee"]})
-        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": "Lead", "pct": r["pct_lead"]})
+        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": SENIOR_LEAD, "pct": r["pct_senior_lead"]})
+        q12_long.append({"modalidad_grupo": m, "n_salarios_validos": tot, "seniority": RESTO, "pct": r["pct_junior_trainee_semi_senior"]})
     df_q12_long = pd.DataFrame(q12_long)
 
     # Hoja DSS_Anio_Tamano en formato largo
@@ -843,21 +898,40 @@ def exportar_excel_tableau() -> Path:
         "LEEME_Poblaciones": nota,
         "P1_Tecnologias_Largo": df_p1_long,
         "P1_Tecnologias": df_p1,
-        "P2_Experiencia": pd.read_csv(RES_DIR / "resumen_p2_salarios_experiencia.csv"),
-        "P3_Modalidad_INE": pd.read_csv(RES_DIR / "resumen_p3_comparacion_ine_chile_local.csv"),
+        "P2_Experiencia": pd.concat([pd.read_csv(RES_DIR / "resumen_pub_p2_gob_total.csv"),
+                                     pd.read_csv(RES_DIR / "resumen_p2_salarios_experiencia.csv").query("not fuente.str.startswith('Get on Board')", engine="python")],
+                                    ignore_index=True),
+        "P3_Modalidad_INE": pd.read_csv(RES_DIR / "resumen_pub_p3_comparacion_ine_chile_local.csv"),
         "DSS_Anio_Tamano": df_dss_anio_tam,
         "P4_Tamano_DSS": pd.read_csv(RES_DIR / "resumen_p4_dss_eeuu_temporal.csv"),
         "SO_Paises_LatAm_N30": pd.read_csv(RES_DIR / "resumen_paises_so_latam_n30.csv"),
         "Q11_Tech_vs_Salario": pd.read_csv(RES_DIR / "resumen_q11_tecnologia_vs_salario.csv"),
         "Q12_Seniority_Largo": df_q12_long,
-        "Q13_Categorias_GOB": pd.read_csv(RES_DIR / "resumen_q13_gob_categorias.csv"),
+        "Q13_Categorias_GOB": suprimir_n_menor(pd.read_csv(RES_DIR / "resumen_q13_gob_categorias.csv")),
         "Mapa_LatAm_19_Paises": df_paises,
     }
 
+    for _nombre in list(sheets):
+        sheets[_nombre] = _gob_solo_agregado(sheets[_nombre], _nombre in _HOJAS_SOLO_GOB)
+    # Celdas vacías: cada hoja se comprueba contra scripts/celdas_vacias.json y la explicación va a LEEME_Poblaciones
+    _reg_vac = celdas_vacias.cargar()
+    _sobran = sorted(set(_reg_vac["tableau"]) - set(sheets))
+    if _sobran:
+        raise ValueError(f"celdas_vacias.json explica hojas que el Excel no tiene: {', '.join(_sobran)}")
+    for _nombre, _df in sheets.items():
+        celdas_vacias.comprobar(_df, _reg_vac["tableau"].get(_nombre, {}), _nombre)
+    _num = _reg_vac["numero_regla_tableau"]
+    _filas = [f"{_num}. {_reg_vac['encabezado_tableau']}"]
+    for _nombre in sheets:
+        for _col, _e in _reg_vac["tableau"].get(_nombre, {}).items():
+            _filas.append(f"{_num}.{len(_filas)} Hoja {_nombre}, columna {_col}: {_e['texto']}")
+    sheets["LEEME_Poblaciones"] = pd.concat([sheets["LEEME_Poblaciones"], pd.DataFrame({"Regla_de_Uso_en_Tableau_Public": _filas})],
+                                            ignore_index=True)
     with pd.ExcelWriter(xlsx_path, engine="openpyxl") as writer:
         for name, dframe in sheets.items():
             dframe.to_excel(writer, sheet_name=name[:31], index=False)
 
+    _fijar_fecha_xlsx(xlsx_path)
     shutil.copyfile(xlsx_path, DESC_DIR / "Datos_Consolidados_Tableau_Public.xlsx")
     return xlsx_path
 
@@ -884,7 +958,7 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         ax.text(3.2, 92.2, kicker.upper(), fontsize=10.5, fontweight="bold", color=ORANGE)
         ax.text(3.2, 87.2, title, fontsize=17.0, fontweight="bold", color=NAVY)
         ax.plot([3.2, 96.8], [85.0, 85.0], color=GRAY_LIGHT, linewidth=1.2)
-        ax.text(96.8, 2.0, f"Diapositiva {page_num} / 14  •  Manuel Yáñez Orellana  •  2026-11-17", ha="right", fontsize=9.0, color=GRAY_MID)
+        ax.text(96.8, 2.0, f"Diapositiva {page_num} / 14  •  Manuel Yáñez Orellana  •  {CIFRAS['meta_fecha_estudio']['str']}", ha="right", fontsize=9.0, color=GRAY_MID)
 
     def embed_img(fig, img_path: Path, rect=(0.03, 0.06, 0.94, 0.77)):
         iax = fig.add_axes(rect)
@@ -898,7 +972,7 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         ax.text(7.5, 67, "ESTUDIO DE CASO  •  CERTIFICADO PROFESIONAL DE ANÁLISIS DE DATOS DE GOOGLE", fontsize=12.0, fontweight="bold", color=AMBER)
         ax.text(7.5, 52, "Mercado Laboral y Salarios en Tecnología:\nChile y Latinoamérica (2024–2026)", fontsize=27, fontweight="bold", color="white", linespacing=1.25)
         ax.text(7.5, 39, "Brecha de Habilidades, Bandas Salariales por Experiencia, Modalidad y Tamaño de Empresa", fontsize=14, color="#E2E8F0")
-        ax.text(7.5, 25, "Presentado por: Manuel Yáñez Orellana   |   Caso de estudio simulado (ejercicio académico)\nFecha: 17 de noviembre de 2026   |   Exposición Ejecutiva: 30 minutos", fontsize=11.5, color="#CBD5E1", linespacing=1.5)
+        ax.text(7.5, 25, f"Presentado por: Manuel Yáñez Orellana   |   Caso de estudio simulado (ejercicio académico)\nFecha: {CIFRAS['meta_fecha_estudio']['str']}   |   Exposición Ejecutiva: 30 minutos", fontsize=11.5, color="#CBD5E1", linespacing=1.5)
         pdf.savefig(f); plt.close(f)
 
         # Slide 2: Agenda
@@ -906,8 +980,8 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         header(ax, "Hoja de Ruta • Curso 6 (Módulo 4)", "Agenda de la Sesión Ejecutiva (30 minutos)", 2)
         agenda = [
             ("01", "4 min", "Introducciones y Propósito", "Contexto del cliente y partes interesadas simuladas (Academia Digital y Consultora RRHH)."),
-            ("02", "5 min", "Hipótesis, Datos y Regla N ≥ 30", "4 poblaciones independientes, control CLT N >= 30 y meta de demanda >= 20%."),
-            ("03", "10 min", "Hallazgos y Visuales Clave", "Top 4 tecnologías, bandas p25–p75, análisis de modalidad y series temporales."),
+            ("02", "5 min", "Hipótesis, Datos y Regla N ≥ 30", f"4 poblaciones independientes, control CLT N >= 30 y meta de demanda >= {META_STR}."),
+            ("03", "10 min", "Hallazgos y Visuales Clave", f"Top {N_TOP_META} tecnologías, bandas p25–p75, análisis de modalidad y series temporales."),
             ("04", "4 min", "Limitaciones y Control de Sesgos", "Autoselección, no especificación bruto/líquido, tipo de cambio y causalidad."),
             ("05", "4 min", "Recomendaciones Estratégicas", "Priorización curricular, calibración de bandas y transparencia salarial."),
             ("06", "3 min", "Indicadores de Monitoreo & Q&A", "Métricas a 30, 60 y 90 días, preguntas de cierre y debate estratégico."),
@@ -926,8 +1000,8 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         header(ax, "Fase 1: Preguntar (Ask)", "Tarea Empresarial, Hipótesis Inicial y Control Metodológico", 3)
         cards = [
             ("TAREA EMPRESARIAL", f"Cuantificar demanda tech vigente en Get on Board ({CIFRAS['gob_total_scope']['str']} vacantes en alcance), adopción en Stack Overflow 2024 ({CIFRAS['so_latam_total']['str']} LatAm), serie DSS EE.UU. y línea base INE ESI 2025 para orientar mallas curriculares y calibrar bandas.", NAVY),
-            ("HIPÓTESIS INICIAL", "El lenguaje #1 domina la empleabilidad base, pero las especializaciones Cloud y las ofertas remotas con alta concentración Senior explican las diferencias salariales observadas frente al mercado presencial local.", BLUE),
-            ("MÉTRICAS Y CONTROL", f"• Meta #1: Tecnologías ≥ 20% presencia.\n• Meta #2: Umbral N ≥ 30 (CLT, muestra suficiente).\n• Meta #3: Mediana USD y cuartiles p25–p75.\n• Referencia oficial BCCh: ${CIFRAS['dolar_observado_bcch']['val']:.2f} CLP/USD.", TEAL),
+            ("HIPÓTESIS INICIAL", "El lenguaje #1 domina la empleabilidad base, pero las especializaciones Cloud y las ofertas remotas, con más cargos Senior, podrían explicar las diferencias salariales frente al mercado presencial local (hipótesis que el análisis contrasta).", BLUE),
+            ("MÉTRICAS Y CONTROL", f"• Meta #1: Tecnologías ≥ {META_STR} presencia.\n• Meta #2: Umbral N ≥ 30 (CLT, muestra suficiente).\n• Meta #3: Mediana USD y cuartiles p25–p75.\n• Referencia oficial BCCh: ${CIFRAS['dolar_observado_bcch']['val']:.2f} CLP/USD.", TEAL),
         ]
         for idx, (ctit, cbody, col) in enumerate(cards):
             x = 4 + idx * 31.5
@@ -951,13 +1025,13 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
 
         # Slides 4..10: Los 7 visuales
         slide_specs = [
-            ("Pregunta 1 • Demanda vs. Adopción Real", "Visual 1: Solo 4 Tecnologías Superan el 20% de Demanda en Ofertas GOB", 4, viz_paths[0]),
+            ("Pregunta 1 • Demanda vs. Adopción Real", f"Visual 1: Solo {N_TOP_META} Tecnologías Superan el {META_STR} de Demanda en Ofertas GOB", 4, viz_paths[0]),
             ("Profundización Q11 • Matriz Volumen vs. Salario", "Visual 2: Ofertas Cloud Muestran Medianas Más Altas, con Mayor Concentración Senior", 5, viz_paths[1]),
             ("Pregunta 1 • Mapa de Intensidad por Mercado", "Visual 3: Mapa de Calor — Chile Local vs. Remoto sin País Declarado vs. LatAm", 6, viz_paths[2]),
             ("Pregunta 2 • Bandas Salariales por Experiencia", f"Visual 4: Progresión p25–p75 (+{CIFRAS['gob_salto_senior_vs_semisenior_pct']['str']} a Senior) y Control N ≥ 30", 7, viz_paths[3]),
-            ("Pregunta 3 + Q12 • Modalidad y Sesgo de Composición", f"Visual 5: Remoto Local (${int(CIFRAS['gob_remoto_local_salario_mediano']['val']):,}) con {fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}% de Cargos Senior o Lead".replace(",", "."), 8, viz_paths[4]),
-            ("Pregunta 4A • Chile en LatAm y Tamaño de Empresa", f"Visual 6: Uruguay Lidera; Chile (${int(CIFRAS['so_chile_salario_mediano']['val']):,}) no se Diferencia de Países Vecinos".replace(",", "."), 9, viz_paths[5]),
-            ("Pregunta 4B • Serie Histórica Internacional DSS", f"Visual 7: Data Science Salaries en EE.UU. 2020–2024 (2024 Parcial, N={506})", 10, viz_paths[6]),
+            ("Pregunta 3 + Q12 • Modalidad y Composición por Seniority", f"Visual 5: Remoto Local ({CIFRAS['gob_remoto_local_salario_mediano']['str']}) con {fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}% de Cargos Senior o Lead", 8, viz_paths[4]),
+            ("Pregunta 4A • Chile en LatAm y Tamaño de Empresa", f"Visual 6: Uruguay Lidera; Chile ({CIFRAS['so_chile_salario_mediano']['str']}) no se Diferencia de Argentina, México y Colombia", 9, viz_paths[5]),
+            ("Pregunta 4B • Serie Histórica Internacional DSS", f"Visual 7: Data Science Salaries en EE.UU. 2020–2024 (2024 Parcial, N={CIFRAS['dss_eeuu_2024_n']['val']})", 10, viz_paths[6]),
         ]
         for kick, tit, pg, vpath in slide_specs:
             f, ax = new_slide()
@@ -968,11 +1042,12 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         # Slide 11: Limitaciones de Datos y Control de Sesgos (ANTES de recomendaciones)
         f, ax = new_slide()
         header(ax, "Evaluación Metodológica • Curso 6 (Módulo 4)", "Limitaciones de Datos, Control de Sesgos y Validez Estadística", 11)
+        n_paises_exploratorios = int((~pd.read_csv(DESC_DIR / "Matriz_TLC_19_Paises_LatAm.csv")["cumple_n30"].astype(bool)).sum())
         notes = [
-            ("Autoselección y Asimetría Informativa", f"En Get on Board, solo el {CIFRAS['gob_pct_con_salario']['str']} de los avisos ({CIFRAS['gob_salarios_validos']['str']} de {CIFRAS['gob_total_scope']['str']}) publica compensación explícita. Las empresas que declaran remuneraciones tienden a ofrecer salarios superiores."),
+            ("Autoselección y Asimetría Informativa", f"En Get on Board, solo el {CIFRAS['gob_pct_con_salario']['str']} de los avisos ({CIFRAS['gob_salarios_validos']['str']} de {CIFRAS['gob_total_scope']['str']}) publica un sueldo válido para el análisis. No se sabe cómo pagan las ofertas que no publican sueldo."),
             ("No Especificación Bruto / Líquido", "Get on Board no reporta si los montos corresponden a sueldo bruto o líquido. Stack Overflow declara ingresos anuales brutos convertidos con tipos de cambio históricos."),
-            ("Regla N ≥ 30 y Submuestras Exploratorias", f"Submuestras con N < 30 (Junior GOB N={CIFRAS['gob_junior_n']['val']}, Lead N={CIFRAS['gob_lead_n']['val']}, 12 países LatAm) son exploratorias y no admiten inferencia estadística poblacional."),
-            ("Correlación ≠ Causalidad y Alcance", f"La brecha salarial de Remoto Local responde a sesgo de composición ({fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}% Senior/Lead). Además, 'Chile Local' y 'Remoto' son equivalentes a las modalidades en los datos."),
+            ("Regla N ≥ 30 y Submuestras Exploratorias", f"Submuestras con N < 30 (Junior GOB N={CIFRAS['gob_junior_n']['val']}, Lead N={CIFRAS['gob_lead_n']['val']}, {n_paises_exploratorios} países LatAm) son exploratorias y no admiten inferencia estadística poblacional."),
+            ("Correlación ≠ Causalidad y Alcance", f"Entre cargos Senior, Remoto sin país supera a Chile Local en {CIFRAS['ic_senior_remoto_vs_local_diff']['str']} USD (IC 95% [{CIFRAS['ic_senior_remoto_vs_local_ci95_inf']['str']}, {CIFRAS['ic_senior_remoto_vs_local_ci95_sup']['str']}]): la mayor proporción Senior/Lead en Remoto Local ({fmt_es_num(CIFRAS['gob_remoto_local_pct_senior_lead']['val'], 1)}%) no explica toda la brecha. 'Chile Local' y 'Remoto' equivalen a las modalidades."),
         ]
         for idx, (ntit, nbody) in enumerate(notes):
             row = idx // 2
@@ -999,8 +1074,8 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
             (
                 "2. CALIBRACIÓN DE BANDAS RRHH\n(Consultora RRHH • Inmediato)",
                 [
-                    f"• Bandas de Mercado: Fijar Semi-Senior en ${1850:,}–${2600:,} USD (mediana ${int(CIFRAS['gob_semisenior_salario_mediano']['val']):,}) y Senior en ${2300:,}–${4000:,} USD (mediana ${int(CIFRAS['gob_senior_salario_mediano']['val']):,}).".replace(",", "."),
-                    f"• Banda Remota Diferenciada: Reconocer requerimientos Senior en vacantes remotas (${3500:,}–${5000:,} USD).".replace(",", "."),
+                    f"• Bandas de Mercado en Chile Local: fijar Semi-Senior en {CIFRAS['banda_cl_semi_senior_p25']['str']}–{CIFRAS['banda_cl_semi_senior_p75']['str']} USD (mediana {CIFRAS['gob_cl_semi_senior_mediana']['str']}) y Senior en {CIFRAS['banda_cl_senior_p25']['str']}–{CIFRAS['banda_cl_senior_p75']['str']} USD (mediana {CIFRAS['gob_cl_senior_mediana']['str']}).",
+                    f"• Banda Remota Diferenciada: Senior en vacantes remotas sin país declarado, {CIFRAS['banda_rem_senior_p25']['str']}–{CIFRAS['banda_rem_senior_p75']['str']} USD.",
                 ],
                 TEAL,
             ),
@@ -1051,7 +1126,7 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         preguntas = [
             ("1. Estrategia de Formación Digital", "¿Debe la Academia Digital condicionar su currículo a tecnologías masivas (SQL/Python) o incorporar módulos Cloud optativos asumiendo su prima salarial como hipótesis no garantizada?"),
             ("2. Política de Atracción de Talento Senior", "¿Está la Consultora dispuesta a segmentar sus bandas salariales entre contrataciones en Chile Local y posiciones remotas para competir con vacantes del segmento remoto sin país declarado?"),
-            ("3. Liderazgo en Transparencia de Mercado", f"¿Cómo puede la organización impulsar que los empleadores publiquen información salarial verificable para reducir el {65.4:.1f}% de opacidad salarial en el mercado nacional?".replace(".", ",")),
+            ("3. Liderazgo en Transparencia de Mercado", f"¿Cómo puede la organización impulsar que los empleadores publiquen información salarial verificable para reducir el {100 - float(CIFRAS['gob_pct_con_salario']['val']):.1f}% de ofertas de Get on Board sin sueldo publicado?".replace(".", ",")),
         ]
         for idx, (ptit, pbody) in enumerate(preguntas):
             y = 66 - idx * 22

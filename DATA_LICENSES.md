@@ -4,7 +4,7 @@ Este proyecto de análisis utiliza y procesa datos provenientes de 4 fuentes ind
 
 1. **Get on Board (Ofertas de Empleo Tecnológico 2026)**:
    - Datos públicos de avisos de empleo obtenidos a través de la API pública v0 (corte `2026-11-10 GMT-3`).
-   - Uso conforme a los Términos de Servicio de Get on Board para investigación, análisis agregado y fines educativos sin fines de lucro. Privacidad y anonimización garantizadas.
+   - Uso conforme a los Términos de Servicio de Get on Board para investigación, análisis agregado y fines educativos sin fines de lucro. Los avisos de Get on Board son públicos y no contienen datos personales de postulantes; a Kaggle y Tableau Public solo van agregados.
 
 2. **Stack Overflow Annual Developer Survey 2024**:
    - Datos abiertos licenciados bajo la **Open Database License (ODbL) v1.0**.

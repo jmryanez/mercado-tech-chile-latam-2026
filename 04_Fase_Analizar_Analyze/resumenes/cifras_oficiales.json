@@ -1,11 +1,11 @@
 {
   "meta_fecha_estudio": {
-    "val": "2026-11-21",
-    "str": "2026-11-21"
+    "val": "2026-11-22",
+    "str": "2026-11-22"
   },
   "meta_version": {
-    "val": "1.12.1",
-    "str": "1.12.1"
+    "val": "1.13.8",
+    "str": "1.13.8"
   },
   "dolar_observado_bcch": {
     "val": 969.8,
@@ -444,11 +444,6 @@
     "n": 53,
     "n_str": "N=53"
   },
-  "gob_remoto_local_senior_pct": {
-    "val": 66.7,
-    "str": "66,7%",
-    "pct_str": "66,7%"
-  },
   "gob_remoto_local_senior_lead_pct": {
     "val": 68.9,
     "str": "68,9%",
@@ -742,20 +737,20 @@
     "str": "$3.334,85"
   },
   "gob_media_con_dup": {
-    "val": 2943.44,
-    "str": "$2.943,44"
+    "val": 2928.93,
+    "str": "$2.928,93"
   },
   "so_media_con_dup": {
-    "val": 3455.45,
-    "str": "$3.455,45"
+    "val": 3455.35,
+    "str": "$3.455,35"
   },
   "gob_sesgo_dup": {
-    "val": 61.31,
-    "str": "+$61,31"
+    "val": 46.8,
+    "str": "+$46,80"
   },
   "so_sesgo_dup": {
-    "val": 120.6,
-    "str": "+$120,60"
+    "val": 120.5,
+    "str": "+$120,50"
   },
   "so_salto_acumulado_10anios_pct": {
     "val": 566.6,
@@ -790,12 +785,12 @@
     "str": "+$1.025 USD"
   },
   "dss_2024_mediana_anual_usd": {
-    "val": 138000.0,
-    "str": "$138.000 USD"
+    "val": 140081.0,
+    "str": "$140.081 USD"
   },
   "dss_2024_mediana_mensual_usd": {
-    "val": 11500.0,
-    "str": "$11.500 USD"
+    "val": 11673.4,
+    "str": "$11.673 USD"
   },
   "ic_senior_remoto_vs_local_diff": {
     "val": 1000.0,
@@ -840,6 +835,18 @@
     "str": "$500",
     "tipo": "constante_externa",
     "fuente": "Protocolo Metodológico - Umbral Piso Salarial"
+  },
+  "so_filtro_anual_min_usd": {
+    "val": 1000,
+    "str": "$1.000",
+    "tipo": "constante_externa",
+    "fuente": "Protocolo Metodológico - Rango anual plausible en Stack Overflow"
+  },
+  "so_filtro_anual_max_usd": {
+    "val": 500000,
+    "str": "$500.000",
+    "tipo": "constante_externa",
+    "fuente": "Protocolo Metodológico - Rango anual plausible en Stack Overflow"
   },
   "umbral_tlc_n": {
     "val": 30,
@@ -945,14 +952,6 @@
     "val": 950.0,
     "str": "+$950 USD"
   },
-  "dss_global_2024_mediana_anual_usd": {
-    "val": 138000.0,
-    "str": "$138.000 USD"
-  },
-  "dss_global_2024_mediana_mensual_usd": {
-    "val": 11500.0,
-    "str": "$11.500 USD"
-  },
   "gob_senior_cloud_mediana": {
     "val": 3750.0,
     "str": "$3.750"
@@ -974,6 +973,111 @@
     "val": 57,
     "str": "57",
     "n_str": "N=57"
+  },
+  "pub_cl_semi_senior_n": {
+    "val": 65,
+    "str": "65",
+    "n_str": "N=65"
+  },
+  "pub_cl_semi_senior_mediana": {
+    "val": 2250.0,
+    "str": "$2.250"
+  },
+  "pub_cl_semi_senior_p25": {
+    "val": 2000.0,
+    "str": "$2.000"
+  },
+  "pub_cl_semi_senior_p75": {
+    "val": 2500.0,
+    "str": "$2.500"
+  },
+  "pub_cl_senior_lead_n": {
+    "val": 58,
+    "str": "58",
+    "n_str": "N=58"
+  },
+  "pub_cl_senior_lead_mediana": {
+    "val": 2825.0,
+    "str": "$2.825"
+  },
+  "pub_cl_senior_lead_p25": {
+    "val": 2200.0,
+    "str": "$2.200"
+  },
+  "pub_cl_senior_lead_p75": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "pub_cl_junior_trainee_n": {
+    "val": 14,
+    "str": "14",
+    "n_str": "N=14"
+  },
+  "pub_cl_salto_semi_senior_lead_pct": {
+    "val": 25.6,
+    "str": "+25,6%"
+  },
+  "pub_rem_senior_lead_n": {
+    "val": 62,
+    "str": "62",
+    "n_str": "N=62"
+  },
+  "pub_rem_senior_lead_mediana": {
+    "val": 3800.0,
+    "str": "$3.800"
+  },
+  "pub_rem_senior_lead_p25": {
+    "val": 2812.5,
+    "str": "$2.812"
+  },
+  "pub_rem_senior_lead_p75": {
+    "val": 5000.0,
+    "str": "$5.000"
+  },
+  "pub_rem_resto_n": {
+    "val": 36,
+    "str": "36",
+    "n_str": "N=36"
+  },
+  "pub_rem_resto_mediana": {
+    "val": 1925.0,
+    "str": "$1.925"
+  },
+  "pub_rem_resto_p25": {
+    "val": 1337.5,
+    "str": "$1.338"
+  },
+  "pub_rem_resto_p75": {
+    "val": 3012.5,
+    "str": "$3.012"
+  },
+  "pub_ic_senior_lead_diff": {
+    "val": 975.0,
+    "str": "+$975"
+  },
+  "pub_ic_senior_lead_inf": {
+    "val": 500.0,
+    "str": "$500"
+  },
+  "pub_ic_senior_lead_sup": {
+    "val": 1600.0,
+    "str": "$1.600"
+  },
+  "pub_ic_senior_lead_lectura": {
+    "val": 1,
+    "str": "la diferencia es concluyente, así que la mayor proporción de cargos Senior y Lead en remoto no alcanza para explicar toda la brecha"
+  },
+  "pub_sl_cloud_mediana": {
+    "val": 3750.0,
+    "str": "$3.750"
+  },
+  "pub_sl_sin_cloud_mediana": {
+    "val": 3125.0,
+    "str": "$3.125"
+  },
+  "pub_sl_cloud_diff": {
+    "val": 625.0,
+    "str": "+$625"
   },
   "tecnologia_top1_nombre": {
     "nombre": "SQL",

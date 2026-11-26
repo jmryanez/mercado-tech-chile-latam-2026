@@ -17,6 +17,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from politica_publicacion import CHILE_LOCAL, SEMI_SENIOR, SENIOR_LEAD, JUNIOR_TRAINEE, RESTO, agregar_niveles, suprimir_n_menor  # noqa: E402
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 CLEAN_DIR = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed"
@@ -471,6 +475,43 @@ def main() -> None:
     df_diff.to_csv(RES_DIR / "resumen_ic_diferencias.csv", index=False, encoding="utf-8")
 
     # =========================================================================
+    # 7B. CAPA DE PUBLICACIÓN (Kaggle y Tableau): niveles agrupados y N < 15 sin estadísticos
+    # =========================================================================
+    gob_pub = agregar_niveles(gob_sal)
+    pub_cl = suprimir_n_menor(resumen_salarios(gob_pub[gob_pub["alcance_geo"] == CHILE_LOCAL], "seniority_pub")).rename(columns={"seniority_pub": "seniority_nivel"})
+    pub_cl["fuente"] = "Get on Board 2026 (Chile Local)"
+    pub_cl["nota"] = NOTA_FIJA_ALCANCE
+    pub_cl.to_csv(RES_DIR / "resumen_pub_bandas_chile_local.csv", index=False, encoding="utf-8")
+    pub_rem = suprimir_n_menor(resumen_salarios(gob_pub[gob_pub["alcance_geo"] != CHILE_LOCAL], "seniority_pub")).rename(columns={"seniority_pub": "seniority_nivel"})
+    pub_rem["fuente"] = "Get on Board 2026 (Remoto sin país declarado)"
+    pub_rem["nota"] = NOTA_FIJA_ALCANCE
+    pub_rem.to_csv(RES_DIR / "resumen_pub_bandas_remoto_sin_pais.csv", index=False, encoding="utf-8")
+    pub_tot = suprimir_n_menor(resumen_salarios(gob_pub, "seniority_pub2")).rename(columns={"seniority_pub2": "seniority_nivel"})
+    pub_tot["fuente"] = "Get on Board 2026 (Chile + remotas)"
+    pub_tot.to_csv(RES_DIR / "resumen_pub_p2_gob_total.csv", index=False, encoding="utf-8")
+
+    pub_ine = df_ine_comp.copy()
+    _sl_cl = pub_cl.set_index("seniority_nivel").loc[SENIOR_LEAD]
+    pub_ine.iloc[2, pub_ine.columns.get_loc("segmento_gob_chile_local")] = f"{SENIOR_LEAD} Chile Local (N={int(_sl_cl['n'])})"
+    pub_ine.iloc[2, pub_ine.columns.get_loc("mediana_usd_gob")] = float(_sl_cl["mediana_usd"])
+    pub_ine.iloc[2, pub_ine.columns.get_loc("mediana_clp_ref_gob")] = int(round(float(_sl_cl["mediana_usd"]) * DOLAR_OBSERVADO_BCCH))
+    pub_ine.iloc[2, pub_ine.columns.get_loc("ratio_vs_ine")] = round((float(_sl_cl["mediana_usd"]) * DOLAR_OBSERVADO_BCCH) / ine_mediana_clp, 2)
+    pub_ine.to_csv(RES_DIR / "resumen_pub_p3_comparacion_ine_chile_local.csv", index=False, encoding="utf-8")
+
+    pub_rows = [r for r in diff_rows if r["comparacion"].endswith("(SO LatAm)")]
+    _sl = gob_pub["seniority_pub2"] == SENIOR_LEAD
+    d, lo, hi, conc = diff_median_ci(gob_pub[_sl & (gob_pub["alcance_geo"] != CHILE_LOCAL)]["salario_mensual_usd"],
+                                     gob_pub[_sl & (gob_pub["alcance_geo"] == CHILE_LOCAL)]["salario_mensual_usd"])
+    pub_rows.append({"comparacion": f"{SENIOR_LEAD} Remoto sin país − {SENIOR_LEAD} Chile Local (GOB)", "diferencia_observada_usd": d, "ic95_inf_usd": lo, "ic95_sup_usd": hi, "concluyente": conc})
+    _hab_sl = hab.merge(gob_pub[_sl], on="job_id")
+    _sql_sl = _hab_sl[_hab_sl["tecnologia"] == "SQL"]["salario_mensual_usd"]
+    for _tec, _nom in [("AWS", "AWS"), ("Microsoft Azure", "Microsoft Azure"), ("Google Cloud", "Google Cloud")]:
+        d2, lo2, hi2, conc2 = diff_median_ci(_hab_sl[_hab_sl["tecnologia"] == _tec]["salario_mensual_usd"], _sql_sl)
+        pub_rows.append({"comparacion": f"{_nom} − SQL ({SENIOR_LEAD} GOB)", "diferencia_observada_usd": d2, "ic95_inf_usd": lo2, "ic95_sup_usd": hi2, "concluyente": conc2})
+    pd.DataFrame(pub_rows).to_csv(RES_DIR / "resumen_pub_ic_diferencias.csv", index=False, encoding="utf-8")
+    pub_ic_sl = (d, lo, hi, conc)
+
+    # =========================================================================
     # 8. Q14 Y Q15 ESTRATIFICACIONES
     # =========================================================================
     g1 = gob_sal.groupby(["seniority_nivel", "alcance_geo"])["salario_mensual_usd"].agg(
@@ -588,8 +629,8 @@ def main() -> None:
     cifras: dict[str, dict[str, object]] = {}
 
     # Metadata
-    cifras["meta_fecha_estudio"] = {"val": "2026-11-21", "str": "2026-11-21"}
-    cifras["meta_version"] = {"val": "1.12.1", "str": "1.12.1"}
+    cifras["meta_fecha_estudio"] = {"val": "2026-11-22", "str": "2026-11-22"}
+    cifras["meta_version"] = {"val": "1.13.8", "str": "1.13.8"}
     cifras["dolar_observado_bcch"] = {
         "val": DOLAR_OBSERVADO_BCCH,
         "str": _fm(DOLAR_OBSERVADO_BCCH, 2),
@@ -599,12 +640,12 @@ def main() -> None:
 
     # Cargar metadata de fase 3 si existe para denominadores raw
     f3_meta_file = BASE_DIR / "03_Fase_Procesar_Process" / "scripts" / "resumen_validacion_fase3.json"
-    m_f3 = json.loads(f3_meta_file.read_text(encoding="utf-8")) if f3_meta_file.exists() else {}
+    m_f3 = json.loads(f3_meta_file.read_text(encoding="utf-8"))
 
     # Denominadores Get on Board
-    n_gob_raw = int(m_f3.get("st_gob", {}).get("raw_total", 759))
+    n_gob_raw = int(m_f3["st_gob"]["raw_total"])
     n_gob_scope = int(len(vac))
-    n_gob_sal_raw = int(m_f3.get("st_gob", {}).get("raw_con_salario_scope", 237))
+    n_gob_sal_raw = int(m_f3["st_gob"]["raw_con_salario_scope"])
     n_gob_sal_val = int(len(gob_sal))
     n_gob_sal_anul = int(m_f3.get("st_gob", {}).get("salarios_anulados", 2))
     n_cl_tot = int((vac["alcance_geo"] == "Chile Local").sum())
@@ -624,7 +665,7 @@ def main() -> None:
     cifras["gob_con_tecnologia"] = {"val": n_gob_con_tech, "str": _fi(n_gob_con_tech)}
 
     # Denominadores Stack Overflow
-    n_so_glob = int(m_f3.get("st_so", {}).get("global_total", 65437))
+    n_so_glob = int(m_f3["st_so"]["global_total"])
     n_so_latam = int(len(so))
     n_so_chile = int((so["pais"] == "Chile").sum())
     n_so_sal_val = int(len(so_sal))
@@ -786,9 +827,7 @@ def main() -> None:
 
     # Remoto local Senior pct
     sub_rl = gob_sal[gob_sal["modalidad_grupo"] == "Remoto Local"]
-    pct_rl_sr = round(100.0 * (sub_rl["seniority_nivel"] == "Senior").sum() / len(sub_rl), 1)
     pct_rl_sr_lead = round(100.0 * sub_rl["seniority_nivel"].isin(["Senior", "Lead"]).sum() / len(sub_rl), 1)
-    cifras["gob_remoto_local_senior_pct"] = {"val": pct_rl_sr, "str": _fp(pct_rl_sr, 1), "pct_str": _fp(pct_rl_sr, 1)}
     cifras["gob_remoto_local_senior_lead_pct"] = {"val": pct_rl_sr_lead, "str": _fp(pct_rl_sr_lead, 1), "pct_str": _fp(pct_rl_sr_lead, 1)}
 
     # Países SO LatAm (calculados dinámicamente desde so_sal)
@@ -865,12 +904,12 @@ def main() -> None:
     cifras["salto_cl_senior_vs_ine_ratio"] = {"val": ratio_sr_ine, "str": f"{ratio_sr_ine:.2f}x".replace(".", ",")}
     cifras["salto_cl_total_vs_ine_ratio"] = {"val": ratio_tot_ine, "str": f"{ratio_tot_ine:.2f}x".replace(".", ",")}
     m_gob_sin = round(float(gob_sal["salario_mensual_usd"].mean()), 2)
-    gob_exp = hab.merge(gob_sal, on="job_id", how="inner")
+    gob_exp = gob_sal.merge(hab, on="job_id", how="left")  # mismo LEFT JOIN que la consulta SQL Q01
     m_gob_con = round(float(gob_exp["salario_mensual_usd"].mean()), 2)
     sesgo_gob = round(m_gob_con - m_gob_sin, 2)
 
     m_so_sin = round(float(so_sal["salario_mensual_usd"].mean()), 2)
-    so_exp = so_tech.merge(so_sal, on="ResponseId", how="inner")
+    so_exp = so_sal.merge(so_tech, on="ResponseId", how="left")  # mismo LEFT JOIN que la consulta SQL Q01
     m_so_con = round(float(so_exp["salario_mensual_usd"].mean()), 2)
     sesgo_so = round(m_so_con - m_so_sin, 2)
 
@@ -911,7 +950,7 @@ def main() -> None:
     cifras["gob_brecha_remoto_vs_chile_local_usd"] = {"val": gob_brecha_rem_loc_usd, "str": f"+{_fm(gob_brecha_rem_loc_usd, 0)} USD"}
 
     # Data Science Salaries 2024
-    dss_2024 = dss[dss["work_year"] == 2024]["salary_yearly_usd"]
+    dss_2024 = dss_us[dss_us["work_year"] == 2024]["salary_yearly_usd"]  # el estudio usa solo EE.UU.
     dss_med_anual = float(dss_2024.median())
     dss_med_mensual = round(dss_med_anual / 12.0, 1)
     cifras["dss_2024_mediana_anual_usd"] = {"val": dss_med_anual, "str": f"{_fm(dss_med_anual, 0)} USD"}
@@ -937,16 +976,20 @@ def main() -> None:
     salto_ine_pct = round((med_cl_semi_val - med_ine_val) / med_ine_val * 100.0, 1)
     cifras["salto_cl_semi_vs_ine_pct"] = {"val": salto_ine_pct, "str": _fp(salto_ine_pct, 1), "pct_str": f"+{_fp(salto_ine_pct, 1)}"}
 
-    tot_crudos = int(n_gob_raw + n_so_glob + n_dss_tot + 2)
+    tot_crudos = int(n_gob_raw + n_so_glob + n_dss_tot + len(ine))
     cifras["total_registros_crudos"] = {"val": tot_crudos, "str": f"{tot_crudos:,}".replace(",", ".")}
 
-    sal_min_filtro = int(salario_min_analisis) if "salario_min_analisis" in locals() else int(500)
+    sal_min_filtro = int(m_f3["umbrales"]["gob_salario_min_mensual_usd"])
     cifras["salario_min_filtro_usd"] = {
         "val": sal_min_filtro,
         "str": f"${sal_min_filtro}",
         "tipo": "constante_externa",
         "fuente": "Protocolo Metodológico - Umbral Piso Salarial"
     }
+    for _clave, _origen in (("so_filtro_anual_min_usd", "so_salario_min_anual_usd"), ("so_filtro_anual_max_usd", "so_salario_max_anual_usd")):
+        _v = int(m_f3["umbrales"][_origen])
+        cifras[_clave] = {"val": _v, "str": f"${_v:,}".replace(",", "."), "tipo": "constante_externa",
+                          "fuente": "Protocolo Metodológico - Rango anual plausible en Stack Overflow"}
     cifras["umbral_tlc_n"] = {
         "val": 30,
         "str": "N >= 30",
@@ -1002,8 +1045,6 @@ def main() -> None:
     cifras["gob_total_salto_semi_senior_pct"] = {"val": salto_tot_semi_pct, "str": _fp(salto_tot_semi_pct, 1), "pct_str": f"+{_fp(salto_tot_semi_pct, 1)}"}
     cifras["gob_total_salto_semi_senior_monto"] = {"val": salto_tot_semi_monto, "str": f"+{_fm(salto_tot_semi_monto, 0)} USD"}
 
-    cifras["dss_global_2024_mediana_anual_usd"] = cifras["dss_2024_mediana_anual_usd"]
-    cifras["dss_global_2024_mediana_mensual_usd"] = cifras["dss_2024_mediana_mensual_usd"]
 
     # Cloud Senior
     sr_jobs = gob_sal[gob_sal["seniority_nivel"] == "Senior"]
@@ -1021,6 +1062,39 @@ def main() -> None:
     cifras["gob_senior_cloud_diff"] = {"val": diff_sr_cloud, "str": f"+{_fm(diff_sr_cloud, 0)}"}
     cifras["gob_senior_cloud_n"] = {"val": n_sr_cloud, "str": _fi(n_sr_cloud), "n_str": f"N={_fi(n_sr_cloud)}"}
     cifras["gob_senior_sin_cloud_n"] = {"val": n_sr_no_cloud, "str": _fi(n_sr_no_cloud), "n_str": f"N={_fi(n_sr_no_cloud)}"}
+
+    # Cifras de la capa de publicación (Kaggle y Tableau)
+    def _fd(v: float) -> str:
+        return f"+{_fm(v, 0)}" if v >= 0 else _fm(v, 0)
+
+    _pcl = pub_cl.set_index("seniority_nivel")
+    _prem = pub_rem.set_index("seniority_nivel")
+    for _niv, _k in [(SEMI_SENIOR, "semi_senior"), (SENIOR_LEAD, "senior_lead")]:
+        _r = _pcl.loc[_niv]
+        cifras[f"pub_cl_{_k}_n"] = {"val": int(_r["n"]), "str": _fi(int(_r["n"])), "n_str": f"N={_fi(int(_r['n']))}"}
+        for _c in ("mediana", "p25", "p75"):
+            cifras[f"pub_cl_{_k}_{_c}"] = {"val": float(_r[f"{_c}_usd"]), "str": _fm(float(_r[f"{_c}_usd"]), 0)}
+    cifras["pub_cl_junior_trainee_n"] = {"val": int(_pcl.loc[JUNIOR_TRAINEE, "n"]), "str": _fi(int(_pcl.loc[JUNIOR_TRAINEE, "n"])), "n_str": f"N={_fi(int(_pcl.loc[JUNIOR_TRAINEE, 'n']))}"}
+    _salto = round((float(_pcl.loc[SENIOR_LEAD, "mediana_usd"]) / float(_pcl.loc[SEMI_SENIOR, "mediana_usd"]) - 1) * 100.0, 1)
+    cifras["pub_cl_salto_semi_senior_lead_pct"] = {"val": _salto, "str": f"+{_fp(_salto, 1)}"}
+    for _niv, _k in [(SENIOR_LEAD, "senior_lead"), (RESTO, "resto")]:
+        _r = _prem.loc[_niv]
+        cifras[f"pub_rem_{_k}_n"] = {"val": int(_r["n"]), "str": _fi(int(_r["n"])), "n_str": f"N={_fi(int(_r['n']))}"}
+        for _c in ("mediana", "p25", "p75"):
+            cifras[f"pub_rem_{_k}_{_c}"] = {"val": float(_r[f"{_c}_usd"]), "str": _fm(float(_r[f"{_c}_usd"]), 0)}
+    _d, _lo, _hi, _conc = pub_ic_sl
+    cifras["pub_ic_senior_lead_diff"] = {"val": float(_d), "str": _fd(float(_d))}
+    cifras["pub_ic_senior_lead_inf"] = {"val": float(_lo), "str": _fm(float(_lo), 0)}
+    cifras["pub_ic_senior_lead_sup"] = {"val": float(_hi), "str": _fm(float(_hi), 0)}
+    cifras["pub_ic_senior_lead_lectura"] = {"val": int(bool(_conc)), "str": ("la diferencia es concluyente, así que la mayor proporción de cargos Senior y Lead en remoto no alcanza para explicar toda la brecha"
+                                                                        if _conc else "la diferencia no es concluyente con estos datos")}
+    _sl_jobs = gob_pub[gob_pub["seniority_pub2"] == SENIOR_LEAD]
+    _sl_cloud = _sl_jobs[_sl_jobs["job_id"].isin(cloud_jids)]
+    _sl_no_cloud = _sl_jobs[~_sl_jobs["job_id"].isin(cloud_jids)]
+    _m1, _m2 = float(_sl_cloud["salario_mensual_usd"].median()), float(_sl_no_cloud["salario_mensual_usd"].median())
+    cifras["pub_sl_cloud_mediana"] = {"val": _m1, "str": _fm(_m1, 0)}
+    cifras["pub_sl_sin_cloud_mediana"] = {"val": _m2, "str": _fm(_m2, 0)}
+    cifras["pub_sl_cloud_diff"] = {"val": _m1 - _m2, "str": _fd(_m1 - _m2)}
 
     # Top tecnologías (ordenado desc por ofertas GOB)
     df_p1_sorted = df_p1.sort_values(by="gob_n_ofertas", ascending=False).reset_index(drop=True)

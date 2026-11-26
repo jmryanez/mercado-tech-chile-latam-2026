@@ -1,0 +1,773 @@
+{
+  "title": "Mercado Tech Chile y LatAm 2024-2026",
+  "id": "manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026",
+  "licenses": [
+    {
+      "name": "ODbL-1.0"
+    }
+  ],
+  "description": "Los archivos gob_agregado_* son estadísticas agregadas calculadas por el autor a partir de la API pública de Get on Board (fuente: Get on Board, getonbrd.com, corte 2026-11-10); no se redistribuyen las ofertas individuales. El paquete incluye además datos limpios de encuestas y fuentes de referencia: Stack Overflow Developer Survey 2024 (ODbL-1.0), Data Science Salaries 2020-2024 (CC0-1.0), estadísticas oficiales del INE ESI 2025 (Ley N° 17.374) y la matriz regional de suficiencia muestral de 19 países de Latinoamérica (DATA_LICENSES.md). Celdas vacías: no son datos perdidos. La descripción de cada columna dice en qué filas quedan vacías y por qué.",
+  "resources": [
+    {
+      "path": "DataScienceSalaries_2020_2024_20261111_v01_clean.csv",
+      "description": "Salarios de roles de análisis y ciencia de datos 2020–2024 (ai-jobs.net, CC0), limpios y con etiquetas en español. En el estudio se usa solo Estados Unidos.",
+      "schema": {
+        "fields": [
+          {
+            "name": "work_year",
+            "description": "Año de reporte del salario en la encuesta internacional de ciencia de datos (entero). Población: profesionales analíticos globales.",
+            "type": "integer"
+          },
+          {
+            "name": "job_title",
+            "description": "Cargo o rol laboral normalizado en ciencia de datos y analítica (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "experience_level",
+            "description": "Código internacional de nivel de experiencia como EN, MI, SE o EX (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "experiencia_es",
+            "description": "Categoría homologada de nivel de experiencia en español como Junior, Semi Senior, Senior o Lead Ejecutivo (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "employment_type",
+            "description": "Tipo de jornada o contrato laboral en nomenclatura internacional (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "work_models",
+            "description": "Modalidad de trabajo en nomenclatura internacional (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "modalidad_es",
+            "description": "Categoría homologada de modalidad de trabajo en español como Remoto, Presencial o Híbrido (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "employee_residence",
+            "description": "Código de dos letras del país de residencia del empleado (texto). Población: profesionales analíticos globales.",
+            "type": "string"
+          },
+          {
+            "name": "company_location",
+            "description": "Código de dos letras del país donde está radicada la empresa contratante (texto). Población: empresas contratantes globales.",
+            "type": "string"
+          },
+          {
+            "name": "company_size",
+            "description": "Tamaño de la empresa contratante según escala internacional (texto). Población: empresas contratantes globales.",
+            "type": "string"
+          },
+          {
+            "name": "tamano_es",
+            "description": "Categoría homologada de tamaño de empresa en español como Pequeña, Mediana o Grande (texto). Población: empresas contratantes globales.",
+            "type": "string"
+          },
+          {
+            "name": "salario_mensual_clp_ref",
+            "description": "Salario mensual equivalente en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: profesionales analíticos globales.",
+            "type": "number"
+          },
+          {
+            "name": "salary_yearly_usd",
+            "description": "Compensación salarial bruta anualizada en dólares estadounidenses (USD anual). Población: profesionales analíticos globales.",
+            "type": "integer"
+          },
+          {
+            "name": "salario_mensual_usd",
+            "description": "Compensación salarial bruta mensualizada en dólares estadounidenses calculada dividiendo el monto anual entre doce (USD mensual). Población: profesionales analíticos globales.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv",
+      "description": "Ingreso laboral neto mensual de los ocupados en Chile (mediana y media) según la Encuesta Suplementaria de Ingresos 2025 del INE.",
+      "schema": {
+        "fields": [
+          {
+            "name": "fuente",
+            "description": "Nombre de la institución oficial de estadística emisora del estudio nacional (texto). Población: República de Chile.",
+            "type": "string"
+          },
+          {
+            "name": "edicion",
+            "description": "Año de la edición del informe estadístico oficial de ingresos suplementarios (entero). Población: población ocupada de Chile.",
+            "type": "integer"
+          },
+          {
+            "name": "fecha_publicacion",
+            "description": "Fecha oficial de publicación del informe del instituto de estadística (texto). Población: estadísticas laborales de Chile.",
+            "type": "string"
+          },
+          {
+            "name": "indicador",
+            "description": "Denominación del indicador de ingreso laboral oficial calculado por el instituto estadístico (texto). Población: población ocupada nacional de Chile.",
+            "type": "string"
+          },
+          {
+            "name": "tipo_ingreso",
+            "description": "Clasificación del ingreso laboral según sea ingreso mediano o ingreso medio (texto). Población: personas ocupadas en Chile.",
+            "type": "string"
+          },
+          {
+            "name": "monto_clp_mensual",
+            "description": "Ingreso laboral mensual neto percibido en pesos chilenos según la encuesta oficial (CLP mensual). Población: personas ocupadas a nivel nacional en Chile.",
+            "type": "integer"
+          },
+          {
+            "name": "url_oficial",
+            "description": "Enlace web al repositorio oficial y boletín estadístico del instituto emisor (texto). Población: fuente documental del Estado de Chile.",
+            "type": "string"
+          },
+          {
+            "name": "dolar_observado_20261110",
+            "description": "Tipo de cambio oficial del dólar observado publicado por el Banco Central a la fecha de corte (CLP por USD). Población: mercado cambiario oficial de Chile.",
+            "type": "number"
+          },
+          {
+            "name": "monto_usd_ref_20261110",
+            "description": "Monto mensual neto equivalente en dólares estadounidenses utilizando el tipo de cambio oficial de referencia (USD mensual). Población: ingresos laborales de la población ocupada en Chile.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "Matriz_TLC_19_Paises_LatAm.csv",
+      "description": "Tamaño de muestra por país (19 países de Latinoamérica, Stack Overflow 2024) e indicador de si cumple la regla práctica N ≥ 30.",
+      "schema": {
+        "fields": [
+          {
+            "name": "pais",
+            "description": "Nombre común en español del país latinoamericano evaluado en el estudio regional (texto). Población: diecinueve países de América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "iso3",
+            "description": "Código estándar internacional de tres letras representativo del país (texto). Población: diecinueve países de América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "n_total",
+            "description": "Conteo total de desarrolladores encuestados en el país según la encuesta regional (conteo de personas). Población: encuestados de tecnología en América Latina.",
+            "type": "integer"
+          },
+          {
+            "name": "n_sal",
+            "description": "Conteo de desarrolladores con salario mensual válido reportado en el país (conteo de personas). Población: encuestados de tecnología en América Latina con compensación válida.",
+            "type": "integer"
+          },
+          {
+            "name": "cumple_n30",
+            "description": "Indicador lógico de suficiencia muestral conforme al teorema del límite central (booleano). Población: países evaluados con muestra estadística suficiente para inferencia.",
+            "type": "boolean"
+          },
+          {
+            "name": "med_usd",
+            "description": "Mediana de compensación salarial mensual en dólares estadounidenses calculada para el país (USD mensual). Población: encuestados con salario válido en cada país de América Latina.",
+            "type": "number"
+          },
+          {
+            "name": "p25_usd",
+            "description": "Percentil veinticinco de compensación salarial mensual en dólares estadounidenses (USD mensual). Población: encuestados con salario válido en cada país de América Latina.",
+            "type": "number"
+          },
+          {
+            "name": "p75_usd",
+            "description": "Percentil setenta y cinco de compensación salarial mensual en dólares estadounidenses (USD mensual). Población: encuestados con salario válido en cada país de América Latina.",
+            "type": "number"
+          },
+          {
+            "name": "iqr_usd",
+            "description": "Rango intercuartílico de la compensación salarial mensual en dólares calculado restando el percentil veinticinco del percentil setenta y cinco (USD mensual). Población: dispersión salarial por país en América Latina.",
+            "type": "number"
+          },
+          {
+            "name": "med_clp",
+            "description": "Mediana de compensación salarial mensual estimada en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: encuestados con compensación válida por país.",
+            "type": "integer"
+          },
+          {
+            "name": "ic95_mediana_inf_usd",
+            "description": "Límite inferior del intervalo de confianza para la mediana salarial mediante remuestreo bootstrap (USD mensual). Población: encuestados con salario válido por país. Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza.",
+            "type": "number"
+          },
+          {
+            "name": "ic95_mediana_sup_usd",
+            "description": "Límite superior del intervalo de confianza para la mediana salarial mediante remuestreo bootstrap (USD mensual). Población: encuestados con salario válido por país. Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza.",
+            "type": "number"
+          },
+          {
+            "name": "tratamiento",
+            "description": "Clasificación metodológica del país según la suficiencia del tamaño muestral para estimaciones inferenciales (texto). Población: países evaluados en el estudio regional.",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "StackOverflow_LatAm_2024_20261111_v01_clean.csv",
+      "description": "Encuestados de 19 países de Latinoamérica (Stack Overflow Developer Survey 2024, ODbL) con salario mensual normalizado en USD y marca de salario válido.",
+      "schema": {
+        "fields": [
+          {
+            "name": "ResponseId",
+            "description": "Identificador numérico único de la respuesta de cada persona encuestada (entero). Población: desarrolladores de diecinueve países de América Latina.",
+            "type": "integer"
+          },
+          {
+            "name": "pais",
+            "description": "Nombre homologado en español del país de residencia de la persona encuestada (texto). Población: desarrolladores encuestados en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "pais_raw",
+            "description": "Nombre original del país registrado en el cuestionario de la encuesta internacional (texto). Población: desarrolladores encuestados en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "es_chile",
+            "description": "Indicador lógico que señala si la persona encuestada reside en Chile (booleano). Población: desarrolladores encuestados en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "subregion",
+            "description": "Clasificación geográfica de la subregión latinoamericana (texto). Población: desarrolladores de diecinueve países de América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "empleo_raw",
+            "description": "Condición laboral original registrada en el cuestionario de la encuesta (texto). Población: encuestados en tecnología en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "modalidad_raw",
+            "description": "Modalidad de trabajo original registrada en el cuestionario de la encuesta (texto). Población: encuestados en tecnología en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "modalidad_grupo",
+            "description": "Agrupación estandarizada de la modalidad de trabajo como Remoto, Presencial o Híbrido (texto). Población: encuestados en tecnología en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "years_code_pro_num",
+            "description": "Años numéricos de experiencia laboral profesional en programación (años). Población: desarrolladores profesionales encuestados en América Latina. Vacío cuando la encuesta no trae años de experiencia profesional (YearsCodePro sin respuesta).",
+            "type": "number"
+          },
+          {
+            "name": "tramo_experiencia",
+            "description": "Categoría de seniority asignada a partir de los años de experiencia profesional (texto). Población: desarrolladores profesionales en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "org_size_detalle",
+            "description": "Detalle del tamaño de la organización empleadora según rangos de colaboradores (texto). Población: encuestados con empleo en empresas de tecnología.",
+            "type": "string"
+          },
+          {
+            "name": "org_size_grupo",
+            "description": "Agrupación estandarizada del tamaño de empresa como Pequeña, Mediana o Grande (texto). Población: encuestados con empleo en tecnología.",
+            "type": "string"
+          },
+          {
+            "name": "salary_yearly_usd_raw",
+            "description": "Compensación salarial bruta anual en dólares reportada originalmente (USD anual). Población: personas encuestadas que declararon remuneración. Vacío cuando la encuesta no trae la remuneración anual convertida a USD (ConvertedCompYearly): la persona no la declaró o Stack Overflow no la convirtió.",
+            "type": "number"
+          },
+          {
+            "name": "salary_yearly_usd_clean",
+            "description": "Compensación salarial bruta anual en dólares tras depuración de valores atípicos y filtros de consistencia (USD anual). Población: encuestados con salario validado. Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+            "type": "number"
+          },
+          {
+            "name": "salario_mensual_usd",
+            "description": "Compensación salarial bruta mensual calculada dividiendo la compensación anual depurada entre doce (USD mensual). Población: desarrolladores con remuneración válida. Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+            "type": "number"
+          },
+          {
+            "name": "salario_mensual_clp_ref",
+            "description": "Compensación salarial bruta mensual convertida a pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: desarrolladores con remuneración válida. Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+            "type": "number"
+          },
+          {
+            "name": "salario_valido_flag",
+            "description": "Indicador lógico que valida el cumplimiento de filtros de consistencia salarial y rango admisible (booleano). Población: conjunto total de encuestados en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "motivo_exclusion_salario",
+            "description": "Código o texto explicativo del motivo de descarte en caso de que la remuneración no cumpla los filtros de consistencia (texto). Población: respuestas con remuneración no admisible o ausente. Vacío cuando el salario es válido o la remuneración no viene convertida a USD en la encuesta: solo se llena cuando un salario se anuló.",
+            "type": "string"
+          },
+          {
+            "name": "tiene_tecnologia_flag",
+            "description": "Indicador lógico de que la persona encuestada respondió al menos una tecnología válida (booleano). Población: desarrolladores encuestados en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "respondio_lenguaje",
+            "description": "Indicador lógico que señala si la persona declaró lenguajes de programación en la encuesta (booleano). Población: desarrolladores encuestados en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "respondio_database",
+            "description": "Indicador lógico que señala si la persona declaró bases de datos en la encuesta (booleano). Población: desarrolladores encuestados en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "respondio_platform",
+            "description": "Indicador lógico que señala si la persona declaró plataformas de infraestructura o computación en la nube (booleano). Población: desarrolladores encuestados en América Latina.",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "path": "StackOverflow_Tecnologias_2024_20261111_v01_clean.csv",
+      "description": "Relación 1:N entre cada encuestado de Latinoamérica y las tecnologías que usa profesionalmente (Stack Overflow 2024).",
+      "schema": {
+        "fields": [
+          {
+            "name": "ResponseId",
+            "description": "Identificador numérico de la persona encuestada que declara la herramienta tecnológica (entero). Población: desarrolladores de diecinueve países de América Latina.",
+            "type": "integer"
+          },
+          {
+            "name": "pais",
+            "description": "País de residencia de la persona encuestada que utiliza la tecnología (texto). Población: desarrolladores de tecnología en América Latina.",
+            "type": "string"
+          },
+          {
+            "name": "es_chile",
+            "description": "Indicador lógico de si la adopción de la tecnología corresponde a una persona residente en Chile (booleano). Población: desarrolladores de tecnología en América Latina.",
+            "type": "boolean"
+          },
+          {
+            "name": "tipo_tecnologia",
+            "description": "Categoría funcional de la tecnología profesional reportada como Lenguaje, Base de Datos o Plataforma Cloud (texto). Población: tecnologías adoptadas profesionalmente.",
+            "type": "string"
+          },
+          {
+            "name": "tecnologia",
+            "description": "Nombre normalizado y canónico de la herramienta o lenguaje tecnológico (texto). Población: catálogo homologado de tecnologías profesionales.",
+            "type": "string"
+          },
+          {
+            "name": "tecnologia_raw",
+            "description": "Nombre textual original de la tecnología según figuraba en el cuestionario de la encuesta (texto). Población: registros originales de adopción tecnológica.",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_bandas_chile_local.csv",
+      "description": "Bandas salariales (media, mediana, p25, p75) por nivel de seniority agrupado (Junior + Trainee, Semi-Senior, Senior + Lead) en ofertas Chile Local de Get on Board 2026. Los grupos con N < 15 publican solo su N; sin mínimos ni máximos.",
+      "schema": {
+        "fields": [
+          {
+            "name": "seniority_nivel",
+            "description": "Nivel de experiencia agrupado para publicación (Chile Local: Junior + Trainee, Semi-Senior, Senior + Lead; ofertas remotas: Junior + Trainee + Semi-Senior, Senior + Lead). Los grupos con N < 15 publican solo su N. Población: ofertas de Get on Board con sueldo válido.",
+            "type": "string"
+          },
+          {
+            "name": "n",
+            "description": "Cantidad de ofertas de empleo con rango salarial publicado evaluadas para este nivel de experiencia (conteo de ofertas). Población: ofertas locales en Chile con grupo suficiente.",
+            "type": "integer"
+          },
+          {
+            "name": "media_usd",
+            "description": "Media aritmética de la compensación mensual de las ofertas en dólares calculada sobre el punto medio publicado (USD mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_usd",
+            "description": "Mediana de la compensación mensual de las ofertas en dólares calculada sobre el punto medio publicado (USD mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "p25_usd",
+            "description": "Percentil veinticinco de la compensación mensual de las ofertas en dólares (USD mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "p75_usd",
+            "description": "Percentil setenta y cinco de la compensación mensual de las ofertas en dólares (USD mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "amplitud_p25_p75_usd",
+            "description": "Amplitud intercuartílica de la compensación mensual en dólares obtenida restando el percentil veinticinco del percentil setenta y cinco (USD mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_clp_ref",
+            "description": "Mediana de compensación mensual estimada en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "media_clp_ref",
+            "description": "Media aritmética de compensación mensual estimada en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: vacantes locales en Chile. Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+            "type": "number"
+          },
+          {
+            "name": "cumple_n30",
+            "description": "Indicador lógico que comprueba si la cantidad de ofertas en este nivel de experiencia satisface la regla de tamaño muestral para inferencia (booleano). Población: grupos de experiencia en vacantes locales de Chile.",
+            "type": "boolean"
+          },
+          {
+            "name": "fuente",
+            "description": "Nombre de la plataforma laboral emisora de los avisos de empleo analizados (texto). Población: ofertas evaluadas en el estudio.",
+            "type": "string"
+          },
+          {
+            "name": "nota",
+            "description": "Nota explicativa sobre el criterio de inclusión muestral y preservación de privacidad en las estadísticas agregadas (texto). Población: especificación metodológica del estudio.",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_bandas_remoto_sin_pais.csv",
+      "description": "Bandas salariales (media, mediana, p25, p75) por nivel de seniority agrupado (Junior + Trainee + Semi-Senior, Senior + Lead) en ofertas remotas sin país declarado de Get on Board 2026. Los grupos con N < 15 publican solo su N; sin mínimos ni máximos.",
+      "schema": {
+        "fields": [
+          {
+            "name": "seniority_nivel",
+            "description": "Nivel de experiencia agrupado para publicación (Chile Local: Junior + Trainee, Semi-Senior, Senior + Lead; ofertas remotas: Junior + Trainee + Semi-Senior, Senior + Lead). Los grupos con N < 15 publican solo su N. Población: ofertas de Get on Board con sueldo válido.",
+            "type": "string"
+          },
+          {
+            "name": "n",
+            "description": "Cantidad de ofertas de empleo con rango salarial publicado evaluadas en este segmento remoto (conteo de ofertas). Población: ofertas remotas globales con grupo suficiente.",
+            "type": "integer"
+          },
+          {
+            "name": "media_usd",
+            "description": "Media aritmética de la compensación mensual en dólares calculada sobre el punto medio publicado de las ofertas (USD mensual). Población: vacantes remotas globales.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_usd",
+            "description": "Mediana de la compensación mensual en dólares calculada sobre el punto medio publicado de las ofertas (USD mensual). Población: vacantes remotas globales.",
+            "type": "number"
+          },
+          {
+            "name": "p25_usd",
+            "description": "Percentil veinticinco de la compensación mensual en dólares (USD mensual). Población: vacantes remotas globales.",
+            "type": "number"
+          },
+          {
+            "name": "p75_usd",
+            "description": "Percentil setenta y cinco de la compensación mensual en dólares (USD mensual). Población: vacantes remotas globales.",
+            "type": "number"
+          },
+          {
+            "name": "amplitud_p25_p75_usd",
+            "description": "Amplitud intercuartílica de la compensación mensual en dólares calculada restando el percentil veinticinco del percentil setenta y cinco (USD mensual). Población: vacantes remotas globales.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_clp_ref",
+            "description": "Mediana de compensación mensual estimada en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: vacantes remotas globales.",
+            "type": "integer"
+          },
+          {
+            "name": "media_clp_ref",
+            "description": "Media aritmética de compensación mensual estimada en pesos chilenos según tipo de cambio de referencia (CLP mensual). Población: vacantes remotas globales.",
+            "type": "integer"
+          },
+          {
+            "name": "cumple_n30",
+            "description": "Indicador lógico que comprueba si la cantidad de ofertas de este segmento cumple el criterio de suficiencia muestral (booleano). Población: niveles de experiencia en vacantes remotas.",
+            "type": "boolean"
+          },
+          {
+            "name": "fuente",
+            "description": "Nombre de la plataforma laboral emisora de los avisos de empleo (texto). Población: ofertas evaluadas en el estudio.",
+            "type": "string"
+          },
+          {
+            "name": "nota",
+            "description": "Nota técnica explicativa sobre las condiciones de cálculo del agregado estadístico (texto). Población: especificación metodológica del estudio.",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_control_integridad.csv",
+      "description": "Control de la relación 1:N oferta–tecnología: registros únicos, filas expandidas y efecto de contar duplicados en la media salarial.",
+      "schema": {
+        "fields": [
+          {
+            "name": "poblacion",
+            "description": "Identificación de la población de ofertas laborales o encuestados sujeta a verificación de integridad (texto). Población: vacantes y encuestas evaluadas en el proceso relacional.",
+            "type": "string"
+          },
+          {
+            "name": "registros_unicos",
+            "description": "Conteo de registros individuales únicos antes de efectuar cruces relacionales (conteo de registros). Población: ofertas y personas encuestadas evaluadas.",
+            "type": "integer"
+          },
+          {
+            "name": "filas_expandidas_1aN",
+            "description": "Conteo de filas resultantes tras expandir las tablas mediante uniones de uno a muchos con tecnologías declaradas (conteo de filas). Población: estructura relacional normalizada.",
+            "type": "integer"
+          },
+          {
+            "name": "registros_sin_tecnologia_coalesce",
+            "description": "Conteo de registros originales que no registraron tecnologías pero fueron preservados mediante uniones externas (conteo de registros). Población: ofertas o encuestados sin herramientas declaradas.",
+            "type": "integer"
+          },
+          {
+            "name": "media_con_duplicacion_join_1aN",
+            "description": "Media salarial mensual en dólares calculada sobre la tabla expandida para evidenciar el sesgo introducido por uniones uno a muchos no controladas (USD mensual). Población: verificación metodológica de consistencia relacional.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_ic_diferencias.csv",
+      "description": "Intervalos bootstrap al 95% para diferencias de medianas salariales entre segmentos, con indicador de si la diferencia es concluyente.",
+      "schema": {
+        "fields": [
+          {
+            "name": "comparacion",
+            "description": "Descripción de los dos segmentos del mercado laboral cuya diferencia de medianas de remuneración se contrasta (texto). Población: pares de subgrupos comparados en el análisis.",
+            "type": "string"
+          },
+          {
+            "name": "diferencia_observada_usd",
+            "description": "Diferencia puntual en dólares calculada entre las medianas muestrales de los dos grupos evaluados (USD mensual). Población: estimación de brecha entre segmentos del mercado laboral.",
+            "type": "number"
+          },
+          {
+            "name": "ic95_inf_usd",
+            "description": "Límite inferior del intervalo de confianza para la diferencia de medianas obtenido mediante remuestreo bootstrap (USD mensual). Población: contraste de hipótesis estadística entre segmentos.",
+            "type": "number"
+          },
+          {
+            "name": "ic95_sup_usd",
+            "description": "Límite superior del intervalo de confianza para la diferencia de medianas obtenido mediante remuestreo bootstrap (USD mensual). Población: contraste de hipótesis estadística entre segmentos.",
+            "type": "number"
+          },
+          {
+            "name": "concluyente",
+            "description": "Indicador lógico que valida si el intervalo de confianza excluye el valor cero determinando una diferencia estadísticamente significativa (booleano). Población: comparaciones de medianas salariales analizadas.",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_modalidad.csv",
+      "description": "Composición por seniority en 2 grupos (Senior + Lead; Junior + Trainee + Semi-Senior) y salario medio según modalidad de trabajo (presencial, híbrido, remoto) en Get on Board 2026.",
+      "schema": {
+        "fields": [
+          {
+            "name": "modalidad_grupo",
+            "description": "Clasificación agregada de la modalidad de trabajo de las vacantes laborales (texto). Población: ofertas laborales de tecnología analizadas.",
+            "type": "string"
+          },
+          {
+            "name": "n_salarios_validos",
+            "description": "Cantidad de vacantes con remuneración explícita válida evaluadas en esta modalidad laboral (conteo de ofertas). Población: ofertas de empleo con rango salarial admisible.",
+            "type": "integer"
+          },
+          {
+            "name": "media_mensual_usd",
+            "description": "Media aritmética de la remuneración mensual de las ofertas en dólares para esta modalidad laboral (USD mensual). Población: ofertas de empleo con salario válido.",
+            "type": "number"
+          },
+          {
+            "name": "pct_senior_lead",
+            "description": "Porcentaje de ofertas de la modalidad que piden nivel Senior o Lead (porcentaje relativo al total de la modalidad). Población: ofertas de Get on Board con sueldo válido en la modalidad.",
+            "type": "number"
+          },
+          {
+            "name": "pct_junior_trainee_semi_senior",
+            "description": "Porcentaje de ofertas de la modalidad que piden nivel Junior, Trainee o Semi-Senior (porcentaje relativo al total de la modalidad). Población: ofertas de Get on Board con sueldo válido en la modalidad.",
+            "type": "number"
+          },
+          {
+            "name": "pct_alcance_remoto_global",
+            "description": "Porcentaje de ofertas remotas que no imponen restricción territorial de contratación (porcentaje relativo a las vacantes remotas). Población: vacantes en modalidad remota.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_modalidad_vs_ine.csv",
+      "description": "Medianas salariales por modalidad en Get on Board 2026 comparadas con la mediana nacional del INE ESI 2025 (comparación referencial: el INE es ingreso neto).",
+      "schema": {
+        "fields": [
+          {
+            "name": "segmento",
+            "description": "Nombre descriptivo del segmento de empleo analizado según su modalidad de trabajo y alcance geográfico (texto). Población: ofertas de empleo en tecnología según modalidad.",
+            "type": "string"
+          },
+          {
+            "name": "n",
+            "description": "Cantidad de ofertas de empleo con rango salarial válido en este segmento laboral (conteo de ofertas). Población: ofertas evaluadas en el segmento.",
+            "type": "integer"
+          },
+          {
+            "name": "media_usd",
+            "description": "Media aritmética de la compensación mensual en dólares para las ofertas del segmento (USD mensual). Población: ofertas laborales en el segmento.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_usd",
+            "description": "Mediana de la compensación mensual en dólares para las ofertas del segmento (USD mensual). Población: ofertas laborales en el segmento.",
+            "type": "number"
+          },
+          {
+            "name": "p25_usd",
+            "description": "Percentil veinticinco de la compensación mensual en dólares de las ofertas del segmento (USD mensual). Población: ofertas laborales en el segmento.",
+            "type": "number"
+          },
+          {
+            "name": "p75_usd",
+            "description": "Percentil setenta y cinco de la compensación mensual en dólares de las ofertas del segmento (USD mensual). Población: ofertas laborales en el segmento.",
+            "type": "number"
+          },
+          {
+            "name": "amplitud_p25_p75_usd",
+            "description": "Amplitud intercuartílica de la compensación mensual en dólares calculada entre el percentil setenta y cinco y el veinticinco (USD mensual). Población: ofertas laborales en el segmento.",
+            "type": "number"
+          },
+          {
+            "name": "mediana_clp_ref",
+            "description": "Mediana de compensación mensual estimada en pesos chilenos según tipo de cambio oficial de referencia (CLP mensual). Población: ofertas laborales en el segmento.",
+            "type": "integer"
+          },
+          {
+            "name": "media_clp_ref",
+            "description": "Media aritmética de compensación mensual estimada en pesos chilenos según tipo de cambio oficial de referencia (CLP mensual). Población: ofertas laborales en el segmento.",
+            "type": "integer"
+          },
+          {
+            "name": "cumple_n30",
+            "description": "Indicador lógico de cumplimiento del umbral muestral de treinta observaciones para análisis inferencial (booleano). Población: segmentos laborales de tecnología analizados.",
+            "type": "boolean"
+          },
+          {
+            "name": "fuente",
+            "description": "Plataforma emisora de las ofertas laborales o institución generadora de los datos (texto). Población: fuentes de información evaluadas en la comparación.",
+            "type": "string"
+          },
+          {
+            "name": "nota",
+            "description": "Nota explicativa sobre la composición muestral y la exclusión de valores extremos individuales (texto). Población: precisión metodológica del reporte. Vacío en las filas de Stack Overflow, porque la nota se refiere solo a Get on Board.",
+            "type": "string"
+          },
+          {
+            "name": "ratio_mediana_vs_ine_esi_2025",
+            "description": "Razón calculada dividiendo la mediana salarial del segmento tecnológico entre el ingreso mediano nacional del informe oficial de ingresos del instituto de estadística (razón adimensional). Población: contraste entre el mercado tecnológico y la mediana laboral nacional.",
+            "type": "number"
+          },
+          {
+            "name": "brecha_pct_vs_ine_esi_2025",
+            "description": "Diferencia porcentual relativa calculada entre la mediana salarial del segmento tecnológico y el ingreso mediano nacional de referencia (porcentaje de diferencia). Población: prima salarial porcentual del sector tecnológico frente a la economía nacional.",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "gob_agregado_tecnologias.csv",
+      "description": "Por tecnología: porcentaje de ofertas de Get on Board 2026 que la piden y porcentaje de desarrolladores que la usan según Stack Overflow 2024 (Chile y Latinoamérica). Solo grupos con N ≥ 5.",
+      "schema": {
+        "fields": [
+          {
+            "name": "tipo_tecnologia",
+            "description": "Clasificación funcional de la tecnología profesional como Lenguaje, Base de Datos o Plataforma Cloud (texto). Población: catálogo de tecnologías evaluadas en ofertas y encuestas.",
+            "type": "string"
+          },
+          {
+            "name": "tecnologia",
+            "description": "Nombre estandarizado de la herramienta, lenguaje o plataforma tecnológica (texto). Población: tecnologías analizadas en el mercado laboral.",
+            "type": "string"
+          },
+          {
+            "name": "gob_n_ofertas",
+            "description": "Cantidad total de ofertas de empleo que exigen o mencionan esta tecnología en la plataforma de contratación (conteo de ofertas). Población: vacantes de empleo de tecnología evaluadas.",
+            "type": "integer"
+          },
+          {
+            "name": "pct_demanda_gob_total",
+            "description": "Porcentaje de vacantes totales que demandan esta tecnología respecto al universo evaluado (porcentaje de demanda laboral). Población: demanda de herramientas tecnológicas en ofertas laborales.",
+            "type": "number"
+          },
+          {
+            "name": "n_gob_chile_local",
+            "description": "Cantidad de ofertas de empleo para contratación local en Chile que mencionan esta tecnología (conteo de ofertas). Población: vacantes locales en Chile.",
+            "type": "integer"
+          },
+          {
+            "name": "n_gob_remoto",
+            "description": "Cantidad de ofertas de empleo con modalidad remota que mencionan esta tecnología (conteo de ofertas). Población: vacantes remotas de tecnología.",
+            "type": "integer"
+          },
+          {
+            "name": "so_n_chile",
+            "description": "Cantidad de desarrolladores residentes en Chile que reportan utilizar profesionalmente esta tecnología (conteo de personas). Población: encuestados de tecnología en Chile.",
+            "type": "integer"
+          },
+          {
+            "name": "pct_adopcion_chile",
+            "description": "Porcentaje de adopción profesional de esta tecnología entre desarrolladores encuestados residentes en Chile (porcentaje de adopción laboral). Población: profesionales de tecnología en Chile.",
+            "type": "number"
+          },
+          {
+            "name": "so_n_latam",
+            "description": "Cantidad de desarrolladores de diecinueve países de América Latina que reportan utilizar profesionalmente esta tecnología (conteo de personas). Población: encuestados de tecnología en América Latina.",
+            "type": "integer"
+          },
+          {
+            "name": "pct_adopcion_latam",
+            "description": "Porcentaje de adopción profesional de esta tecnología entre desarrolladores encuestados en América Latina (porcentaje de adopción laboral). Población: profesionales de tecnología en América Latina.",
+            "type": "number"
+          },
+          {
+            "name": "estado_objetivo_metrico_1",
+            "description": "Clasificación cualitativa de alineación entre la demanda en ofertas laborales y la adopción real por parte de profesionales (texto). Población: tecnologías analizadas en el estudio comparativo.",
+            "type": "string"
+          },
+          {
+            "name": "pct_gob_chile_local",
+            "description": "Porcentaje de ofertas locales de Chile que demandan esta tecnología respecto a las vacantes locales evaluadas (porcentaje de demanda local). Población: vacantes locales en Chile.",
+            "type": "number"
+          },
+          {
+            "name": "pct_gob_remoto",
+            "description": "Porcentaje de ofertas remotas que demandan esta tecnología respecto a las vacantes remotas evaluadas (porcentaje de demanda remota). Población: vacantes remotas de tecnología.",
+            "type": "number"
+          },
+          {
+            "name": "moe95_pp_chile",
+            "description": "Margen de error porcentual estimado para la tasa de adopción de la tecnología en Chile (puntos porcentuales). Población: estimación de adopción en Chile.",
+            "type": "number"
+          },
+          {
+            "name": "moe95_pp_latam",
+            "description": "Margen de error porcentual estimado para la tasa de adopción de la tecnología en América Latina (puntos porcentuales). Población: estimación de adopción en América Latina.",
+            "type": "number"
+          }
+        ]
+      }
+    }
+  ]
+}

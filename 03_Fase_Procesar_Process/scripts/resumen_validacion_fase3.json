@@ -36,6 +36,12 @@
     "mediano_clp": 680000,
     "medio_clp": 962945
   },
+  "umbrales": {
+    "gob_salario_min_mensual_usd": 500.0,
+    "gob_salario_max_mensual_usd": 25000.0,
+    "so_salario_min_anual_usd": 1000.0,
+    "so_salario_max_anual_usd": 500000.0
+  },
   "file_sizes": {
     "GetOnBoard_Vacantes_2026_20261111_v01_clean.csv": {
       "rows": 679,

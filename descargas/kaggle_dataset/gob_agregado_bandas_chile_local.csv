@@ -1,0 +1,4 @@
+seniority_nivel,n,media_usd,mediana_usd,p25_usd,p75_usd,amplitud_p25_p75_usd,mediana_clp_ref,media_clp_ref,cumple_n30,fuente,nota
+Junior + Trainee,14,,,,,,,,False,Get on Board 2026 (Chile Local),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.
+Semi-Senior,65,2249.23,2250.0,2000.0,2500.0,500.0,2182050.0,2181303.0,True,Get on Board 2026 (Chile Local),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.
+Senior + Lead,58,3005.17,2825.0,2200.0,3750.0,1550.0,2739685.0,2914414.0,True,Get on Board 2026 (Chile Local),Nota metodológica: modalidad y alcance son la misma partición: Chile Local = Híbrido + Presencial; Remoto sin país declarado = Remoto Local + Remoto Total.

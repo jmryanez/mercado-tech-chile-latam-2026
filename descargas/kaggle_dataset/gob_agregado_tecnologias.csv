@@ -1,0 +1,33 @@
+tipo_tecnologia,tecnologia,gob_n_ofertas,pct_demanda_gob_total,n_gob_chile_local,n_gob_remoto,so_n_chile,pct_adopcion_chile,so_n_latam,pct_adopcion_latam,estado_objetivo_metrico_1,pct_gob_chile_local,pct_gob_remoto,moe95_pp_chile,moe95_pp_latam
+Base de datos,PostgreSQL,97,14.29,49,48,67,50.38,1532,49.84,Cumple Meta >=20% en Adopción SO,12.22,17.27,8.5,1.8
+Base de datos,MongoDB,56,8.25,27,29,32,24.06,789,25.67,Cumple Meta >=20% en Adopción SO,6.73,10.43,7.3,1.5
+Base de datos,Microsoft SQL Server,44,6.48,28,16,30,22.56,830,27.0,Cumple Meta >=20% en Adopción SO,6.98,5.76,7.1,1.6
+Base de datos,Oracle,36,5.3,27,9,9,6.77,392,12.75,Bajo 20% (Nicho / Especialidad),6.73,3.24,4.3,1.2
+Base de datos,MySQL,35,5.15,17,18,56,42.11,1342,43.66,Cumple Meta >=20% en Adopción SO,4.24,6.47,8.4,1.8
+Base de datos,Redis,35,5.15,11,24,22,16.54,632,20.56,Cumple Meta >=20% en Adopción SO,2.74,8.63,6.3,1.4
+Base de datos,BigQuery,24,3.53,14,10,9,6.77,162,5.27,Bajo 20% (Nicho / Especialidad),3.49,3.6,4.3,0.8
+Base de datos,DynamoDB,15,2.21,10,5,16,12.03,310,10.08,Bajo 20% (Nicho / Especialidad),2.49,1.8,5.5,1.1
+Base de datos,Elasticsearch,11,1.62,2,9,11,8.27,320,10.41,Bajo 20% (Nicho / Especialidad),0.5,3.24,4.7,1.1
+Base de datos,Snowflake,11,1.62,5,6,3,2.26,70,2.28,Bajo 20% (Nicho / Especialidad),1.25,2.16,2.5,0.5
+Base de datos,SQLite,5,0.74,2,3,41,30.83,926,30.12,Cumple Meta >=20% en Adopción SO,0.5,1.08,7.8,1.6
+Cloud,AWS,204,30.04,107,97,62,46.62,1396,45.41,Cumple Meta >=20% en Demanda y Adopción,26.68,34.89,8.5,1.8
+Cloud,Google Cloud,117,17.23,70,47,28,21.05,699,22.74,Cumple Meta >=20% en Adopción SO,17.46,16.91,6.9,1.5
+Cloud,Microsoft Azure,116,17.08,57,59,20,15.04,685,22.28,Cumple Meta >=20% en Adopción SO,14.21,21.22,6.1,1.5
+Cloud,Databricks,21,3.09,8,13,3,2.26,72,2.34,Bajo 20% (Nicho / Especialidad),2.0,4.68,2.5,0.5
+Cloud,Firebase,6,0.88,1,5,14,10.53,461,15.0,Bajo 20% (Nicho / Especialidad),0.25,1.8,5.2,1.3
+Cloud,Oracle Cloud (OCI),6,0.88,4,2,4,3.01,126,4.1,Bajo 20% (Nicho / Especialidad),1.0,0.72,2.9,0.7
+Lenguaje,SQL,223,32.84,140,83,71,53.38,1767,57.48,Cumple Meta >=20% en Demanda y Adopción,34.91,29.86,8.5,1.7
+Lenguaje,Python,193,28.42,112,81,76,57.14,1439,46.81,Cumple Meta >=20% en Demanda y Adopción,27.93,29.14,8.4,1.8
+Lenguaje,TypeScript,117,17.23,61,56,54,40.6,1251,40.7,Cumple Meta >=20% en Adopción SO,15.21,20.14,8.3,1.7
+Lenguaje,JavaScript,101,14.87,50,51,87,65.41,2111,68.67,Cumple Meta >=20% en Adopción SO,12.47,18.35,8.1,1.6
+Lenguaje,Java,78,11.49,48,30,31,23.31,912,29.67,Cumple Meta >=20% en Adopción SO,11.97,10.79,7.2,1.6
+Lenguaje,HTML/CSS,52,7.66,23,29,64,48.12,1697,55.2,Cumple Meta >=20% en Adopción SO,5.74,10.43,8.5,1.8
+Lenguaje,C#,37,5.45,15,22,32,24.06,784,25.5,Cumple Meta >=20% en Adopción SO,3.74,7.91,7.3,1.5
+Lenguaje,Go,19,2.8,10,9,18,13.53,411,13.37,Bajo 20% (Nicho / Especialidad),2.49,3.24,5.8,1.2
+Lenguaje,PHP,17,2.5,7,10,21,15.79,684,22.25,Cumple Meta >=20% en Adopción SO,1.75,3.6,6.2,1.5
+Lenguaje,Kotlin,15,2.21,6,9,9,6.77,284,9.24,Bajo 20% (Nicho / Especialidad),1.5,3.24,4.3,1.0
+Lenguaje,Bash/Shell,14,2.06,8,6,42,31.58,854,27.78,Cumple Meta >=20% en Adopción SO,2.0,2.16,7.9,1.6
+Lenguaje,Ruby,11,1.62,8,3,10,7.52,224,7.29,Bajo 20% (Nicho / Especialidad),2.0,1.08,4.5,0.9
+Lenguaje,Swift,10,1.47,4,6,5,3.76,110,3.58,Bajo 20% (Nicho / Especialidad),1.0,2.16,3.2,0.7
+Lenguaje,PowerShell,5,0.74,3,2,9,6.77,349,11.35,Bajo 20% (Nicho / Especialidad),0.75,0.72,4.3,1.1
+Lenguaje,R,5,0.74,4,1,11,8.27,166,5.4,Bajo 20% (Nicho / Especialidad),1.0,0.36,4.7,0.8

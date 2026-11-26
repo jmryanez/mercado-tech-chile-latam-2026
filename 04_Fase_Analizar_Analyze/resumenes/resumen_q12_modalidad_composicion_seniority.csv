@@ -1,5 +1,5 @@
-modalidad_grupo,n_salarios_validos,media_mensual_usd,pct_senior,pct_semi_senior,pct_junior_trainee,pct_lead,pct_alcance_remoto_global
-Remoto Local,45,3814.44,66.7,28.9,2.2,2.2,100.0
-Remoto Total,53,3106.6,52.8,35.8,5.7,5.7,100.0
-Híbrido,103,2561.65,40.8,46.6,9.7,2.9,0.0
-Presencial,34,2269.12,38.2,50.0,11.8,0.0,0.0
+modalidad_grupo,n_salarios_validos,media_mensual_usd,pct_senior_lead,pct_junior_trainee_semi_senior,pct_alcance_remoto_global
+Remoto Local,45,3814.44,68.9,31.1,100.0
+Remoto Total,53,3106.6,58.5,41.5,100.0
+Híbrido,103,2561.65,43.7,56.3,0.0
+Presencial,34,2269.12,38.2,61.8,0.0

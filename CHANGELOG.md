@@ -4,6 +4,112 @@ Este archivo registra cronológicamente los cambios realizados en los datos, scr
 
 ---
 
+## [1.13.8] - 2026-11-25 — Celdas vacías explicadas
+
+### Corregido
+- **Celdas vacías sin explicación:** el Excel de Tableau (donde aparecen como NULL), los CSV de descargas, el zip de GitHub y el dataset de Kaggle tenían columnas con celdas vacías sin decir por qué. Ahora un registro único (scripts/celdas_vacias.json) explica cada una: la hoja LEEME_Poblaciones del Excel, la descripción de cada columna en Kaggle y la nueva guía descargas/LEEME_Celdas_Vacias.md salen de él.
+- **Comprobación en origen:** el script del Excel y el de descargas se detienen si una columna tiene celdas vacías sin explicación, si una explicación sobra o si las celdas vacías no están en las filas que dice su condición. El validador externo lo repite por su cuenta (regla R37).
+
+---
+
+## [1.13.7] - 2026-11-25 — Enlaces a Tableau Public y Kaggle
+
+### Corregido
+- **Entregables externos:** el sitio, el README, el cuaderno y el documento 01 decían que el tablero de Tableau Public y el cuaderno y dataset de Kaggle estaban pendientes de publicación; ahora enlazan a las páginas publicadas.
+- **Documento 05:** decía que el Excel de Tableau tiene 10 pestañas; tiene 12, y la lista completa está en su tabla de hojas.
+- **Dataset de Kaggle:** la descripción explica la política de publicación (niveles de seniority agrupados; con N menor a 15 solo se publica el N).
+
+---
+
+## [1.13.6] - 2026-11-25 — Textos acotados a lo que muestran los datos
+
+### Corregido
+- **Remoto vs. Chile Local:** el sitio, los documentos 05 y 06 y la presentación decían que la composición por seniority explicaba la brecha remota o que no era concluyente al controlar por seniority; el README y los documentos 04 y 06 decían que "explica parte", sin un cálculo que lo respalde. Entre cargos Senior la diferencia es concluyente: ahora se dice que la mayor proporción de cargos Senior y Lead no explica toda la diferencia, y "internacional" se reemplazó por "sin país declarado", que es lo que dicen los datos.
+- **Signos duplicados y licencia:** se quitaron los "+" escritos delante de cifras que ya traen signo, y DATA_LICENSES.md ya no promete una anonimización que no aplica a GitHub.
+- **Excel de Tableau reproducible:** sus fechas internas quedan fijas, así el README no cambia entre ejecuciones.
+- **Cloud:** se quitaron "primacía", "mediado por la jerarquía" y "se asocia con un diferencial positivo"; entre cargos Senior la diferencia no es concluyente.
+- **Chile en LatAm:** se quitó "Chile 2°" y "países vecinos"; Chile no se distingue de Argentina, México y Colombia.
+- **Cifras escritas a mano:** "4 tecnologías" (son 3), "527 ofertas con tecnologías" (son 514), "N ≥ 38" y "N ≥ 335" (el umbral es N ≥ 30), "~35%", "más de 72.000", "hasta +32%" y los indicadores de Azure salen ahora de los datos; se quitaron los tamaños de descarga escritos a mano y el porcentaje con punto decimal de la presentación.
+- **Documento 05, tabla de hojas del Excel:** lista las hojas reales, sin tamaños escritos a mano, con su rol correcto.
+
+---
+
+## [1.13.5] - 2026-11-25 — Política de publicación de Get on Board para Kaggle y Tableau
+
+### Corregido
+- **Grupos deducibles en Kaggle y en el Excel de Tableau:** cruzando tablas se podían deducir grupos de Get on Board de menos de 5 ofertas. Una política única (scripts/politica_publicacion.py) agrupa los niveles en lo que se publica fuera de GitHub: Chile Local en Junior + Trainee, Semi-Senior y Senior + Lead; ofertas remotas sin país declarado, total y modalidades en Junior + Trainee + Semi-Senior y Senior + Lead. Los grupos con N menor a 15 publican solo su N.
+- **Q12:** la composición por modalidad usa 2 grupos de seniority en el SQL, el gráfico 05, el Excel de Tableau y el paquete de Kaggle.
+- **Cuaderno de Kaggle:** las bandas, la comparación remoto vs. local y el efecto Cloud se calculan con los niveles agrupados; la lectura del intervalo sale de los datos.
+- **Zip de GitHub:** se renombró a Datos_Limpios_Completos_GitHub.zip y ya no trae metadatos de Kaggle, porque contiene filas de Get on Board que no van a Kaggle.
+
+---
+
+## [1.13.4] - 2026-11-22 — Get on Board solo como agregado en el Excel de Tableau y cifras sin teclear
+
+### Corregido
+- **Excel para Tableau Public:** las filas de Get on Board ya no traen mínimos ni máximos y se quitan los grupos con menos de 5 ofertas (la fila Trainee tenía N = 1), igual que en el paquete de Kaggle.
+- **Cifras escritas a mano en los scripts:** los N de los gráficos, de la presentación y de la matriz de validación, los saltos de experiencia de Stack Overflow y las bandas de la presentación se calculan desde los datos. La matriz de validación decía 1.775 filas 1:N; son las que salen de los datos. Las bandas de la presentación usan Chile Local y la banda remota real.
+- **Umbrales de limpieza:** los límites de salario de Get on Board y Stack Overflow se definen una sola vez en la Fase 3 y de ahí los toman el análisis y las descargas.
+- **Gráfico y diapositivas de la Pregunta 1:** decían "Solo 4 tecnologías superan el 20%" e incluían Azure (17,1 %); ahora el número y la lista salen de los datos y de la meta del estudio.
+- **Fecha de la presentación:** el pie de cada diapositiva usa la fecha del estudio en vez de una fecha fija.
+- **Total de registros crudos:** suma las filas reales del INE en vez de un número fijo; los denominadores de la Fase 3 ya no tienen valores de respaldo tecleados.
+
+### Añadido
+- **Validador externo (auditor):** R27 (Get on Board solo como agregado en el Excel de Tableau) y R28 (sin cifras tecleadas ni disfrazadas en los scripts del pipeline).
+
+---
+
+## [1.13.3] - 2026-11-22 — Cifras amarradas a lo que dice cada frase
+
+### Corregido
+- **Cuaderno (P3, paso 4.3):** el hallazgo mostraba la misma mediana a ambos lados de la comparación Senior, cifras pegadas y la mediana del INE en el lugar de las diferencias. Ahora usa las medianas Senior y Semi-Senior de cada población, las diferencias bootstrap y la mediana del INE en CLP y USD.
+- **Sitio (index.html):** las bandas p25–p75 mezclaban el p25 de Chile Local con el p75 de las ofertas remotas; ahora usan solo Chile Local. El p75 Senior de Get on Board Total usa su propia cifra. La pregunta Q11 ya no atribuye a SQL la mediana Semi-Senior de Chile Local y presenta la diferencia de Cloud como no concluyente. Se corrigieron las etiquetas de indicadores que no correspondían a su cifra (brecha remota rotulada como empresas grandes; diferencias AWS vs. SQL rotuladas como primas).
+- **Data Science Salaries:** la mediana 2024 se calcula solo con residentes en EE.UU., como el resto del estudio; se eliminaron las claves "global".
+- **Control de duplicación 1:N:** Python usa el mismo LEFT JOIN que la consulta SQL Q01, por lo que la media con duplicación coincide en ambos.
+- **Documentos .docx (03, 04, 05, 06) y README:** la comparación con el INE indica que la mediana es de cargos Semi-Senior en Chile Local; el umbral N >= 30 distingue Chile Local y Remoto sin país; se quitó la palabra "prima" donde la diferencia no es concluyente.
+
+### Añadido
+- **Validador externo (auditor):** reglas R24 (cada cifra corresponde a lo que dice su frase), R25 (Data Science Salaries solo EE.UU.) y R26 (media con duplicación igual en SQL y Python).
+
+---
+
+## [1.13.2] - 2026-11-21 — Restaura las descripciones de archivos del dataset de Kaggle; elimina el escape del id
+
+### Corregido
+- **Restauración de descripciones oficiales de archivos en Kaggle**:
+  - Se incorporaron como fuente única en `scripts/diccionario_columnas_kaggle.json` bajo la clave `__archivo__` las descripciones literales aprobadas por el dueño para cada uno de los 12 archivos CSV del dataset.
+  - Se sincronizó `scripts/generar_descargas.py` para mapear directamente estas descripciones en `dataset-metadata.json` sin interpretarlas como columnas de datos.
+  - Se actualizaron los metadatos en Kaggle mediante `kaggle datasets metadata --update` manteniendo intactos los esquemas y columnas previamente cargados.
+- **Eliminación de secuencias de escape en identificadores**:
+  - Se eliminó el escape Unicode `\u0079` utilizado provisionalmente para sortear el falso positivo de PII en R06, escribiendo el id oficial en texto plano (`manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026`), tras la corrección del validador por parte del auditor.
+
+---
+
+## [1.13.1] - 2026-11-21 — Descriptores de columna del dataset de Kaggle y cuaderno publicado en Kaggle
+
+### Añadido
+- **Descriptores de columna de los 12 archivos CSV del dataset de Kaggle**:
+  - Se crearon los esquemas de metadatos (`schema.fields`) para cada una de las columnas de los 12 archivos CSV en `descargas/kaggle_dataset/dataset-metadata.json`, con descripciones detalladas en español basadas en el código de limpieza y análisis, y tipos de datos inferidos según el formato oficial de Kaggle.
+  - Se creó el catálogo centralizado `scripts/diccionario_columnas_kaggle.json` para garantizar coherencia y trazabilidad de los descriptores.
+  - Se actualizaron los metadatos en Kaggle mediante `kaggle datasets metadata --update`, preservando íntegramente las descripciones, licencias y fuentes redactadas por el autor.
+- **Publicación y ejecución verificada del cuaderno en Kaggle**:
+  - Se publicó el cuaderno analítico en Kaggle (`mercado-tech-chile-y-latam-2024-2026-analisis`) vinculado como fuente oficial al dataset del estudio.
+  - Se ejecutó el cuaderno en los servidores de Kaggle completando exitosamente con estado `complete`.
+
+---
+
+## [1.13.0] - 2026-11-21 — Paquete para Kaggle con Agregados de Get on Board (v1.13.0 • R22)
+
+### Añadido & Corregido
+- **Paquete para Kaggle con agregados de Get on Board; el cuaderno usa solo ese paquete**:
+  - Se genera de forma reproducible en `descargas/kaggle_dataset/` el paquete para publicación en Kaggle, compuesto exclusivamente por datos limpios de Stack Overflow, Data Science Salaries e INE ESI 2025, junto con agregados estadísticos de Get on Board (`gob_agregado_*`) con $N \ge 5$ y sin columnas de mínimo ni máximo, cumpliendo estrictamente con la sección 7.1 de los términos de servicio de su API pública.
+  - Se incluye `dataset-metadata.json` con metadatos completos y atribución de fuentes.
+- **Cuaderno Kaggle adaptado al paquete agregado**:
+  - El cuaderno analítico (`kaggle_notebook_portafolio.ipynb`) se adaptó para leer de forma exclusiva desde `DATA_DIR` utilizando los agregados oficiales de Get on Board, sin ingestar archivos fila a fila de Get on Board y obteniendo todos los conteos y métricas dinámicamente desde los datos.
+  - Se añadió la celda inicial de transparencia y cumplimiento normativo de la API pública de Get on Board.
+
+---
+
 ## [1.12.1] - 2026-11-21 — Octava Ronda: Corrección de Prefijo de Versión Duplicado (R20)
 
 ### Corregido

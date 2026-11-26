@@ -356,20 +356,20 @@ ORDER BY t.tipo_tecnologia, media_mensual_usd DESC;
 -- Nota metodológica: SQLite no dispone de función MEDIAN nativa; las medianas y cuartiles se calculan en Python.
 -- -----------------------------------------------------------------------------
 -- [QUERY: q12_gob_modalidad_composicion_seniority]
+-- Se publican 2 grupos de seniority (Senior + Lead / Junior + Trainee + Semi-Senior) para que ningún grupo
+-- de Get on Board con sueldo pueda deducirse al multiplicar el porcentaje por su N.
 SELECT
     modalidad_grupo,
     COUNT(DISTINCT job_id) AS n_salarios_validos,
     ROUND(AVG(salario_mensual_usd), 2) AS media_mensual_usd,
-    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Senior' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_senior,
-    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Semi-Senior' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_semi_senior,
-    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel IN ('Junior', 'Trainee') THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_junior_trainee,
-    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel = 'Lead' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_lead,
+    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel IN ('Senior', 'Lead') THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_senior_lead,
+    ROUND(100.0 * COUNT(DISTINCT CASE WHEN seniority_nivel IN ('Junior', 'Trainee', 'Semi-Senior') THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_junior_trainee_semi_senior,
     ROUND(100.0 * COUNT(DISTINCT CASE WHEN alcance_geo = 'Remoto sin país declarado' THEN job_id END) / COUNT(DISTINCT job_id), 1) AS pct_alcance_remoto_global
 FROM vacantes
 WHERE (salario_valido_flag = 1 OR salario_valido_flag = 'True')
 GROUP BY modalidad_grupo
 HAVING COUNT(DISTINCT job_id) >= 30
-ORDER BY pct_senior DESC;
+ORDER BY pct_senior_lead DESC;
 
 -- -----------------------------------------------------------------------------
 -- Q13 (Categorías de Puesto Get on Board con Control N >= 30 • CASE WHEN)

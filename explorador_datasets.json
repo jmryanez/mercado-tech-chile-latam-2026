@@ -9286,7 +9286,7 @@
       "mediana": 1305,
       "p75": 2166,
       "iqr": 1367,
-      "salto": "+133,0%",
+      "salto": "+133,3%",
       "clp": 1265996,
       "tlc": "✓ Válido (N ≥ 30)",
       "ic95_mediana_inf_usd": 1168.0,
@@ -9302,7 +9302,7 @@
       "mediana": 2350,
       "p75": 4167,
       "iqr": 2768,
-      "salto": "+80,1%",
+      "salto": "+80,0%",
       "clp": 2278788,
       "tlc": "✓ Válido (N ≥ 30)",
       "ic95_mediana_inf_usd": 2148.08,
@@ -9338,9 +9338,9 @@
     {
       "tipo": "2. Rango de Datos (Data Range)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
-      "descripcion": "Filtro de plausibilidad económica: salarios mensuales >= $500 USD en GOB y anuales [1000..500000 USD] en SO LatAm; anulación estricta de outliers espurios.",
+      "descripcion": "Filtro de plausibilidad económica: salarios mensuales >= $500 USD en GOB y anuales entre $1.000 y $500.000 USD en SO LatAm; anulación estricta de outliers espurios.",
       "poblacion": "3.074 SO LatAm / 679 GOB",
-      "excluidos": "2 vacantes GOB (<$500 USD) / 67 respuestas SO (<1k o >500k USD/año)",
+      "excluidos": "2 vacantes GOB (<$500 USD) / 67 respuestas SO (fuera del rango anual)",
       "resultado": "235 salarios válidos GOB (de 237) / 1.341 salarios válidos SO (de 1.408)",
       "impacto": "Previene distorsiones artificiales en la media aritmética y centra el análisis en la mediana."
     },
@@ -9356,7 +9356,7 @@
     {
       "tipo": "4. Consistencia Cruzada (Consistency)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
-      "descripcion": "Verificación lógica: min_salary <= max_salary en cada registro salarial, Control cruzado de tasa cambiaria fija de referencia ($969,8 CLP/USD),",
+      "descripcion": "Verificación lógica: min_salary <= max_salary en cada registro salarial. Control cruzado de tasa cambiaria fija de referencia ($969,80 CLP/USD).",
       "poblacion": "235 vacantes con salario GOB",
       "excluidos": "0 inconsistencias lógicas detectadas",
       "resultado": "100% de coherencia matemática en rangos salariales",
@@ -9365,7 +9365,7 @@
     {
       "tipo": "5. Completitud de Datos (Completeness)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
-      "descripcion": "Identificación de nulos estructurales: el 65,4% de las vacantes en Chile no publica salario explícito (patrón de asimetría informativa),",
+      "descripcion": "Identificación de nulos estructurales: el 65,4% de las vacantes de Get on Board no publica salario explícito (patrón de asimetría informativa).",
       "poblacion": "679 vacantes GOB",
       "excluidos": "0 vacantes eliminadas por falta de salario",
       "resultado": "Bandera booleana 'salario_valido_flag' sin imputación forzada",
@@ -9375,7 +9375,7 @@
       "tipo": "6. Unicidad e Integridad 1:N (Uniqueness)",
       "ambito": "🇨🇱 Chile & 🌎 19 Países LatAm",
       "descripcion": "Deduplicación por clave primaria compuesta. Control riguroso de producto cartesiano en relaciones 1:N (vacantes vs múltiples tecnologías requeridas).",
-      "poblacion": "679 vacantes (1.775 filas 1:N) / 3.074 encuestados (31.759 filas 1:N)",
+      "poblacion": "679 vacantes (1.749 filas 1:N) / 3.074 encuestados (31.759 filas 1:N)",
       "excluidos": "0 duplicaciones artificiales en agregaciones",
       "resultado": "Cálculo salarial ejecutado a nivel de entidad única",
       "impacto": "Previene el sesgo de sobredimensionar el salario promedio de vacantes con múltiples tecnologías."

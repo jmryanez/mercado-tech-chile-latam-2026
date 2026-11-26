@@ -8,8 +8,8 @@
 🎓 **Credencial:** Certificado Profesional de Análisis de Datos de Google (Google Data Analytics Professional Certificate), Google / Coursera, noviembre 2026 • [https://www.credly.com/users/manuel-yanez](https://www.credly.com/users/manuel-yanez)  
 🏢 **Patrocinadores simulados:** Consultora de Recursos Humanos Tech & Academia de Formación Digital (Chile)  
 📊 **Estado de entregables externos:**  
-- Tablero en Tableau Public: pendiente de publicación (datos preparados en Datos_Consolidados_Tableau_Public.xlsx)  
-- Cuaderno y dataset en Kaggle: pendientes de publicación  
+- Tablero en Tableau Public: [Mercado Tech Chile y LatAm 2024-2026](https://public.tableau.com/app/profile/manuel.y.ez/viz/MercadoTechChileyLatAm2024-2026/1_Brechadehabilidadesysalarios)  
+- Cuaderno y dataset en Kaggle: [cuaderno](https://www.kaggle.com/code/manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026-analisis) y [dataset agregado](https://www.kaggle.com/datasets/manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026)  
 
 ---
 
@@ -34,7 +34,7 @@ En Chile Local (Get on Board 2026), la mediana salarial es {{gob_cl_semi_senior_
 ![Bandas Salariales por Seniority](05_Fase_Compartir_Share/visualizaciones/04_bandas_salariales_experiencia_p2.png)
 
 ### 3. Modalidad Laboral, Alcance y Comparación INE (P3)
-La composición por seniority explica parte de la diferencia, no toda: entre cargos Senior, las ofertas remotas sin país declarado tienen mediana {{gob_senior_remoto_mediana.str}} frente a {{gob_senior_local_mediana.str}} en Chile Local (diferencia concluyente: {{ic_senior_remoto_vs_local_diff.str}} USD, IC 95% bootstrap [{{ic_senior_remoto_vs_local_ci95_inf.str}}, {{ic_senior_remoto_vs_local_ci95_sup.str}}]); entre Semi-Senior la remota es menor ({{gob_semi_remoto_mediana.str}} vs {{gob_semi_local_mediana.str}}, diferencia no concluyente: {{ic_semi_remoto_vs_local_diff.str}}, IC 95% [{{ic_semi_remoto_vs_local_ci95_inf.str}}, {{ic_semi_remoto_vs_local_ci95_sup.str}}]). Modalidad y alcance no se pueden separar con estos datos, y no se sabe si las ofertas remotas admiten residentes en Chile. Frente a la mediana nacional del INE ESI 2025 ({{ine_esi_mediana_clp.str}} / {{ine_esi_mediana_usd.str}}), los cargos en Chile Local ({{gob_cl_semi_senior_mediana.str}} USD mediana) representan {{ratio_cl_semi_vs_ine_mediana.str}} la mediana del INE ({{salto_cl_semi_vs_ine_pct.str}}).
+La mayor proporción de cargos Senior y Lead en remoto no explica toda la diferencia: entre cargos Senior, las ofertas remotas sin país declarado tienen mediana {{gob_senior_remoto_mediana.str}} frente a {{gob_senior_local_mediana.str}} en Chile Local (diferencia concluyente: {{ic_senior_remoto_vs_local_diff.str}} USD, IC 95% bootstrap [{{ic_senior_remoto_vs_local_ci95_inf.str}}, {{ic_senior_remoto_vs_local_ci95_sup.str}}]); entre Semi-Senior la remota es menor ({{gob_semi_remoto_mediana.str}} vs {{gob_semi_local_mediana.str}}, diferencia no concluyente: {{ic_semi_remoto_vs_local_diff.str}}, IC 95% [{{ic_semi_remoto_vs_local_ci95_inf.str}}, {{ic_semi_remoto_vs_local_ci95_sup.str}}]). Modalidad y alcance no se pueden separar con estos datos, y no se sabe si las ofertas remotas admiten residentes en Chile. Frente a la mediana nacional del INE ESI 2025 ({{ine_esi_mediana_clp.str}} / {{ine_esi_mediana_usd.str}}), los cargos Semi-Senior en Chile Local ({{gob_cl_semi_senior_mediana.str}} USD mediana) representan {{ratio_cl_semi_vs_ine_mediana.str}} la mediana del INE ({{salto_cl_semi_vs_ine_pct.str}}).
 
 ![Modalidades vs INE y Causalidad](05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png)
 

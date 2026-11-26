@@ -34,6 +34,14 @@ FECHA_INICIO = "2026-01-01"
 FECHA_CORTE = "2026-11-10"
 FECHA_EJECUCION = "20261111"
 DOLAR_OBSERVADO_BCCH = 969.80  # Banco Central de Chile al 2026-11-10
+GOB_SALARIO_MIN_MENSUAL_USD = 500.0  # piso de plausibilidad de Get on Board (USD/mes)
+GOB_SALARIO_MAX_MENSUAL_USD = 25000.0  # techo de control de Get on Board (USD/mes)
+SO_SALARIO_MIN_ANUAL_USD = 1000.0  # bajo esto la respuesta es tasa horaria/mensual o inválida (USD/año)
+SO_SALARIO_MAX_ANUAL_USD = 500000.0  # sobre esto es un outlier extremo (USD/año)
+
+
+def _fmt_miles(x) -> str:
+    return f"{x:,.0f}".replace(",", ".")
 
 LATAM_19_PAISES = {
     "Argentina",
@@ -236,10 +244,10 @@ def procesar_get_on_board() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
             mx_val = float(mx_raw) if mx_raw is not None else float(mn_raw)
             mid_val = (mn_val + mx_val) / 2.0
 
-            if mid_val < 500.0 or mn_val < 500.0:
+            if mid_val < GOB_SALARIO_MIN_MENSUAL_USD or mn_val < GOB_SALARIO_MIN_MENSUAL_USD:
                 stats["salarios_anulados"] += 1
                 motivo_excl = (
-                    f"Anulado por lógica de negocio/rango (<$500 USD/mes; publicado ${mn_val:g}-${mx_val:g})"
+                    f"Anulado por lógica de negocio/rango (<${GOB_SALARIO_MIN_MENSUAL_USD:g} USD/mes; publicado ${mn_val:g}-${mx_val:g})"
                 )
             else:
                 salario_valido = True
@@ -412,9 +420,9 @@ def procesar_stack_overflow() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     has_sal = sal_raw.notna()
     stats["latam_con_salario_raw"] = int(has_sal.sum())
 
-    mask_bajo = has_sal & (sal_raw < 1000.0)
-    mask_alto = has_sal & (sal_raw > 500000.0)
-    mask_valido = has_sal & (sal_raw >= 1000.0) & (sal_raw <= 500000.0)
+    mask_bajo = has_sal & (sal_raw < SO_SALARIO_MIN_ANUAL_USD)
+    mask_alto = has_sal & (sal_raw > SO_SALARIO_MAX_ANUAL_USD)
+    mask_valido = has_sal & (sal_raw >= SO_SALARIO_MIN_ANUAL_USD) & (sal_raw <= SO_SALARIO_MAX_ANUAL_USD)
 
     stats["latam_salarios_anulados_bajo"] = int(mask_bajo.sum())
     stats["latam_salarios_anulados_alto"] = int(mask_alto.sum())
@@ -437,10 +445,10 @@ def procesar_stack_overflow() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
 
     motivos = np.where(
         mask_bajo,
-        "Anulado (<$1.000 USD/año: tasa horaria/mensual o dato inválido)",
+        f"Anulado (<${_fmt_miles(SO_SALARIO_MIN_ANUAL_USD)} USD/año: tasa horaria/mensual o dato inválido)",
         np.where(
             mask_alto,
-            "Anulado (>$500.000 USD/año: outlier multimillonario extremo)",
+            f"Anulado (>${_fmt_miles(SO_SALARIO_MAX_ANUAL_USD)} USD/año: outlier multimillonario extremo)",
             "",
         ),
     )
@@ -612,9 +620,9 @@ def ejecutar_6_validaciones(
 
     # 2. Rango de datos (Range)
     gob_sal_ok = df_vac.loc[df_vac["salario_valido_flag"], "salario_mensual_usd"]
-    assert (gob_sal_ok >= 500.0).all() and (gob_sal_ok <= 25000.0).all()
+    assert (gob_sal_ok >= GOB_SALARIO_MIN_MENSUAL_USD).all() and (gob_sal_ok <= GOB_SALARIO_MAX_MENSUAL_USD).all()
     so_sal_ok = df_so.loc[df_so["salario_valido_flag"], "salary_yearly_usd_clean"]
-    assert (so_sal_ok >= 1000.0).all() and (so_sal_ok <= 500000.0).all()
+    assert (so_sal_ok >= SO_SALARIO_MIN_ANUAL_USD).all() and (so_sal_ok <= SO_SALARIO_MAX_ANUAL_USD).all()
     assert df_vac["fecha_publicacion_cl"].min() >= FECHA_INICIO
     assert df_vac["fecha_publicacion_cl"].max() <= FECHA_CORTE
     assert df_dss["work_year"].between(2020, 2024).all()
@@ -643,7 +651,7 @@ def ejecutar_6_validaciones(
         {
             "tipo": "3. Restricción de datos",
             "estado": "APROBADO",
-            "detalle": "Claves primarias únicas (job_id 679/679, ResponseId 3.074/3.074), 19 países LatAm exactos, 0 duplicados 1:N y paridad 100% de pares (tipo_tecnologia, tecnologia) entre GOB y SO.",
+            "detalle": f"Claves primarias únicas (job_id {df_vac['job_id'].nunique()}/{len(df_vac)}, ResponseId {_fmt_miles(df_so['ResponseId'].nunique())}/{_fmt_miles(len(df_so))}), 19 países LatAm exactos, 0 duplicados 1:N y paridad 100% de pares (tipo_tecnologia, tecnologia) entre GOB y SO.",
         }
     )
 
@@ -682,7 +690,7 @@ def ejecutar_6_validaciones(
         {
             "tipo": "6. Validación del código de aplicación",
             "estado": "VERIFICADO Y CONTENIDO",
-            "detalle": f"Detectadas debilidades de captura en origen: GOB permitió salarios libres <$500 ({gob_excl} casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios ({so_excl} casos en LatAm). Contenidos vía flags y anulación transparente.",
+            "detalle": f"Detectadas debilidades de captura en origen: GOB permitió salarios libres <${GOB_SALARIO_MIN_MENSUAL_USD:g} ({gob_excl} casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios ({so_excl} casos en LatAm). Contenidos vía flags y anulación transparente.",
         }
     )
     return validaciones
@@ -720,6 +728,12 @@ def main() -> None:
         "st_so": st_so,
         "st_dss": st_dss,
         "st_ine": st_ine,
+        "umbrales": {
+            "gob_salario_min_mensual_usd": GOB_SALARIO_MIN_MENSUAL_USD,
+            "gob_salario_max_mensual_usd": GOB_SALARIO_MAX_MENSUAL_USD,
+            "so_salario_min_anual_usd": SO_SALARIO_MIN_ANUAL_USD,
+            "so_salario_max_anual_usd": SO_SALARIO_MAX_ANUAL_USD,
+        },
         "file_sizes": file_sizes,
         "total_clean_bytes": sum(v["bytes"] for v in file_sizes.values()),
         "validaciones": validaciones,

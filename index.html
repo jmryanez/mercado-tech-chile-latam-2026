@@ -1700,7 +1700,7 @@
       </div>
       <h1 class="hero-title">Mercado Laboral y Salarios en Tecnología</h1>
       <p class="hero-subtitle">
-        Estudio integral de brechas de habilidades, primas salariales de computación en la nube y dinámica de contratación en Chile y Latinoamérica. Análisis reproducible sobre 4 poblaciones independientes con SQL relacional y Python.
+        Estudio integral de brechas de habilidades, diferencias salariales asociadas a la computación en la nube y dinámica de contratación en Chile y Latinoamérica. Análisis reproducible sobre 4 poblaciones independientes con SQL relacional y Python.
       </p>
 
       <div class="hero-meta">
@@ -1947,7 +1947,7 @@
             Estructura Salarial, Cuartiles (p25–p75) y Salto Porcentual por Nivel
           </h3>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            Análisis de dispersión no paramétrica para neutralizar el impacto de valores atípicos (outliers). Destaca el salto salarial de 42,2% en Get on Board Total (+$950 USD adicionales al mes). Por su parte, en Chile Local el incremento es de 22,2% (+$500 USD adicionales al mes). En vacantes remotas sin país declarado la mediana es $3.750 USD frente a $2.750 USD en Chile Local.
+            Análisis de dispersión no paramétrica para neutralizar el impacto de valores atípicos (outliers). Destaca el salto salarial de 42,2% en Get on Board Total (+$950 USD adicionales al mes). Por su parte, en Chile Local el incremento es de 22,2% (+$500 USD adicionales al mes). En cargos Senior, la mediana de las vacantes remotas sin país declarado es $3.750 USD frente a $2.750 USD en Chile Local.
           </p>
         </div>
 
@@ -2034,7 +2034,7 @@
         </div>
 
         <div class="callout-box">
-          <strong>Auditoría de Integridad Relacional 1:N (SQL):</strong> Al cruzar vacantes u ofertas con múltiples tecnologías requeridas (relación 1:N), una misma oferta se expande en múltiples filas (de 679 vacantes únicas a 1.749 filas expandidas). Si el analista calcula el promedio salarial sin control de clave foránea, el salario promedio resulta sobreestimado artificialmente en <code>+$61,31 USD</code> en Get on Board ($2.943,44 USD naive vs $2.882,13 USD real) y <code>+$120,60 USD</code> en Stack Overflow LatAm ($3.455,45 USD naive vs $3.334,85 USD real), sesgando las conclusiones hacia empresas que demandan pilas tecnológicas excesivas. Este estudio auditó y controló cada cruce relacional mediante subconsultas y funciones agregadas a nivel de entidad.
+          <strong>Auditoría de Integridad Relacional 1:N (SQL):</strong> Al cruzar vacantes u ofertas con múltiples tecnologías requeridas (relación 1:N), una misma oferta se expande en múltiples filas (de 679 vacantes únicas a 1.749 filas expandidas). Si el analista calcula el promedio salarial sin control de clave foránea, el salario promedio resulta sobreestimado artificialmente en <code>+$46,80 USD</code> en Get on Board ($2.928,93 USD naive vs $2.882,13 USD real) y <code>+$120,50 USD</code> en Stack Overflow LatAm ($3.455,35 USD naive vs $3.334,85 USD real), sesgando las conclusiones hacia empresas que demandan pilas tecnológicas excesivas. Este estudio auditó y controló cada cruce relacional mediante subconsultas y funciones agregadas a nivel de entidad.
         </div>
       </div>
 
@@ -2148,7 +2148,7 @@
           </div>
           <h3 class="phase-title">Analizar (Analyze)</h3>
           <p class="phase-text">
-            Consultas analíticas relacionales en SQLite con tablas temporales y control de uniones 1:N (evitando sesgos de duplicación de +$61,31 USD en GOB y +$120,60 USD en SO). Cálculo de medianas y bandas intercuartiles p25–p75. Evaluación rigurosa de Correlación ≠ Causalidad en Remoto Local.
+            Consultas analíticas relacionales en SQLite con tablas temporales y control de uniones 1:N (evitando sesgos de duplicación de +$46,80 USD en GOB y +$120,50 USD en SO). Cálculo de medianas y bandas intercuartiles p25–p75. Evaluación rigurosa de Correlación ≠ Causalidad en Remoto Local.
           </p>
           <div class="phase-doc-badge">
             <span>📄</span> 04_Resumen_Analisis_SQL_y_Python.docx
@@ -2350,7 +2350,7 @@
               <li><strong>2. Metadatos Estructurales:</strong> Tablas maestras anchas (Wide) y tablas transaccionales normalizadas 1:N (Long).</li>
               <li><strong>3. Metadatos Administrativos:</strong> Fechas de extracción, versiones inmutables y licencias de uso abierto.</li>
               <li><strong>Teorema del Límite Central (N ≥ 30):</strong> Umbral mínimo de suficiencia muestral exigido para inferencias estadísticas.</li>
-              <li><strong>Privacidad Estricta y Anonimización:</strong> Purgado total en origen de nombres, correos, teléfonos o identificadores individuales.</li>
+              <li><strong>Privacidad:</strong> Los datos no incluyen nombres, correos ni teléfonos de personas; las filas de Get on Board publicadas en GitHub conservan el identificador de empresa, y a Kaggle y Tableau Public solo van agregados.</li>
             </ul>
           </div>
         </div>
@@ -2397,7 +2397,7 @@
             <div class="pillar-card-title">📋 Checklist de 12 Puntos de Google</div>
             <ul class="pillar-list">
               <li><strong>1. Fuentes de errores:</strong> Pipeline automatizado en Python con 100% de trazabilidad reproducible.</li>
-              <li><strong>2. Datos nulos:</strong> Control y preservación de 442 vacantes sin salario para cálculo de demanda sin inflar sueldos.</li>
+              <li><strong>2. Datos nulos:</strong> Control y preservación de las vacantes sin salario válido para cálculo de demanda sin inflar sueldos.</li>
               <li><strong>3. Palabras extrañas / typos:</strong> Estandarización ortográfica de nombres de países al español oficial.</li>
               <li><strong>4. Números descompuestos:</strong> Anulación de salarios fuera de lógica de mercado (&lt; $500 USD/mes).</li>
               <li><strong>5. Espacios extra (TRIM):</strong> Aplicación de strip() y colapso de espacios múltiples en descripciones.</li>
@@ -2454,13 +2454,13 @@
           <div class="pillar-card">
             <div class="pillar-card-title">🗄️ Consultas SQL & Control 1:N</div>
             <ul class="pillar-list">
-              <li><strong>Q01:</strong> Control de integridad relacional contra duplicación en uniones 1:N (evitó sesgos de duplicación de +$61,31 USD en GOB y +$120,60 USD en SO).</li>
+              <li><strong>Q01:</strong> Control de integridad relacional contra duplicación en uniones 1:N (evitó sesgos de duplicación de +$46,80 USD en GOB y +$120,50 USD en SO).</li>
               <li><strong>Q02:</strong> Cruce analítico de demanda en avisos vs adopción real en desarrolladores.</li>
               <li><strong>Q03:</strong> Filtrado de tecnologías prioritarias que superan el umbral crítico (HAVING &ge; 20%).</li>
               <li><strong>Q04 & Q05:</strong> Estructura salarial por nivel de seniority en Chile y Latinoamérica.</li>
               <li><strong>Q06, Q07 & Q08:</strong> Distribución de compensación según modalidad laboral y tamaño de empresa.</li>
               <li><strong>Q09 & Q10:</strong> Evolución temporal histórica (2020–2024) y posicionamiento relativo de Chile vs LatAm.</li>
-              <li><strong>Q11a & Q11b:</strong> Primas tecnológicas Cloud (AWS y Azure) sobre la mediana base del mercado.</li>
+              <li><strong>Q11a & Q11b:</strong> Diferencias de mediana de Cloud (AWS y Azure) frente a la mediana base del mercado.</li>
               <li><strong>Q12 & Q13:</strong> Descomposición de modalidad por seniority (estratificación de modalidad por seniority) y categorías tech.</li>
             </ul>
           </div>
@@ -2470,8 +2470,8 @@
             <ul class="pillar-list">
               <li><strong>Distribución Asimétrica Positiva:</strong> Justificación técnica del descarte de la media aritmética en favor de la mediana frente a sueldos atípicos (outliers).</li>
               <li><strong>Bandas Intercuartiles p25–p75:</strong> Rango de dispersión robusto que captura el 50% central del mercado sin distorsiones.</li>
-              <li><strong>Salto Crítico a Senior (42,2%):</strong> El mayor salto remuneracional en Get on Board Total (de $2.250 USD a $3.200 USD, +$950 USD/mes); en Chile Local el salto es de 22,2% (de $2.250 USD a $2.750 USD, +$500 USD/mes).</li>
-              <li><strong>Primas Cloud Cuantificadas:</strong> AWS ($3.750 USD vs $3.000 USD sin Cloud en Senior, diferencia +$750 USD).</li>
+              <li><strong>Salto Crítico a Senior (42,2%):</strong> El mayor salto remuneracional desde Semi-Senior en Get on Board Total (de $2.250 USD a $3.200 USD, +$950 USD/mes); en Chile Local el salto es de 22,2% (de $2.250 USD a $2.750 USD, +$500 USD/mes).</li>
+              <li><strong>Cloud en cargos Senior (no concluyente):</strong> vacantes con Cloud $3.750 USD vs $3.000 USD sin Cloud, diferencia observada +$750 USD; los IC 95% de AWS, Azure y Google Cloud frente a SQL incluyen el 0.</li>
             </ul>
           </div>
 
@@ -2480,8 +2480,8 @@
             <ul class="pillar-list">
               <li><strong>Regla de Oro de Google:</strong> Correlación no implica Causalidad (Correlation does not equal Causation).</li>
               <li><strong>La Paradoja Inicial:</strong> Las ofertas remotas mostraban una mediana salarial superior a las presenciales.</li>
-              <li><strong>Variable Confusora Descubierta:</strong> Un 68,9% de las posiciones en Remoto Local corresponden a cargos Senior y Lead (31 de 45 ofertas con salario válido), reflejando un sesgo de composición por jerarquía del cargo.</li>
-              <li><strong>Efecto Aislado:</strong> Al controlar por nivel de experiencia, la prima por modalidad remota no resulta concluyente al controlar por seniority.</li>
+              <li><strong>Variable Confusora Descubierta:</strong> Un 68,9% de las posiciones en Remoto Local corresponden a cargos Senior y Lead (N=45 ofertas con salario válido).</li>
+              <li><strong>Efecto Aislado:</strong> Al controlar por nivel de experiencia, entre cargos Senior las ofertas remotas sin país superan a Chile Local en +$1.000 USD (IC 95% bootstrap [$500, $1.550]); entre Semi-Senior la diferencia no es concluyente.</li>
             </ul>
           </div>
         </div>
@@ -2536,7 +2536,7 @@
           <div class="pillar-card">
             <div class="pillar-card-title">🗺️ Tablero Interactivo</div>
             <p style="padding: 1rem 0; color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
-              Tablero en Tableau Public: pendiente de publicación (datos preparados en Datos_Consolidados_Tableau_Public.xlsx).
+              Tablero en Tableau Public: <a href="https://public.tableau.com/app/profile/manuel.y.ez/viz/MercadoTechChileyLatAm2024-2026/1_Brechadehabilidadesysalarios" target="_blank" rel="noopener noreferrer">abrir el tablero interactivo</a> (datos en Datos_Consolidados_Tableau_Public.xlsx). Cuaderno y dataset en Kaggle: <a href="https://www.kaggle.com/code/manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026-analisis" target="_blank" rel="noopener noreferrer">cuaderno</a> y <a href="https://www.kaggle.com/datasets/manuelyanezorellana/mercado-tech-chile-y-latam-2024-2026" target="_blank" rel="noopener noreferrer">dataset agregado</a>.
             </p>
           </div>
         </div>
@@ -2575,8 +2575,8 @@
             <ul class="pillar-list">
               <li><strong>1. Concentración Tecnológica:</strong> Solo 3 tecnologías superan el 20% de presencia en demanda en Get on Board: SQL (32,8%, N=223), AWS (30,0%, N=204) y Python (28,4%, N=193). En plataformas Cloud, solo AWS supera el umbral del 20%, mientras que Google Cloud (17,23%, N=117) y Microsoft Azure (17,1%, N=116) se sitúan por debajo del umbral estratégico. JavaScript se sitúa en 14,9% (101 ofertas).</li>
               <li><strong>2. Demanda Cloud vs. Adopción:</strong> Microsoft Azure presenta 17,1% de presencia en vacantes de Get on Board frente a 15,04% de adopción en Stack Overflow Chile (+2.04 pp de diferencia, dentro del margen de error de ±6.1 pp con N=133).</li>
-              <li><strong>3. Salto Remuneracional Senior:</strong> Transición de Semi-Senior a Senior con un incremento de 42,2% en Get on Board Total ($3.200 USD mediana, p75 = $5.000), mientras que en Chile Local el incremento es de 22,2% ($2.750 USD mediana).</li>
-              <li><strong>4. Efecto de Composición en Trabajo Remoto:</strong> El diferencial del trabajo remoto está condicionado por la composición de cargos Senior.</li>
+              <li><strong>3. Salto Remuneracional Senior:</strong> Transición de Semi-Senior a Senior con un incremento de 42,2% en Get on Board Total ($3.200 USD mediana, p75 = $4.000), mientras que en Chile Local el incremento es de 22,2% ($2.750 USD mediana).</li>
+              <li><strong>4. Efecto de Composición en Trabajo Remoto:</strong> La mayor proporción de cargos Senior y Lead en remoto no explica todo el diferencial: entre cargos Senior, las ofertas remotas sin país siguen pagando más que Chile Local (diferencia +$1.000 USD).</li>
             </ul>
           </div>
 
@@ -2627,7 +2627,7 @@
       <span class="section-tag">Evidencia Empírica & Hallazgos</span>
       <h2 class="section-title">Patrones Descubiertos en el Mercado Tech</h2>
       <p class="section-desc">
-        Análisis empírico sobre la concentración de demanda tecnológica, las primas salariales Cloud, la progresión por niveles de experiencia y el posicionamiento competitivo de Chile en el mercado regional.
+        Análisis empírico sobre la concentración de demanda tecnológica, las diferencias salariales asociadas a Cloud, la progresión por niveles de experiencia y el posicionamiento competitivo de Chile en el mercado regional.
       </p>
       <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.35rem 0.95rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; color: #93C5FD; margin-top: 0.75rem;">
         📌 Galería Completa de 7 Visualizaciones de Alta Resolución (P1 a P4 + Q11 + Segmentación + Benchmark Global)
@@ -2636,8 +2636,8 @@
 
     <!-- VISUAL 1 -->
     <div class="vis-card">
-      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Demanda vs Adopción Top 4 Tecnologías" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png');event.preventDefault();}">
-        <img src="05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png" alt="Gráfico de barras agrupadas: Solo 4 tecnologías superan el 20% de demanda (SQL 32,8%, AWS 30,0%, Python 28,4%, Azure 17,1%), con JavaScript en 14,9%.">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Demanda vs Adopción Top 3 Tecnologías" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png');event.preventDefault();}">
+        <img src="05_Fase_Compartir_Share/visualizaciones/01_demanda_vs_adopcion_top5_p1.png" alt="Gráfico de barras agrupadas: Solo 3 tecnologías superan el 20% de demanda (SQL 32,8%, AWS 30,0% y Python 28,4%); Azure queda en 17,1% y JavaScript en 14,9%.">
       </div>
       <div class="vis-content">
         <span class="vis-tag">Pregunta de Investigación 1 de 4 • Demanda vs. Adopción</span>
@@ -2680,7 +2680,7 @@
       </div>
       <div class="vis-content">
         <span class="vis-tag">Profundización Analítica Q11 (Derivada de P1) • Volumen vs. Retorno Salarial</span>
-        <h3 class="vis-title">Primas Salariales Cloud: AWS, Azure y Google Cloud</h3>
+        <h3 class="vis-title">Cloud y Salario: AWS, Azure y Google Cloud</h3>
 
         <div class="vis-qa-box">
           <div class="vis-qa-item">
@@ -2689,24 +2689,24 @@
           </div>
           <div class="vis-qa-item">
             <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
-            <span class="vis-qa-text a-text">SQL es el requisito más masivo y marca una mediana base ($2.250 USD). En posiciones Senior, las plataformas Cloud registran medianas superiores: AWS ($3.750 USD, +$600 USD/mes) frente a posiciones sin Cloud ($3.000 USD).</span>
+            <span class="vis-qa-text a-text">SQL es el requisito más masivo (32,8% de las ofertas de Get on Board). En cargos Senior, las vacantes que piden Cloud tienen una mediana de $3.750 USD frente a $3.000 USD sin Cloud (diferencia observada de +$750 USD), pero no es concluyente: los IC 95% de AWS, Azure y Google Cloud frente a SQL incluyen el 0.</span>
           </div>
         </div>
 
         <p class="vis-desc">
-          SQL ofrece el mayor volumen de entrada con una mediana de $2.250 USD en GOB. En contraste, las tecnologías Cloud presentan medianas de $3.750 USD en posiciones Senior en Get on Board.
+          SQL concentra el mayor volumen de ofertas en Get on Board. En cargos Senior, las vacantes con Cloud muestran una mediana mayor ($3.750 USD), aunque la diferencia no es estadísticamente concluyente.
         </p>
         <div class="vis-takeaway">
-          <strong>💡 Decisión de Negocio:</strong> Posicionar certificaciones Cloud como el factor de especialización prioritario para egresados y profesionales en transición.
+          <strong>💡 Decisión de Negocio:</strong> Presentar Cloud como una especialización complementaria a SQL, sin prometer un salario mayor: con estos datos la diferencia no es concluyente.
         </div>
         <div class="vis-metrics">
           <div class="vis-metric-box">
             <strong>+$600 USD</strong>
-            Prima mensual AWS vs. SQL
+            Diferencia de mediana AWS vs. SQL en Get on Board (todos los niveles)
           </div>
           <div class="vis-metric-box">
             <strong>+31,5%</strong>
-            Incremento en mediana Cloud
+            Diferencia de mediana AWS vs. SQL en Stack Overflow LatAm
           </div>
         </div>
       </div>
@@ -2725,7 +2725,7 @@
         <div class="vis-qa-box">
           <div class="vis-qa-item">
             <span class="vis-qa-label q">❓ Pregunta de Negocio:</span>
-            <span class="vis-qa-text q-text">¿Cómo varía la demanda técnica entre ofertas orientadas al mercado chileno versus vacantes de alcance remoto internacional?</span>
+            <span class="vis-qa-text q-text">¿Cómo varía la demanda técnica entre ofertas orientadas al mercado chileno versus vacantes remotas sin país declarado?</span>
           </div>
           <div class="vis-qa-item">
             <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
@@ -2734,7 +2734,7 @@
         </div>
 
         <p class="vis-desc">
-          El mapa de calor de 15 filas x 5 segmentos independientes (sin suma cruzada) revela que los perfiles internacionales exigen una especialización temprana en infraestructura cloud, mientras que el mercado doméstico mantiene su anclaje en analítica relacional y desarrollo backend tradicional.
+          El mapa de calor compara la demanda de cada tecnología por segmento y fuente, sin sumar entre segmentos, para ver qué pide cada mercado.
         </p>
         <div class="vis-takeaway">
           <strong>💡 Decisión de Negocio:</strong> Segmentar las rutas formativas según la aspiración laboral del estudiante (desarrollo doméstico vs. exportación de servicios remotos).
@@ -2773,7 +2773,7 @@
         </div>
 
         <p class="vis-desc">
-          En Get on Board, el paso de Semi-Senior ($2.250 USD, N=97) a Senior ($3.200 USD, N=113) representa un aumento de 42,2% en la mediana salarial. Ambos segmentos cumplen rigurosamente N >= 30, permitiendo fijar bandas salariales confiables: Semi-Sr $2.000–$3.038 USD y Senior $2.150–$5.000 USD. En Stack Overflow LatAm, la progresión acumulada es de +566,6%.
+          En Get on Board, el paso de Semi-Senior ($2.250 USD, N=97) a Senior ($3.200 USD, N=113) representa un aumento de 42,2% en la mediana salarial. Ambos segmentos cumplen N >= 30. Las bandas p25–p75 en Chile Local son: Semi-Sr $2.000–$2.500 USD y Senior $2.150–$3.675 USD. En Stack Overflow LatAm, la progresión acumulada es de +566,6%.
         </p>
         <div class="vis-takeaway">
           <strong>💡 Decisión de Negocio:</strong> Publicar bandas cuartílicas automáticas exclusivamente para Semi-Senior y Senior, tratando Junior (N=17) y Lead (N=7) como tramos cualitativos sujetos a exploración futura.
@@ -2794,28 +2794,28 @@
     <!-- VISUAL 5 -->
     <div class="vis-card">
       <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Modalidades vs INE y Causalidad" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png');event.preventDefault();}">
-        <img src="05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png" alt="Gráfico comparativo de modalidades y composición: Remoto Local alcanza mediana de $3.750 USD con 68,9% de cargos Senior o Lead, demostrando sesgo de composición.">
+        <img src="05_Fase_Compartir_Share/visualizaciones/05_modalidades_vs_ine_y_causalidad_p3_q12.png" alt="Gráfico comparativo de modalidades y composición: Remoto Local alcanza mediana de $3.750 USD con 68,9% de cargos Senior o Lead; el panel B muestra la composición por seniority de cada modalidad.">
       </div>
       <div class="vis-content">
         <span class="vis-tag">Pregunta de Investigación 3 de 4 • Modalidad y Correlación vs. Causalidad</span>
-        <h3 class="vis-title">La Paradoja del Remoto Local: Sesgo de Composición</h3>
+        <h3 class="vis-title">La Paradoja del Remoto Local: Composición por Seniority</h3>
 
         <div class="vis-qa-box">
           <div class="vis-qa-item">
             <span class="vis-qa-label q">❓ Pregunta de Negocio (P3):</span>
-            <span class="vis-qa-text q-text">¿El trabajo remoto ofrece salarios más altos por sí mismo, o existe un sesgo de composición de cargos que explica la diferencia salarial?</span>
+            <span class="vis-qa-text q-text">¿El trabajo remoto ofrece salarios más altos por sí mismo, o la diferencia cambia al comparar cargos del mismo nivel?</span>
           </div>
           <div class="vis-qa-item">
             <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
-            <span class="vis-qa-text a-text">Correlación no implica causalidad. La mediana de ofertas remotas sin país declarado es superior a la de Chile Local ($2.250 USD). Esta diferencia refleja un sesgo de composición: las ofertas remotas exigen mayoritariamente cargos Senior o Lead (68,9% en Remoto Local). Controlando por nivel, la diferencia entre Senior Remoto ($3.750) y Senior Local ($2.750) es de +$1.000 USD (IC 95% bootstrap: [$500, $1.550], concluyente).</span>
+            <span class="vis-qa-text a-text">Correlación no implica causalidad. La mediana de ofertas remotas sin país declarado supera a la de Chile Local en +$1.025 USD (+45,6%). Las ofertas remotas exigen más cargos Senior o Lead (68,9% en Remoto Local), pero eso no explica toda la diferencia: controlando por nivel, la diferencia entre Senior Remoto ($3.750) y Senior Local ($2.750) es de +$1.000 USD (IC 95% bootstrap: [$500, $1.550], concluyente).</span>
           </div>
         </div>
 
         <p class="vis-desc">
-          Las vacantes de 'Remoto Local' en Get on Board registran una mediana de $3.750 USD/mes. El análisis sugiere que la brecha frente a posiciones presenciales ($2.250 USD) responde a la composición del cargo: el 68,9% exige perfiles Senior o Lead. Controlando por nivel de experiencia, la diferencia para perfiles Senior es de +$1.000 USD (IC 95% bootstrap: [$500, $1.550]), mientras que en perfiles Semi-Senior la diferencia entre Remoto ($2.000) y Chile Local ($2.250) es de $-250 USD y no es concluyente (IC 95% incluye el cero).
+          Las vacantes de 'Remoto Local' en Get on Board registran una mediana de $3.750 USD/mes. La brecha frente a posiciones presenciales ($2.250 USD) coincide con más cargos Senior o Lead: el 68,9% exige perfiles Senior o Lead. Controlando por nivel de experiencia, la diferencia para perfiles Senior es de +$1.000 USD (IC 95% bootstrap: [$500, $1.550]), mientras que en perfiles Semi-Senior la diferencia entre Remoto ($2.000) y Chile Local ($2.250) es de $-250 USD y no es concluyente (IC 95% incluye el cero).
         </p>
         <div class="vis-takeaway">
-          <strong>💡 Principio Ético del Curso 6:</strong> Evitar recomendar el teletrabajo como garantía mágica de mayor sueldo; el salario está anclado a la vacantes remotas sin país declarado de alto seniority.
+          <strong>💡 Principio Ético del Curso 6:</strong> Evitar recomendar el teletrabajo como garantía mágica de mayor sueldo; la mayor mediana remota se observa en ofertas sin país declarado con más cargos Senior y Lead.
         </div>
         <div class="vis-metrics">
           <div class="vis-metric-box">
@@ -2862,8 +2862,8 @@
             Mediana Tech Chile (N=46)
           </div>
           <div class="vis-metric-box">
-            <strong>+45,6%</strong>
-            Prima Grandes Empresas en LatAm
+            <strong>$6.416 USD</strong>
+            Mayor mediana LatAm con N >= 30: Uruguay (N=36)
           </div>
         </div>
       </div>
@@ -2871,12 +2871,12 @@
 
     <!-- VISUAL 7 -->
     <div class="vis-card">
-      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Evolución Salarial Tech Global y Tamaño de Empresa (2020-2024)" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png');event.preventDefault();}">
+      <div class="vis-media" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Ampliar visualización: Evolución Salarial Tech en EE.UU. y Tamaño de Empresa (2020-2024)" onclick="openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png')" onkeydown="if(event.key==='Enter'||event.key===' '){openModal('05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png');event.preventDefault();}">
         <img src="05_Fase_Compartir_Share/visualizaciones/07_evolucion_dss_2020_2024_p4.png" alt="Gráfico de líneas temporales: Data Science Salaries para residentes en EE.UU. 2020-2024, con 2020 en trazo punteado por N menor a 30 y 2024 parcial.">
       </div>
       <div class="vis-content">
-        <span class="vis-tag">Referencia Internacional • Benchmark Histórico Global 2020–2024</span>
-        <h3 class="vis-title">Evolución Salarial Tech Global y Tamaño de Empresa</h3>
+        <span class="vis-tag">Referencia Internacional • Benchmark Histórico EE.UU. 2020–2024</span>
+        <h3 class="vis-title">Evolución Salarial Tech en EE.UU. y Tamaño de Empresa</h3>
 
         <div class="vis-qa-box">
           <div class="vis-qa-item">
@@ -2885,7 +2885,7 @@
           </div>
           <div class="vis-qa-item">
             <span class="vis-qa-label a">💡 Hallazgo & Respuesta Directa:</span>
-            <span class="vis-qa-text a-text">Crecimiento compuesto sostenido post-2020 en roles de ciencia de datos, alcanzando estabilidad en 2024 con medianas anuales de $138.000 USD (~$11.500 USD/mes) lideradas por empresas medianas (M) y corporaciones (L).</span>
+            <span class="vis-qa-text a-text">En EE.UU., la mediana anual 2024 de los roles de ciencia de datos es de $140.081 USD (~$11.673 USD/mes).</span>
           </div>
         </div>
 
@@ -2897,8 +2897,8 @@
         </div>
         <div class="vis-metrics">
           <div class="vis-metric-box">
-            <strong>$11.500 USD</strong>
-            Mediana Mensual Global 2024 (Data Science)
+            <strong>$11.673 USD</strong>
+            Mediana mensual 2024 en EE.UU. (Data Science Salaries)
           </div>
           <div class="vis-metric-box">
             <strong>5.305</strong>
@@ -2946,7 +2946,7 @@
             <td class="td-highlight">2</td>
             <td>
               <strong>Tablero de Transparencia Salarial Basado en Cuartiles p25–p75:</strong><br>
-              Publicar bandas salariales objetivas automáticas en la plataforma de reclutamiento para cargos Semi-Senior ($2.000–$3.038 USD) y Senior ($2.150–$5.000 USD).
+              Publicar bandas salariales objetivas automáticas en la plataforma de reclutamiento para cargos en Chile Local: Semi-Senior ($2.000–$2.500 USD) y Senior ($2.150–$3.675 USD).
             </td>
             <td>Líder de Producto Digital & Equipo de Inteligencia Salarial</td>
             <td><span class="badge-status">Mes 2 (60 Días)</span></td>
@@ -2955,8 +2955,8 @@
           <tr>
             <td class="td-highlight">3</td>
             <td>
-              <strong>Servicio de Asesoría en Contratación Remota Internacional:</strong><br>
-              Capacitar a clientes corporativos en modelos de compensación ajustados por alcance (Chile Local vs. Remoto sin país declarado), transparentando que la prima remota responde a seniority internacional.
+              <strong>Servicio de Asesoría en Contratación Remota:</strong><br>
+              Capacitar a clientes corporativos en modelos de compensación ajustados por alcance (Chile Local vs. Remoto sin país declarado), transparentando cuánto cambia la diferencia remota al comparar dentro de cargos Senior.
             </td>
             <td>Gerencia de Consultoría RRHH & Alianzas Corporativas</td>
             <td><span class="badge-status">Mes 3 (90 Días)</span></td>
@@ -2972,7 +2972,7 @@
         <span>🎙 Discurso de Presentación Profesional (Elevator Pitch de 20 Segundos • Cursos 8 y 9)</span>
       </div>
       <p class="pitch-quote">
-        "Soy Manuel Yáñez Orellana, analista de datos certificado con el Certificado Profesional de Google Data Analytics (Google, 2026). En mi proyecto final analicé más de 72.000 registros de Get on Board, Stack Overflow, Data Science Salaries y el INE usando SQL y Python bajo la regla muestral N >= 30. Identifiqué las 4 tecnologías líderes (SQL, AWS, Python, Azure), la estructura salarial por seniority y alcance, traduciéndolo en bandas p25–p75 y un plan curricular accionable a 90 días."
+        "Soy Manuel Yáñez Orellana, analista de datos certificado con el Certificado Profesional de Google Data Analytics (Google, 2026). En mi proyecto final analicé 72.797 registros de Get on Board, Stack Overflow, Data Science Salaries y el INE usando SQL y Python bajo la regla muestral N >= 30. Identifiqué las tecnologías que superan la meta del 20% de demanda (SQL, AWS y Python), la estructura salarial por seniority y alcance, traduciéndolo en bandas p25–p75 y un plan curricular accionable a 90 días."
       </p>
       <div class="pitch-author">
         — Manuel Yáñez Orellana • Analista de Datos
@@ -3104,13 +3104,13 @@
       </a>
 
       <!-- PACK DATASETS LIMPIOS KAGGLE -->
-      <a href="descargas/Datos_Limpios_Completos_Kaggle.zip?v=20261114_v2" download class="hub-card">
+      <a href="descargas/Datos_Limpios_Completos_GitHub.zip?v=20261114_v2" download class="hub-card">
         <div>
           <div class="hub-icon">📦</div>
           <h3 class="hub-name">Pack de Datasets Limpios (.zip)</h3>
-          <p class="hub-desc">Cuaderno y dataset en Kaggle: pendientes de publicación (preparado en descargas/Datos_Limpios_Completos_Kaggle.zip).</p>
+          <p class="hub-desc">Filas limpias de las 4 fuentes para reproducir el análisis desde GitHub. A Kaggle solo va el dataset agregado de Get on Board.</p>
         </div>
-        <div class="hub-link">Descargar ZIP (305 KB) →</div>
+        <div class="hub-link">Descargar ZIP →</div>
       </a>
 
       <!-- TABLEAU EXCEL -->
@@ -3160,7 +3160,7 @@
           <h3 class="hub-name">679 Vacantes Limpias (CSV)</h3>
           <p class="hub-desc">Dataset procesado de Get on Board 2026 con país, modalidad, categoría, nivel de seniority y rangos salariales.</p>
         </div>
-        <div class="hub-link">Descargar CSV (103 KB) →</div>
+        <div class="hub-link">Descargar CSV →</div>
       </a>
 
       <a href="descargas/Matriz_TLC_19_Paises_LatAm.csv?v=20261114_v2" download class="hub-card">
@@ -3169,16 +3169,16 @@
           <h3 class="hub-name">Matriz TLC 19 Países LatAm (CSV)</h3>
           <p class="hub-desc">Tabla de representatividad estadística (N ≥ 30), medianas, cuartiles p25–p75 y márgenes de error por país.</p>
         </div>
-        <div class="hub-link">Descargar CSV (2,3 KB) →</div>
+        <div class="hub-link">Descargar CSV →</div>
       </a>
 
       <a href="descargas/Bandas_Salariales_y_Saltos_Seniority.csv?v=20261114_v2" download class="hub-card">
         <div>
           <div class="hub-icon">📈</div>
           <h3 class="hub-name">Bandas Salariales y Saltos % (CSV)</h3>
-          <p class="hub-desc">Distribución no paramétrica (p25, mediana, p75) y cálculo de salto salarial (42,2% en Get on Board Total. Por su parte, en Chile Local es 22,2%) en el mercado.</p>
+          <p class="hub-desc">Distribución no paramétrica (p25, mediana, p75) y cálculo del salto salarial de Semi-Senior a Senior: 42,2% en Get on Board Total. En Chile Local el salto es de 22,2%.</p>
         </div>
-        <div class="hub-link">Descargar CSV (1,9 KB) →</div>
+        <div class="hub-link">Descargar CSV →</div>
       </a>
 
       <a href="descargas/Matriz_Validacion_Integridad_Calidad.csv?v=20261114_v2" download class="hub-card">
@@ -3187,7 +3187,16 @@
           <h3 class="hub-name">Matriz de Validación & Privacidad (CSV)</h3>
           <p class="hub-desc">Las 6 validaciones del Curso 4 de Google, reglas relacionales 1:N y protocolo de anonimización ética.</p>
         </div>
-        <div class="hub-link">Descargar CSV (3,1 KB) →</div>
+        <div class="hub-link">Descargar CSV →</div>
+      </a>
+
+      <a href="descargas/LEEME_Celdas_Vacias.md" download class="hub-card">
+        <div>
+          <div class="hub-icon">🔎</div>
+          <h3 class="hub-name">Guía de celdas vacías (Markdown)</h3>
+          <p class="hub-desc">Qué significa cada celda vacía de los archivos descargables, del Excel de Tableau (donde aparecen como NULL) y del dataset de Kaggle.</p>
+        </div>
+        <div class="hub-link">Descargar guía →</div>
       </a>
 
       <a href="descargas/StackOverflow_LatAm_19_Paises_2024.csv?v=20261114_v2" download class="hub-card">
@@ -3196,7 +3205,7 @@
           <h3 class="hub-name">Stack Overflow LatAm 2024 (CSV)</h3>
           <p class="hub-desc">Dataset con 3.074 desarrolladores encuestados en los 19 países de la región con variables de salarios y tecnologías.</p>
         </div>
-        <div class="hub-link">Descargar CSV (549 KB) →</div>
+        <div class="hub-link">Descargar CSV →</div>
       </a>
 
       <a href="descargas/Explorador_Datasets_Consolidados.json?v=20261114_v2" download class="hub-card">
@@ -3205,7 +3214,7 @@
           <h3 class="hub-name">Datasets Consolidados (JSON)</h3>
           <p class="hub-desc">Estructura unificada de los 4 conjuntos de datos del explorador interactivo para desarrollo o reanálisis directo.</p>
         </div>
-        <div class="hub-link">Descargar JSON (214 KB) →</div>
+        <div class="hub-link">Descargar JSON →</div>
       </a>
     </div>
   </section>
@@ -3292,7 +3301,7 @@
               Contactar por Email (jmryanez@gmail.com)
             </a></li>
         <li><span style="color: var(--text-muted);">Ubicación: Santiago, Chile</span></li>
-        <li><a href="CHANGELOG.md" target="_blank" rel="noopener noreferrer">Registro de Cambios (Changelog v1.12.1)</a></li>
+        <li><a href="CHANGELOG.md" target="_blank" rel="noopener noreferrer">Registro de Cambios (Changelog v1.13.8)</a></li>
       </ul>
       <p style="margin-bottom: 0.5rem; color: #FFF; font-weight: 600;">
         Caso Práctico • Certificado Profesional de Análisis de Datos de Google

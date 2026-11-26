@@ -1,0 +1,514 @@
+{
+  "_explicacion": "Registro único de las celdas vacías de los datos publicados. Para cada columna con celdas vacías dice qué significan y en qué filas ocurren (condición sobre otras columnas de la misma fila, con la tabla leída como texto: empieza_con, no_empieza_con, igual_a, menor_que, combinadas con todas o alguna; null cuando ninguna columna publicada permite comprobarla). El script del Excel de Tableau lo escribe en la hoja LEEME_Poblaciones; el script de descargas lo agrega a la descripción de cada columna en Kaggle y escribe descargas/LEEME_Celdas_Vacias.md para los archivos de GitHub. Un mismo nombre de archivo tiene las mismas columnas en descargas/, en el zip de GitHub y en Kaggle. Si aparece una columna con celdas vacías que no esté aquí, los dos scripts se detienen y el validador externo (R37) rechaza.",
+  "encabezado_tableau": "Celdas vacías: Tableau las muestra como NULL. No son datos perdidos: cada columna con celdas vacías tiene su motivo, explicado a continuación por hoja y columna.",
+  "numero_regla_tableau": "6",
+  "tableau": {
+    "P1_Tecnologias_Largo": {
+      "moe_pp": {
+        "condicion": {
+          "columna": "poblacion",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board: es un conteo de las ofertas de Get on Board en el alcance del estudio al corte, no una muestra de encuesta, así que no lleva margen de error muestral."
+      }
+    },
+    "P2_Experiencia": {
+      "seniority_nivel": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "no_empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Stack Overflow y Data Science Salaries. Cada fuente guarda su experiencia en su propia columna: Get on Board en seniority_nivel, Stack Overflow en tramo_experiencia y Data Science Salaries en experiencia_es."
+      },
+      "tramo_experiencia": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "no_empieza_con",
+          "valor": "Stack Overflow"
+        },
+        "texto": "vacía en las filas de Get on Board y Data Science Salaries, porque solo Stack Overflow usa tramos de años de experiencia."
+      },
+      "experiencia_es": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "no_empieza_con",
+          "valor": "Data Science"
+        },
+        "texto": "vacía en las filas de Get on Board y Stack Overflow, porque solo Data Science Salaries usa estos niveles."
+      },
+      "min_usd": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board: no se publican mínimos para no exponer ofertas individuales."
+      },
+      "max_usd": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board: no se publican máximos para no exponer ofertas individuales."
+      }
+    },
+    "Q11_Tech_vs_Salario": {
+      "min_usd": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board: no se publican mínimos para no exponer ofertas individuales."
+      },
+      "max_usd": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board: no se publican máximos para no exponer ofertas individuales."
+      },
+      "gob_n_ofertas": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Stack Overflow"
+        },
+        "texto": "vacía en las filas de Stack Overflow, porque es un dato de Get on Board."
+      },
+      "pct_demanda_gob_total": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Stack Overflow"
+        },
+        "texto": "vacía en las filas de Stack Overflow, porque es un dato de Get on Board."
+      },
+      "so_n_latam": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board, porque es un dato de Stack Overflow."
+      },
+      "pct_adopcion_latam": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Get on Board"
+        },
+        "texto": "vacía en las filas de Get on Board, porque es un dato de Stack Overflow."
+      }
+    },
+    "Q13_Categorias_GOB": {
+      "media_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "mediana_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "p25_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "p75_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "amplitud_p25_p75_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "mediana_clp_ref": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      },
+      "media_clp_ref": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "vacía en las categorías con menos de 15 ofertas con sueldo válido: de esos grupos solo se publica el N."
+      }
+    },
+    "Mapa_LatAm_19_Paises": {
+      "ic95_mediana_inf_usd": {
+        "condicion": {
+          "columna": "cumple_n30",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "vacía en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza."
+      },
+      "ic95_mediana_sup_usd": {
+        "condicion": {
+          "columna": "cumple_n30",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "vacía en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza."
+      }
+    }
+  },
+  "archivos": {
+    "Matriz_TLC_19_Paises_LatAm.csv": {
+      "ic95_mediana_inf_usd": {
+        "condicion": {
+          "columna": "cumple_n30",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza."
+      },
+      "ic95_mediana_sup_usd": {
+        "condicion": {
+          "columna": "cumple_n30",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza."
+      }
+    },
+    "StackOverflow_LatAm_2024_20261111_v01_clean.csv": {
+      "years_code_pro_num": {
+        "condicion": null,
+        "texto": "Vacío cuando la encuesta no trae años de experiencia profesional (YearsCodePro sin respuesta)."
+      },
+      "salary_yearly_usd_raw": {
+        "condicion": {
+          "todas": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "False"
+            },
+            {
+              "columna": "motivo_exclusion_salario",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando la encuesta no trae la remuneración anual convertida a USD (ConvertedCompYearly): la persona no la declaró o Stack Overflow no la convirtió."
+      },
+      "salary_yearly_usd_clean": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_usd": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_clp_ref": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "motivo_exclusion_salario": {
+        "condicion": {
+          "alguna": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "True"
+            },
+            {
+              "columna": "salary_yearly_usd_raw",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando el salario es válido o la remuneración no viene convertida a USD en la encuesta: solo se llena cuando un salario se anuló."
+      }
+    },
+    "gob_agregado_bandas_chile_local.csv": {
+      "media_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "mediana_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "p25_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "p75_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "amplitud_p25_p75_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "mediana_clp_ref": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      },
+      "media_clp_ref": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 15
+        },
+        "texto": "Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N."
+      }
+    },
+    "gob_agregado_modalidad_vs_ine.csv": {
+      "nota": {
+        "condicion": {
+          "columna": "fuente",
+          "operador": "empieza_con",
+          "valor": "Stack Overflow"
+        },
+        "texto": "Vacío en las filas de Stack Overflow, porque la nota se refiere solo a Get on Board."
+      }
+    },
+    "StackOverflow_LatAm_19_Paises_2024.csv": {
+      "years_code_pro_num": {
+        "condicion": null,
+        "texto": "Vacío cuando la encuesta no trae años de experiencia profesional (YearsCodePro sin respuesta)."
+      },
+      "salary_yearly_usd_raw": {
+        "condicion": {
+          "todas": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "False"
+            },
+            {
+              "columna": "motivo_exclusion_salario",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando la encuesta no trae la remuneración anual convertida a USD (ConvertedCompYearly): la persona no la declaró o Stack Overflow no la convirtió."
+      },
+      "salary_yearly_usd_clean": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_usd": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_clp_ref": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "motivo_exclusion_salario": {
+        "condicion": {
+          "alguna": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "True"
+            },
+            {
+              "columna": "salary_yearly_usd_raw",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando el salario es válido o la remuneración no viene convertida a USD en la encuesta: solo se llena cuando un salario se anuló."
+      }
+    },
+    "Bandas_Salariales_y_Saltos_Seniority.csv": {
+      "ic95_mediana_inf_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 5
+        },
+        "texto": "Vacío en los grupos con menos de 5 salarios válidos: con tan pocos datos no se calcula intervalo de confianza."
+      },
+      "ic95_mediana_sup_usd": {
+        "condicion": {
+          "columna": "n",
+          "operador": "menor_que",
+          "valor": 5
+        },
+        "texto": "Vacío en los grupos con menos de 5 salarios válidos: con tan pocos datos no se calcula intervalo de confianza."
+      }
+    },
+    "GetOnBoard_Vacantes_Auditadas_679.csv": {
+      "sal_usd": {
+        "condicion": null,
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló en la limpieza."
+      },
+      "sal_clp": {
+        "condicion": null,
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló en la limpieza."
+      }
+    },
+    "GetOnBoard_Vacantes_2026_20261111_v01_clean.csv": {
+      "min_salary_usd_raw": {
+        "condicion": {
+          "todas": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "False"
+            },
+            {
+              "columna": "motivo_exclusion_salario",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando la oferta no publica sueldo."
+      },
+      "max_salary_usd_raw": {
+        "condicion": {
+          "todas": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "False"
+            },
+            {
+              "columna": "motivo_exclusion_salario",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando la oferta no publica sueldo."
+      },
+      "min_salary_usd_clean": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "max_salary_usd_clean": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_usd": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "salario_mensual_clp_ref": {
+        "condicion": {
+          "columna": "salario_valido_flag",
+          "operador": "igual_a",
+          "valor": "False"
+        },
+        "texto": "Vacío cuando la oferta no tiene sueldo válido: no lo publica o se anuló (el motivo está en motivo_exclusion_salario)."
+      },
+      "motivo_exclusion_salario": {
+        "condicion": {
+          "alguna": [
+            {
+              "columna": "salario_valido_flag",
+              "operador": "igual_a",
+              "valor": "True"
+            },
+            {
+              "columna": "min_salary_usd_raw",
+              "operador": "igual_a",
+              "valor": ""
+            }
+          ]
+        },
+        "texto": "Vacío cuando el sueldo es válido o no se publica: solo se llena cuando un sueldo publicado se anuló."
+      }
+    }
+  }
+}
