@@ -1,7 +1,7 @@
 {
   "cifras_oficiales_resumen": {
     "meta_fecha_estudio": "2026-11-22",
-    "meta_version": "1.13.8",
+    "meta_version": "1.13.9",
     "dolar_observado_bcch": "$969,80",
     "gob_total_raw": "759",
     "gob_total_scope": "679",
@@ -241,8 +241,8 @@
     "so_venezuela_n": "33",
     "ic_senior_remoto_vs_local_ci95_inf": "$500",
     "ic_senior_remoto_vs_local_ci95_sup": "$1.550",
-    "ic_semi_remoto_vs_local_diff": "$-250 USD",
-    "ic_semi_remoto_vs_local_ci95_inf": "$-575",
+    "ic_semi_remoto_vs_local_diff": "-$250 USD",
+    "ic_semi_remoto_vs_local_ci95_inf": "-$575",
     "ic_semi_remoto_vs_local_ci95_sup": "$625",
     "gob_total_ofertas": "679",
     "gob_salarios_validos_total": "235",

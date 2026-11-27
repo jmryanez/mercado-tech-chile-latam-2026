@@ -34,6 +34,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from politica_publicacion import SENIOR_LEAD, RESTO, suprimir_n_menor  # noqa: E402
 import celdas_vacias  # noqa: E402
+from formato_dinero import dinero  # noqa: E402
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.patches import FancyBboxPatch
 
@@ -87,11 +88,7 @@ LISTA_TOP_META = ", ".join(_ITEMS_META[:-1]) + (" y " if len(_ITEMS_META) > 1 el
 def fmt_es_usd(val, decimals=0):
     if val is None or np.isnan(val):
         return ""
-    if decimals == 0:
-        s = f"${int(round(val)):,}"
-        return s.replace(",", ".")
-    s = f"${val:,.{decimals}f}"
-    return s.replace(",", "X").replace(".", ",").replace("X", ".")
+    return dinero(val, decimals)
 
 
 def fmt_es_pct(val, decimals=1):
@@ -99,7 +96,7 @@ def fmt_es_pct(val, decimals=1):
 
 
 def axis_fmt_usd(x, pos):
-    return f"${int(x):,}".replace(",", ".")
+    return dinero(int(x))
 
 
 def axis_fmt_pct(x, pos):
@@ -243,7 +240,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
     ax.axvline(20.0, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
     ax.axhline(med_gob_ref, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
     ax.text(20.5, 3250, f"Meta ≥ {META_STR}", color=GRAY_MID, fontsize=7.8)
-    ax.text(11.5, med_gob_ref + 40, f"Mediana ref.: ${int(med_gob_ref):,}".replace(",", "."), color=GRAY_MID, fontsize=7.8)
+    ax.text(11.5, med_gob_ref + 40, f"Mediana ref.: {dinero(int(med_gob_ref))}", color=GRAY_MID, fontsize=7.8)
 
     offsets_g = {
         "AWS": (0.8, 60, "left", "bottom"),
@@ -260,7 +257,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
         ax.text(
             r["pct_demanda_gob_total"] + dx,
             r["mediana_usd"] + dy,
-            f"{r['tecnologia']}\n(${int(r['mediana_usd']):,})".replace(",", "."),
+            f"{r['tecnologia']}\n({dinero(int(r['mediana_usd']))})",
             fontsize=7.8,
             fontweight="bold",
             color=GRAY_DARK,
@@ -297,7 +294,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
     ref_pct = 40.0  # línea guía visual del gráfico, no es un dato
     ax2.axvline(ref_pct, color=GRAY_MID, linestyle="--", linewidth=1.1, zorder=2)
     ax2.text(ref_pct + 0.5, 3050, f"Referencia {ref_pct:.0f}%", color=GRAY_MID, fontsize=7.8)
-    ax2.text(11.5, med_so_ref + 35, f"Mediana ref.: ${int(med_so_ref):,}".replace(",", "."), color=GRAY_MID, fontsize=7.8)
+    ax2.text(11.5, med_so_ref + 35, f"Mediana ref.: {dinero(int(med_so_ref))}", color=GRAY_MID, fontsize=7.8)
 
     offsets_s = {
         "AWS": (0.8, 50, "left", "bottom"),
@@ -314,7 +311,7 @@ def fig_02_matriz_volumen_vs_salario() -> Path:
         ax2.text(
             r["pct_adopcion_latam"] + dx,
             r["mediana_usd"] + dy,
-            f"{r['tecnologia']}\n(${int(r['mediana_usd']):,})".replace(",", "."),
+            f"{r['tecnologia']}\n({dinero(int(r['mediana_usd']))})",
             fontsize=7.8,
             fontweight="bold",
             color=GRAY_DARK,
@@ -431,7 +428,7 @@ def fig_04_bandas_experiencia() -> Path:
         ax.barh(idx, r["p75_usd"] - r["p25_usd"], left=r["p25_usd"], height=0.45, color=c_bar, alpha=0.35 if valid else 0.7, edgecolor=c_bar, linewidth=1.3, zorder=3)
         ax.scatter([r["mediana_usd"]], [idx], color=c_dot, s=90, zorder=5)
         tag = f"N={r['n']}" if valid else f"N={r['n']} (<30 explor.)"
-        ax.text(r["p75_usd"] + 85, idx, f"Med: ${int(r['mediana_usd']):,}\n({tag})".replace(",", "."), va="center", fontsize=8.3, color=NAVY if valid else GRAY_MID, fontweight="bold")
+        ax.text(r["p75_usd"] + 85, idx, f"Med: {dinero(int(r['mediana_usd']))}\n({tag})", va="center", fontsize=8.3, color=NAVY if valid else GRAY_MID, fontweight="bold")
     ax.set_yticks([0, 1, 2])
     ax.set_yticklabels(["Junior *", "Semi-Senior", "Senior"], fontsize=9.2, fontweight="bold", color=GRAY_DARK)
     ax.set_xlim(0, 5300)
@@ -450,7 +447,7 @@ def fig_04_bandas_experiencia() -> Path:
         ax2.text(
             r["p75_usd"] + 115,
             idx,
-            f"Med: ${r['mediana_usd']:,.0f}\n(N={r['n']})".replace(",", "."),
+            f"Med: {dinero(r['mediana_usd'])}\n(N={r['n']})",
             va="center",
             fontsize=8.2,
             color=NAVY,
@@ -461,7 +458,7 @@ def fig_04_bandas_experiencia() -> Path:
 
     cl_med = float(CIFRAS["so_chile_salario_mediano"]["val"])
     ax2.axvline(cl_med, color=ORANGE, linestyle="--", linewidth=1.5, zorder=4)
-    ax2.text(cl_med + 120, 1.48, f"Mediana Chile SO\n${cl_med:,.0f} (N={CIFRAS['so_chile_salarios_validos']['str']})".replace(",", "."), color=ORANGE, fontsize=8.3, fontweight="bold", zorder=6, bbox=dict(boxstyle="round,pad=0.25", facecolor="white", edgecolor="none", alpha=0.92))
+    ax2.text(cl_med + 120, 1.48, f"Mediana Chile SO\n{dinero(cl_med)} (N={CIFRAS['so_chile_salarios_validos']['str']})", color=ORANGE, fontsize=8.3, fontweight="bold", zorder=6, bbox=dict(boxstyle="round,pad=0.25", facecolor="white", edgecolor="none", alpha=0.92))
     ax2.set_yticks(range(4))
     ax2.set_yticklabels(so_order, fontsize=9.2, fontweight="bold", color=GRAY_DARK)
     ax2.set_xlim(0, 8000)
@@ -515,9 +512,9 @@ def fig_05_modalidades_y_causalidad() -> Path:
     cols = [x[2] for x in items]
     ax.barh(y, vals, color=cols, height=0.60, zorder=3)
     ax.axvline(ine_usd, color="#991B1B", linestyle="--", linewidth=1.6, zorder=4)
-    ax.text(ine_usd + 60, 6.72, f"INE ESI 2025 ref.: ${ine_usd:.0f} USD ({CIFRAS['ine_esi_mediana_clp']['str']})", color="#991B1B", fontsize=7.8, fontweight="bold")
+    ax.text(ine_usd + 60, 6.72, f"INE ESI 2025 ref.: {dinero(ine_usd)} USD ({CIFRAS['ine_esi_mediana_clp']['str']})", color="#991B1B", fontsize=7.8, fontweight="bold")
     for idx, (_, v, _) in enumerate(items):
-        ax.text(v + 70, idx, f"${v:,.0f}".replace(",", "."), va="center", fontsize=8.0, fontweight="bold", color=GRAY_DARK)
+        ax.text(v + 70, idx, dinero(v), va="center", fontsize=8.0, fontweight="bold", color=GRAY_DARK)
     ax.axhline(2.5, color=GRAY_LIGHT, linewidth=1.2, linestyle="-")
     ax.set_yticks(y)
     ax.set_yticklabels([x[0] for x in items], fontsize=8.4, fontweight="bold", color=GRAY_DARK)
@@ -627,7 +624,7 @@ def fig_06_latam_y_tamano_empresa() -> Path:
     ax.barh(range(len(paises)), paises["mediana_usd"], color=cols_p, height=0.6, zorder=3, xerr=xerr, capsize=3.5, error_kw=dict(ecolor=NAVY, lw=1.2, capthick=1.2))
     for i, r in paises.iterrows():
         offset_x = xerr[1][i] + 130
-        ax.text(r["mediana_usd"] + offset_x, i, f"${r['mediana_usd']:,.0f} (N={r['n']})".replace(",", "."), va="center", fontsize=8.0, fontweight="bold", color=ORANGE if r["pais"] == "Chile" else GRAY_DARK)
+        ax.text(r["mediana_usd"] + offset_x, i, f"{dinero(r['mediana_usd'])} (N={r['n']})", va="center", fontsize=8.0, fontweight="bold", color=ORANGE if r["pais"] == "Chile" else GRAY_DARK)
     ax.set_yticks(range(len(paises)))
     ax.set_yticklabels(paises["pais"], fontsize=9.2, fontweight="bold", color=GRAY_DARK)
     ax.set_xlim(0, 8200)
@@ -645,7 +642,7 @@ def fig_06_latam_y_tamano_empresa() -> Path:
         ax2.text(
             i,
             r["mediana_usd"] + 75,
-            f"${int(round(r['mediana_usd'])):,}\n(N={r['n']})".replace(",", "."),
+            f"{dinero(r['mediana_usd'])}\n(N={r['n']})",
             ha="center",
             va="bottom",
             fontsize=7.2,
@@ -716,7 +713,7 @@ def fig_07_evolucion_dss_2020_2024() -> Path:
         ax.text(
             yr,
             val + offsets_y[yr],
-            f"${val:,.0f}{tag_expl}".replace(",", "."),
+            f"{dinero(val)}{tag_expl}",
             ha="center",
             fontsize=8.5,
             fontweight="bold",
@@ -781,7 +778,7 @@ def generar_og_image() -> Path:
     # Tarjetas métricas
     kpis = [
         (f"SQL {CIFRAS['gob_sql_pct']['str']}", "Tecnología #1 GOB"),
-        (f"${int(CIFRAS['gob_senior_salario_mediano']['val']):,}".replace(",", "."), f"Senior Mediana (N={CIFRAS['gob_total_senior_mediana']['n']})"),
+        (dinero(int(CIFRAS['gob_senior_salario_mediano']['val'])), f"Senior Mediana (N={CIFRAS['gob_total_senior_mediana']['n']})"),
         (f"+{CIFRAS['gob_salto_senior_vs_semisenior_pct']['str']}", "Salto Seniority"),
         (f"N={CIFRAS['so_latam_salarios_validos']['str']}", "Salarios SO LatAm"),
     ]
@@ -1001,7 +998,7 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         cards = [
             ("TAREA EMPRESARIAL", f"Cuantificar demanda tech vigente en Get on Board ({CIFRAS['gob_total_scope']['str']} vacantes en alcance), adopción en Stack Overflow 2024 ({CIFRAS['so_latam_total']['str']} LatAm), serie DSS EE.UU. y línea base INE ESI 2025 para orientar mallas curriculares y calibrar bandas.", NAVY),
             ("HIPÓTESIS INICIAL", "El lenguaje #1 domina la empleabilidad base, pero las especializaciones Cloud y las ofertas remotas, con más cargos Senior, podrían explicar las diferencias salariales frente al mercado presencial local (hipótesis que el análisis contrasta).", BLUE),
-            ("MÉTRICAS Y CONTROL", f"• Meta #1: Tecnologías ≥ {META_STR} presencia.\n• Meta #2: Umbral N ≥ 30 (CLT, muestra suficiente).\n• Meta #3: Mediana USD y cuartiles p25–p75.\n• Referencia oficial BCCh: ${CIFRAS['dolar_observado_bcch']['val']:.2f} CLP/USD.", TEAL),
+            ("MÉTRICAS Y CONTROL", f"• Meta #1: Tecnologías ≥ {META_STR} presencia.\n• Meta #2: Umbral N ≥ 30 (CLT, muestra suficiente).\n• Meta #3: Mediana USD y cuartiles p25–p75.\n• Referencia oficial BCCh: {dinero(CIFRAS['dolar_observado_bcch']['val'], 2)} CLP/USD.", TEAL),
         ]
         for idx, (ctit, cbody, col) in enumerate(cards):
             x = 4 + idx * 31.5
@@ -1013,8 +1010,8 @@ def render_deck_ejecutivo_pdf(viz_paths: list[Path]) -> Path:
         kpis = [
             (f"{CIFRAS['gob_total_scope']['str']} / {CIFRAS['gob_salarios_validos']['str']}", "Vacantes GOB / Salarios válidos"),
             (f"{CIFRAS['so_latam_total']['str']} / {CIFRAS['so_latam_salarios_validos']['str']}", "Encuestados SO / Salarios válidos"),
-            (f"${int(CIFRAS['ine_mediana_clp']['val']):,} CLP".replace(",", "."), "Mediana Nacional INE ESI 2025"),
-            (f"${int(CIFRAS['gob_salario_mediano_total']['val']):,} USD".replace(",", "."), f"Mediana General GOB (N={CIFRAS['gob_salarios_validos']['val']})"),
+            (f"{dinero(int(CIFRAS['ine_mediana_clp']['val']))} CLP", "Mediana Nacional INE ESI 2025"),
+            (f"{dinero(int(CIFRAS['gob_salario_mediano_total']['val']))} USD", f"Mediana General GOB (N={CIFRAS['gob_salarios_validos']['val']})"),
         ]
         for idx, (kval, klbl) in enumerate(kpis):
             x = 4 + idx * 23.5

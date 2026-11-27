@@ -20,8 +20,13 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import sys
+
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+from formato_dinero import dinero  # noqa: E402
 
 # --- Configuración de rutas y constantes oficiales del SOW ---
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -247,7 +252,7 @@ def procesar_get_on_board() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
             if mid_val < GOB_SALARIO_MIN_MENSUAL_USD or mn_val < GOB_SALARIO_MIN_MENSUAL_USD:
                 stats["salarios_anulados"] += 1
                 motivo_excl = (
-                    f"Anulado por lógica de negocio/rango (<${GOB_SALARIO_MIN_MENSUAL_USD:g} USD/mes; publicado ${mn_val:g}-${mx_val:g})"
+                    f"Anulado por lógica de negocio/rango (<{dinero(GOB_SALARIO_MIN_MENSUAL_USD)} USD/mes; publicado {dinero(mn_val)}-{dinero(mx_val)})"
                 )
             else:
                 salario_valido = True
@@ -445,10 +450,10 @@ def procesar_stack_overflow() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
 
     motivos = np.where(
         mask_bajo,
-        f"Anulado (<${_fmt_miles(SO_SALARIO_MIN_ANUAL_USD)} USD/año: tasa horaria/mensual o dato inválido)",
+        f"Anulado (<{dinero(SO_SALARIO_MIN_ANUAL_USD)} USD/año: tasa horaria/mensual o dato inválido)",
         np.where(
             mask_alto,
-            f"Anulado (>${_fmt_miles(SO_SALARIO_MAX_ANUAL_USD)} USD/año: outlier multimillonario extremo)",
+            f"Anulado (>{dinero(SO_SALARIO_MAX_ANUAL_USD)} USD/año: outlier multimillonario extremo)",
             "",
         ),
     )
@@ -690,7 +695,7 @@ def ejecutar_6_validaciones(
         {
             "tipo": "6. Validación del código de aplicación",
             "estado": "VERIFICADO Y CONTENIDO",
-            "detalle": f"Detectadas debilidades de captura en origen: GOB permitió salarios libres <${GOB_SALARIO_MIN_MENSUAL_USD:g} ({gob_excl} casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios ({so_excl} casos en LatAm). Contenidos vía flags y anulación transparente.",
+            "detalle": f"Detectadas debilidades de captura en origen: GOB permitió salarios libres <{dinero(GOB_SALARIO_MIN_MENSUAL_USD)} ({gob_excl} casos) sin etiqueta bruto/líquido; SO permitió valores horarios/mensuales/multimillonarios ({so_excl} casos en LatAm). Contenidos vía flags y anulación transparente.",
         }
     )
     return validaciones

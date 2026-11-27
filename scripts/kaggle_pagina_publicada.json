@@ -1,0 +1,201 @@
+{
+  "_que_es": "Textos que muestra la página del dataset en Kaggle (descripción de cada archivo y de cada columna, en el orden del CSV). La API de Kaggle no los devuelve (la descarga de metadatos no trae las columnas) y en la ronda 14 la actualización por API no los cambió en la página: el auditor los cambia y los captura en la página (modo 'Edit file description', con todas las columnas a la vista). La regla R39 del validador exige que descargas/kaggle_dataset/dataset-metadata.json diga exactamente esto; si el diccionario o el registro de celdas vacías cambian, hay que actualizar la página y volver a capturarla.",
+  "capturado": "2026-11-26",
+  "sha256_captura": "36844f36ba8a139170e1587ec25d93a489d7e66332bcb03c4ca6ce801bdceed6",
+  "como_se_calcula_el_sha": "Huella sha256 de json.dumps({archivo: {'archivo': texto, 'cols': [textos en orden]}} con archivos en orden alfabético, ensure_ascii=False, separators=(',', ':'))",
+  "archivos": {
+    "DataScienceSalaries_2020_2024_20261111_v01_clean.csv": {
+      "archivo": "Salarios de roles de análisis y ciencia de datos 2020–2024 (ai-jobs.net, CC0), limpios y con etiquetas en español. En el estudio se usa solo Estados Unidos.",
+      "columnas": {
+        "work_year": "Año de reporte del salario en la encuesta internacional de ciencia de datos (entero). Población: profesionales analíticos globales.",
+        "job_title": "Cargo o rol laboral normalizado en ciencia de datos y analítica (texto). Población: profesionales analíticos globales.",
+        "experience_level": "Nivel de experiencia en la escala original: Entry-level, Mid-level, Senior-level o Executive-level (texto). Población: profesionales analíticos globales.",
+        "experiencia_es": "Nivel de experiencia homologado en español: Entry-level/Junior, Mid/Semi-Senior, Senior o Executive/Lead (texto). Población: profesionales analíticos globales.",
+        "employment_type": "Tipo de jornada o contrato: Full-time, Part-time, Contract o Freelance (texto). Población: profesionales analíticos globales.",
+        "work_models": "Modalidad de trabajo en la escala original: On-site, Remote o Hybrid (texto). Población: profesionales analíticos globales.",
+        "modalidad_es": "Modalidad de trabajo en español: Remoto, Presencial o Híbrido (texto). Población: profesionales analíticos globales.",
+        "employee_residence": "País de residencia de la persona empleada, nombre en inglés (texto). En el estudio se filtra United States. Población: profesionales analíticos globales.",
+        "company_location": "País donde está radicada la empresa contratante, nombre en inglés (texto). Población: empresas contratantes globales.",
+        "company_size": "Tamaño de la empresa contratante en la escala original: Small, Medium o Large (texto). Población: empresas contratantes globales.",
+        "tamano_es": "Tamaño de empresa en español: Pequeña (Small), Mediana (Medium) o Grande (Large) (texto). Población: empresas contratantes globales.",
+        "salario_mensual_clp_ref": "Salario mensual equivalente en pesos chilenos con el dólar observado BCCh del 2026-11-10 (CLP mensual, referencial). Población: profesionales analíticos globales.",
+        "salary_yearly_usd": "Salario bruto anual en dólares estadounidenses (USD anual). Población: profesionales analíticos globales.",
+        "salario_mensual_usd": "Salario bruto mensual en dólares: salario anual dividido por doce (USD mensual). Población: profesionales analíticos globales."
+      }
+    },
+    "INE_ESI_2025_ReferenciaNacional_20261111_v01_clean.csv": {
+      "archivo": "Ingreso laboral neto mensual de los ocupados en Chile (mediana y media) según la Encuesta Suplementaria de Ingresos 2025 del INE.",
+      "columnas": {
+        "fuente": "Institución que publica el dato: Instituto Nacional de Estadísticas de Chile (texto).",
+        "edicion": "Año de la edición de la Encuesta Suplementaria de Ingresos (entero).",
+        "fecha_publicacion": "Fecha de publicación oficial de los resultados por el INE (texto).",
+        "indicador": "Nombre del indicador de ingreso laboral publicado por el INE (texto). Población: personas ocupadas en Chile.",
+        "tipo_ingreso": "Tipo de ingreso medido: neto (líquido) mensual (texto). Si es mediana o media lo dice la columna indicador. Población: personas ocupadas en Chile.",
+        "monto_clp_mensual": "Ingreso laboral neto mensual en pesos chilenos según la ESI del INE (CLP mensual). Población: personas ocupadas en Chile.",
+        "url_oficial": "Enlace a la publicación oficial del INE de donde se tomó el dato (texto).",
+        "dolar_observado_20261110": "Dólar observado del Banco Central de Chile del 2026-11-10, usado para convertir montos (CLP por USD).",
+        "monto_usd_ref_20261110": "Ingreso neto mensual convertido a dólares con el dólar observado del 2026-11-10 (USD mensual, referencial). Población: personas ocupadas en Chile."
+      }
+    },
+    "Matriz_TLC_19_Paises_LatAm.csv": {
+      "archivo": "Tamaño de muestra por país (19 países de Latinoamérica, Stack Overflow 2024) e indicador de si cumple la regla práctica N ≥ 30.",
+      "columnas": {
+        "pais": "País de Latinoamérica, nombre en español (texto). Población: encuestados de Stack Overflow 2024 en 19 países.",
+        "iso3": "Código ISO de tres letras del país (texto).",
+        "n_total": "Cantidad total de encuestados del país en Stack Overflow 2024 (conteo de personas).",
+        "n_sal": "Cantidad de encuestados del país con salario válido (conteo de personas).",
+        "cumple_n30": "Indica si el país tiene al menos 30 salarios válidos, regla práctica usada en el estudio (booleano).",
+        "med_usd": "Mediana del salario mensual del país (USD mensual). Población: encuestados con salario válido.",
+        "p25_usd": "Percentil 25 del salario mensual del país (USD mensual). Población: encuestados con salario válido.",
+        "p75_usd": "Percentil 75 del salario mensual del país (USD mensual). Población: encuestados con salario válido.",
+        "iqr_usd": "Rango intercuartílico: percentil 75 menos percentil 25 (USD mensual). Población: encuestados con salario válido.",
+        "med_clp": "Mediana del salario mensual convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial).",
+        "ic95_mediana_inf_usd": "Límite inferior del intervalo bootstrap al 95% de la mediana del país (USD mensual). Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza.",
+        "ic95_mediana_sup_usd": "Límite superior del intervalo bootstrap al 95% de la mediana del país (USD mensual). Vacío en los países con menos de 30 salarios válidos (exploratorios): no se calcula intervalo de confianza.",
+        "tratamiento": "Tratamiento metodológico del país según su tamaño de muestra (texto)."
+      }
+    },
+    "StackOverflow_LatAm_2024_20261111_v01_clean.csv": {
+      "archivo": "Encuestados de 19 países de Latinoamérica (Stack Overflow Developer Survey 2024, ODbL) con salario mensual normalizado en USD y marca de salario válido.",
+      "columnas": {
+        "ResponseId": "Identificador de la respuesta en la Stack Overflow Developer Survey 2024 (entero).",
+        "pais": "País de residencia del encuestado, nombre en español (texto). Población: 19 países de Latinoamérica.",
+        "pais_raw": "País tal como aparece en la encuesta original, en inglés (texto).",
+        "es_chile": "Indica si el encuestado reside en Chile (booleano).",
+        "subregion": "Agrupación geográfica: Chile o Resto LatAm (texto).",
+        "empleo_raw": "Situación laboral tal como aparece en la encuesta original (texto).",
+        "modalidad_raw": "Modalidad de trabajo tal como aparece en la encuesta original (texto).",
+        "modalidad_grupo": "Modalidad de trabajo agrupada: Presencial, Remoto, Híbrido o Sin dato (texto).",
+        "years_code_pro_num": "Años de experiencia programando profesionalmente, en número (años). Vacío cuando la encuesta no trae años de experiencia profesional (YearsCodePro sin respuesta).",
+        "tramo_experiencia": "Tramo de experiencia profesional: 0-1 años (<2), 2-4 años, 5-9 años, 10+ años o Sin dato (texto).",
+        "org_size_detalle": "Tamaño de la organización en el rango original de la encuesta (texto).",
+        "org_size_grupo": "Tamaño de la organización agrupado: Pequeña (1-99), Mediana (100-999), Grande (1.000+) o Sin dato / NS-NR (texto).",
+        "salary_yearly_usd_raw": "Compensación anual en dólares tal como la convierte Stack Overflow, antes de la limpieza (USD anual). Vacío cuando la encuesta no trae la remuneración anual convertida a USD (ConvertedCompYearly): la persona no la declaró o Stack Overflow no la convirtió.",
+        "salary_yearly_usd_clean": "Compensación anual en dólares después de quitar valores fuera de rango (USD anual). Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+        "salario_mensual_usd": "Compensación mensual en dólares: anual limpia dividida por doce (USD mensual). Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+        "salario_mensual_clp_ref": "Compensación mensual convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial). Vacío cuando no hay salario válido: la remuneración no viene convertida a USD en la encuesta o se anuló (el motivo está en motivo_exclusion_salario).",
+        "salario_valido_flag": "Indica si el salario pasó los filtros de validez del estudio y se usa en los cálculos (booleano).",
+        "motivo_exclusion_salario": "Motivo por el que se anuló el salario y no se usa en los cálculos (texto). Vacío cuando el salario es válido o la remuneración no viene convertida a USD en la encuesta: solo se llena cuando un salario se anuló.",
+        "tiene_tecnologia_flag": "Indica si el encuestado declaró al menos una tecnología (booleano).",
+        "respondio_lenguaje": "Indica si respondió la pregunta de lenguajes de programación (booleano).",
+        "respondio_database": "Indica si respondió la pregunta de bases de datos (booleano).",
+        "respondio_platform": "Indica si respondió la pregunta de plataformas cloud (booleano)."
+      }
+    },
+    "StackOverflow_Tecnologias_2024_20261111_v01_clean.csv": {
+      "archivo": "Relación 1:N entre cada encuestado de Latinoamérica y las tecnologías que usa profesionalmente (Stack Overflow 2024).",
+      "columnas": {
+        "ResponseId": "Identificador de la respuesta; se une con StackOverflow_LatAm por esta columna (entero).",
+        "pais": "País de residencia del encuestado, nombre en español (texto).",
+        "es_chile": "Indica si el encuestado reside en Chile (booleano).",
+        "tipo_tecnologia": "Categoría de la tecnología: Lenguaje, Base de datos o Cloud (texto).",
+        "tecnologia": "Nombre normalizado de la tecnología que el encuestado usa profesionalmente (texto). Una fila por encuestado y tecnología.",
+        "tecnologia_raw": "Nombre de la tecnología tal como aparece en la encuesta original (texto)."
+      }
+    },
+    "gob_agregado_bandas_chile_local.csv": {
+      "archivo": "Bandas salariales (media, mediana, p25, p75) por nivel de seniority agrupado (Junior + Trainee, Semi-Senior, Senior + Lead) en ofertas Chile Local de Get on Board 2026. Los grupos con N < 15 publican solo su N; sin mínimos ni máximos.",
+      "columnas": {
+        "seniority_nivel": "Nivel de seniority agrupado exigido en la oferta: Junior + Trainee, Semi-Senior o Senior + Lead (texto). Población: ofertas Chile Local de Get on Board 2026.",
+        "n": "Cantidad de ofertas con sueldo válido en este nivel (conteo). Solo grupos con al menos cinco ofertas.",
+        "media_usd": "Media del salario mensual, calculada sobre el punto medio del rango publicado (USD mensual). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "mediana_usd": "Mediana del salario mensual, sobre el punto medio del rango publicado (USD mensual). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "p25_usd": "Percentil 25 del salario mensual (USD mensual). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "p75_usd": "Percentil 75 del salario mensual (USD mensual). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "amplitud_p25_p75_usd": "Percentil 75 menos percentil 25 (USD mensual). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "mediana_clp_ref": "Mediana convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "media_clp_ref": "Media convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial). Vacío en el grupo con menos de 15 ofertas con sueldo válido: de ese grupo solo se publica el N.",
+        "cumple_n30": "Indica si el grupo tiene al menos 30 ofertas, regla práctica del estudio (booleano).",
+        "fuente": "Fuente de los datos: Get on Board (texto).",
+        "nota": "Nota metodológica del agregado (texto)."
+      }
+    },
+    "gob_agregado_bandas_remoto_sin_pais.csv": {
+      "archivo": "Bandas salariales (media, mediana, p25, p75) por nivel de seniority agrupado (Junior + Trainee + Semi-Senior, Senior + Lead) en ofertas remotas sin país declarado de Get on Board 2026. Los grupos con N < 15 publican solo su N; sin mínimos ni máximos.",
+      "columnas": {
+        "seniority_nivel": "Nivel de seniority agrupado exigido en la oferta: Junior + Trainee + Semi-Senior o Senior + Lead (texto). Población: ofertas remotas sin país declarado de Get on Board 2026.",
+        "n": "Cantidad de ofertas con sueldo válido en este nivel (conteo). Solo grupos con al menos cinco ofertas.",
+        "media_usd": "Media del salario mensual, calculada sobre el punto medio del rango publicado (USD mensual).",
+        "mediana_usd": "Mediana del salario mensual, sobre el punto medio del rango publicado (USD mensual).",
+        "p25_usd": "Percentil 25 del salario mensual (USD mensual).",
+        "p75_usd": "Percentil 75 del salario mensual (USD mensual).",
+        "amplitud_p25_p75_usd": "Percentil 75 menos percentil 25 (USD mensual).",
+        "mediana_clp_ref": "Mediana convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial).",
+        "media_clp_ref": "Media convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial).",
+        "cumple_n30": "Indica si el grupo tiene al menos 30 ofertas, regla práctica del estudio (booleano).",
+        "fuente": "Fuente de los datos: Get on Board (texto).",
+        "nota": "Nota metodológica del agregado (texto)."
+      }
+    },
+    "gob_agregado_control_integridad.csv": {
+      "archivo": "Control de la relación 1:N oferta–tecnología: registros únicos, filas expandidas y efecto de contar duplicados en la media salarial.",
+      "columnas": {
+        "poblacion": "Población revisada: Get on Board 2026 (Chile/Remoto), que suma Chile Local y Remoto sin país, o Stack Overflow 2024 (LatAm 19), los 19 países de Latinoamérica (texto).",
+        "registros_unicos": "Cantidad de registros únicos de la población, una fila por oferta o por encuestado (conteo).",
+        "filas_expandidas_1aN": "Filas que resultan al unir cada registro con sus tecnologías en una relación 1 a N (conteo). Muestra cuánto se multiplica la tabla.",
+        "registros_sin_tecnologia_coalesce": "Registros sin ninguna tecnología declarada, que se conservan en la unión gracias a COALESCE (conteo).",
+        "media_con_duplicacion_join_1aN": "Media salarial que resultaría si se calculara sobre las filas expandidas por la unión 1 a N (USD mensual). Se muestra solo para evidenciar el sesgo por duplicación; no es la media válida."
+      }
+    },
+    "gob_agregado_ic_diferencias.csv": {
+      "archivo": "Intervalos bootstrap al 95% para diferencias de medianas salariales entre segmentos, con indicador de si la diferencia es concluyente.",
+      "columnas": {
+        "comparacion": "Par de grupos comparados, escrito como grupo A − grupo B; entre paréntesis va la fuente, SO LatAm (Stack Overflow 2024) o GOB (Get on Board 2026), y el nivel de seniority cuando la comparación se hace dentro de un nivel (texto).",
+        "diferencia_observada_usd": "Mediana salarial del grupo A menos mediana del grupo B, observada en la muestra (USD mensual).",
+        "ic95_inf_usd": "Límite inferior del intervalo de confianza bootstrap al 95% de la diferencia de medianas (USD mensual).",
+        "ic95_sup_usd": "Límite superior del intervalo de confianza bootstrap al 95% de la diferencia de medianas (USD mensual).",
+        "concluyente": "True si el intervalo al 95% no incluye el cero, es decir, si la diferencia es estadísticamente concluyente (booleano)."
+      }
+    },
+    "gob_agregado_modalidad.csv": {
+      "archivo": "Composición por seniority en 2 grupos (Senior + Lead; Junior + Trainee + Semi-Senior) y salario medio según modalidad de trabajo (presencial, híbrido, remoto) en Get on Board 2026.",
+      "columnas": {
+        "modalidad_grupo": "Modalidad de la oferta: Remoto Local, Remoto Total, Híbrido o Presencial (texto). Población: ofertas de Get on Board 2026 con salario válido.",
+        "n_salarios_validos": "Cantidad de ofertas de la modalidad con rango salarial válido (conteo). Es la base de los porcentajes de esta fila.",
+        "media_mensual_usd": "Media del salario mensual de la modalidad, sobre el punto medio del rango publicado (USD mensual).",
+        "pct_senior_lead": "Porcentaje de las ofertas de la modalidad que piden nivel Senior o Lead (porcentaje).",
+        "pct_junior_trainee_semi_senior": "Porcentaje de las ofertas de la modalidad que piden nivel Junior, Trainee o Semi-Senior (porcentaje). Suma 100 con pct_senior_lead.",
+        "pct_alcance_remoto_global": "Porcentaje de las ofertas de la modalidad que pertenecen al alcance Remoto sin país declarado (porcentaje): 100 en Remoto Local y Remoto Total, 0 en Híbrido y Presencial."
+      }
+    },
+    "gob_agregado_modalidad_vs_ine.csv": {
+      "archivo": "Medianas salariales por modalidad en Get on Board 2026 comparadas con la mediana nacional del INE ESI 2025 (comparación referencial: el INE es ingreso neto).",
+      "columnas": {
+        "segmento": "Segmento comparado: una modalidad o un alcance de Get on Board 2026, o una modalidad de Stack Overflow LatAm 2024 (texto). La columna fuente indica a cuál pertenece.",
+        "n": "Cantidad de registros con salario válido en el segmento: ofertas en Get on Board o encuestados en Stack Overflow (conteo).",
+        "media_usd": "Media del salario mensual del segmento (USD mensual). En Get on Board se usa el punto medio del rango publicado.",
+        "mediana_usd": "Mediana del salario mensual del segmento (USD mensual).",
+        "p25_usd": "Percentil 25 del salario mensual del segmento (USD mensual).",
+        "p75_usd": "Percentil 75 del salario mensual del segmento (USD mensual).",
+        "amplitud_p25_p75_usd": "Percentil 75 menos percentil 25 (USD mensual).",
+        "mediana_clp_ref": "Mediana convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial).",
+        "media_clp_ref": "Media convertida a pesos chilenos con el dólar observado del 2026-11-10 (CLP mensual, referencial).",
+        "cumple_n30": "Indica si el segmento tiene al menos 30 registros, regla práctica del estudio (booleano).",
+        "fuente": "Fuente y tipo de corte: Get on Board 2026 (Modalidad o Alcance) o Stack Overflow LatAm 2024 (Modalidad) (texto).",
+        "nota": "Nota metodológica del segmento (texto). Vacío en las filas de Stack Overflow, porque la nota se refiere solo a Get on Board.",
+        "ratio_mediana_vs_ine_esi_2025": "Mediana del segmento dividida por la mediana nacional de ingresos del INE ESI 2025 expresada en USD (veces). El INE mide ingreso líquido de todos los ocupados, por lo que es una referencia, no un comparable directo.",
+        "brecha_pct_vs_ine_esi_2025": "Cuánto supera la mediana del segmento a la mediana del INE ESI 2025, calculado como (razón − 1) × 100 (porcentaje)."
+      }
+    },
+    "gob_agregado_tecnologias.csv": {
+      "archivo": "Por tecnología: porcentaje de ofertas de Get on Board 2026 que la piden y porcentaje de desarrolladores que la usan según Stack Overflow 2024 (Chile y Latinoamérica). Solo grupos con N ≥ 5.",
+      "columnas": {
+        "tipo_tecnologia": "Categoría de la tecnología: Lenguaje, Base de datos o Cloud (texto).",
+        "tecnologia": "Nombre de la tecnología (texto).",
+        "gob_n_ofertas": "Ofertas de Get on Board 2026 que mencionan la tecnología, sumando Chile Local y Remoto sin país (conteo).",
+        "pct_demanda_gob_total": "Porcentaje del total de ofertas de Get on Board 2026 que mencionan la tecnología (porcentaje).",
+        "n_gob_chile_local": "Ofertas Chile Local de Get on Board 2026 que mencionan la tecnología (conteo).",
+        "n_gob_remoto": "Ofertas remotas sin país declarado de Get on Board 2026 que mencionan la tecnología (conteo).",
+        "so_n_chile": "Encuestados de Chile en Stack Overflow 2024 que declaran usar la tecnología (conteo).",
+        "pct_adopcion_chile": "Porcentaje de los encuestados de Chile en Stack Overflow 2024 que declaran usar la tecnología (porcentaje).",
+        "so_n_latam": "Encuestados de los 19 países LatAm en Stack Overflow 2024 que declaran usar la tecnología (conteo).",
+        "pct_adopcion_latam": "Porcentaje de los encuestados LatAm en Stack Overflow 2024 que declaran usar la tecnología (porcentaje).",
+        "estado_objetivo_metrico_1": "Clasificación frente a la meta del estudio de 20%: cumple en adopción (Stack Overflow), cumple en demanda y adopción, o queda bajo 20% (nicho) (texto).",
+        "pct_gob_chile_local": "Porcentaje de las ofertas Chile Local de Get on Board 2026 que mencionan la tecnología (porcentaje).",
+        "pct_gob_remoto": "Porcentaje de las ofertas remotas sin país declarado de Get on Board 2026 que mencionan la tecnología (porcentaje).",
+        "moe95_pp_chile": "Margen de error al 95% de la adopción en Chile (puntos porcentuales).",
+        "moe95_pp_latam": "Margen de error al 95% de la adopción en LatAm (puntos porcentuales)."
+      }
+    }
+  }
+}

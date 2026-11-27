@@ -21,6 +21,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from politica_publicacion import CHILE_LOCAL, SEMI_SENIOR, SENIOR_LEAD, JUNIOR_TRAINEE, RESTO, agregar_niveles, suprimir_n_menor  # noqa: E402
+from formato_dinero import dinero  # noqa: E402
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 CLEAN_DIR = BASE_DIR / "03_Fase_Procesar_Process" / "datos_limpios_processed"
@@ -362,7 +363,7 @@ def main() -> None:
             "ic95_mediana_sup_usd": sup,
             "tratamiento": trat,
         })
-    df_tlc = pd.DataFrame(tlc_rows)
+    df_tlc = pd.DataFrame(tlc_rows).sort_values(["n_total", "n_sal", "pais"], ascending=[False, False, True], kind="stable").reset_index(drop=True)
     df_tlc.to_csv(CLEAN_DIR / "Matriz_TLC_19_Paises_LatAm.csv", index=False, encoding="utf-8")
     df_tlc.to_csv(BASE_DIR / "descargas" / "Matriz_TLC_19_Paises_LatAm.csv", index=False, encoding="utf-8")
 
@@ -622,15 +623,13 @@ def main() -> None:
         return f"{p:.{dec}f}%".replace(".", ",")
 
     def _fm(v: float, dec: int = 0) -> str:
-        if dec == 0:
-            return f"${int(round(v)):,}".replace(",", ".")
-        return f"${v:,.{dec}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        return dinero(v, dec)
 
     cifras: dict[str, dict[str, object]] = {}
 
     # Metadata
     cifras["meta_fecha_estudio"] = {"val": "2026-11-22", "str": "2026-11-22"}
-    cifras["meta_version"] = {"val": "1.13.8", "str": "1.13.8"}
+    cifras["meta_version"] = {"val": "1.13.9", "str": "1.13.9"}
     cifras["dolar_observado_bcch"] = {
         "val": DOLAR_OBSERVADO_BCCH,
         "str": _fm(DOLAR_OBSERVADO_BCCH, 2),
@@ -718,13 +717,13 @@ def main() -> None:
     }
     cifras["ine_esi_mediana_clp"] = {
         "val": ine_mediana_clp,
-        "str": f"${_fi(int(ine_mediana_clp))} CLP",
+        "str": f"{dinero(int(ine_mediana_clp))} CLP",
         "tipo": "constante_externa",
         "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv"
     }
     cifras["ine_esi_mediana_usd"] = {
         "val": ine_mediana_usd,
-        "str": f"${_fi(int(round(ine_mediana_usd)))} USD",
+        "str": f"{dinero(round(ine_mediana_usd))} USD",
         "tipo": "constante_externa",
         "fuente": "02_Fase_Preparar_Prepare/datos_crudos_raw/INE_ESI_2025_ReferenciaNacional_20261110_v01_raw.csv / BCCh"
     }
@@ -982,13 +981,13 @@ def main() -> None:
     sal_min_filtro = int(m_f3["umbrales"]["gob_salario_min_mensual_usd"])
     cifras["salario_min_filtro_usd"] = {
         "val": sal_min_filtro,
-        "str": f"${sal_min_filtro}",
+        "str": dinero(sal_min_filtro),
         "tipo": "constante_externa",
         "fuente": "Protocolo Metodológico - Umbral Piso Salarial"
     }
     for _clave, _origen in (("so_filtro_anual_min_usd", "so_salario_min_anual_usd"), ("so_filtro_anual_max_usd", "so_salario_max_anual_usd")):
         _v = int(m_f3["umbrales"][_origen])
-        cifras[_clave] = {"val": _v, "str": f"${_v:,}".replace(",", "."), "tipo": "constante_externa",
+        cifras[_clave] = {"val": _v, "str": dinero(_v), "tipo": "constante_externa",
                           "fuente": "Protocolo Metodológico - Rango anual plausible en Stack Overflow"}
     cifras["umbral_tlc_n"] = {
         "val": 30,

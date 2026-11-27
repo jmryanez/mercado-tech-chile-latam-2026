@@ -3344,6 +3344,10 @@
   </script>
 
   <script>
+    // Montos con el signo menos antes del "$", igual que scripts/formato_dinero.py (regla R38 del validador)
+    function dinero(v) {
+      return (v < 0 ? '-' : '') + '$' + Math.abs(v).toLocaleString('es-CL');
+    }
     // DATASETS EMBEDDED
     // DATASETS CARGADOS DINÁMICAMENTE VIA FETCH
     let DATASETS = {
@@ -3486,8 +3490,8 @@
           const paisBadgeClass = r.pais_geo.includes('Chile') ? 'badge-chile' : 'badge-remote';
           const flag = r.pais_geo.includes('Chile') ? '🇨🇱' : '🌎';
           
-          const salUsdText = r.sal_usd ? `<span class="dt-badge badge-salario-ok">$${r.sal_usd.toLocaleString('es-CL')} USD</span>` : '<span class="badge-salario-na">No publicado</span>';
-          const salClpText = r.sal_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.sal_clp.toLocaleString('es-CL')}</span>` : '<span class="badge-salario-na">-</span>';
+          const salUsdText = r.sal_usd ? `<span class="dt-badge badge-salario-ok">${dinero(r.sal_usd)} USD</span>` : '<span class="badge-salario-na">No publicado</span>';
+          const salClpText = r.sal_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">${dinero(r.sal_clp)}</span>` : '<span class="badge-salario-na">-</span>';
 
           tr.innerHTML = `
             <td><code style="font-size: 0.75rem; color: #94A3B8;">${r.id}</code></td>
@@ -3682,13 +3686,13 @@
           ? '<span class="dt-badge badge-tlc-ok">✓ Cumple N ≥ 30</span>' 
           : '<span class="dt-badge badge-tlc-warn">⚠ N < 30 (Exploratorio)</span>';
 
-        const medUsdText = r.med_usd ? `<span style="font-family: var(--font-mono); font-weight: 700; color: #34D399;">$${r.med_usd.toLocaleString('es-CL')} USD</span>` : '-';
-        const iqrRangeText = (r.p25_usd && r.p75_usd) ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.p25_usd.toLocaleString('es-CL')} – $${r.p75_usd.toLocaleString('es-CL')}</span>` : '-';
-        const iqrText = r.iqr_usd ? `<span style="font-family: var(--font-mono); color: #93C5FD;">$${r.iqr_usd.toLocaleString('es-CL')}</span>` : '-';
-        const medClpText = r.med_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">$${r.med_clp.toLocaleString('es-CL')}</span>` : '-';
+        const medUsdText = r.med_usd ? `<span style="font-family: var(--font-mono); font-weight: 700; color: #34D399;">${dinero(r.med_usd)} USD</span>` : '-';
+        const iqrRangeText = (r.p25_usd && r.p75_usd) ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">${dinero(r.p25_usd)} – ${dinero(r.p75_usd)}</span>` : '-';
+        const iqrText = r.iqr_usd ? `<span style="font-family: var(--font-mono); color: #93C5FD;">${dinero(r.iqr_usd)}</span>` : '-';
+        const medClpText = r.med_clp ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #CBD5E1;">${dinero(r.med_clp)}</span>` : '-';
 
         const ic95Text = (r.ic95_mediana_inf_usd && r.ic95_mediana_sup_usd)
-          ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #93C5FD;">[$${Math.round(r.ic95_mediana_inf_usd).toLocaleString('es-CL')} – $${Math.round(r.ic95_mediana_sup_usd).toLocaleString('es-CL')}]</span>`
+          ? `<span style="font-family: var(--font-mono); font-size: 0.8rem; color: #93C5FD;">[${dinero(Math.round(r.ic95_mediana_inf_usd))} – ${dinero(Math.round(r.ic95_mediana_sup_usd))}]</span>`
           : '<span style="color: #94A3B8; font-size: 0.8rem;">N/A (N < 5)</span>';
         
         tr.innerHTML = `
@@ -3817,12 +3821,12 @@
           <td style="font-weight: 700; color: #60A5FA;">${r.nivel}</td>
           <td style="font-size: 0.8rem; color: #94A3B8;">${r.fuente}</td>
           <td style="font-family: var(--font-mono); font-weight: 600; text-align: right; color: #CBD5E1;">${r.n.toLocaleString('es-CL')}</td>
-          <td style="font-family: var(--font-mono); color: #94A3B8;">$${r.p25.toLocaleString('es-CL')}</td>
-          <td style="font-family: var(--font-mono); font-weight: 700; color: #34D399; font-size: 0.95rem;">$${r.mediana.toLocaleString('es-CL')} USD</td>
-          <td style="font-family: var(--font-mono); color: #94A3B8;">$${r.p75.toLocaleString('es-CL')}</td>
-          <td style="font-family: var(--font-mono); color: #93C5FD;">$${r.iqr.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); color: #94A3B8;">${dinero(r.p25)}</td>
+          <td style="font-family: var(--font-mono); font-weight: 700; color: #34D399; font-size: 0.95rem;">${dinero(r.mediana)} USD</td>
+          <td style="font-family: var(--font-mono); color: #94A3B8;">${dinero(r.p75)}</td>
+          <td style="font-family: var(--font-mono); color: #93C5FD;">${dinero(r.iqr)}</td>
           <td>${saltoText}</td>
-          <td style="font-family: var(--font-mono); font-size: 0.82rem; color: #CBD5E1;">$${r.clp.toLocaleString('es-CL')}</td>
+          <td style="font-family: var(--font-mono); font-size: 0.82rem; color: #CBD5E1;">${dinero(r.clp)}</td>
           <td>${tlcBadge}</td>
         `;
         tbody.appendChild(tr);

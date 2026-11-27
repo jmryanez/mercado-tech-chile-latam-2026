@@ -4,6 +4,15 @@ Este archivo registra cronológicamente los cambios realizados en los datos, scr
 
 ---
 
+## [1.13.9] - 2026-11-26 — Montos negativos y descripciones de Kaggle
+
+### Corregido
+- **Montos negativos:** el sitio, el README y los resúmenes escribían "$-250 USD"; ahora dicen "-$250 USD". Todos los montos con "$" salen de un formato único (scripts/formato_dinero.py), también los de los gráficos, la presentación, las tablas del sitio y el cuaderno de Kaggle. El validador externo revisa que ningún archivo publicado tenga "$-" y que ningún script arme un monto a mano (regla R38).
+- **Orden de la matriz de países:** Ecuador y Costa Rica tienen el mismo número de encuestados y su orden dependía de la versión de pandas; ahora se ordenan con desempate explícito (encuestados, salarios válidos y nombre). El validador lo revisa (regla R40).
+- **Descripciones de columnas en Kaggle:** el diccionario del repositorio tenía textos distintos de los que muestra la página de Kaggle, y quince descripciones no calzaban con los datos (por ejemplo, pct_alcance_remoto_global decía "Junior o Trainee", experience_level decía "EN, MI, SE o EX" y la columna n de las bandas decía "rango salarial publicado" aunque cuenta solo las ofertas con sueldo válido). Se corrigieron en la página y el repositorio guarda ahora exactamente lo publicado (scripts/kaggle_pagina_publicada.json); el validador exige que el paquete de Kaggle diga lo mismo (regla R39).
+
+---
+
 ## [1.13.8] - 2026-11-25 — Celdas vacías explicadas
 
 ### Corregido

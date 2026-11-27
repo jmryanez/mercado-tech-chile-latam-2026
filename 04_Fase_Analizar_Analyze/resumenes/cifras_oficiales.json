@@ -4,8 +4,8 @@
     "str": "2026-11-22"
   },
   "meta_version": {
-    "val": "1.13.8",
-    "str": "1.13.8"
+    "val": "1.13.9",
+    "str": "1.13.9"
   },
   "dolar_observado_bcch": {
     "val": 969.8,
@@ -1159,11 +1159,11 @@
   },
   "ic_semi_remoto_vs_local_diff": {
     "val": -250.0,
-    "str": "$-250 USD"
+    "str": "-$250 USD"
   },
   "ic_semi_remoto_vs_local_ci95_inf": {
     "val": -575.0,
-    "str": "$-575"
+    "str": "-$575"
   },
   "ic_semi_remoto_vs_local_ci95_sup": {
     "val": 625.0,
